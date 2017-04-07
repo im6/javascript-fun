@@ -1,0 +1,24 @@
+{
+  "name": "javascript_fun",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zj1926/javascript_fun.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zj1926/javascript_fun/issues"
+  },
+  "homepage": "https://github.com/zj1926/javascript_fun#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "jade": "^1.11.0"
+  }
+}
