@@ -1,5 +1,18 @@
 {
   "pretty": true,
+  "type":[
+    "React",
+    "Zepto",
+    "Angular",
+    "jQuery",
+    "Express",
+    "Lodash",
+    "Vue.js",
+    "ES2015",
+    "jade",
+    "Grunt",
+    "Browserify"
+  ],
   "article": [
     {
       "title": "test1",
