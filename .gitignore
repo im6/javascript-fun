@@ -1,3 +1,4 @@
 .idea/
 node_modules/
 rendered/
+npm-debug.log

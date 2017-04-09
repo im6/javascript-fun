@@ -9,7 +9,7 @@ app.set('x-powered-by', false);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req,res) => {
-  res.sendFile('./rendered/main.html',{
+  res.sendFile('./rendered/main/index.html',{
     root: __dirname
   });
 });
