@@ -1,14 +1,14 @@
 extends layout
 mixin TagGroup(tags)
-    div
-        each v,k in tags
-            - var tagCls = "tag_" + (k % 5);
-            span.tag(class="#{tagCls}")=v
+    each v,k in tags
+        - var tagCls = "tag_" + (k % 5);
+        span.tag(class="#{tagCls}")=v
 mixin Article(obj)
     div.post
-        h1.title=obj.title
+        .postHeader
+            h1.title=obj.title
+            +TagGroup(obj.about)
         h2=obj.author
-        +TagGroup(obj.about)
         p=obj.time
         p=obj.content
         p="test"
