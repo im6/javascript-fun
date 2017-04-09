@@ -12,7 +12,9 @@
     "jade",
     "Grunt",
     "Browserify",
-    "Bluebird"
+    "Bluebird",
+    "Redux",
+    "Bootstrap"
   ],
   "article": [
     {

@@ -1,4 +1,4 @@
-extends layout
+extends ../layout
 mixin TagGroup(tags)
     each v,k in tags
         - var tagCls = "tag_" + (k % 5);
@@ -12,6 +12,7 @@ mixin Article(obj)
         p=obj.time
         p=obj.content
         p="test"
+        a.pure-button.button-small View All
 
 block content
     each val, index in article
