@@ -11,7 +11,8 @@
     "ES2015",
     "jade",
     "Grunt",
-    "Browserify"
+    "Browserify",
+    "Bluebird"
   ],
   "article": [
     {

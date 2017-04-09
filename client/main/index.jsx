@@ -4,21 +4,24 @@ import './typed.less';
 
 import '../assets/typed.min.js';
 const TYPECOLOR = [
-  "#ffefbc",
+  "#8cffff",
+  "#d2b9ff",
   "#95E1D3",
   "#FCE38A",
+  "#85f3ff",
   "#F38181",
-  "#EAFFD0",
   "#adc1f9",
-  "#DDE8B9",
+  "#7bd0ff",
   "#F16B6F",
-  "#E4F5E5",
+  "#8cff93",
   "#FF847B",
-  "#88A6E5"
+  "#88A6E5",
+  "#EAFFD0",
 ];
 
 document.addEventListener("DOMContentLoaded", () =>{
   let typeElem = document.getElementsByClassName('type')[0],
+    funTxt = document.getElementById('funTxt'),
     COLORCOUNT = TYPECOLOR.length;
 
   window.Typed.new(".type", {
@@ -27,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () =>{
     loop: true,
     preStringTyped: (index)=> {
       typeElem.style.color = TYPECOLOR[index% COLORCOUNT];
+      funTxt.style.color = TYPECOLOR[(index +1) % COLORCOUNT];
     },
   });
 });
