@@ -19,14 +19,16 @@
   ],
   "article": [
     {
-      "title": "test1",
+      "id": 1,
+      "title": "article 1 title",
       "author": "zj",
-      "about": ["react", "es6", "webpack"],
+      "about": ["node.js"],
       "time": "2016-03-12 13:00:00",
-      "content": "welcome welcome welcome"
+      "content": "Some example about node.js fs module usage."
     },
     {
-      "title": "test2",
+      "id": 2,
+      "title": "article 2 title",
       "author": "zj",
       "about": ["react", "es6", "webpack"],
       "time": "2016-03-12 13:00:00",

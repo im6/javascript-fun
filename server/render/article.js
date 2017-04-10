@@ -1,10 +1,12 @@
+"use strict";
 var fs = require('fs'),
   jade = require('jade');
 
 var configJson = null;
 try {
   configJson = JSON.parse(fs.readFileSync('../config.json'));
-  configJson['module'] = 'main';
+  configJson['article'] = configJson['article'][1];
+  configJson['module'] = 'article';
 }
 
 catch(err){
@@ -12,8 +14,9 @@ catch(err){
 }
 
 try {
-  var html = jade.renderFile('../../views/main/index.jade', configJson);
-  var filePwd = '../../rendered/main/index.html';
+  let jadePath = `../../views/article/${configJson.article.id}.jade`;
+  var html = jade.renderFile(jadePath, configJson);
+  var filePwd = '../../rendered/article/index.html';
   fs.openSync(filePwd, 'w');
   fs.writeFileSync(filePwd, html);
 }

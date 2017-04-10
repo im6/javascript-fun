@@ -1,0 +1,13 @@
+extends ../layout
+block content
+    .article
+        h1=article.title
+        h3=article.about
+        h2=article.time
+        case article.id
+            when 1
+                block 1
+            when 2
+                block 2
+            default
+                p not find #{article.id}.jade
