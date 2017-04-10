@@ -14,7 +14,8 @@
     "Browserify",
     "Bluebird",
     "Redux",
-    "Bootstrap"
+    "Bootstrap",
+    "RxJS"
   ],
   "article": [
     {

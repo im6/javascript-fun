@@ -2,7 +2,8 @@ import 'style-loader!css-loader!purecss/build/pure-min.css';
 import './style.less';
 import './typed.less';
 
-import '../assets/typed.min.js';
+import '../../assets/typed.min.js';
+
 const TYPECOLOR = [
   "#8cffff",
   "#d2b9ff",
@@ -19,16 +20,18 @@ const TYPECOLOR = [
   "#EAFFD0",
 ];
 
-document.addEventListener("DOMContentLoaded", () =>{
+document.addEventListener("DOMContentLoaded", () => {
   let typeElem = document.getElementsByClassName('type')[0],
     funTxt = document.getElementById('funTxt'),
     COLORCOUNT = TYPECOLOR.length;
 
   window.Typed.new(".type", {
     stringsElement: document.getElementById('typed-strings'),
-    typeSpeed: 60,
+    typeSpeed: 70,
     loop: true,
     preStringTyped: (index)=> {
+      let typeCurosr = document.getElementsByClassName('typed-cursor')[0];
+      typeCurosr.style.color = TYPECOLOR[index% COLORCOUNT];
       typeElem.style.color = TYPECOLOR[index% COLORCOUNT];
       funTxt.style.color = TYPECOLOR[(index +1) % COLORCOUNT];
     },

@@ -1,5 +1,7 @@
+@text_size: 1.4em;
 .typed-cursor{
   opacity: 1;
+  font-size: @text_size;
   -webkit-animation: blink 0.7s infinite;
   -moz-animation: blink 0.7s infinite;
   animation: blink 0.7s infinite;
@@ -22,8 +24,6 @@
 
 
 .type{
-  font-size: 1.4em;
-  text-align: center;
-  display: block;
-  height: 30px;
+  font-size: @text_size;
+  display: inline-block;
 }

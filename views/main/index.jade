@@ -2,16 +2,14 @@ extends ../layout
 mixin TagGroup(tags)
     each v,k in tags
         - var tagCls = "tag_" + (k % 5);
-        span.tag(class="#{tagCls}")=v
+        div.tag(class="#{tagCls}")=v
 mixin Article(obj)
     div.post
+        p.time=obj.time
         .postHeader
             h1.title=obj.title
             +TagGroup(obj.about)
-        h2=obj.author
-        p=obj.time
-        p=obj.content
-        p="test"
+        p.content=obj.content
         a.pure-button.button-small View All
 
 block content

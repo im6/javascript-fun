@@ -39,7 +39,7 @@ var webpackConfig = {
       }
     }),
   ],
-  entry: './client/main/index.jsx',
+  entry: './client/modules/main/index.jsx',
   output: {
     filename: 'bundle.js',
     publicPath: '/main',
