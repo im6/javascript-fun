@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev_main": "webpack-dev-server --progress --profile --colors --config webpack/main_hot.js",
-    "dev_article": "webpack-dev-server --progress --profile --colors --config webpack/article_hot.js"
+    "dev1": "webpack-dev-server --progress --profile --colors --config webpack/main_hot.js",
+    "dev2": "webpack-dev-server --progress --profile --colors --config webpack/article_hot.js"
   },
   "repository": {
     "type": "git",

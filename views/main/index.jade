@@ -1,19 +1,10 @@
 extends ../layout
-mixin TagGroup(tags)
-    each v,k in tags
-        - var tagCls = "tag_" + (k % 5);
-        div.tag(class="#{tagCls}")=v
-mixin Article(obj)
-    div.post
-        p.time=obj.time
-        .postHeader
-            h1.title=obj.title
-            +TagGroup(obj.about)
-        p.content=obj.content
-        a.pure-button.button-small View All
 
 block content
     each val, index in article
-        +Article(val)
+        .post
+            +ArticleTitle(val)
+            p.content=val.content
+            a.pure-button.button-small View All
 
 

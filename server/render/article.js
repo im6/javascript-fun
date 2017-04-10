@@ -5,7 +5,7 @@ var fs = require('fs'),
 var configJson = null;
 try {
   configJson = JSON.parse(fs.readFileSync('../config.json'));
-  configJson['article'] = configJson['article'][1];
+  configJson['article'] = configJson['article'][0];
   configJson['module'] = 'article';
 }
 
