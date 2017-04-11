@@ -7,13 +7,13 @@ block content
                 |   #{oneGroup.name}
             .pure-g
                 each oneLink, index2 in oneGroup.list
-                    .pure-u-xl-1-5.pure-u-lg-1-4.pure-u-md-1-3.pure-u-sm-1-2.pure-u-1-2
+                    .pure-u-xl-1-6.pure-u-lg-1-5.pure-u-md-1-4.pure-u-sm-1-3.pure-u-1-3
                         .box
                             - var colorCls = 'color_' + ((index1 + index2) % 8);
                             h3(class=colorCls)
-                                i.fa(class=oneLink.cls aria-hidden="true")
+                                //i.fa(class=oneLink.cls aria-hidden="true")
                                 |    #{oneLink.name}
-                            p=oneLink.desc
-                            .btnGrp
+                            //p=oneLink.desc
+                            //.btnGrp
                                 a.fa.fa-home.box-btn(href=oneLink.url title="Homepage")
                                 a.fa.fa-github.box-btn(href=oneLink.git title = "Github")
