@@ -1,0 +1,7 @@
+extends ../layout
+block content
+    each val, index in article
+        .post
+            +ArticleTitle(val)
+            p.content=val.content
+            a.pure-button.button-small View All

@@ -1,9 +1,42 @@
+main {
+    padding: 20px;
+    background-color: #e8e8e8;
+}
+.box{
+    background-color: white;
+    border-radius: 5px;
+    margin: 8px;
+    padding: 2px 10px;
+    height: 110px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    transition: box-shadow 0.3s ease-in-out;
+    &:hover{
+        box-shadow: 0 5px 13px 0 rgba(0, 0, 0, 0.26);
+    }
+    .btnGrp{
+        //border: 1px solid red;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin: 2px 0;
+    }
 
-.post{
-    border-bottom: 1px solid #e0e0e0;
-    padding: 20px 40px;
-    .content{
-        color: #8666b5;
-        font-size: 20px;
+    .box-btn{
+        text-decoration: none;
+        font-size:1.4em;
+        color: #7284af;
+        margin-left: 8px;
+    }
+
+    h3 {
+        margin: 7px 0 0 1px;
+        color: #656565;
+    }
+    p {
+        margin: 4px auto;
+        font-size: 14px;
+        color: #438c86;
+        height: 45px;
+        //border: 1px solid blue;
     }
 }
