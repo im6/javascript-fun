@@ -1,16 +1,17 @@
 extends ../layout
 block content
     main
-        each oneGroup, index in link
+        each oneGroup, index1 in link
             h2
                 i.fa(class=oneGroup.cls)
                 |   #{oneGroup.name}
             .pure-g
                 each oneLink, index2 in oneGroup.list
-                    .pure-u-xl-1-5.pure-u-lg-1-4.pure-u-md-1-3.pure-u-md-1-2.pure-u-1-2
+                    .pure-u-xl-1-5.pure-u-lg-1-4.pure-u-md-1-3.pure-u-sm-1-2.pure-u-1-2
                         .box
-                            h3
-                                i.fa(class="#{oneLink.cls}" aria-hidden="true")
+                            - var colorCls = 'color_' + ((index1 + index2) % 8);
+                            h3(class=colorCls)
+                                i.fa(class=oneLink.cls aria-hidden="true")
                                 |    #{oneLink.name}
                             p=oneLink.desc
                             .btnGrp
