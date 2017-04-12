@@ -6,19 +6,10 @@ import './typed.less';
 import '../../assets/typed.min.js';
 
 const TYPECOLOR = [
-  "#8cffff",
-  "#d2b9ff",
-  "#95E1D3",
-  "#FCE38A",
-  "#85f3ff",
-  "#F38181",
-  "#adc1f9",
-  "#7bd0ff",
-  "#F16B6F",
-  "#8cff93",
-  "#FF847B",
-  "#88A6E5",
-  "#EAFFD0",
+  ["#7bd0ff","#F38181"],
+  ["#e8ec8b","#57cc9d"],
+  ["#EAFFD0","#88A6E5"],
+  ["#F16B6F","#4ecead"],
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -32,9 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
     loop: true,
     preStringTyped: (index)=> {
       let typeCurosr = document.getElementsByClassName('typed-cursor')[0];
-      typeCurosr.style.color = TYPECOLOR[index% COLORCOUNT];
-      typeElem.style.color = TYPECOLOR[index% COLORCOUNT];
-      funTxt.style.color = TYPECOLOR[(index +1) % COLORCOUNT];
+      typeCurosr.style.color = TYPECOLOR[index% COLORCOUNT][0];
+      typeElem.style.color = TYPECOLOR[index% COLORCOUNT][0];
+      funTxt.style.color = TYPECOLOR[(index) % COLORCOUNT][1];
     },
   });
 });

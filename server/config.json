@@ -1,21 +1,12 @@
 {
   "pretty": true,
   "type":[
-    "React",
-    "Zepto",
-    "Angular",
-    "jQuery",
-    "Express",
-    "Lodash",
-    "Vue.js",
-    "ES2015",
-    "jade",
-    "Grunt",
-    "Browserify",
-    "Bluebird",
-    "Redux",
-    "Bootstrap",
-    "RxJS"
+    "Developer",
+    "Designer",
+    "Data Scientist",
+    "Artist",
+    "Beginner",
+    "Fun!"
   ],
   "article": [
     {
@@ -66,201 +57,173 @@
   "link": [
     {
       "name": "Common Library",
-      "cls": "fa-code-fork",
+      "img": ".png",
       "list": [
-        {"name": "jQuery", "cls": "fa-code-fork", "url": "https://jquery.com/", "git": "https://github.com/jquery/jquery"},
-        {"name": "zepto.js", "cls": "fa-code-fork", "url": "http://zeptojs.com/", "git": "https://github.com/madrobby/zepto"},
-        {"name": "Lodash", "cls": "fa-code-fork", "url": "https://lodash.com/", "git": "https://github.com/lodash/lodash"},
-        {"name": "cheerio", "cls": "fa-code-fork", "url": "", "git": "https://github.com/cheeriojs/cheerio"},
-        {"name": "immutable", "cls": "fa-code-fork", "url": "http://facebook.github.io/immutable-js/", "git": "https://github.com/facebook/immutable-js"}
+        {"name": "jQuery", "img": "jquery.png", "url": "https://jquery.com/", "git": "https://github.com/jquery/jquery"},
+        {"name": "zepto.js", "img": "zepto.png", "url": "http://zeptojs.com/", "git": "https://github.com/madrobby/zepto"},
+        {"name": "Lodash", "img": "lodash.png", "url": "https://lodash.com/", "git": "https://github.com/lodash/lodash"},
+        {"name": "cheerio", "img": "jquery.png", "url": "", "git": "https://github.com/cheeriojs/cheerio"},
+        {"name": "immutable", "img": "immutable.png", "url": "http://facebook.github.io/immutable-js/", "git": "https://github.com/facebook/immutable-js"}
       ]
     },
     {
       "name": "JS Framework",
-      "cls": "fa-code-fork",
+      "img": ".png",
       "list": [
-        {"name": "React", "cls": "fa-code-fork", "url": "https://facebook.github.io/react/", "git": "https://github.com/facebook/react"},
-        {"name": "Angular 1.x", "cls": "fa-code-fork", "url": "https://angularjs.org/", "git": "https://github.com/angular/angular.js", "desc": "HTML enhanced for web apps"},
-        {"name": "Angular 4.x", "cls": "fa-code-fork", "url": "https://angular.io/", "git": "https://github.com/angular/angular"},
-        {"name": "Vue.js", "cls": "fa-code-fork", "url": "https://vuejs.org/", "git": "https://github.com/vuejs/vue"},
-        {"name": "Ember.js", "cls": "fa-code-fork", "url": "https://emberjs.com/", "git": "https://github.com/emberjs/ember.js/"},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""}
+        {"name": "React", "img": "react.png", "url": "https://facebook.github.io/react/", "git": "https://github.com/facebook/react"},
+        {"name": "Angular 1.x", "img": "angular.png", "url": "https://angularjs.org/", "git": "https://github.com/angular/angular.js", "desc": "HTML enhanced for web apps"},
+        {"name": "Angular 4.x", "img": "angular.png", "url": "https://angular.io/", "git": "https://github.com/angular/angular"},
+        {"name": "Vue.js", "img": "vue.png", "url": "https://vuejs.org/", "git": "https://github.com/vuejs/vue"},
+        {"name": "Ember.js", "img": "ember.png", "url": "https://emberjs.com/", "git": "https://github.com/emberjs/ember.js/"}
       ]
     },
     {
       "name": "UI Framework",
-      "cls": "fa-code-fork",
+      "img": ".png",
       "list": [
-        {"name": "Bootstrap", "cls": "fa-code-fork", "url": "https://angular-ui.github.io/bootstrap/", "git": "https://github.com/angular-ui/bootstrap"},
-        {"name": "Material UI", "cls": "fa-code-fork", "url": "http://www.material-ui.com/#/", "git": "https://github.com/callemall/material-ui"},
-        {"name": "Foundation", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "Semantic", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "UIkit", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "Ant.Design", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "Semantic UI", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "Angular Material", "cls": "fa-code-fork", "url": "https://material.angularjs.org", "git": "https://github.com/angular/material/tree/v1.1.3"},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""}
+        {"name": "Bootstrap", "img": "bootstrap.png", "url": "https://angular-ui.github.io/bootstrap/", "git": "https://github.com/angular-ui/bootstrap"},
+        {"name": "Material UI", "img": "materiao_ui.png", "url": "http://www.material-ui.com/#/", "git": "https://github.com/callemall/material-ui"},
+        {"name": "Foundation", "img": "foundation.png", "url": "", "git": ""},
+        {"name": "Semantic", "img": ".png", "url": "", "git": ""},
+        {"name": "UIkit", "img": "uikit.png", "url": "", "git": ""},
+        {"name": "Ant.Design", "img": ".png", "url": "", "git": ""},
+        {"name": "Semantic UI", "img": ".png", "url": "", "git": ""},
+        {"name": "Angular Material", "img": "materiao_ui.png", "url": "https://material.angularjs.org", "git": "https://github.com/angular/material/tree/v1.1.3"},
+        {"name": "", "img": ".png", "url": "", "git": ""},
+        {"name": "", "img": ".png", "url": "", "git": ""}
       ]
     },
     {
       "name": "CSS Framework",
-      "cls": "fa-code-fork",
+      "img": ".png",
       "list": [
-        {"name": "pure.css", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "topcoat", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""}
+        {"name": "pure.css", "img": "purecss.png", "url": "", "git": ""},
+        {"name": "topcoat", "img": ".png", "url": "", "git": ""},
+        {"name": "", "img": ".png", "url": "", "git": ""}
       ]
     },
     {
       "name": "Utility",
-      "cls": "fa-code-fork",
+      "img": ".png",
       "list": [
-        {"name": "moment.js", "cls": "fa-code-fork", "url": "https://momentjs.com/", "git": "https://github.com/moment/moment/"},
-        {"name": "Numeral.js", "cls": "fa-code-fork", "url": "http://numeraljs.com/", "git": "https://github.com/adamwdraper/Numeral-js"},
-        {"name": "chalk", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "glob", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "underscore", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""}
+        {"name": "moment.js", "img": "moment.png", "url": "https://momentjs.com/", "git": "https://github.com/moment/moment/"},
+        {"name": "Numeral.js", "img": ".png", "url": "http://numeraljs.com/", "git": "https://github.com/adamwdraper/Numeral-js"},
+        {"name": "chalk", "img": ".png", "url": "", "git": ""},
+        {"name": "glob", "img": ".png", "url": "", "git": ""},
+        {"name": "underscore", "img": "underscore.png", "url": "", "git": ""}
       ]
     },
     {
       "name": "Modularizing",
-      "cls": "fa-code-fork",
+      "img": ".png",
       "list": [
-        {"name": "require.js", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "webpack", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "grunt", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "gulp", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "kiss.js", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "jsclass", "cls": "fa-code-fork", "url": "http://jsclass.jcoglan.com/", "git": "https://github.com/jcoglan/jsclass"},
-        {"name": "browserify", "cls": "fa-code-fork", "url": "", "git": ""}
+        {"name": "require.js", "img": ".png", "url": "", "git": ""},
+        {"name": "webpack", "img": "webpack.png", "url": "", "git": ""},
+        {"name": "grunt", "img": "grunt.png", "url": "", "git": ""},
+        {"name": "gulp", "img": "gulp.png", "url": "", "git": ""},
+        {"name": "kiss.js", "img": ".png", "url": "", "git": ""},
+        {"name": "jsclass", "img": ".png", "url": "http://jsclass.jcoglan.com/", "git": "https://github.com/jcoglan/jsclass"},
+        {"name": "browserify", "img": "browserify.png", "url": "", "git": ""}
       ]
     },
     {
       "name": "Async Flow",
-      "cls": "fa-code-fork",
+      "img": ".png",
       "list": [
-        {"name": "Q", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "BlueBird", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "async", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "RxJS", "cls": "fa-code-fork", "url": "http://reactivex.io/", "git": "https://github.com/Reactive-Extensions/RxJS"},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""}
+        {"name": "Q", "img": "q.png", "url": "", "git": ""},
+        {"name": "BlueBird", "img": "bluebird.png", "url": "", "git": ""},
+        {"name": "async", "img": ".png", "url": "", "git": ""},
+        {"name": "RxJS", "img": "rxjs.png", "url": "http://reactivex.io/", "git": "https://github.com/Reactive-Extensions/RxJS"}
       ]
     },
     {
       "name": "Network Communication",
-      "cls": "fa-code-fork",
+      "img": ".png",
       "list": [
-        {"name": "isomorphic-fetch", "cls": "fa-code-fork", "url": "", "git": "https://github.com/matthew-andrews/isomorphic-fetch"},
-        {"name": "SuperAgent", "cls": "fa-code-fork", "url": "", "git": "https://github.com/visionmedia/superagent"},
-        {"name": "request", "cls": "fa-code-fork", "url": "", "git": "https://github.com/request/request"},
-        {"name": "socket.io", "cls": "fa-code-fork", "url": "http://socket.io", "git": "https://github.com/socketio/socket.io"},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""}
+        {"name": "isomorphic-fetch", "img": ".png", "url": "", "git": "https://github.com/matthew-andrews/isomorphic-fetch"},
+        {"name": "SuperAgent", "img": ".png", "url": "", "git": "https://github.com/visionmedia/superagent"},
+        {"name": "request", "img": ".png", "url": "", "git": "https://github.com/request/request"},
+        {"name": "socket.io", "img": "socket.png", "url": "http://socket.io", "git": "https://github.com/socketio/socket.io"},
+        {"name": "", "img": ".png", "url": "", "git": ""},
+        {"name": "", "img": ".png", "url": "", "git": ""},
+        {"name": "", "img": ".png", "url": "", "git": ""},
+        {"name": "", "img": ".png", "url": "", "git": ""}
       ]
     },
     {
       "name": "Web Server",
-      "cls": "fa-code-fork",
+      "img": ".png",
       "list": [
-        {"name": "Express.js", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "Meteor", "cls": "fa-code-fork", "url": "https://www.meteor.com/", "git": "https://github.com/meteor/meteor"},
-        {"name": "Koa.js", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""}
+        {"name": "Express.js", "img": ".png", "url": "", "git": ""},
+        {"name": "Meteor", "img": "meteor.png", "url": "https://www.meteor.com/", "git": "https://github.com/meteor/meteor"},
+        {"name": "Koa.js", "img": "koa.png", "url": "", "git": ""}
       ]
     },
     {
       "name": "View Engine",
-      "cls": "fa-code-fork",
+      "img": ".png",
       "list": [
-        {"name": "Pug/Jade", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "Handlebars.js", "cls": "fa-code-fork", "url": "http://handlebarsjs.com/", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""}
+        {"name": "Pug/Jade", "img": ".png", "url": "", "git": ""},
+        {"name": "Handlebars.js", "img": "handlebar.png", "url": "http://handlebarsjs.com/", "git": ""}
       ]
     },
     {
       "name": "Database",
-      "cls": "fa-code-fork",
+      "img": ".png",
       "list": [
-        {"name": "mongoose", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""}
+        {"name": "mongoose", "img": "mongo.png", "url": "", "git": ""},
+        {"name": "Sequelize", "img": "sequelize.png", "url": "http://sequelize.readthedocs.io/", "git": "https://github.com/sequelize/sequelize"}
       ]
     },
     {
       "name": "Chart",
-      "cls": "fa-code-fork",
+      "img": ".png",
       "list": [
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""}
+        {"name": "Highchart", "img": ".png", "url": "", "git": ""},
+        {"name": "D3", "img": ".png", "url": "", "git": ""},
+        {"name": "", "img": ".png", "url": "", "git": ""},
+        {"name": "", "img": ".png", "url": "", "git": ""},
+        {"name": "", "img": ".png", "url": "", "git": ""},
+        {"name": "", "img": ".png", "url": "", "git": ""}
       ]
     },
     {
       "name": "CSS in JS",
-      "cls": "fa-code-fork",
+      "img": ".png",
       "list": [
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""}
+        {"name": "", "img": ".png", "url": "", "git": ""},
+        {"name": "", "img": ".png", "url": "", "git": ""},
+        {"name": "", "img": ".png", "url": "", "git": ""},
+        {"name": "", "img": ".png", "url": "", "git": ""},
+        {"name": "", "img": ".png", "url": "", "git": ""},
+        {"name": "", "img": ".png", "url": "", "git": ""}
       ]
     },
     {
       "name": "Animation & Graphic",
-      "cls": "fa-code-fork",
+      "img": ".png",
       "list": [
-        {"name": "anime.js", "cls": "fa-code-fork", "url": "http://anime-js.com/", "git": "https://github.com/juliangarnier/anime"},
-        {"name": "GSAP", "cls": "fa-code-fork", "url": "https://greensock.com/gsap", "git": "https://github.com/greensock/GreenSock-JS"},
-        {"name": "mo.js", "cls": "fa-code-fork", "url": "http://mojs.io/", "git": "https://github.com/legomushroom/mojs"},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""},
-        {"name": "", "cls": "fa-code-fork", "url": "", "git": ""}
+        {"name": "anime.js", "img": "anime.png", "url": "http://anime-js.com/", "git": "https://github.com/juliangarnier/anime"},
+        {"name": "GSAP", "img": "gsap.png", "url": "https://greensock.com/gsap", "git": "https://github.com/greensock/GreenSock-JS"},
+        {"name": "mo.js", "img": ".png", "url": "http://mojs.io/", "git": "https://github.com/legomushroom/mojs"},
+        {"name": "", "img": ".png", "url": "", "git": ""},
+        {"name": "", "img": ".png", "url": "", "git": ""},
+        {"name": "", "img": ".png", "url": "", "git": ""}
       ]
     },
     {
       "name": "",
-      "cls": "fa-code-fork",
+      "img": ".png",
       "list": []
     },
     {
       "name": "",
-      "cls": "fa-code-fork",
+      "img": ".png",
       "list": []
     },
     {
       "name": "",
-      "cls": "fa-code-fork",
+      "img": ".png",
       "list": []
     }
 
