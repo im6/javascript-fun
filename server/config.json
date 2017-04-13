@@ -212,7 +212,22 @@
       ]
     },
     {
-      "name": "",
+      "name": "Crawling & Scraping",
+      "img": ".png",
+      "list": []
+    },
+    {
+      "name": "CLI tool",
+      "img": ".png",
+      "list": []
+    },
+    {
+      "name": "Encryption",
+      "img": ".png",
+      "list": []
+    },
+    {
+      "name": "TDD",
       "img": ".png",
       "list": []
     },

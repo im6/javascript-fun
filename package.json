@@ -21,8 +21,10 @@
   },
   "homepage": "https://github.com/zj1926/javascript_fun#readme",
   "dependencies": {
+    "cheerio": "^0.22.0",
     "express": "^4.15.2",
-    "jade": "^1.11.0"
+    "jade": "^1.11.0",
+    "request": "^2.81.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
