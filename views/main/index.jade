@@ -1,20 +1,26 @@
 extends ../layout
+
 block content
     main
         each oneGroup, index1 in link
-            h2
-                i.fa(class=oneGroup.cls)
+            h3.grpTitle
+                i.fa(class=oneGroup.icon)
                 |   #{oneGroup.name}
             .pure-g
                 each oneLink, index2 in oneGroup.list
                     .pure-u-xl-1-5.pure-u-lg-1-4.pure-u-md-1-3.pure-u-sm-1-2.pure-u-1-2
                         .box
                             .boxLeft
-                                img(src="https://angularjs.org/img/ng-logo.png")
-                                //i.fa.fa-book
+                                if oneLink.img
+                                    img(src="/main/assets/#{oneLink.img}")
+                                else
+                                    - var colorList = ['#86a2d0','#9fda7c','#da6767','#949494','#e0d891','#659271','#a47af1']
+                                    - var clr = colorList[(index1 + index2) % colorList.length]
+                                    i.fa.fa-cube(style="color: #{clr}")
                             .boxRight
                                 h5(title=oneLink.desc) #{oneLink.name}
                                 div
-                                    i.fa.fa-github-alt
-                                    |  12,860
+                                    a(href="https://github.com#{oneLink.git}")
+                                        i.fa.fa-github
+                                        | 12,860
 

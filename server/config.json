@@ -57,188 +57,199 @@
   "link": [
     {
       "name": "Common Library",
-      "img": ".png",
+      "icon": "fa-bookmark",
       "list": [
-        {"name": "jQuery", "img": "jquery.png", "url": "https://jquery.com/", "git": "https://github.com/jquery/jquery"},
-        {"name": "zepto.js", "img": "zepto.png", "url": "http://zeptojs.com/", "git": "https://github.com/madrobby/zepto"},
-        {"name": "Lodash", "img": "lodash.png", "url": "https://lodash.com/", "git": "https://github.com/lodash/lodash"},
-        {"name": "cheerio", "img": "jquery.png", "url": "", "git": "https://github.com/cheeriojs/cheerio"},
-        {"name": "immutable", "img": "immutable.png", "url": "http://facebook.github.io/immutable-js/", "git": "https://github.com/facebook/immutable-js"}
+        {"name": "jQuery", "img": "jquery.png", "url": "https://jquery.com/", "git": "/jquery/jquery"},
+        {"name": "zepto.js", "img": "zepto.png", "url": "http://zeptojs.com/", "git": "/madrobby/zepto"},
+        {"name": "Lodash", "img": "lodash.png", "url": "https://lodash.com/", "git": "/lodash/lodash"},
+        {"name": "cheerio", "img": "jquery.png", "url": "", "git": "/cheeriojs/cheerio"},
+        {"name": "immutable", "img": "immutable.png", "url": "http://facebook.github.io/immutable-js/", "git": "/facebook/immutable-js"}
       ]
     },
     {
       "name": "JS Framework",
-      "img": ".png",
+      "icon": "fa-code",
       "list": [
-        {"name": "React", "img": "react.png", "url": "https://facebook.github.io/react/", "git": "https://github.com/facebook/react"},
-        {"name": "Angular 1.x", "img": "angular.png", "url": "https://angularjs.org/", "git": "https://github.com/angular/angular.js", "desc": "HTML enhanced for web apps"},
-        {"name": "Angular 4.x", "img": "angular.png", "url": "https://angular.io/", "git": "https://github.com/angular/angular"},
-        {"name": "Vue.js", "img": "vue.png", "url": "https://vuejs.org/", "git": "https://github.com/vuejs/vue"},
-        {"name": "Ember.js", "img": "ember.png", "url": "https://emberjs.com/", "git": "https://github.com/emberjs/ember.js/"}
+        {"name": "React", "img": "react.png", "url": "https://facebook.github.io/react/", "git": "/facebook/react"},
+        {"name": "Angular 1.x", "img": "angular.png", "url": "https://angularjs.org/", "git": "/angular/angular.js", "desc": "HTML enhanced for web apps"},
+        {"name": "Angular 4.x", "img": "angular.png", "url": "https://angular.io/", "git": "/angular/angular"},
+        {"name": "Vue.js", "img": "vue.png", "url": "https://vuejs.org/", "git": "/vuejs/vue"},
+        {"name": "Ember.js", "img": "ember.png", "url": "https://emberjs.com/", "git": "/emberjs/ember.js/"}
       ]
     },
     {
       "name": "UI Framework",
-      "img": ".png",
+      "icon": "fa-picture-o",
       "list": [
-        {"name": "Bootstrap", "img": "bootstrap.png", "url": "https://angular-ui.github.io/bootstrap/", "git": "https://github.com/angular-ui/bootstrap"},
-        {"name": "Material UI", "img": "materiao_ui.png", "url": "http://www.material-ui.com/#/", "git": "https://github.com/callemall/material-ui"},
+        {"name": "Bootstrap", "img": "bootstrap.png", "url": "https://angular-ui.github.io/bootstrap/", "git": "/angular-ui/bootstrap"},
+        {"name": "Material UI", "img": "angular.png", "url": "http://www.material-ui.com/#/", "git": "/callemall/material-ui"},
         {"name": "Foundation", "img": "foundation.png", "url": "", "git": ""},
-        {"name": "Semantic", "img": ".png", "url": "", "git": ""},
-        {"name": "UIkit", "img": "uikit.png", "url": "", "git": ""},
-        {"name": "Ant.Design", "img": ".png", "url": "", "git": ""},
-        {"name": "Semantic UI", "img": ".png", "url": "", "git": ""},
-        {"name": "Angular Material", "img": "materiao_ui.png", "url": "https://material.angularjs.org", "git": "https://github.com/angular/material/tree/v1.1.3"},
-        {"name": "", "img": ".png", "url": "", "git": ""},
-        {"name": "", "img": ".png", "url": "", "git": ""}
+        {"name": "Semantic", "img": null, "url": "", "git": ""},
+        {"name": "UIkit", "img": "uikit.svg", "url": "", "git": "/uikit/uikit"},
+        {"name": "Ant.Design", "img": null, "url": "", "git": "/ant-design/ant-design"},
+        {"name": "Semantic UI", "img": null, "url": "", "git": "/Semantic-Org/Semantic-UI"},
+        {"name": "Angular Material", "img": "material_ui.png", "url": "https://material.angularjs.org", "git": "/angular/material"},
+        {"name": "", "img": null, "url": "", "git": ""},
+        {"name": "", "img": null, "url": "", "git": ""}
       ]
     },
     {
       "name": "CSS Framework",
-      "img": ".png",
+      "icon": "fa-cubes",
       "list": [
-        {"name": "pure.css", "img": "purecss.png", "url": "", "git": ""},
-        {"name": "topcoat", "img": ".png", "url": "", "git": ""},
-        {"name": "", "img": ".png", "url": "", "git": ""}
+        {"name": "pure.css", "img": "purecss.png", "url": "", "git": "/yahoo/pure"},
+        {"name": "topcoat", "img": null, "url": "", "git": "/topcoat/topcoat"},
+        {"name": "", "img": null, "url": "", "git": ""}
       ]
     },
     {
       "name": "Utility",
-      "img": ".png",
+      "icon": "fa-pencil",
       "list": [
-        {"name": "moment.js", "img": "moment.png", "url": "https://momentjs.com/", "git": "https://github.com/moment/moment/"},
-        {"name": "Numeral.js", "img": ".png", "url": "http://numeraljs.com/", "git": "https://github.com/adamwdraper/Numeral-js"},
-        {"name": "chalk", "img": ".png", "url": "", "git": ""},
-        {"name": "glob", "img": ".png", "url": "", "git": ""},
-        {"name": "underscore", "img": "underscore.png", "url": "", "git": ""}
+        {"name": "moment.js", "img": "moment.png", "url": "https://momentjs.com/", "git": "/moment/moment/"},
+        {"name": "Numeral.js", "img": null, "url": "http://numeraljs.com/", "git": "/adamwdraper/Numeral-js"},
+        {"name": "chalk", "img": null, "url": "", "git": ""},
+        {"name": "glob", "img": null, "url": "", "git": ""},
+        {"name": "rimraf", "img": null, "url": "", "git": "/isaacs/rimraf"},
+        {"name": "underscore", "img": "underscore.png", "url": "", "git": "/jashkenas/underscore"}
       ]
     },
     {
       "name": "Modularizing",
-      "img": ".png",
+      "icon": "fa-gear",
       "list": [
-        {"name": "require.js", "img": ".png", "url": "", "git": ""},
-        {"name": "webpack", "img": "webpack.png", "url": "", "git": ""},
-        {"name": "grunt", "img": "grunt.png", "url": "", "git": ""},
-        {"name": "gulp", "img": "gulp.png", "url": "", "git": ""},
-        {"name": "kiss.js", "img": ".png", "url": "", "git": ""},
-        {"name": "jsclass", "img": ".png", "url": "http://jsclass.jcoglan.com/", "git": "https://github.com/jcoglan/jsclass"},
-        {"name": "browserify", "img": "browserify.png", "url": "", "git": ""}
+        {"name": "require.js", "img": null, "url": "", "git": "/requirejs/requirejs"},
+        {"name": "webpack", "img": "webpack.png", "url": "", "git": "/webpack/webpack"},
+        {"name": "grunt", "img": "grunt.png", "url": "", "git": "/gruntjs/grunt"},
+        {"name": "gulp", "img": "gulp.png", "url": "", "git": "/gulpjs/gulp"},
+        {"name": "kissy.js", "img": null, "url": "", "git": "/kissyteam/kissy"},
+        {"name": "browserify", "img": "browserify.png", "url": "", "git": "/substack/node-browserify"}
       ]
     },
     {
       "name": "Async Flow",
-      "img": ".png",
+      "icon": "fa-link",
       "list": [
-        {"name": "Q", "img": "q.png", "url": "", "git": ""},
-        {"name": "BlueBird", "img": "bluebird.png", "url": "", "git": ""},
-        {"name": "async", "img": ".png", "url": "", "git": ""},
-        {"name": "RxJS", "img": "rxjs.png", "url": "http://reactivex.io/", "git": "https://github.com/Reactive-Extensions/RxJS"}
+        {"name": "Q", "img": "q.png", "url": "", "git": "/kriskowal/q"},
+        {"name": "BlueBird", "img": "bluebird.png", "url": "", "git": "/petkaantonov/bluebird"},
+        {"name": "async", "img": null, "url": "", "git": "/caolan/async"},
+        {"name": "RxJS", "img": "rxjs.png", "url": "http://reactivex.io/", "git": "/ReactiveX/RxJS"}
       ]
     },
     {
       "name": "Network Communication",
-      "img": ".png",
+      "icon": "fa-mobile",
       "list": [
-        {"name": "isomorphic-fetch", "img": ".png", "url": "", "git": "https://github.com/matthew-andrews/isomorphic-fetch"},
-        {"name": "SuperAgent", "img": ".png", "url": "", "git": "https://github.com/visionmedia/superagent"},
-        {"name": "request", "img": ".png", "url": "", "git": "https://github.com/request/request"},
-        {"name": "socket.io", "img": "socket.png", "url": "http://socket.io", "git": "https://github.com/socketio/socket.io"},
-        {"name": "", "img": ".png", "url": "", "git": ""},
-        {"name": "", "img": ".png", "url": "", "git": ""},
-        {"name": "", "img": ".png", "url": "", "git": ""},
-        {"name": "", "img": ".png", "url": "", "git": ""}
+        {"name": "isomorphic-fetch", "img": null, "url": "", "git": "/matthew-andrews/isomorphic-fetch"},
+        {"name": "SuperAgent", "img": null, "url": "", "git": "/visionmedia/superagent"},
+        {"name": "request", "img": null, "url": "", "git": "/request/request"},
+        {"name": "socket.io", "img": "socket.gif", "url": "http://socket.io", "git": "/socketio/socket.io"},
+        {"name": "", "img": null, "url": "", "git": ""},
+        {"name": "", "img": null, "url": "", "git": ""},
+        {"name": "", "img": null, "url": "", "git": ""},
+        {"name": "", "img": null, "url": "", "git": ""}
       ]
     },
     {
       "name": "Web Server",
-      "img": ".png",
+      "icon": "fa-server",
       "list": [
-        {"name": "Express.js", "img": ".png", "url": "", "git": ""},
-        {"name": "Meteor", "img": "meteor.png", "url": "https://www.meteor.com/", "git": "https://github.com/meteor/meteor"},
-        {"name": "Koa.js", "img": "koa.png", "url": "", "git": ""}
+        {"name": "Express.js", "img": null, "url": "", "git": "/expressjs/express"},
+        {"name": "Meteor", "img": "meteor.png", "url": "https://www.meteor.com/", "git": "/meteor/meteor"},
+        {"name": "Koa.js", "img": "koa.png", "url": "", "git": "/koajs/koa"}
       ]
     },
     {
       "name": "View Engine",
-      "img": ".png",
+      "icon": "fa-chrome",
       "list": [
-        {"name": "Pug/Jade", "img": ".png", "url": "", "git": ""},
-        {"name": "Handlebars.js", "img": "handlebar.png", "url": "http://handlebarsjs.com/", "git": ""}
+        {"name": "jade", "img": null, "url": "", "git": "/jadejs/jade"},
+        {"name": "Handlebars.js", "img": "handlebar.png", "url": "http://handlebarsjs.com/", "git": "/wycats/handlebars.js"}
       ]
     },
     {
       "name": "Database",
-      "img": ".png",
+      "icon": "fa-server",
       "list": [
         {"name": "mongoose", "img": "mongo.png", "url": "", "git": ""},
-        {"name": "Sequelize", "img": "sequelize.png", "url": "http://sequelize.readthedocs.io/", "git": "https://github.com/sequelize/sequelize"}
+        {"name": "Sequelize", "img": "sequelize.png", "url": "http://sequelize.readthedocs.io/", "git": "/sequelize/sequelize"}
       ]
     },
     {
       "name": "Chart",
-      "img": ".png",
+      "icon": "fa-bar-chart",
       "list": [
-        {"name": "Highchart", "img": ".png", "url": "", "git": ""},
-        {"name": "D3", "img": ".png", "url": "", "git": ""},
-        {"name": "", "img": ".png", "url": "", "git": ""},
-        {"name": "", "img": ".png", "url": "", "git": ""},
-        {"name": "", "img": ".png", "url": "", "git": ""},
-        {"name": "", "img": ".png", "url": "", "git": ""}
+        {"name": "Highchart", "img": null, "url": "", "git": "/highcharts/highcharts"},
+        {"name": "D3", "img": null, "url": "", "git": "/d3/d3"},
+        {"name": "Chart.js", "img": null, "url": "", "git": "/chartjs/Chart.js"},
+        {"name": "CHARTIST.JS", "img": null, "url": "", "git": "/gionkunz/chartist-js"},
+        {"name": "Echarts", "img": null, "url": "", "git": "/ecomfe/echarts"},
+        {"name": "", "img": null, "url": "", "git": ""}
       ]
     },
     {
       "name": "CSS in JS",
-      "img": ".png",
+      "icon": "fa-window-restore",
       "list": [
-        {"name": "", "img": ".png", "url": "", "git": ""},
-        {"name": "", "img": ".png", "url": "", "git": ""},
-        {"name": "", "img": ".png", "url": "", "git": ""},
-        {"name": "", "img": ".png", "url": "", "git": ""},
-        {"name": "", "img": ".png", "url": "", "git": ""},
-        {"name": "", "img": ".png", "url": "", "git": ""}
+        {"name": "", "img": null, "url": "", "git": ""},
+        {"name": "", "img": null, "url": "", "git": ""},
+        {"name": "", "img": null, "url": "", "git": ""},
+        {"name": "", "img": null, "url": "", "git": ""},
+        {"name": "", "img": null, "url": "", "git": ""},
+        {"name": "", "img": null, "url": "", "git": ""}
       ]
     },
     {
       "name": "Animation & Graphic",
-      "img": ".png",
+      "icon": "fa-lightbulb-o",
       "list": [
-        {"name": "anime.js", "img": "anime.png", "url": "http://anime-js.com/", "git": "https://github.com/juliangarnier/anime"},
-        {"name": "GSAP", "img": "gsap.png", "url": "https://greensock.com/gsap", "git": "https://github.com/greensock/GreenSock-JS"},
-        {"name": "mo.js", "img": ".png", "url": "http://mojs.io/", "git": "https://github.com/legomushroom/mojs"},
-        {"name": "", "img": ".png", "url": "", "git": ""},
-        {"name": "", "img": ".png", "url": "", "git": ""},
-        {"name": "", "img": ".png", "url": "", "git": ""}
+        {"name": "anime.js", "img": "anime.png", "url": "http://anime-js.com/", "git": "/juliangarnier/anime"},
+        {"name": "GSAP", "img": "gsap.png", "url": "https://greensock.com/gsap", "git": "/greensock/GreenSock-JS"},
+        {"name": "mo.js", "img": null, "url": "http://mojs.io/", "git": "/legomushroom/mojs"}
+
       ]
     },
     {
       "name": "Crawling & Scraping",
-      "img": ".png",
-      "list": []
+      "icon": "fa-bug",
+      "list": [
+        {"name": "", "img": null, "url": "", "git": ""},
+        {"name": "", "img": null, "url": "", "git": ""},
+        {"name": "", "img": null, "url": "", "git": ""}
+      ]
     },
     {
       "name": "CLI tool",
-      "img": ".png",
-      "list": []
+      "icon": "fa-terminal",
+      "list": [
+        {"name": "chalk", "img": null, "url": "", "git": "/chalk/chalk"},
+        {"name": "commander", "img": null, "url": "", "git": "/tj/commander.js"},
+
+        {"name": "", "img": null, "url": "", "git": ""}
+      ]
     },
     {
       "name": "Encryption",
-      "img": ".png",
-      "list": []
+      "icon": "fa-lock",
+      "list": [
+        {"name": "uuid", "img": null, "url": "", "git": "/kelektiv/node-uuid"},
+        {"name": "", "img": null, "url": "", "git": ""},
+        {"name": "", "img": null, "url": "", "git": ""}
+      ]
     },
     {
       "name": "TDD",
-      "img": ".png",
+      "icon": null,
       "list": []
     },
     {
       "name": "",
-      "img": ".png",
+      "icon": null,
       "list": []
     },
     {
       "name": "",
-      "img": ".png",
+      "icon": null,
       "list": []
     }
 
