@@ -2,8 +2,8 @@ extends ../layout
 
 block content
     main
-        each oneGroup, index1 in link
-            h3.grpTitle
+        each oneGroup, index1 in package
+            h2.grpTitle
                 i.fa(class=oneGroup.icon)
                 |   #{oneGroup.name}
             .pure-g
@@ -22,5 +22,5 @@ block content
                                 div
                                     a(href="https://github.com#{oneLink.git}")
                                         i.fa.fa-github
-                                        | 12,860
+                                        | #{oneLink.star}
 

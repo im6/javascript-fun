@@ -1,5 +1,4 @@
 {
-  "pretty": true,
   "type":[
     "Developer",
     "Designer",
@@ -54,5 +53,5 @@
       "content": "welcome welcome welcome"
     }
   ],
-  "link": []
+  "package": []
 }
