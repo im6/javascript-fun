@@ -24,7 +24,8 @@ var webpackConfig = {
         use: [
           'style-loader',
           'css-loader',
-          'less-loader'
+          'less-loader',
+          'autoprefixer-loader'
         ],
         exclude: /node_modules/
       },

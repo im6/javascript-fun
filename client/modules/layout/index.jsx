@@ -8,8 +8,8 @@ import '../../assets/typed.min.js';
 const TYPECOLOR = [
   ["#7bd0ff","#F38181"],
   ["#e8ec8b","#57cc9d"],
-  ["#EAFFD0","#88A6E5"],
-  ["#F16B6F","#4ecead"],
+  ["#88A6E5","#EAFFD0"],
+  ["#ffb077","#b0cadb"],
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
