@@ -7,9 +7,9 @@ let fs = require('fs'),
   sqlConn = require('../../resource/mysqlConnection');
 
 const HTMLINPUT = '../../../views/main/index.jade',
-  HTMLOUTPUT = '../../../rendered/main/index.html',
+  HTMLOUTPUT = '../../../public/main/index.html',
   PROTOTYPEINPUT = './viewModel.json',
-  PROTOTYPEOUTPUT = '../../../rendered/temp.json';
+  PROTOTYPEOUTPUT = '../../../temp/viewModel.json';
 
 const privateFn = {
   exportViewModel:(data)=> {

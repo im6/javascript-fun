@@ -45,14 +45,14 @@ var webpackConfig = {
     publicPath: '/main',
   },
   devServer: {
-    contentBase: "./rendered/main/",  // set "public" path, relative to root
+    contentBase: "./public",  // set "public" path, relative to root
     noInfo: true,
     hot: true,
     inline: true,
     port: "3000",
     host: "127.0.0.1",
     historyApiFallback: {
-      index: "../rendered/main/" // set "public" path, relative to __dirname
+      index: "main/" // set "index" path, relative to contentBase
     }
   }
 };
