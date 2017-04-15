@@ -1,17 +1,22 @@
-var path = require('path');
-var express = require('express');
-var app = express();
+"use strict";
+const path = require('path');
+const express = require('express');
+const app = express();
 
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+const server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+const server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 
 app.set('x-powered-by', false);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req,res) => {
-  res.sendFile('./rendered/main/index.html',{
+  res.sendFile('./public/main/index.html',{
     root: __dirname
   });
+});
+
+app.get('/*', (req,res) => {
+  res.redirect('/');
 });
 
 

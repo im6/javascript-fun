@@ -8,7 +8,7 @@ import '../../assets/typed.min.js';
 const TYPECOLOR = [
   ["#7bd0ff","#F38181"],
   ["#e8ec8b","#57cc9d"],
-  ["#88A6E5","#EAFFD0"],
+  ["#EAFFD0","#88A6E5"],
   ["#ffb077","#b0cadb"],
 ];
 

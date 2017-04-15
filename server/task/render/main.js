@@ -12,6 +12,8 @@ const HTMLINPUT = '../../../views/main/index.jade',
   PROTOTYPEINPUT = './viewModel.json',
   PROTOTYPEOUTPUT = '../../../temp/viewModel.json';
 
+const ISDEV = process.argv.length == 3;
+
 const privateFn = {
   exportViewModel:(data)=> {
     fs.openSync(PROTOTYPEOUTPUT, 'w');
@@ -22,8 +24,9 @@ const privateFn = {
     try {
       result = JSON.parse(fs.readFileSync(PROTOTYPEINPUT));
       result['module'] = 'main';
-      result['pretty'] = process.env.NODE_ENV != "production";
+      result['pretty'] = ISDEV;
       result['version'] = shortid.generate();
+      console.log(`version: ${result['version']}`);
     }
 
     catch(err){
@@ -107,6 +110,8 @@ const inst = {
     var db = null;
     try {
       db = JSON.parse(fs.readFileSync(PROTOTYPEOUTPUT));
+      db['version'] = shortid.generate();
+      console.log(`version: ${db['version']}`);
       privateFn.render(db, HTMLINPUT, HTMLOUTPUT);
     }
 
@@ -117,8 +122,8 @@ const inst = {
 };
 
 
-if(process.argv.length<3){
-  inst.start();
-}else{
+if(ISDEV){
   inst.local();
+}else{
+  inst.start();
 }
