@@ -4,7 +4,8 @@ let fs = require('fs'),
   numeral = require('numeral'),
   jade = require('jade'),
   crawlerGit = require('../crawler/github'),
-  sqlConn = require('../../resource/mysqlConnection');
+  sqlConn = require('../../resource/mysqlConnection'),
+  shortid = require('shortid');
 
 const HTMLINPUT = '../../../views/main/index.jade',
   HTMLOUTPUT = '../../../public/main/index.html',
@@ -22,6 +23,7 @@ const privateFn = {
       result = JSON.parse(fs.readFileSync(PROTOTYPEINPUT));
       result['module'] = 'main';
       result['pretty'] = process.env.NODE_ENV != "production";
+      result['version'] = shortid.generate();
     }
 
     catch(err){
@@ -114,5 +116,9 @@ const inst = {
   }
 };
 
-inst.start();
-//inst.local();
+
+if(process.argv.length<3){
+  inst.start();
+}else{
+  inst.local();
+}
