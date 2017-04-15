@@ -3,17 +3,17 @@
 let request = require('request'),
   cheerio = require('cheerio'),
   async = require('async'),
-  fs = require('fs');
+  fs = require('fs'),
+  sqlConn = require('../../resource/mysqlConnection');
 
-const CONCURRENCY = 4,
-  JSONPATH = '../data/db.json';
+const CONCURRENCY = 8;
 
 const privateFn = {
   getNum: (obj, cb)=> {
-    let url = obj.git;
+    let url = obj.github;
     request({
       method: 'GET',
-      uri: 'https://github.com' + url,
+      uri: 'https://github.com/' + url,
     }, function(err, res, body){
       if(err){
         console.error(err);
@@ -50,29 +50,26 @@ const privateFn = {
 
 const publicFn = {
   start: () => {
-    let db = privateFn.getJson(JSONPATH);
     const deferred = new Promise((resolve, reject) => {
-      async.mapLimit(db.package, CONCURRENCY, (v, cb) => {
-        console.log(`crawling ${v.name}...`);
-        privateFn.getNum(v, cb);
-      }, (error, data) => {
-        if(error){
-          console.error(error);
-          reject(error);
-        }else{
-          resolve(data);
-        }
+      var qr = "SELECT * FROM git WHERE `group` IS NOT NULL";
+      sqlConn.sqlExecOne(qr).then((db) => {
+        async.mapLimit(db, CONCURRENCY, (v, cb) => {
+          console.log(`crawling ${v.name}...`);
+          privateFn.getNum(v, cb);
+        }, (error, data) => {
+          if(error){
+            console.error(error);
+            reject(error);
+          }else{
+            resolve(data);
+          }
+        });
       });
     });
 
     return deferred;
   }
 };
-
-
-
-
-
 
 
 module.exports = publicFn;

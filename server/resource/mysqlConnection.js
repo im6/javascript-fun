@@ -12,5 +12,16 @@ var pool = mysql.createPool({
 module.exports = {
   getPool: function(){
     return pool;
+  },
+  sqlExecOne: function(qr){
+    return new Promise(function(resolve, reject){
+      pool.query(qr, function(err, rows, fields){
+        if(err){
+          reject(err);
+        }else{
+          resolve(rows);
+        }
+      });
+    });
   }
 };

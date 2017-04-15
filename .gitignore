@@ -4,4 +4,3 @@ rendered/
 npm-debug.log
 public/main/bundle.js
 public/main/bundle.js.map
-server/data/
