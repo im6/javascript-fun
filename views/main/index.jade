@@ -3,6 +3,7 @@ extends ../layout
 block content
     main
         each oneGroup, index1 in package
+            br
             h3.grpTitle
                 //-i.fa(class=oneGroup.icon)
                 |   #{oneGroup.name}
@@ -24,4 +25,5 @@ block content
                                     a(href="https://github.com/#{oneLink.github}" target="_blank")
                                         i.fa.fa-github
                                         | #{oneLink.star}
+            br
 
