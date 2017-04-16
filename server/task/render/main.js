@@ -26,7 +26,7 @@ const privateFn = {
       result['module'] = 'main';
       result['pretty'] = ISDEV;
       result['version'] = shortid.generate();
-      console.log(`version: ${result['version']}`);
+      console.log(`version: ${result['version']}, isDEV: ${ISDEV}`);
     }
 
     catch(err){
@@ -111,7 +111,8 @@ const inst = {
     try {
       db = JSON.parse(fs.readFileSync(PROTOTYPEOUTPUT));
       db['version'] = shortid.generate();
-      console.log(`version: ${db['version']}`);
+      db['pretty'] = ISDEV;
+      console.log(`version: ${db['version']}, isDEV: ${ISDEV}`);
       privateFn.render(db, HTMLINPUT, HTMLOUTPUT);
     }
 
