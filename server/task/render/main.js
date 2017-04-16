@@ -104,6 +104,8 @@ const inst = {
       proto.package = data;
       privateFn.exportViewModel(proto);
       privateFn.render(proto, HTMLINPUT, HTMLOUTPUT);
+
+      process.exit();
     });
   },
   local: () => {
