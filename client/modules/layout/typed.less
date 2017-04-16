@@ -1,4 +1,6 @@
 @text_size: 1.4em;
+@mobile_size: 1.9em;
+
 .typed-cursor{
   opacity: 1;
   font-size: @text_size;
@@ -26,4 +28,13 @@
 .type{
   font-size: @text_size;
   display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .type{
+    font-size: @mobile_size;
+  }
+  .typed-cursor{
+    font-size: @mobile_size;
+  }
 }

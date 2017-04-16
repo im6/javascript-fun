@@ -14,7 +14,7 @@ const TYPECOLOR = [
 
 document.addEventListener("DOMContentLoaded", () => {
   let typeElem = document.getElementsByClassName('type')[0],
-    funTxt = document.getElementById('funTxt'),
+    funTxt = document.getElementById('sbttl2'),
     COLORCOUNT = TYPECOLOR.length;
 
   window.Typed.new(".type", {
