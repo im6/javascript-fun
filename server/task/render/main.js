@@ -8,7 +8,16 @@ let fs = require('fs'),
   shortid = require('shortid');
 
 const HTMLINPUT = '../../../views/main/index.jade',
-  HTMLOUTPUT = '../../../public/main/index.html',
+  HTMLOUTPUT = [
+    {
+      page: 1,
+      url: '../../../public/main/index.html'
+    },
+    {
+      page: 2,
+      url: '../../../public/main/node.html'
+    }
+  ],
   PROTOTYPEINPUT = './viewModel.json',
   PROTOTYPEOUTPUT = '../../../temp/viewModel.json';
 
@@ -75,19 +84,20 @@ const privateFn = {
 
   group: (data, iconMap) => {
     let result = [];
+
     let data1 =  _.orderBy(data, (v) => {
       return numeral(v.star).value();
     }, 'desc');
+
     let data2 = _.groupBy(data1, "group");
 
      _.each(data2, (v, k) => {
-      result.push({
-        name: iconMap['k' + k].name,
-        icon: iconMap['k' + k].icon,
-        list: v
-      });
+       let newItem = iconMap['k' + k];
+       newItem['list'] = v;
+      result.push(newItem);
     });
 
+    result = _.orderBy(result, ['page', 'sort']);
     return result;
   },
 };
@@ -103,7 +113,13 @@ const inst = {
       let proto = privateFn.getPrototype();
       proto.package = data;
       privateFn.exportViewModel(proto);
-      privateFn.render(proto, HTMLINPUT, HTMLOUTPUT);
+      HTMLOUTPUT.forEach(v => {
+        proto.package = data.filter(v1 => v1.page === v.page);
+        proto.page = v.page;
+        privateFn.render(proto, HTMLINPUT, v.url);
+      });
+
+
 
       process.exit();
     });
@@ -115,7 +131,7 @@ const inst = {
       db['version'] = shortid.generate();
       db['pretty'] = ISDEV;
       console.log(`version: ${db['version']}, isDEV: ${ISDEV}`);
-      privateFn.render(db, HTMLINPUT, HTMLOUTPUT);
+      privateFn.render(db, HTMLINPUT, HTMLOUTPUT[0].url);
     }
 
     catch(err){

@@ -15,6 +15,12 @@ app.get('/', (req,res) => {
   });
 });
 
+app.get('/node', (req,res) => {
+  res.sendFile('./public/main/node.html',{
+    root: __dirname
+  });
+});
+
 app.get('/*', (req,res) => {
   res.redirect('/');
 });
