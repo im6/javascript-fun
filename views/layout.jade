@@ -8,6 +8,16 @@ mixin ArticleTitle(obj)
         h1.title=obj.title
         +TagGroup(obj.about)
 
+mixin CustomizeDropdown(v)
+    .menuDrop
+        span.custom-dropdown
+            select
+                option(value="/" selected=v===1) Front End
+                option(value="/node" selected=v === 2) Node.js
+                option(value="/resource" selected=v===3) Resource
+                option(value="/site" selected=v === 4) Website
+
+
 doctype html
 html
     include head
@@ -16,7 +26,9 @@ body
         .pure-u-1-5.sidebar
             include sidebar
         .pure-u-4-5.content
+            +CustomizeDropdown(page)
             block content
+            +CustomizeDropdown(page)
             include footer
 
 

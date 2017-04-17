@@ -2,6 +2,7 @@ import 'style-loader!css-loader!purecss/build/pure-min.css';
 import 'style-loader!css-loader!purecss/build/grids-responsive-min.css';
 import './style.less';
 import './typed.less';
+import './dropdown.less';
 
 import '../../assets/typed.min.js';
 
@@ -12,10 +13,18 @@ const TYPECOLOR = [
   ["#ffb077","#b0cadb"],
 ];
 
-document.addEventListener("DOMContentLoaded", () => {
+const init = () => {
   let typeElem = document.getElementsByClassName('type')[0],
     funTxt = document.getElementById('sbttl2'),
     COLORCOUNT = TYPECOLOR.length;
+
+  let dropdowns = document.getElementsByTagName('select');
+  for(let i = 0; i < dropdowns.length; i ++){
+    dropdowns[i].onchange = (e) => {
+      let v = e.target.value;
+      window.location.href = v;
+    }
+  }
 
   window.Typed.new(".type", {
     stringsElement: document.getElementById('typed-strings'),
@@ -28,4 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
       funTxt.style.color = TYPECOLOR[(index) % COLORCOUNT][1];
     },
   });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  init();
 });
