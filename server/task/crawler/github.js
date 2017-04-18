@@ -34,7 +34,7 @@ const privateFn = {
     console.log('download ' + obj.name);
     rp({
       uri: 'https://github.com/' + obj.github,
-      timeout: 4 * 1000,
+      timeout: 3 * 1000,
       transform: function (body) {
         return cheerio.load(body);
       }
@@ -48,6 +48,7 @@ const privateFn = {
         cb(null, obj);
       })
       .catch(function (err) {
+        console.error('Timeout on ' + obj.name);
         cb(null, obj);
       });
   },
