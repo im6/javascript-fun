@@ -41,6 +41,7 @@
     "less": "^2.7.2",
     "less-loader": "^4.0.3",
     "purecss": "^0.6.2",
+    "request-promise": "^4.2.0",
     "style-loader": "^0.16.1",
     "webpack": "^2.3.3",
     "webpack-dev-server": "^2.4.2"

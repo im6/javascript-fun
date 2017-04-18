@@ -4,47 +4,52 @@ let request = require('request'),
   cheerio = require('cheerio'),
   async = require('async'),
   fs = require('fs'),
+  rp = require('request-promise'),
   sqlConn = require('../../resource/mysqlConnection');
 
-const CONCURRENCY = 8;
-
+const CONCURRENCY = 10,
+  JOBFLAG = '_JOBDONE';
+let finished = [];
 const privateFn = {
-  getNum: (obj, cb)=> {
-    let url = obj.github;
-    request({
-      method: 'GET',
-      uri: 'https://github.com/' + url,
-    }, function(err, res, body){
-      if(err){
-        console.error(err);
-        cb(true, err);
+  getUnfinished: (list) => {
+    return list.filter(v => !v[JOBFLAG]);
+  },
+
+  promiseLoop: (data, resolve, reject) => {
+    async.mapLimit(data, CONCURRENCY, (v, cb) => {
+      privateFn.getNum(v, cb);
+    }, (error, data) => {
+      let unfinished = privateFn.getUnfinished(data);
+      finished = finished.concat(data);
+      if(unfinished.length > 0){
+        return privateFn.promiseLoop(unfinished, resolve, reject);
       }else{
-        try{
-          let $ = cheerio.load(body);
-          let elems = $('.social-count.js-social-count');
-          let starElem = elems[0];
-          let num = starElem.children[0].data.trim();
-          obj['star'] = num;
-          cb(null, obj);
-        } catch (ex){
-          console.error(ex);
-          cb(true, ex);
-        }
+        let result = finished.filter(v => v[JOBFLAG]);
+        resolve(result);
       }
     });
   },
 
-  getJson:(path) => {
-    var db = null;
-    try {
-      db = JSON.parse(fs.readFileSync(path));
-    }
-
-    catch(err){
-      console.error("JSON Error: " + err.message);
-    }
-
-    return db;
+  getNum: (obj, cb)=> {
+    console.log('download ' + obj.name);
+    rp({
+      uri: 'https://github.com/' + obj.github,
+      timeout: 4 * 1000,
+      transform: function (body) {
+        return cheerio.load(body);
+      }
+    })
+      .then(function ($) {
+        let elems = $('.social-count.js-social-count');
+        let starElem = elems[0];
+        let num = starElem.children[0].data.trim();
+        obj['star'] = num;
+        obj[JOBFLAG] = true;
+        cb(null, obj);
+      })
+      .catch(function (err) {
+        cb(null, obj);
+      });
   },
 };
 
@@ -53,23 +58,12 @@ const publicFn = {
     const deferred = new Promise((resolve, reject) => {
       var qr = "SELECT * FROM git WHERE `group` IS NOT NULL";
       sqlConn.sqlExecOne(qr).then((db) => {
-        async.mapLimit(db, CONCURRENCY, (v, cb) => {
-          console.log(`crawling ${v.name}...`);
-          privateFn.getNum(v, cb);
-        }, (error, data) => {
-          if(error){
-            console.error(error);
-            reject(error);
-          }else{
-            resolve(data);
-          }
-        });
+        privateFn.promiseLoop(db, resolve, reject)
       });
     });
 
     return deferred;
   }
 };
-
 
 module.exports = publicFn;
