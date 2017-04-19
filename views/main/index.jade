@@ -13,7 +13,7 @@ block content
                         .box
                             .boxLeft
                                 if oneLink.img
-                                    - var imgPath = remoteAsset + oneLink.img
+                                    - var imgPath = remoteAsset + '/' + oneLink.img;
                                     img(src=imgPath)
                                 else
                                     - var colorList = ['#8156a7','#999','#df2d4f','#4d85d1','#5aba59']

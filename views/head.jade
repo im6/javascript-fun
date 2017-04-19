@@ -3,7 +3,7 @@ head
     meta(name="keywords" content="javascript.fun javascript beginner npm github node.js")
     meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
     title="Most Popular Javascript Framework 2017 | Everything about JavaScript | JavaScript.fun"
-    link(rel="shortcut icon" type="image/png" href="#{remoteAsset}fav.ico")
+    link(rel="shortcut icon" type="image/png" href="#{remoteAsset}/fav.ico")
     link(rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css")
     //-link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
     script(type="text/javascript").
@@ -15,4 +15,4 @@ head
             ga('create', 'UA-79220512-3', 'auto');
             ga('send', 'pageview');
         }
-    script(type='text/javascript' src='#{bundleUrl}?v=001')
+    script(type='text/javascript' src='/#{module}/bundle.js?v=#{version}')

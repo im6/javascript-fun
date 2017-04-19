@@ -1,6 +1,5 @@
 {
-  "remoteAsset": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/",
-  "bundleUrl": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/bundle.js",
+  "remoteAsset": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets",
   "type":[
     "2017",
     "Developer",
