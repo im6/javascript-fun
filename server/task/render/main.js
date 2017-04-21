@@ -2,6 +2,7 @@
 let fs = require('fs'),
   _ = require('lodash'),
   numeral = require('numeral'),
+  moment = require('moment'),
   jade = require('jade'),
   crawlerGit = require('../crawler/github'),
   sqlConn = require('../../resource/mysqlConnection'),
@@ -130,6 +131,7 @@ const inst = {
       db = JSON.parse(fs.readFileSync(PROTOTYPEOUTPUT));
       db['version'] = shortid.generate();
       db['pretty'] = ISDEV;
+      db['lastUpdate'] = moment().format('MMMM Do YYYY');
       console.log(`version: ${db['version']}, isDEV: ${ISDEV}`);
       privateFn.render(db, HTMLINPUT, HTMLOUTPUT[0].url);
     }

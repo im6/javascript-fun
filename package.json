@@ -40,6 +40,7 @@
     "css-loader": "^0.28.0",
     "less": "^2.7.2",
     "less-loader": "^4.0.3",
+    "moment": "^2.18.1",
     "purecss": "^0.6.2",
     "request-promise": "^4.2.0",
     "style-loader": "^0.16.1",
