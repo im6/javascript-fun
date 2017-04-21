@@ -9,13 +9,12 @@ mixin ArticleTitle(obj)
         +TagGroup(obj.about)
 
 mixin CustomizeDropdown(v)
-    .menuDrop
-        span.custom-dropdown
-            select
-                option(value="/" selected=v===1) Front End
-                option(value="/node" selected=v === 2) Node.js
-                //-option(value="/resource" selected=v===3) Resource
-                //-option(value="/site" selected=v === 4) Website
+    .menubar
+        .pure-button-group(role='group')
+            a.pure-button(href="/" class=v===1 ? "pure-button-active":null) Front End
+            a.pure-button(href="/node" class=v===2 ? "pure-button-active":null) Node.js
+
+
 
 
 doctype html

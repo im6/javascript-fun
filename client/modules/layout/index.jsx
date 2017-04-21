@@ -2,7 +2,7 @@ import 'style-loader!css-loader!purecss/build/pure-min.css';
 import 'style-loader!css-loader!purecss/build/grids-responsive-min.css';
 import './style.less';
 import './typed.less';
-import './dropdown.less';
+import './pureOverwrite.less';
 
 import '../../assets/typed.min.js';
 

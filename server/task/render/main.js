@@ -117,6 +117,7 @@ const inst = {
       HTMLOUTPUT.forEach(v => {
         proto.package = data.filter(v1 => v1.page === v.page);
         proto.page = v.page;
+        proto['lastUpdate'] = moment().format('MMMM Do YYYY');
         privateFn.render(proto, HTMLINPUT, v.url);
       });
 
@@ -132,6 +133,7 @@ const inst = {
       db['version'] = shortid.generate();
       db['pretty'] = ISDEV;
       db['lastUpdate'] = moment().format('MMMM Do YYYY');
+      db.page = 1;
       console.log(`version: ${db['version']}, isDEV: ${ISDEV}`);
       privateFn.render(db, HTMLINPUT, HTMLOUTPUT[0].url);
     }
