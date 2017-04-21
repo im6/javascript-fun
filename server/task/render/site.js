@@ -4,23 +4,13 @@ let fs = require('fs'),
   numeral = require('numeral'),
   moment = require('moment'),
   jade = require('jade'),
-  crawlerGit = require('../crawler/github'),
   sqlConn = require('../../resource/mysqlConnection'),
   shortid = require('shortid');
 
-const HTMLINPUT = '../../../views/main/index.jade',
-  HTMLOUTPUT = [
-    {
-      page: 1,
-      url: '../../../public/main/index.html'
-    },
-    {
-      page: 2,
-      url: '../../../public/main/node.html'
-    }
-  ],
-  PROTOTYPEINPUT = './viewModel.json',
-  PROTOTYPEOUTPUT = '../../../temp/viewModel_main.json';
+const HTMLINPUT = '../../../views/main/site.jade',
+  HTMLOUTPUT = '../../../public/main/site.html',
+  PROTOTYPEINPUT = './viewModel_site.json',
+  PROTOTYPEOUTPUT = '../../../temp/viewModel_site.json';
 
 const ISDEV = process.argv.length == 3;
 
@@ -29,6 +19,7 @@ const privateFn = {
     fs.openSync(PROTOTYPEOUTPUT, 'w');
     fs.writeFileSync(PROTOTYPEOUTPUT, JSON.stringify(data));
   },
+
   getPrototype: () => {
     var result = null;
     try {
@@ -63,7 +54,7 @@ const privateFn = {
     }
   },
 
-  getGroupIcon: () => {
+  getGroup: () => {
     var qr = 'SELECT * FROM category_git';
     const deferred = new Promise((resolve, reject) => {
       sqlConn.sqlExecOne(qr).then((db) => {
@@ -75,54 +66,50 @@ const privateFn = {
 
     return deferred;
   },
-  convertGroupIcon: (data) => {
-    let result = {};
-    data.forEach(v => {
-      result['k' + v.id] = v;
-    });
-    return result;
-  },
 
-  group: (data, iconMap) => {
-    let result = [];
-
-    let data1 =  _.orderBy(data, (v) => {
-      return numeral(v.star).value();
-    }, 'desc');
-
-    let data2 = _.groupBy(data1, "group");
-
-     _.each(data2, (v, k) => {
-       let newItem = iconMap['k' + k];
-       newItem['list'] = v;
-      result.push(newItem);
+  getSite:() => {
+    var qr = 'SELECT * FROM site';
+    const deferred = new Promise((resolve, reject) => {
+      sqlConn.sqlExecOne(qr).then((db) => {
+        resolve(db);
+      }, (res) => {
+        reject(res);
+      });
     });
 
-    result = _.orderBy(result, ['page', 'sort']);
-    return result;
+    return deferred;
   },
+
+  group: (data, grp) => {
+    let grpRef = {};
+    grp.forEach(v => {
+      grpRef['k' + v.id] = v;
+    });
+
+    let result = _.groupBy(data, "grp");
+    let result2 = [];
+    for(let i in result){
+      if(result.hasOwnProperty(i)){
+        let obj = grpRef['k' + i];
+        obj['list'] = result[i];
+        result2.push(obj);
+      }
+    }
+    return result2;
+  }
 };
 
 const inst = {
   start: () => {
     let me = this;
-    let p1 = privateFn.getGroupIcon();
-    let p2 = crawlerGit.start();
+    let p1 = privateFn.getGroup();
+    let p2 = privateFn.getSite();
     Promise.all([p1, p2]).then(d => {
-      let iconMap = privateFn.convertGroupIcon(d[0]);
-      let data = privateFn.group(d[1],iconMap);
-      let proto = privateFn.getPrototype();
-      proto.package = data;
-      privateFn.exportViewModel(proto);
-      HTMLOUTPUT.forEach(v => {
-        proto.package = data.filter(v1 => v1.page === v.page);
-        proto.page = v.page;
-        proto['lastUpdate'] = moment().format('MMMM Do YYYY');
-        privateFn.render(proto, HTMLINPUT, v.url);
-      });
-
-
-
+      let vm = privateFn.getPrototype();
+      vm.list = privateFn.group(d[1], d[0]);
+      vm.pretty = ISDEV;
+      privateFn.exportViewModel(vm);
+      privateFn.render(vm, HTMLINPUT, HTMLOUTPUT);
       process.exit();
     });
   },
@@ -132,10 +119,9 @@ const inst = {
       db = JSON.parse(fs.readFileSync(PROTOTYPEOUTPUT));
       db['version'] = shortid.generate();
       db['pretty'] = ISDEV;
-      db['lastUpdate'] = moment().format('MMMM Do YYYY');
-      db.page = 1;
+      db.page = 4;
       console.log(`version: ${db['version']}, isDEV: ${ISDEV}`);
-      privateFn.render(db, HTMLINPUT, HTMLOUTPUT[0].url);
+      privateFn.render(db, HTMLINPUT, HTMLOUTPUT);
     }
 
     catch(err){
@@ -145,8 +131,10 @@ const inst = {
 };
 
 
-if(ISDEV){
-  inst.local();
-}else{
-  inst.start();
-}
+//if(ISDEV){
+//  inst.local();
+//}else{
+//  inst.start();
+//}
+
+inst.start();
