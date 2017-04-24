@@ -22,17 +22,17 @@
   },
   "homepage": "https://github.com/zj1926/javascript_fun#readme",
   "dependencies": {
+    "express": "^4.15.2"
+  },
+  "devDependencies": {
     "async": "^2.3.0",
     "cheerio": "^0.22.0",
-    "express": "^4.15.2",
-    "jade": "^1.11.0",
-    "lodash": "^4.17.4",
     "mysql": "^2.13.0",
     "numeral": "^2.0.6",
     "shortid": "^2.2.8",
-    "request": "^2.81.0"
-  },
-  "devDependencies": {
+    "jade": "^1.11.0",
+    "lodash": "^4.17.4",
+    "request": "^2.81.0",
     "autoprefixer-loader": "^3.2.0",
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
