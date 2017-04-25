@@ -7,8 +7,8 @@ let fs = require('fs'),
   sqlConn = require('../../resource/mysqlConnection'),
   shortid = require('shortid');
 
-const HTMLINPUT = '../../../views/main/site.jade',
-  HTMLOUTPUT = '../../../public/main/site.html',
+const HTMLINPUT = '../../../views/site/index.jade',
+  HTMLOUTPUT = '../../../public/site/index.html',
   PROTOTYPEINPUT = './viewModel_site.json',
   PROTOTYPEOUTPUT = '../../../temp/viewModel_site.json';
 
@@ -24,7 +24,7 @@ const privateFn = {
     var result = null;
     try {
       result = JSON.parse(fs.readFileSync(PROTOTYPEINPUT));
-      result['module'] = 'main';
+      result['module'] = 'site';
       result['pretty'] = ISDEV;
       result['version'] = shortid.generate();
       console.log(`version: ${result['version']}, isDEV: ${ISDEV}`);
