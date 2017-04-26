@@ -3,12 +3,12 @@ block content
     main
         each oneGroup, index1 in list
             br
-            h3.grpTitle
+            h2.grpTitle
                 |   #{oneGroup.name}
             .pure-g
                 each oneLink, index2 in oneGroup.list
                     .pure-u-xl-1-4.pure-u-lg-1-3.pure-u-md-1-2.pure-u-sm-1-2.pure-u-1-2
                         .box
-                            h3=oneLink.name
+                            a(href=oneLink.url target="_blank")=oneLink.name
                             p=oneLink.desc
             br
