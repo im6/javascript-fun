@@ -68,7 +68,7 @@ const privateFn = {
   },
 
   getSite:() => {
-    var qr = 'SELECT * FROM site';
+    var qr = 'SELECT * FROM site where grp is NOT NULL';
     const deferred = new Promise((resolve, reject) => {
       sqlConn.sqlExecOne(qr).then((db) => {
         resolve(db);

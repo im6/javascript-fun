@@ -22,7 +22,7 @@ app.get('/node', (req,res) => {
 });
 
 app.get('/site', (req,res) => {
-  res.sendFile('./public/main/site.html',{
+  res.sendFile('./public/site/index.html',{
     root: __dirname
   });
 });
