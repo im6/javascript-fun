@@ -11,12 +11,19 @@ const CONCURRENCY = 10,
   JOBFLAG = '_JOBDONE';
 let finished = [];
 const privateFn = {
+  checkNameExist: (v) => {
+    if(v.name.length === 0){
+      let gitList = v.github.split('/');
+      v.name = gitList[1];
+    }
+  },
   getUnfinished: (list) => {
     return list.filter(v => !v[JOBFLAG]);
   },
 
   promiseLoop: (data, resolve, reject) => {
     async.mapLimit(data, CONCURRENCY, (v, cb) => {
+      privateFn.checkNameExist(v);
       privateFn.getNum(v, cb);
     }, (error, data) => {
       let unfinished = privateFn.getUnfinished(data);
