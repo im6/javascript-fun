@@ -85,6 +85,9 @@ const privateFn = {
   convertGroupIcon: (data) => {
     let result = {};
     data.forEach(v => {
+      if(v.icon.length == 0){
+        v.icon=null;
+      }
       result['k' + v.id] = v;
     });
     return result;
@@ -102,6 +105,11 @@ const privateFn = {
      _.each(data2, (v, k) => {
        let newItem = iconMap['k' + k];
        newItem['list'] = v;
+       if(newItem.icon){
+         newItem['list'].forEach(v => {
+           v.img = newItem.icon;
+         });
+       }
       result.push(newItem);
     });
 
@@ -142,9 +150,9 @@ const inst = {
       db['version'] = shortid.generate();
       db['pretty'] = ISDEV;
       db['lastUpdate'] = moment().format('MMMM Do YYYY');
-      db.page = 1;
+      db.page = page;
       console.log(`version: ${db['version']}, isDEV: ${ISDEV}`);
-      privateFn.render(db, PAGECONFIG[page - 1].input, PAGECONFIG[page - 1].output);
+      privateFn.render(db, PAGECONFIG[page - 1].input, '../../../public/main/index.html');
     }
 
     catch(err){
