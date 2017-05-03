@@ -33,6 +33,12 @@ app.get('/site', (req,res) => {
   });
 });
 
+app.get('/demo', (req,res) => {
+  res.sendFile('./public/demo/index.html',{
+    root: __dirname
+  });
+});
+
 app.get('/*', (req,res) => {
   res.redirect('/');
 });
