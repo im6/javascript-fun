@@ -1,14 +1,15 @@
 "use strict";
 
-let request = require('request'),
-  cheerio = require('cheerio'),
+const cheerio = require('cheerio'),
   async = require('async'),
   fs = require('fs'),
   rp = require('request-promise'),
-  sqlConn = require('../../resource/mysqlConnection');
+  sqlConn = require('../../resource/mysqlConnection'),
+  globalConfig = require('../../config/env'),
 
-const CONCURRENCY = 10,
+  CONCURRENCY = 10,
   JOBFLAG = '_JOBDONE';
+
 let finished = [];
 const privateFn = {
   checkNameExist: (v) => {
@@ -65,6 +66,9 @@ const publicFn = {
   start: () => {
     const deferred = new Promise((resolve, reject) => {
       var qr = "SELECT * FROM git WHERE `group` IS NOT NULL";
+      if(globalConfig.isDev){
+        qr = "SELECT * FROM git WHERE `group` IS NOT NULL AND id < 20";
+      }
       sqlConn.sqlExecOne(qr).then((db) => {
         privateFn.promiseLoop(db, resolve, reject)
       });

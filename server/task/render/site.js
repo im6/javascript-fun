@@ -1,33 +1,28 @@
 "use strict";
-let fs = require('fs'),
+
+const fs = require('fs'),
   _ = require('lodash'),
+  path = require('path'),
   numeral = require('numeral'),
   moment = require('moment'),
   jade = require('jade'),
   sqlConn = require('../../resource/mysqlConnection'),
-  shortid = require('shortid');
+  globalConfig = require('../../config/env'),
 
-const HTMLINPUT = '../../../views/site/index.jade',
-  HTMLOUTPUT = '../../../public/site/index.html',
-  PROTOTYPEINPUT = './viewModel_site.json',
-  PROTOTYPEOUTPUT = '../../../temp/viewModel_site.json';
+  ISDEV = globalConfig.isDev,
 
-const ISDEV = process.argv.length == 3;
+  HTMLINPUT = path.join(__dirname, '../../../views/site/index.jade'),
+  HTMLOUTPUT = path.join(__dirname, '../../../public/site/index.html'),
+  PROTOTYPEINPUT = path.join(__dirname, './viewModel.json');
+
 
 const privateFn = {
-  exportViewModel:(data)=> {
-    fs.openSync(PROTOTYPEOUTPUT, 'w');
-    fs.writeFileSync(PROTOTYPEOUTPUT, JSON.stringify(data));
-  },
-
   getPrototype: () => {
     var result = null;
     try {
       result = JSON.parse(fs.readFileSync(PROTOTYPEINPUT));
       result['module'] = 'site';
       result['pretty'] = ISDEV;
-      result['version'] = shortid.generate();
-      console.log(`version: ${result['version']}, isDEV: ${ISDEV}`);
     }
 
     catch(err){
@@ -43,14 +38,13 @@ const privateFn = {
       fs.openSync(outputUrl, 'w');
       fs.writeFileSync(outputUrl, html);
       console.log("================================");
-      console.log("render success!");
+      console.log(`render page ( ${data.page} ) success!`);
       console.log("================================");
     }
     catch(err){
       console.error("================================");
       console.error("Jade Build Error: " + err.message);
       console.error("================================");
-
     }
   },
 
@@ -63,7 +57,6 @@ const privateFn = {
         reject(res);
       });
     });
-
     return deferred;
   },
 
@@ -76,7 +69,6 @@ const privateFn = {
         reject(res);
       });
     });
-
     return deferred;
   },
 
@@ -102,39 +94,20 @@ const privateFn = {
 const inst = {
   start: () => {
     let me = this;
+
     let p1 = privateFn.getGroup();
     let p2 = privateFn.getSite();
+
+    let vm = privateFn.getPrototype();
+
     Promise.all([p1, p2]).then(d => {
-      let vm = privateFn.getPrototype();
+      vm['bundleDir'] = '/site/bundle.js';
       vm.list = privateFn.group(d[1], d[0]);
       vm.pretty = ISDEV;
-      privateFn.exportViewModel(vm);
+      vm.page = 4;
       privateFn.render(vm, HTMLINPUT, HTMLOUTPUT);
-      process.exit();
     });
-  },
-  local: () => {
-    var db = null;
-    try {
-      db = JSON.parse(fs.readFileSync(PROTOTYPEOUTPUT));
-      db['version'] = shortid.generate();
-      db['pretty'] = ISDEV;
-      db.page = 4;
-      console.log(`version: ${db['version']}, isDEV: ${ISDEV}`);
-      privateFn.render(db, HTMLINPUT, HTMLOUTPUT);
-    }
-
-    catch(err){
-      console.error("JSON Error: " + err.message);
-    }
   }
 };
 
-
-//if(ISDEV){
-//  inst.local();
-//}else{
-//  inst.start();
-//}
-
-inst.start();
+module.exports = inst;

@@ -8,7 +8,7 @@ const express = require('express'),
 router.get('/', ctr.main);
 router.get('/node', ctr.node);
 router.get('/library', ctr.library);
-router.get('/site', ctr.site);
+//router.get('/site', ctr.site);
 router.get('/demo', ctr.demo);
 router.get('/*', ctr.error);
 
