@@ -127,6 +127,8 @@ const inst = {
         vm['lastUpdate'] = moment().format('LLL');
         privateFn.render(vm, v.input, v.output);
       });
+    }, err => {
+      console.error(err);
     });
   },
 };

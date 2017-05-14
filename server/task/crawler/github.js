@@ -56,7 +56,7 @@ const privateFn = {
         cb(null, obj);
       })
       .catch(function (err) {
-        console.error('Timeout on ' + obj.name);
+        console.error('crawler timeout on ' + obj.name);
         cb(null, obj);
       });
   },
@@ -71,6 +71,8 @@ const publicFn = {
       }
       sqlConn.sqlExecOne(qr).then((db) => {
         privateFn.promiseLoop(db, resolve, reject)
+      }, (err) => {
+        console.error(err);
       });
     });
 
