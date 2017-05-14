@@ -39,7 +39,7 @@ const privateFn = {
   },
 
   getNum: (obj, cb)=> {
-    console.log('download ' + obj.name);
+    //console.log('download ' + obj.name);
     rp({
       uri: 'https://github.com/' + obj.github,
       timeout: 3 * 1000,

@@ -31,6 +31,8 @@
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "mysql": "^2.13.0",
+    "numeral": "^2.0.6",
+    "request": "^2.81.0",
     "request-promise": "^4.2.0"
   },
   "devDependencies": {
@@ -42,7 +44,6 @@
     "less": "^2.7.2",
     "less-loader": "^4.0.3",
     "merge": "^1.2.0",
-    "numeral": "^2.0.6",
     "purecss": "^0.6.2",
     "style-loader": "^0.16.1",
     "webpack": "^2.3.3",
