@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 
 var pool = mysql.createPool({
-  connectionLimit : 8,
+  connectionLimit : 2,
   host     : process.env['OPENSHIFT_MYSQL_DB_HOST'],
   port     : process.env['OPENSHIFT_MYSQL_DB_PORT'],
   user     : process.env['SQL_USERNAME'],
