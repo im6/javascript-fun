@@ -10,7 +10,7 @@ const cheerio = require('cheerio'),
   CONCURRENCY = 10,
   JOBFLAG = '_JOBDONE';
 
-let finished = [];
+let finished = null;
 const privateFn = {
   checkNameExist: (v) => {
     if(v.name.length === 0){
@@ -64,6 +64,7 @@ const privateFn = {
 
 const publicFn = {
   start: () => {
+    finished = [];
     const deferred = new Promise((resolve, reject) => {
       var qr = "SELECT * FROM git WHERE `group` IS NOT NULL";
       if(globalConfig.isDev){

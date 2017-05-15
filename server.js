@@ -8,6 +8,7 @@ const path = require('path'),
 
 app.set('x-powered-by', false);
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(task);
 app.use(route);
 

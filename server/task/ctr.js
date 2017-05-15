@@ -4,11 +4,10 @@ const globalConfig = require('../config/env'),
   mysql = require('../resource/mysqlConnection'),
   path = require('path'),
   inst1 = require('./render/main'),
-  inst2 = require('./render/site'),
-  period = 100;
+  inst2 = require('./render/site');
 
 let privateFn = {
-  cnt: 0,
+  day: new Date().getDate(),
   update(){
     console.log("================================");
     console.log(`updating the views...`);
@@ -22,12 +21,11 @@ privateFn.update();
 
 module.exports = {
   main: function(req, res, next){
-    privateFn.cnt ++ ;
-
-    if(privateFn.cnt >= period){
-      privateFn.cnt = 0;
+    let currentDay = new Date().getDate();
+    if(currentDay != privateFn.day){
+      privateFn.day = currentDay;
       privateFn.update();
     }
     next();
-  },
+  }
 };
