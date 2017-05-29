@@ -6,12 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev_main": "webpack-dev-server --progress --profile --colors --config webpack/main_hot.js",
+
     "build_main": "webpack --config webpack/main_build.js",
     "build_site": "webpack --config webpack/site_build.js",
+
+    "dev_main": "webpack-dev-server --progress --profile --colors --config webpack/main_hot.js",
+    "dev_site": "webpack-dev-server --progress --profile --colors --config webpack/site_hot.js",
     "dev_article": "webpack-dev-server --progress --profile --colors --config webpack/article_hot.js",
-    "dev_blog": "webpack-dev-server --progress --profile --colors --config webpack/blog_hot.js",
-    "dev_site": "webpack-dev-server --progress --profile --colors --config webpack/site_hot.js"
+    "dev_blog": "webpack-dev-server --progress --profile --colors --config webpack/blog_hot.js"
   },
   "repository": {
     "type": "git",
