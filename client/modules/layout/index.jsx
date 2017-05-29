@@ -37,7 +37,7 @@ const init = () => {
       funTxt.style.color = TYPECOLOR[(index) % COLORCOUNT][1];
     },
   });
-}
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   init();
