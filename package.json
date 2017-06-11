@@ -7,11 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
 
-    "build_main": "webpack --config webpack/main_build.js",
-    "build_site": "webpack --config webpack/site_build.js",
+    "build_main": "MODULENAME=main webpack --config webpack/build.js",
+    "build_site": "MODULENAME=site webpack --config webpack/build.js",
 
-    "dev_main": "webpack-dev-server --progress --profile --colors --config webpack/main_hot.js",
-    "dev_site": "webpack-dev-server --progress --profile --colors --config webpack/site_hot.js",
+    "dev_main": "MODULENAME=main webpack-dev-server --progress --profile --colors --config webpack/dev.js",
+    "dev_site": "MODULENAME=site webpack-dev-server --progress --profile --colors --config webpack/dev.js",
     "dev_article": "webpack-dev-server --progress --profile --colors --config webpack/article_hot.js",
     "dev_blog": "webpack-dev-server --progress --profile --colors --config webpack/blog_hot.js"
   },

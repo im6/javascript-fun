@@ -2,7 +2,7 @@
 const path = require('path');
 let webpackConfig = require('./generic/build');
 
-const moduleName = 'main';
+const moduleName = process.env.MODULENAME;
 
 webpackConfig.entry = `./client/modules/${moduleName}/index.jsx`;
 webpackConfig.output = {
