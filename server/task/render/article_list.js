@@ -13,8 +13,8 @@ catch(err){
 }
 
 try {
-  var html = jade.renderFile('../../views/blog/index.jade', configJson);
-  var filePwd = '../../rendered/blog/index.html';
+  var html = jade.renderFile('../../../views/blog/index.jade', configJson);
+  var filePwd = '../../../rendered/blog/index.html';
   fs.openSync(filePwd, 'w');
   fs.writeFileSync(filePwd, html);
 }

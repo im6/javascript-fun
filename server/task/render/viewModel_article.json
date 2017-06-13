@@ -1,4 +1,5 @@
 {
+  "bundleDir": "/bundle.js",
   "remoteAsset": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets",
   "type":[
     "2017",

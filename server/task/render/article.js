@@ -4,7 +4,7 @@ var fs = require('fs'),
 
 var configJson = null;
 try {
-  configJson = JSON.parse(fs.readFileSync('../config.json'));
+  configJson = JSON.parse(fs.readFileSync('./viewModel_article.json'));
   configJson['article'] = configJson['article'][0];
   configJson['module'] = 'article';
 }
@@ -14,9 +14,9 @@ catch(err){
 }
 
 try {
-  let jadePath = `../../views/article/${configJson.article.id}.jade`;
+  let jadePath = `../../../views/article/${configJson.article.id}.jade`;
   var html = jade.renderFile(jadePath, configJson);
-  var filePwd = '../../rendered/article/index.html';
+  var filePwd = '../../../public/article/1/index.html';
   fs.openSync(filePwd, 'w');
   fs.writeFileSync(filePwd, html);
 }
