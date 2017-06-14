@@ -1,12 +1,14 @@
 "use strict";
 var fs = require('fs'),
-  jade = require('jade');
+  jade = require('jade'),
+  ID = 1;
 
 var configJson = null;
 try {
   configJson = JSON.parse(fs.readFileSync('./viewModel_article.json'));
-  configJson['article'] = configJson['article'][0];
+  configJson['article'] = configJson['article'].filter(v => v.id === ID)[0];
   configJson['module'] = 'article';
+  configJson.bundleDir = configJson.bundleDir.replace('<ARTICLEID>', ID);
 }
 
 catch(err){

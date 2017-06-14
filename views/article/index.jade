@@ -4,4 +4,5 @@ block content
         .post
             +ArticleTitle(val)
             p.content=val.content
-            a.pure-button.button-small View All
+            if val.url
+                a(href=val.url).pure-button.button-small View All

@@ -1,6 +1,6 @@
 mixin TagGroup(tags)
     each v,k in tags
-        - var tagCls = "tag_" + (k % 5);
+        - var tagCls = "tag_" + (k % 4);
         div.tag(class="#{tagCls}")=v
 mixin ArticleTitle(obj)
     .articleTitle
