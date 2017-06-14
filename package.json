@@ -12,8 +12,8 @@
 
     "dev_main": "MODULENAME=main webpack-dev-server --progress --profile --colors --config webpack/dev.js",
     "dev_site": "MODULENAME=site webpack-dev-server --progress --profile --colors --config webpack/dev.js",
-    "dev_article": "webpack-dev-server --progress --profile --colors --config webpack/article_hot.js",
-    "dev_blog": "webpack-dev-server --progress --profile --colors --config webpack/blog_hot.js"
+    "dev_article1": "webpack-dev-server --progress --profile --colors --config webpack/article1_hot.js",
+    "dev_article2": "webpack-dev-server --progress --profile --colors --config webpack/article2_hot.js"
   },
   "repository": {
     "type": "git",

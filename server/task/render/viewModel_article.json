@@ -1,5 +1,5 @@
 {
-  "bundleDir": "/bundle.js",
+  "bundleDir": "/article/list/bundle.js",
   "remoteAsset": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets",
   "type":[
     "2017",
@@ -26,6 +26,5 @@
       "time": "2016-03-12 13:00:00",
       "content": "welcome welcome welcome"
     }
-  ],
-  "package": []
+  ]
 }

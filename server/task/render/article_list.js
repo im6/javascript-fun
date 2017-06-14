@@ -4,7 +4,7 @@ var fs = require('fs'),
 
 var configJson = null;
 try {
-  configJson = JSON.parse(fs.readFileSync('../config.json'));
+  configJson = JSON.parse(fs.readFileSync('./viewModel_article.json'));
   configJson['module'] = 'blog';
 }
 
@@ -13,8 +13,8 @@ catch(err){
 }
 
 try {
-  var html = jade.renderFile('../../../views/blog/index.jade', configJson);
-  var filePwd = '../../../rendered/blog/index.html';
+  var html = jade.renderFile('../../../views/article/index.jade', configJson);
+  var filePwd = '../../../public/article/list/index.html';
   fs.openSync(filePwd, 'w');
   fs.writeFileSync(filePwd, html);
 }
