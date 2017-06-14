@@ -12,7 +12,7 @@
   "article": [
     {
       "id": 1,
-      "title": "react.js状态设计",
+      "title": "如何写一手漂亮的React（一）：状态设计",
       "author": "ZJ Guo",
       "about": ["react", "redux"],
       "time": "2017-06-15 13:00:00",

@@ -1,4 +1,50 @@
 extends generic
 block 1
-    h1 this is 1.jade content , hahha
-    h2 peach 123 456
+    h2 前言
+    p
+    | Facebook 出品的react.js 作为一个时下最火热的UI库，用函数式思想快速渲染视图层。
+    | 但是关于状态管理，出现了各式各样的方案，如redux， mobx等。
+    p
+    | 许多初级和中级程序员在使用react + redux的时候，往往在 state vs. props 中犹豫不定，胡乱做出选择，
+    | 导致程序出现管理混乱，导致代码丑陋不堪。
+    | 于是有人在知乎上问了这个问题：
+    a(href="https://www.zhihu.com/question/39187479" target="_blank") 如何可以将react中的state用redux正确地托管?
+    br
+    br
+    b 先说结论： 局部逻辑（如UI状态）不需要放入redux，为的是的代码更清晰。
+    p
+    | 底下人的回答参差不齐，有人回答要把所有的state都放入redux保管，有人回答分开托管，但是也不是很具体。
+    | 本文要借助一个简单的案例，教你如何安排你的状态作用域，写出真正优雅的react。
+
+    h2 预备知识
+    p
+    | state称为内部状态或者局部状态，内部状态的操作配合React事件系统，可以实现用户交互的功能
+    p
+    | props则用于在组件间传递数据。使用props传递数据简单清晰, 是函数式组件的核心。
+    p
+    | context官方不推荐，个人不推荐，当使用redux或者mobx的时候更加没有使用的必要。
+    p
+    | 例子借助ant design,
+    a(href="https://github.com/zj1926/react_starter" target="_blank") (示例源码)
+
+    h2 案例
+    p
+    | 设计一个用户列表，用于显示当前所有用户，可以给每个用户重置密码, 如下图所示。
+    img.atcImg(src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/1/1.png")
+    p
+    |当点击重置按钮时候，弹出密码界面
+    img.atcImg(src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/1/2.png")
+
+    h2 状态分析
+    p
+    | 整个操作过程涉及到以下几个变量集：
+    ol
+        li 用户列表
+        li 被选中用户
+        li 弹窗状态
+        li 密码框中，当前输入的字符串
+        li 密码框中，密码验证状态（两者是否一致）
+        li 最终新密码
+    p
+    | 从redux官网todo例子中，我们可以轻易得出，用户列表一定是存在reducer中的。
+
