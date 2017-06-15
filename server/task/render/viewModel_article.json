@@ -1,4 +1,5 @@
 {
+  "page": 5,
   "bundleDir": "/article/<ARTICLEID>/bundle.js",
   "remoteAsset": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets",
   "type":[
@@ -12,11 +13,11 @@
   "article": [
     {
       "id": 1,
-      "title": "如何写一手漂亮的React（一）：状态设计",
+      "title": "写一手漂亮的React（一）：state vs redux",
       "author": "ZJ Guo",
       "about": ["react", "redux"],
       "time": "2017-06-15 13:00:00",
-      "content": "react.js 状态管理以及模块复用...",
+      "content": "状态管理详解...",
       "url": "/article/1"
     },
     {

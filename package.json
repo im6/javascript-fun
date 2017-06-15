@@ -6,10 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-
     "build_main": "MODULENAME=main webpack --config webpack/build.js",
     "build_site": "MODULENAME=site webpack --config webpack/build.js",
-
     "dev_main": "MODULENAME=main webpack-dev-server --progress --profile --colors --config webpack/dev.js",
     "dev_site": "MODULENAME=site webpack-dev-server --progress --profile --colors --config webpack/dev.js",
     "dev_article1": "webpack-dev-server --progress --profile --colors --config webpack/article1_hot.js",
@@ -43,6 +41,7 @@
     "babel-loader": "^6.4.1",
     "babel-preset-es2015": "^6.24.1",
     "css-loader": "^0.28.0",
+    "highlight.js": "^9.12.0",
     "less": "^2.7.2",
     "less-loader": "^4.0.3",
     "merge": "^1.2.0",
