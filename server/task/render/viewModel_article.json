@@ -1,6 +1,6 @@
 {
   "page": 5,
-  "bundleDir": "/article/<ARTICLEID>/bundle.js",
+  "bundleDir": "/article<ARTICLEID>/bundle.js",
   "remoteAsset": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets",
   "type":[
     "2017",
@@ -18,7 +18,7 @@
       "about": ["react", "redux"],
       "time": "2017-06-15 13:00:00",
       "content": "状态管理详解...",
-      "url": "/article/1"
+      "url": "/article/1/"
     },
     {
       "id": 0,

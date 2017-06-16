@@ -6,6 +6,7 @@ var configJson = null;
 try {
   configJson = JSON.parse(fs.readFileSync('./viewModel_article.json'));
   configJson['module'] = 'blog';
+  configJson.bundleDir = configJson.bundleDir.replace('<ARTICLEID>', '');
 }
 
 catch(err){
@@ -14,7 +15,7 @@ catch(err){
 
 try {
   var html = jade.renderFile('../../../views/article/index.jade', configJson);
-  var filePwd = '../../../public/article/list/index.html';
+  var filePwd = '../../../public/article/index.html';
   fs.openSync(filePwd, 'w');
   fs.writeFileSync(filePwd, html);
 }

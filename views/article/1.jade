@@ -31,14 +31,22 @@ block 1
         a(href="https://github.com/zj1926/react_starter/tree/master/src/modules/hello/components/UserList" target="_blank")  ( 源 码 在 此 )
     p
     | 设计一个用户列表，用于显示当前所有用户，可以给每个用户重置密码, 如下图所示。
-    img.atcImg(src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/1/1.png")
+    .pure-g
+        .pure-u-1-1
+            img.atcImg(src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/1/1.png")
     p
     |当点击重置按钮时候，弹出密码界面
-    img.atcImg(src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/1/2.png")
+    .pure-g
+        .pure-u-1-1
+            img.atcImg(src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/1/2.png")
 
     h2 模块结构
-    img.atcImg(src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/1/3.png")
-    img.atcImg(src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/1/4.png")
+    .pure-g
+        .pure-u-md-1-2.pure-u-sm-1-1
+            img.atcImg(src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/1/3.png")
+        .pure-u-md-1-2.pure-u-sm-1-1
+            img.atcImg(src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/1/4.png")
+
     p ModalResetPass是弹出框，里面包含了密码重置模块PasswordInput。
     | 将PasswordInput模块化很有必要，比如在添加新用户的弹窗中，可以复用密码模块等（上图右）。
 
@@ -75,7 +83,9 @@ block 1
             p 这个状态非常具体，完全和业务逻辑不沾边，只是一个判定两个密码是否一致的功能，
             | 只能放入图中4的位置，无争议。
             p 当密码不一致时，状态显示如下：
-            img.atcImg(src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/1/5.png")
+            .pure-g
+                .pure-u-1-1
+                    img.atcImg(src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/1/5.png")
             pre
                 code.JavaScript
                     | onBlur(a) {

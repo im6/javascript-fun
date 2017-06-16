@@ -53,7 +53,7 @@ var webpackConfig = {
     port: "3000",
     host: "127.0.0.1",
     historyApiFallback: {
-      //index: "site/" // set "index" path, relative to contentBase
+      //index: "site/" // set "index" path, relative to contentBase, have to end with /
     }
   }
 };

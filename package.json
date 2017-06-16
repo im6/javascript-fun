@@ -8,10 +8,13 @@
     "start": "node server.js",
     "build_main": "MODULENAME=main webpack --config webpack/build.js",
     "build_site": "MODULENAME=site webpack --config webpack/build.js",
+    "build_article1": "MODULENAME=article_1 webpack --config webpack/build.js",
+    "build_article": "MODULENAME=article_ webpack --config webpack/build.js",
+
     "dev_main": "MODULENAME=main webpack-dev-server --progress --profile --colors --config webpack/dev.js",
     "dev_site": "MODULENAME=site webpack-dev-server --progress --profile --colors --config webpack/dev.js",
-    "dev_article1": "webpack-dev-server --progress --profile --colors --config webpack/article1_hot.js",
-    "dev_article2": "webpack-dev-server --progress --profile --colors --config webpack/article2_hot.js"
+    "dev_article1": "MODULENAME=article_1 webpack-dev-server --progress --profile --colors --config webpack/dev.js",
+    "dev_article": "MODULENAME=article_ webpack-dev-server --progress --profile --colors --config webpack/dev.js"
   },
   "repository": {
     "type": "git",
