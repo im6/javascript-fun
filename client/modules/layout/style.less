@@ -23,7 +23,7 @@ h1,h2,h3,h4,h5,p,span,em,a,div {
 }
 
 .content{
-    padding-top: 10px;
+    padding-top: 0;
 }
 
 .updateTxt{
@@ -33,7 +33,6 @@ h1,h2,h3,h4,h5,p,span,em,a,div {
 
 footer{
     padding: 10px;
-    margin-top: 30px;
     border-top: 1px solid #e6e6e6;
     text-align: center;
     a,span {
@@ -47,8 +46,8 @@ footer{
 
 
 @media (max-width: 768px) {
-@mobile_size: 1.3em;
-@title-space: 5px;
+    @mobile_size: 1.3em;
+    @title-space: 5px;
     .sidebar {
         width: 100%;
         height: 46px;
@@ -74,39 +73,4 @@ footer{
         padding-top: 50px;
         width: 100%;
     }
-}
-
-// mixin style area
-
-.articleTitle{
-    .title{
-        color: #476277;
-        font-size: 40px;
-        margin: 10px 0;
-    }
-    .time{
-        color: #757575;
-        margin: 3px 0;
-    }
-}
-
-.tag{
-    display: inline-block;
-    padding: 5px;
-    font-size: 13px;
-    border-radius: 2px;
-    color: white;
-    margin: 8px 8px 0 0;
-}
-.tag_0{
-    background-color: #4d85d1;
-}
-.tag_1{
-    background-color: #5aba59;
-}
-.tag_2{
-    background-color: #df2d4f;
-}
-.tag_3{
-    background-color: #999;
 }

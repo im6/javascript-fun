@@ -6,10 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
+
     "build_main": "MODULENAME=main webpack --config webpack/build.js",
     "build_site": "MODULENAME=site webpack --config webpack/build.js",
     "build_article1": "MODULENAME=article_1 webpack --config webpack/build.js",
     "build_article": "MODULENAME=article_ webpack --config webpack/build.js",
+    "build": "run-p build_main build_site build_article1 build_article",
 
     "dev_main": "MODULENAME=main webpack-dev-server --progress --profile --colors --config webpack/dev.js",
     "dev_site": "MODULENAME=site webpack-dev-server --progress --profile --colors --config webpack/dev.js",
@@ -48,6 +50,7 @@
     "less": "^2.7.2",
     "less-loader": "^4.0.3",
     "merge": "^1.2.0",
+    "npm-run-all": "^4.0.2",
     "purecss": "^0.6.2",
     "style-loader": "^0.16.1",
     "webpack": "^2.3.3",

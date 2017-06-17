@@ -1,9 +1,21 @@
-
-.post{
-    border-bottom: 1px solid #e0e0e0;
-    padding: 20px 40px;
-    .content{
-        color: #8666b5;
-        font-size: 20px;
+.post_container {
+    min-height: 591px;
+    .post{
+        border-bottom: 1px solid #e0e0e0;
+        padding: 20px 40px;
+        .art_desc {
+            color: #547aa2;
+            font-size: 20px;
+        }
     }
+}
+
+@media (max-width: 768px) {
+  .post_container {
+    min-height: auto;
+    .post{
+        border-bottom: 1px solid #e0e0e0;
+        padding: 20px;
+    }
+  }
 }

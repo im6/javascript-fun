@@ -1,8 +1,9 @@
 extends ../layout
 block content
-    each val, index in article
-        .post
-            +ArticleTitle(val)
-            p.content=val.content
-            if val.url
-                a(href=val.url).pure-button.button-small View All
+    .post_container
+        each val, index in article
+            .post
+                +ArticleTitle(val)
+                p.art_desc=val.content
+                if val.url
+                    a(href=val.url).pure-button.button-small View All
