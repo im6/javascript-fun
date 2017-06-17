@@ -11,7 +11,12 @@ block 1
         a(href="https://www.zhihu.com/question/39187479" target="_blank") 如何可以将react中的state用redux正确地托管?
     p
         | 底下人的回答参差不齐，有人回答要把所有的state都放入redux保管，有人回答分开托管，但是也不是很具体。
-    b 先说我的结论： 局部逻辑（如UI状态）不需要放入redux，且存放地点基本唯一，为的是的代码更清晰，维护更高效。
+
+    b
+        |先说我的结论：
+        br
+        |局部逻辑不需要放入redux，且存放地点基本唯一，为的是的代码更清晰，维护更高效。
+        |局部逻辑定义，包括UI状态以及局部变量。
 
     p 本文要借助一个简单的案例，教你如何安排你的状态作用域，写出真正优雅的react。
 
@@ -47,7 +52,7 @@ block 1
 
     p
         | ModalResetPass是弹出框，里面包含了密码重置模块PasswordInput。
-        | 将PasswordInput模块化很有必要，比如在添加新用户的弹窗中，可以复用密码模块等（上图右）。
+        | 将PasswordInput列为独立模块好处很多，比如在添加新用户的弹窗中，可以复用密码模块等（上图右）。
 
     h2 状态分析
     P
@@ -121,10 +126,11 @@ block 1
         li
             h3 最终新密码(String)
             p
-                | ModalResetPass的作用主要用于“提交”动作，因为最终返回JSON的格式是{ username: "Timothy"， password: "test1234" }，
-                | 可是username却和模块PasswordInput一点关系都没有，而未确定的密码和上一级模块UserList又一点关系都没有，
-                | 所以必须设立一个中间模块存储状态，这个状态就是最终新密码。
-            p 所以，存储位置上，这个值必须在图中3的位置，既不能偏上，也不能偏下。
+                | ModalResetPass的作用主要用于“提交”动作，最终返回JSON的格式是{ username: "Timothy"， password: "test1234" }。
+            p
+                | 这个模块不可或缺，因为username和模块PasswordInput一点关系都没有，而未确定的密码和上一级模块UserList又一点关系都没有，
+                | 所以必须设立一个中间模块存储状态，ModalResetPass就是用来管理最终新密码。
+            p 所以，存储位置上，最终新密码这个值必须在图中3的位置，既不能偏上，也不能偏下。
             p
                 | 存储到this.state.tempPass后发现，
                 | 这个值不需要显示，因为PasswordInput内部控制了显示的字符；同时，当合法密码生成后必须第一时间更新这个值，

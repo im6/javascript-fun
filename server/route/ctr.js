@@ -26,16 +26,7 @@ module.exports = {
       root: viewRoot
     });
   },
-  site: function(req, res, next){
-    res.sendFile('/site/index.html',{
-      root: viewRoot
-    });
-  },
-  demo: function(req, res, next){
-    res.sendFile('/demo/index.html',{
-      root: viewRoot
-    });
-  },
+
   error: function(req, res, next){
     res.redirect('/');
   },
