@@ -13,7 +13,7 @@
   "article": [
     {
       "id": 1,
-      "title": "写一手漂亮的React（一）：state vs redux",
+      "title": "如何写一手漂亮的React（一）：state vs redux",
       "author": "ZJ Guo",
       "about": ["react", "redux"],
       "time": "2017-06-15 13:00:00",
@@ -22,7 +22,7 @@
     },
     {
       "id": 0,
-      "title": "Welcome  :)",
+      "title": "Welcome to Javascript.fun",
       "author": "ZJ Guo",
       "about": ["javascript","node.js"],
       "time": "2017-04-01 00:00:00",

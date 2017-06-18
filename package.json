@@ -7,11 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
 
+    "build_jade": "node server/task/render/article1.js && node server/task/render/article2.js",
     "build_main": "MODULENAME=main webpack --config webpack/build.js",
     "build_site": "MODULENAME=site webpack --config webpack/build.js",
     "build_article1": "MODULENAME=article_1 webpack --config webpack/build.js",
     "build_article": "MODULENAME=article_ webpack --config webpack/build.js",
-    "build": "run-p build_main build_site build_article1 build_article",
+    "build": "run-p build_main build_site build_article1 build_article build_jade",
 
     "dev_main": "MODULENAME=main webpack-dev-server --progress --profile --colors --config webpack/dev.js",
     "dev_site": "MODULENAME=site webpack-dev-server --progress --profile --colors --config webpack/dev.js",
