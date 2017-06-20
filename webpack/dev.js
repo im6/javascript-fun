@@ -1,4 +1,6 @@
 "use strict";
+const path = require('path');
+const fs = require('fs');
 const webpackConfig = require('./generic/hot');
 const moduleName = process.env.MODULENAME;
 
@@ -8,13 +10,17 @@ let devIndex = `${moduleName}/`;
 let fileName = `${moduleName}.js`;
 
 if(moduleName.substring(0, 7) === 'article'){
+  const jsonDir = path.join(__dirname, '../server/task/render/viewModel_article.json');
+  const configJson = JSON.parse(fs.readFileSync(jsonDir));
+  const article = configJson.article.filter(v => v.id === configJson.id)[0];
+
   const names = moduleName.split('_');
   if(names[1] === ''){
     entry = `./client/modules/article2/index.jsx`;
     devIndex = `article/`;
   } else {
     entry = `./client/modules/article1/index.jsx`;
-    devIndex = `article/${names[1]}/`;
+    devIndex = `article/${article.id}/`;
   }
 }
 
