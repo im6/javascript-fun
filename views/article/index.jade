@@ -5,5 +5,5 @@ block content
             .post
                 +ArticleTitle(val)
                 p.art_desc=val.content
-                if val.url
-                    a(href=val.url).pure-button.button-small View All
+                if val.id != 0
+                    a(href=(route + val.id + "/")).pure-button.button-small View All

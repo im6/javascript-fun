@@ -3,8 +3,9 @@ const webpackConfig = require('./generic/hot');
 const moduleName = process.env.MODULENAME;
 
 let entry = `./client/modules/${moduleName}/index.jsx`;
-let publicPath = `/${moduleName}`;
+let publicPath = `/build`;
 let devIndex = `${moduleName}/`;
+let fileName = `${moduleName}.js`;
 
 if(moduleName.substring(0, 7) === 'article'){
   const names = moduleName.split('_');
@@ -15,11 +16,11 @@ if(moduleName.substring(0, 7) === 'article'){
     entry = `./client/modules/article1/index.jsx`;
     devIndex = `article/${names[1]}/`;
   }
-  publicPath = `/article/${names[1]}`;
 }
 
 webpackConfig.entry = entry;
 webpackConfig.output.publicPath = publicPath;
+webpackConfig.output.filename = fileName;
 webpackConfig.devServer.historyApiFallback.index = devIndex;
 
 module.exports = webpackConfig;

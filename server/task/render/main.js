@@ -123,7 +123,12 @@ const inst = {
         vm.list = data.filter(v1 => v1.page === v.page);
         vm.page = v.page;
         vm['pretty'] = ISDEV;
-        vm['bundleDir'] = '/main/bundle.js';
+        if(ISDEV) {
+          vm['bundleDir'] = '/build/main.js';
+        } else {
+          vm['bundleDir'] += 'main.js';
+        }
+
         vm['lastUpdate'] = moment().format('LLL');
         privateFn.render(vm, v.input, v.output);
       });

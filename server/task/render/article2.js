@@ -1,14 +1,20 @@
 
-var fs = require('fs'),
+var isDev = process.env.NODE_ENV === 'dev',
+  fs = require('fs'),
   path = require('path'),
   jade = require('jade');
 
 var configJson = null,
   jsonDir = path.join(__dirname, './viewModel_article.json');
+
 try {
   configJson = JSON.parse(fs.readFileSync(jsonDir));
-  configJson['module'] = 'blog';
-  configJson.bundleDir = configJson.bundleDir.replace('<ARTICLEID>', '');
+
+  if(isDev){
+    configJson.bundleDir = `/build/${configJson.main}`;
+  }else{
+    configJson.bundleDir += `${configJson.main}`;
+  }
 }
 
 catch(err){

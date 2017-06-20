@@ -1,7 +1,10 @@
 {
+  "id": 1,
   "page": 5,
-  "bundleDir": "/article<ARTICLEID>/bundle.js",
+  "bundleDir": "http://dkny.oss-cn-hangzhou.aliyuncs.com/1/build/",
   "remoteAsset": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets",
+  "main": "article_.js",
+  "route": "/article/",
   "type":[
     "2017",
     "Developer",
@@ -18,7 +21,7 @@
       "about": ["react", "redux"],
       "time": "2017-06-15 13:00:00",
       "content": "状态管理详解...",
-      "url": "/article/1/"
+      "fileName": "article_1.js"
     },
     {
       "id": 0,
@@ -26,8 +29,7 @@
       "author": "ZJ Guo",
       "about": ["javascript","node.js"],
       "time": "2017-04-01 00:00:00",
-      "content": "为JavaScript社区不定期更新...",
-      "url": null
+      "content": "为JavaScript社区不定期更新..."
     }
   ]
 }

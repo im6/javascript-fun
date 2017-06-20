@@ -42,7 +42,7 @@ var webpackConfig = {
   ],
   //entry: './client/modules/site/index.jsx',
   output: {
-    filename: 'bundle.js',
+    //filename: 'bundle.js',
     //publicPath: '/site',
   },
   devServer: {
