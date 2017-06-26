@@ -99,12 +99,13 @@ const inst = {
     let p2 = privateFn.getSite();
 
     let vm = privateFn.getPrototype();
+    const bundleUrl = vm['bundleDir'];
 
     Promise.all([p1, p2]).then(d => {
       if(ISDEV) {
         vm['bundleDir'] = '/build/site.js';
       } else {
-        vm['bundleDir'] += 'site.js';
+        vm['bundleDir'] = bundleUrl + 'site.js';
       }
       vm.list = privateFn.group(d[1], d[0]);
       vm.pretty = ISDEV;

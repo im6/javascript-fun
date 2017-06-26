@@ -3,7 +3,7 @@
   "page": 5,
   "bundleDir": "http://dkny.oss-cn-hangzhou.aliyuncs.com/1/build/",
   "remoteAsset": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets",
-  "main": "article_.js",
+  "main": "article0",
   "route": "/article/",
   "type":[
     "2017",
@@ -21,7 +21,7 @@
       "about": ["react", "redux"],
       "time": "2017-06-15 13:00:00",
       "content": "状态管理详解...",
-      "fileName": "article_1.js"
+      "fileName": "article1"
     },
     {
       "id": 0,

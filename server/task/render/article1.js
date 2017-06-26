@@ -12,9 +12,9 @@ try {
   configJson.article = configJson['article'].filter(v => v.id === configJson.id)[0];
 
   if(isDev){
-    configJson.bundleDir = `/build/${configJson.article.fileName}`;
+    configJson.bundleDir = `/build/${configJson.article.fileName}.js`;
   }else{
-    configJson.bundleDir += `${configJson.article.fileName}`;
+    configJson.bundleDir += `${configJson.article.fileName}.js`;
   }
 }
 catch(err){

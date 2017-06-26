@@ -1,32 +1,24 @@
 "use strict";
-const path = require('path');
-const fs = require('fs');
+
 const webpackConfig = require('./generic/hot');
-const moduleName = process.env.MODULENAME;
+const configJson = require('../server/task/render/viewModel_article.json');
+const article = configJson.article.filter(v => v.id === configJson.id)[0];
 
-let entry = `./client/modules/${moduleName}/index.jsx`;
-let publicPath = `/build`;
-let devIndex = `${moduleName}/`;
-let fileName = `${moduleName}.js`;
+const entries = {
+  main: ['./client/modules/main/index.jsx', 'webpack/hot/only-dev-server'],
+  site: ['./client/modules/site/index.jsx', 'webpack/hot/only-dev-server'],
+  devServerClient: 'webpack-dev-server/client?http://0.0.0.0:3000'
+};
 
-if(moduleName.substring(0, 7) === 'article'){
-  const jsonDir = path.join(__dirname, '../server/task/render/viewModel_article.json');
-  const configJson = JSON.parse(fs.readFileSync(jsonDir));
-  const article = configJson.article.filter(v => v.id === configJson.id)[0];
+entries[configJson.main] = ['./client/modules/article2/index.jsx', 'webpack/hot/only-dev-server'];
+entries[article.fileName] = ['./client/modules/article1/index.jsx', 'webpack/hot/only-dev-server'],
 
-  const names = moduleName.split('_');
-  if(names[1] === ''){
-    entry = `./client/modules/article2/index.jsx`;
-    devIndex = `article/`;
-  } else {
-    entry = `./client/modules/article1/index.jsx`;
-    devIndex = `article/${article.id}/`;
-  }
-}
+webpackConfig.entry = entries;
+webpackConfig.output = {
+  publicPath: '/build',
+  filename: "[name].js",
+};
+webpackConfig.devServer.historyApiFallback.index = 'main/';
 
-webpackConfig.entry = entry;
-webpackConfig.output.publicPath = publicPath;
-webpackConfig.output.filename = fileName;
-webpackConfig.devServer.historyApiFallback.index = devIndex;
 
 module.exports = webpackConfig;

@@ -118,6 +118,7 @@ const inst = {
       let data = privateFn.group(d[1],iconMap);
 
       let vm = privateFn.getPrototype();
+      const bundleUrl = vm['bundleDir'];
 
       PAGECONFIG.forEach(v => {
         vm.list = data.filter(v1 => v1.page === v.page);
@@ -126,7 +127,7 @@ const inst = {
         if(ISDEV) {
           vm['bundleDir'] = '/build/main.js';
         } else {
-          vm['bundleDir'] += 'main.js';
+          vm['bundleDir'] = bundleUrl + 'main.js';
         }
 
         vm['lastUpdate'] = moment().format('LLL');

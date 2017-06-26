@@ -11,9 +11,9 @@ try {
   configJson = JSON.parse(fs.readFileSync(jsonDir));
 
   if(isDev){
-    configJson.bundleDir = `/build/${configJson.main}`;
+    configJson.bundleDir = `/build/${configJson.main}.js`;
   }else{
-    configJson.bundleDir += `${configJson.main}`;
+    configJson.bundleDir += `${configJson.main}.js`;
   }
 }
 
