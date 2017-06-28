@@ -1,0 +1,31 @@
+extends generic
+block 2
+    h3 if 
+    pre
+        code.Javascript
+            | var a = 'test';
+            | if(a === 'test1'){
+            |   console.log('do sth')
+            | }
+            | // after uglify
+            | var a="test";"test1"===a&&console.log("do sth");
+    h3 function
+    h4 declaration
+    pre
+        code.Javascript
+            | function add(num1, num2){
+            |   return num1 + num2;
+            | }
+            | // after uglify
+            | function add(a,t){return a+t}
+    h4 Self-invoking functions
+    pre
+        code.Javascript
+            | (function(num1, num2){
+            |    return num1 + num2;
+            | })(2,3);
+            | // after uglify
+            |  !function(a,t){return a+t}(2,3);
+
+        
+        
