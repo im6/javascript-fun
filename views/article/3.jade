@@ -1,31 +1,71 @@
 extends generic
 block 2
+    h3 前言
+    p
+        | javascript的压缩混淆随处可见，规则也大体相同，而uglify带来的好处很多，除了压缩代码体积之外，还可以肆无忌惮的加强源代码的可读性。
+    p
+        | 目前好多大公司，比如FB、阿里、微博等，生产代码并没有完全开源，了解混淆原理可以帮助我们进行代码逻辑的逆推，重塑源代码，学到更多“非开源”的内容。
     h3 if 
+    p 当条件执行语句只有一行时，转换为条件赋值语句(conditional/ternary Operator)
     pre
         code.Javascript
-            | var a = 'test';
-            | if(a === 'test1'){
-            |   console.log('do sth')
+            | var s = false;
+            | if(s){
+            |     console.log(123);
             | }
-            | // after uglify
-            | var a="test";"test1"===a&&console.log("do sth");
+            | //
+            | var s=!1;s&&console.log(123);
+    pre
+        code.Javascript
+            | var s = true;
+            | if(!s) {
+            |     console.log(123);
+            | }
+            | // after uglification
+            | var s=!0;s||console.log(123);
+    pre
+        code.Javascript
+            |var a = true;
+            |var b = false;
+            |if(!a) {
+            |    if(!b) {        
+            |        console.log(123);
+            |    }
+            |}
+            | // after uglification
+            | var a=!0,b=!1;a||b||console.log(123);
     h3 function
     h4 declaration
+    主要是变量名称的简化。
     pre
         code.Javascript
             | function add(num1, num2){
             |   return num1 + num2;
             | }
-            | // after uglify
+            | // after uglification
             | function add(a,t){return a+t}
     h4 Self-invoking functions
+    p 通过“!”激活函数出发。
     pre
         code.Javascript
             | (function(num1, num2){
             |    return num1 + num2;
             | })(2,3);
-            | // after uglify
+            | // after uglification
             |  !function(a,t){return a+t}(2,3);
+    h3 Variable 
+    p 
+        | 由于压缩需要对现有变量名称进行改写，所以会出现相同的名称出现在不同区域，这时候的结局方案是：
+        b “就近原则”
+        | 下图例子代码来自weibo.com页面源码。
+    pre
+        code.Javascript
+            | var a = $CONFIG, // a表示变量$CONFIG
+            |     b = FM.view;
+            | FM.view = function(a) {
+            |     a = a || {}; // a表示方程的第一个argument，而不是外面的$CONFIG
+            |     return a;
+            | }
 
         
         
