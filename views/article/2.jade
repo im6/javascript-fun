@@ -1,3 +1,56 @@
 extends generic
 block 2
-    h1 this is 2.jade content
+    p
+        | web构架是曲折前进的。
+    p
+        | 从刚开始Razor/Jade 后端渲染，到angular/react/vue等一大票SPA框架。
+        |于是一大堆网站的主页面都是一个空div外加一个大bundle.js，清新简洁落落大方，沾沾自喜。
+    p
+        | 直到有人吐槽SEO性能太差，于是各大SPA又加上了server-side rendering属性。
+        | 大伙玩的不亦乐乎， 新手上路分分钟甩出一个web app。
+        | 各大互联网公司也热爱SPA， 比如instagram和WhatsApp就喜欢搞个纯纯的react.js用作首页。
+
+    b
+        | 注意，这里有一个大大的But： Facebook和新浪微博这种重型Web却扔在用一种“古老”的技术： BigPipe。
+    p
+        | 啥是BigPipe？ 有没有我Big bundle.js牛逼? 让老司机带着大家来耍一把。
+    h2 官方定义
+    p
+        | BigPipe是一个重新设计的劢态网页服务体系。
+        | 将页面分解成一个个Pagelet，然后通过Web
+        | 服务器和浏览器之间建立管道，进行分段输出
+        | （减少请求数）。
+        | BigPipe不需要改变现有的网络浏览器或服务器。
+    h2 特点：
+    ol
+        li 后端程序无需等到页面所有 Pagelet 的API都读取执行完，才输出到浏览器，服务器端不浏览器端并行处理，加快了页面显示。
+        li Pagelet的输出顺序可以由后端程序控制，及早输出用户关心的模块。
+
+    h2 为什么使用BigPipe
+    ol
+        li 解决速度瓶颈
+        li 降低延迟时间
+
+    h2 适用场合
+    p BigPipe并不是适用于所有的场合，类似于Facebook和微博，他主要适用于：
+    ol
+        li 第一个请求时间较长，后端程序需要读取多个API
+        li 页面上的劢态内容可以划分在多个区块内显示，且各个区块之间的关系不大（极弱耦合）
+
+    h2 源码分析
+    p
+        | 说这么热闹，直接来点干货好不好。抓取新浪微博截取最新的（2017,06,27）代码，虽然源码被uglify，不过加点注释还是可以读出其中的精髓的。
+    pre
+        code.JavaScript
+            |FM.view({
+            |  "ns":"pl.common.webim",  // view component, html
+            |  "domid":"pl_common_webim",  // DOM ID
+            |  "css": ["style/css/module/list/comb_webim.css?version=716feb1e4288c3e0"], // Style dependency, css
+            |  "js":["webim_prime/js/common/all.js?version=f35f25b485d9c6db"]  // Script dependency, js
+            |});
+    pre
+        code.JavaScript
+            | alert(123)
+
+
+

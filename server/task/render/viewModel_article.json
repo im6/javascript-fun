@@ -1,7 +1,8 @@
 {
-  "id": 1,
+  "id": 2,
   "page": 5,
-  "bundleDir": "http://dkny.oss-cn-hangzhou.aliyuncs.com/1/build/",
+  "bundleDir_NOTUSE": "http://dkny.oss-cn-hangzhou.aliyuncs.com/1/build/",
+  "bundleDir": "/build/",
   "remoteAsset": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets",
   "main": "article0",
   "route": "/article/",
@@ -14,6 +15,15 @@
     "Fun!"
   ],
   "article": [
+    {
+      "id": 2,
+      "title": "新浪微博前端构建详解之BigPipe",
+      "author": "ZJ Guo",
+      "about": ["BigPipe", "architecture"],
+      "time": "2017-06-28 13:00:00",
+      "content": "微博以及Facebook前端构建详解...",
+      "fileName": "article1"
+    },
     {
       "id": 1,
       "title": "如何写一手漂亮的React（一）：state vs redux",

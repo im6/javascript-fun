@@ -1,6 +1,7 @@
 {
   "pretty": null,
-  "bundleDir": "http://dkny.oss-cn-hangzhou.aliyuncs.com/1/build/",
+  "bundleDir_NOTUSE": "http://dkny.oss-cn-hangzhou.aliyuncs.com/1/build/",
+  "bundleDir": "/build/",
   "remoteAsset": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets",
   "type":[
     "2017",
