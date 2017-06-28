@@ -40,17 +40,24 @@ block 2
     h2 源码分析
     p
         | 说这么热闹，直接来点干货好不好。抓取新浪微博截取最新的（2017,06,27）代码，虽然源码被uglify，不过加点注释还是可以读出其中的精髓的。
+    p 取微博分组这个模块为例子
     pre
         code.JavaScript
             |FM.view({
-            |  "ns":"pl.common.webim",  // view component, html
-            |  "domid":"pl_common_webim",  // DOM ID
-            |  "css": ["style/css/module/list/comb_webim.css?version=716feb1e4288c3e0"], // Style dependency, css
-            |  "js":["webim_prime/js/common/all.js?version=f35f25b485d9c6db"]  // Script dependency, js
+            |  "ns":"pl.nav.group.index",  // pagelet name
+            |  "domid":"v6_pl_leftnav_group",  // DOM ID
+            |  "css": ["style/css/module/global/WB_left_nav.css?version=716feb1e4288c3e0"], // Style dependency, css
+            |  "js":["home/js/pl/nav/group/index.js?version=f35f25b485d9c6db"],  // Script dependency, js
+            |  "html": "<div class=\"WB_left_nav WB_left_nav_Atest\" node-type=\"groupList\" fixed-item=\"true\">\n .... <\/div>"})  // body html
             |});
+    p
+        | 一目了然，这个FM.view函数就是用来动态载入微博分组这个空间的，内部包括了所有的所有的js，css文件，同事还把HTML的layout引入。
+        
     pre
-        code.JavaScript
-            | alert(123)
+        code.Javascript
+            | !function(){
+            |       //  Self-invoking function to render the pagelet resource 
+            | }();
 
 
 
