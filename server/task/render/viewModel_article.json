@@ -26,9 +26,9 @@
     },
     {
       "id": 2,
-      "title": "逆向读取BAT前端代码",
+      "title": "微博前端代码的逆向读取",
       "author": "ZJ Guo",
-      "about": ["BigPipe", "architecture"],
+      "about": ["uglify", "minify"],
       "time": "2017-06-28 13:00:00",
       "content": "微博以及Facebook前端构建详解...",
       "fileName": "article1"
