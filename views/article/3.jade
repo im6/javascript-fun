@@ -13,7 +13,7 @@ block 3
         | 注意，这里有一个大大的But： Facebook和新浪微博这种重型Web却扔在用一种“古老”的技术： BigPipe。
     p
         | 啥是BigPipe？ 有没有我Big bundle.js牛逼? 本文对此进行简单分析。
-    h2 官方定义
+    h1 官方定义
     p
         | BigPipe是一个重新设计的劢态网页服务体系。
         | 将页面分解成一个个Pagelet，然后通过Web服务器和浏览器之间建立管道，进行分段输出（减少请求数）。
@@ -31,9 +31,9 @@ block 3
     ol
         li 第一个请求时间较长，后端程序需要读取多个API
         li 页面上的劢态内容可以划分在多个区块内显示，且各个区块之间的关系不大（极弱耦合）
-    h2 源码分析
-    p
-        | 说这么热闹，直接来点干货好不好。抓取新浪微博截取最新的（2017,06,27）代码，虽然源码被uglify，不过加点注释还是可以读出其中的精髓的。
+    h1 源码分析
+    p 说这么热闹，下面直接上干货。
+    p 抓取新浪微博截取最新的（2017,06,27）代码，虽然源码被混淆，不过加点注释还是可以读出其中的精髓的。
     p 我们把微博分组模块作为范例
     pre
         code.JavaScript
@@ -42,11 +42,11 @@ block 3
             |  "domid":"v6_pl_leftnav_group",  // DOM ID
             |  "css": ["style/css/module/global/WB_left_nav.css?version=716feb1e4288c3e0"], // Style dependency, css
             |  "js":["home/js/pl/nav/group/index.js?version=f35f25b485d9c6db"],  // Script dependency, js
-            |  "html": "<div class=\"WB_left_nav WB_left_nav_Atest\" node-type=\"groupList\" fixed-item=\"true\">\n .... <\/div>"})  // body html
+            |  "html": "&lt;div class=\"WB_left_nav WB_left_nav_Atest\" node-type=\"groupList\" fixed-item=\"true\"&gt;\n .... &lt;\/div&gt;"})  // body html
             | });
     p
         | 一目了然，这个FM.view函数就是用来动态载入微博分组这个空间的，内部包括了所有的所有的js，css文件，同事还把HTML的layout引入。
-    p 引入js文件
+    h2 引入js文件
     pre
         code.Javascript
             | if (!Y(a, d)) {
@@ -67,7 +67,7 @@ block 3
             |    n = h(m, 3e4); // h = settimeout, 延迟并绑定onerror和onload函数
             |    g.insertBefore(k, g.firstChild) // insert into
             | }
-    p 引入css文件
+    h2 引入css文件
     pre
         code.Javascript
             | function bl(a) {
@@ -87,7 +87,7 @@ block 3
             |            bj[b] = []
             |        }(c.styleSheet || c.sheet).addImport(a);
             |        bj[b].push(a)
-            |    } else { // 正经代码
+            |    } else { // 现代浏览器部分
             |        b = x(); //生成script tag
             |        var d = bd("link");  // 设置script元素属性
             |        bh(d, "rel", "stylesheet");
@@ -98,7 +98,7 @@ block 3
             |    }
             |    bi[a] = b // 对已处理的script文件进行标注管理
             | }
-    p 插入HTML元素
+    h2 插入HTML元素
     pre
         code.Javascript
             | function s() {
