@@ -14,39 +14,44 @@ block 3
     p
         | 啥是BigPipe？ 有没有我Big bundle.js牛逼? 本文对此进行简单分析。
     h1 官方定义
-    p
-        | BigPipe是一个重新设计的劢态网页服务体系。
-        | 将页面分解成一个个Pagelet，然后通过Web服务器和浏览器之间建立管道，进行分段输出（减少请求数）。
-        | BigPipe不需要改变现有的网络浏览器或服务器。
+    ul
+        li BigPipe是一个重新设计的劢态网页服务体系。
+        li 将页面分解成一个个Pagelet，然后通过Web服务器和浏览器之间建立管道，进行分段输出（减少请求数）。
+        li BigPipe不需要改变现有的网络浏览器或服务器。
     h2 特点：
-    ol
+    ul
         li 后端程序无需等到页面所有 Pagelet 的API都读取执行完，才输出到浏览器，服务器端不浏览器端并行处理，加快了页面显示。
         li Pagelet的输出顺序可以由后端程序控制，及早输出用户关心的模块。
     h2 为什么使用BigPipe
-    ol
+    ul
         li 解决速度瓶颈
         li 降低延迟时间
     h2 适用场合
     p BigPipe并不是适用于所有的场合，类似于Facebook和微博，他主要适用于：
-    ol
+    ul
         li 第一个请求时间较长，后端程序需要读取多个API
         li 页面上的劢态内容可以划分在多个区块内显示，且各个区块之间的关系不大（极弱耦合）
     h1 源码分析
-    p 说这么热闹，下面直接上干货。
-    p 抓取新浪微博截取最新的（2017,06,27）代码，虽然源码被混淆，不过加点注释还是可以读出其中的精髓的。
-    p 我们把微博分组模块作为范例
+    p 下面直接上干货。
+    p 抓取新浪微博截取最新的（2017,06,27）代码，
+    .pure-g
+        .pure-u-md-1-2.pure-u-sm-1-1
+            img.atcImg(src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/3/1.png")
+    p 通过截图看得出来，初始状态下body > div 非常简单。动态内容主要依靠FM.view贯穿全局渲染。我们重点查看FM模块。
+    p 虽然源码被混淆，不过加点注释还是可以读出其中的精髓的。
+    p 我们把微博分组模块作为范例(pl.nav.group.index)
     pre
         code.JavaScript
             | FM.view({
-            |  "ns":"pl.nav.group.index",  // pagelet name
+            |  "ns":"pl.nav.group.index",  // pagelet/component reference name
             |  "domid":"v6_pl_leftnav_group",  // DOM ID
             |  "css": ["style/css/module/global/WB_left_nav.css?version=716feb1e4288c3e0"], // Style dependency, css
             |  "js":["home/js/pl/nav/group/index.js?version=f35f25b485d9c6db"],  // Script dependency, js
             |  "html": "&lt;div class=\"WB_left_nav WB_left_nav_Atest\" node-type=\"groupList\" fixed-item=\"true\"&gt;\n .... &lt;\/div&gt;"})  // body html
             | });
-    p
-        | 一目了然，这个FM.view函数就是用来动态载入微博分组这个空间的，内部包括了所有的所有的js，css文件，同事还把HTML的layout引入。
-    h2 引入js文件
+    p  一目了然，FM.view函数就是用来动态载入模块的，内部包括了所有的所有的js，css文件，同事还把HTML的layout引入。
+        | 我们一次讲解如何加载各个依赖。
+    h2 JavaScript依赖
     pre
         code.Javascript
             | if (!Y(a, d)) {
@@ -67,7 +72,7 @@ block 3
             |    n = h(m, 3e4); // h = settimeout, 延迟并绑定onerror和onload函数
             |    g.insertBefore(k, g.firstChild) // insert into
             | }
-    h2 引入css文件
+    h2 CSS依赖
     pre
         code.Javascript
             | function bl(a) {
@@ -98,7 +103,7 @@ block 3
             |    }
             |    bi[a] = b // 对已处理的script文件进行标注管理
             | }
-    h2 插入HTML元素
+    h2 HTML元素
     pre
         code.Javascript
             | function s() {
@@ -110,10 +115,13 @@ block 3
             |         bF(d, function(f) {
             |             if (!a[P] && f && e != c) {
             |                 bG(f, d);
-            |                 f.innerHTML = e || "";
+            |                 f.innerHTML = e || "";  // html injection
             |                 br(b);
             |                 delete a.html
             |             } else b(!0)
             |         })
             |     }) : b(!0)
             | }
+    h2 状态分析
+    p FM作为前端加载器，控制和执行各个模块的加载以及状态的改变。
+
