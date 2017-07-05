@@ -4,7 +4,7 @@ block 3
         | web构架是曲折前进的。
     p
         | 从刚开始Razor/Jade 后端渲染，到angular/react/vue等一大票SPA框架。
-        | 于是一大堆网站的主页面都是一个空div外加一个大bundle.js，清新简洁落落大方，沾沾自喜。
+        | 于是冒出一大堆网站的主页面都是一个空div外加一个大bundle.js，清新简洁落落大方，沾沾自喜。
     p
         | 直到有人吐槽SEO性能太差，于是各大SPA又加上了server-side rendering属性。
         | 大伙玩的不亦乐乎， 新手上路分分钟甩出一个web app。
@@ -12,7 +12,7 @@ block 3
     b
         | 注意，这里有一个大大的But： Facebook和新浪微博这种重型Web却扔在用一种“古老”的技术： BigPipe。
     p
-        | 啥是BigPipe？ 有没有我Big bundle.js牛逼? 本文对此进行简单分析。
+        | 啥是BigPipe？ 有没有你的Big bundle.js牛逼? 本文对此进行简单分析。
     h1 官方定义
     ul
         li BigPipe是一个重新设计的劢态网页服务体系。
@@ -21,24 +21,25 @@ block 3
     h2 特点：
     ul
         li 后端程序无需等到页面所有 Pagelet 的API都读取执行完，才输出到浏览器，服务器端不浏览器端并行处理，加快了页面显示。
-        li Pagelet的输出顺序可以由后端程序控制，及早输出用户关心的模块。
+        li Pagelet的渲染和输出顺序可以由后端程序控制，及早输出用户关心的模块。
     h2 为什么使用BigPipe
     ul
         li 解决速度瓶颈
         li 降低延迟时间
-    h2 适用场合
-    p BigPipe并不是适用于所有的场合，类似于Facebook和微博，他主要适用于：
-    ul
-        li 第一个请求时间较长，后端程序需要读取多个API
-        li 页面上的劢态内容可以划分在多个区块内显示，且各个区块之间的关系不大（极弱耦合）
+
     h1 源码分析
     p 下面直接上干货。
     p 抓取新浪微博截取最新的（2017,06,27）代码，
     .pure-g
-        .pure-u-md-1-2.pure-u-sm-1-1
+        .pure-u-md-1-1
             img.atcImg(src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/3/1.png")
     p 通过截图看得出来，初始状态下body > div 非常简单。动态内容主要依靠FM.view贯穿全局渲染。我们重点查看FM模块。
     p 虽然源码被混淆，不过加点注释还是可以读出其中的精髓的。
+    h2 Pagelet加载流程
+    ol
+        li JavaScript异步加载css文件
+        li 当css文件下载完成, 将html插入入页面空DIV
+        li 启劢JavaScript，绑定事件等
     p 我们把微博分组模块作为范例(pl.nav.group.index)
     pre
         code.JavaScript
@@ -72,7 +73,7 @@ block 3
             |    n = h(m, 3e4); // h = settimeout, 延迟并绑定onerror和onload函数
             |    g.insertBefore(k, g.firstChild) // insert into
             | }
-    h2 CSS依赖
+    h2 CSS依赖（异步加载）
     pre
         code.Javascript
             | function bl(a) {
@@ -122,6 +123,25 @@ block 3
             |         })
             |     }) : b(!0)
             | }
-    h2 状态分析
+    h1 状态管理
     p FM作为前端加载器，控制和执行各个模块的加载以及状态的改变。
+
+
+
+    h1 适用场合
+    p 所以，当我们用react或者Vue生成一个硕大的bundle文件以后，首屏载入速度必然受到影响，因此，除了SSR之外，
+        | bigpipe也是一种很好的处理方法。
+    p bigpipe实际加载效果
+    .pure-g
+        .pure-u-md-1-1
+            img.atcImg(src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/3/2.png")
+    p 单个bundle实际加载效果
+    .pure-g
+        .pure-u-md-1-1
+            img.atcImg(src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/3/3.png")
+
+    p 综上，BigPipe并不是适用于所有的场合，类似于Facebook和微博，他主要适用于：
+    ul
+        li 第一个请求时间较长，后端程序需要读取多个API
+        li 页面上的劢态内容可以划分在多个区块内显示，且各个区块之间的关系不大（极弱耦合）
 
