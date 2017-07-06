@@ -28,6 +28,9 @@ block 3
         li 降低延迟时间
 
     h1 源码分析
+    p 通读源码并加以分析，参考
+        a(href="/article/2/" target="_blank") JavaScript代码的逆向读取
+        | ，我将一些关键的要点进行了提炼和简单的梳理。
     p 下面直接上干货。
     p 抓取新浪微博截取最新的（2017,06,27）代码，
     .pure-g
@@ -37,7 +40,7 @@ block 3
     p 虽然源码被混淆，不过加点注释还是可以读出其中的精髓的。
     h2 Pagelet加载流程
     ol
-        li JavaScript异步加载css文件
+        li 用JavaScript异步加载css文件
         li 当css文件下载完成, 将html插入入页面空DIV
         li 启劢JavaScript，绑定事件等
     p 我们把微博分组模块作为范例(pl.nav.group.index)
@@ -73,6 +76,7 @@ block 3
             |    n = h(m, 3e4); // h = settimeout, 延迟并绑定onerror和onload函数
             |    g.insertBefore(k, g.firstChild) // insert into
             | }
+    p 一个FM.view的返回内容为JavaScript代码，这段代码自动调用pagelet中的内容。
     h2 CSS依赖（异步加载）
     pre
         code.Javascript
@@ -128,6 +132,9 @@ block 3
     p 由于页面中同时存在多个pagelet， 所以FM要设立一个变量存储各个view的状态。当每个view状态ready或者
         | 重新载入的时候，顺利改变这个状态。
     p 每个pagelet有一个ID, 这个string是状态管理器中的primary key。
+        | 具体的状态管理十分冗长，建议去看我逆推出来的
+        a(href="https://github.com/zj1926/vanilla_js_practice/blob/master/src/weibo/fm.js" target="_blank") 源码
+        |。
     pre
         code.Javascript
             | var view_id = view_domid || view_componentRef;
@@ -144,8 +151,8 @@ block 3
             | }
 
     h1 适用场合
-    p 所以，当我们用react或者Vue生成一个硕大的bundle文件以后，首屏载入速度必然受到影响，因此，除了SSR之外，
-        | bigpipe也是一种很好的处理方法。
+    p 所以，当我们用react或者Vue生成一个硕大的bundle文件以后，首屏载入速度必然受到这个单个巨大djs影响。
+    p 因此，除了SSR之外，bigpipe也是一种很好的处理方法。
     p bigpipe实际加载效果
     .pure-g
         .pure-u-md-1-1
@@ -161,5 +168,5 @@ block 3
         li 页面上的劢态内容可以划分在多个区块内显示，且各个区块之间的关系不大（极弱耦合）
 
     h2 完整源码分析
-        a 点击这里
+        a(href="https://github.com/zj1926/vanilla_js_practice/blob/master/src/weibo/fm.js" target="_blank") 点击这里
 

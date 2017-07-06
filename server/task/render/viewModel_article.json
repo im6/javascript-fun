@@ -19,7 +19,7 @@
       "id": 3,
       "title": "新浪微博(Weibo.com)前端构建详解之BigPipe",
       "author": "ZJ Guo",
-      "about": ["BigPipe", "architecture"],
+      "about": ["BigPipe", "architecture", "weibo", "Facebook"],
       "time": "2017-07-01 13:00:00",
       "content": "微博以及Facebook前端构建详解...",
       "fileName": "article1"
@@ -28,7 +28,7 @@
       "id": 2,
       "title": "JavaScript代码的逆向读取",
       "author": "ZJ Guo",
-      "about": ["uglify", "minify", "weibo"],
+      "about": ["uglify", "minify"],
       "time": "2017-06-28 13:00:00",
       "content": "微博前端代码的混淆分析",
       "fileName": "article1"
