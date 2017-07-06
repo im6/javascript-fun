@@ -105,12 +105,24 @@ const privateFn = {
     result = _.orderBy(result, ['page', 'sort']);
     return result;
   },
+
+  confirmDirExist: () => {
+    var dir1 = path.join(__dirname, '../../../public/main');
+    var dir2 = path.join(__dirname, '../../../public/site');
+    if (!fs.existsSync(dir1)){
+      fs.mkdirSync(dir1);
+    }
+    if (!fs.existsSync(dir2)){
+      fs.mkdirSync(dir2);
+    }
+  }
 };
 
 const inst = {
   start: () => {
     let me = this;
     let p1 = privateFn.getGroupIcon();
+    privateFn.confirmDirExist();
     let p2 = crawlerGit.start();
 
     Promise.all([p1, p2]).then(d => {
