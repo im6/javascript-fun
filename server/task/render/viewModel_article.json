@@ -1,8 +1,8 @@
 {
-  "id": 3,
+  "id": 1,
   "page": 5,
-  "bundleDir": "http://dkny.oss-cn-hangzhou.aliyuncs.com/1/build/",
-  "bundleDir_NOTUSE": "/build/",
+  "bundleDir_NOTUSE": "http://dkny.oss-cn-hangzhou.aliyuncs.com/1/build/",
+  "bundleDir": "/build/",
   "remoteAsset": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets",
   "main": "article0",
   "route": "/article/",
