@@ -8,7 +8,7 @@
     "start": "node server.js",
 
     "predev": "NODE_ENV=dev node server/task/render/article1.js && NODE_ENV=dev node server/task/render/article2.js",
-    "dev": "webpack-dev-server --progress --profile --colors --config webpack/dev.js",
+    "dev": "webpack-dev-server --progress --open --profile --colors --config webpack/dev.js",
     "prebuild": "node server/task/render/article1.js && node server/task/render/article2.js",
     "build": "webpack --config webpack/build.js"
   },
