@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
 
     "predev": "NODE_ENV=dev node server/task/render/article1.js && NODE_ENV=dev node server/task/render/article2.js",
