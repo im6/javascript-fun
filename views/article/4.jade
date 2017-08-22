@@ -1,0 +1,54 @@
+extends generic
+block 4
+    h2 前言
+    p
+        | 当下，Vue、React和Angular异常火爆。而三者的共同点之一，就是都与Webpack
+        | 紧密联系着。Webpack作为打包工具，对于输出端至关重要。如果进行脚本优化，则应当从
+        | Webpack 开始说起。
+    p 本文重点讲述如何减少bundle体积，以及加快页面加载速度。(浏览器Chrome:Mac Version 60.0.3112.101)
+    h2 正文说明
+    p
+        | 关于Webpack的优化，相关文章说明很多，也很详细。但是缺乏一个“本土化”的总结。因此，过去反复讲述的东西，
+        | 本文章简单提及，而真正的干货，则详细展开。
+    ul
+        li 版本更替， Webpack 1.x 到目前Webpack 3.5.5(2017.08.21)
+        li 网络连接， 由于某些因素，代码的accessibility也十分重要。如何部署出人人可见的代码。
+
+    h2 Webpack中的一般优化
+    ol
+        li
+            h3 bundle中提取图片，用以减少体积。
+            p Webpack将图片直接转换为base64格式，使得图片间接存入bundle文件，导致体积过大。
+            p 方法: 图片取消转化而改为引用。
+        li
+            h3 OccurrenceOrder
+            p webpack.optimize.OccurrenceOrderPlugin()
+            p 打包过程中，最小化id值。在Webpack v2.0以及以后的版本默认添加。
+        li
+            h3 DefinePlugin
+            p 改变环境变量。
+            p 当NODE_ENV=production后，提升代码打包效果。UglifyJS会将dev模式下的代码清洗掉。
+        li
+            h3 Dedupe
+            p 防止代码重复添加。
+            p 在Webpack v2.0以及以后的版本不再需要。
+        li
+            h3 Uglify
+            p new webpack.optimize.UglifyJsPlugin([options])
+            p 老生常谈，注意除了UglifyJsPlugin本身的配置之外，uglifyOptions内部也有很多需要注意。
+                | 比如 “screw_ie8”等。
+        li
+            h3 CommonsChunk
+            p 将一些常用的库和模块，比如react/angular/vue/rxjs/immutable等从bundle文件分离出来。
+                | 之后又两种处理方法方法：
+                ol
+                    li 生成类似app.js和vendor.js两个文件,由服务器本身提供加载，提升缓存效率；
+                    li 增添全局变量(比如window.React)，引入CDN公用库文件，如BootCDN等。
+        li
+            h3 Scope Hoisting)
+            p new webpack.optimize.ModuleConcatenationPlugin()
+            p 在Webpack 3中新引进的。使用简单，效果不错。
+
+
+
+
