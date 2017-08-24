@@ -2,9 +2,9 @@ extends generic
 block 4
     h2 前言
     p
-        | 当下，Vue、React和Angular火爆异常。而三者的共同点之一，就是都可以借助Webpack构建项目bundle。
+        | 当下，Vue、React和Angular火爆异常。而三者的共同点之一，就是都可以借助Webpack构建项目bundle文件。
     p 本文重点讲述如何减少bundle体积，以及提升页面加载速度。
-        | 从Webpack开始讲，同时讲述如何借助常见云平台和node端提升加载效率。
+        | 从Webpack开始入手，同时讲述如何借助常见云平台和node端提升加载效率。
 
     div(style="background:#ececec;padding:10px;border-radius:6px;")
         | 首先引入一个小问题：
@@ -31,7 +31,7 @@ block 4
     p
         | 关于Webpack优化，相关文章说明很多，也很详细。
         | 但是由于版本更替， Webpack 1.x 到目前Webpack 3.5(2017.08.21)版本差异也造成了一些文章实时性不高。
-        | 此外，代码的accessibility也十分重要。部署出人人可见的代码，必定是一个从前到后的过程，
+        | 此外，代码的可达性也十分重要。部署出人人可见的代码，必定是一个从前到后的过程，
         | 只说一端总是不透彻。
     p 
         | 所以我就写个“本土化”的总结：过去反复讲述的东西，简单说明；而真正的干货，则详细展开。
@@ -41,8 +41,7 @@ block 4
         li
             h3 提取bundle中图片，用以减少体积。
             p Webpack将图片直接转换为base64格式，使得图片间接存入bundle文件，导致体积过大。
-                | 缺点是需要额外的时间载入图片。
-            p 方法: 图片取消转化而改为引用。
+            p 方法: 图片取消转化而改为引用。缺点是需要额外的时间载入图片。
         li
             h3 OccurrenceOrder
             p new webpack.optimize.OccurrenceOrderPlugin()
@@ -68,8 +67,8 @@ block 4
             h3 CommonsChunk
             p
                 ul
-                    li single page: 生成类似app.js和vendor.js两个文件,由服务器本身提供加载，提升缓存效率；
-                    li multi entries: 任意组合的分割重组。
+                    li 单页应用: 生成类似app.js和vendor.js两个文件,由服务器本身提供加载，提升缓存效率；
+                    li 多页应用: 任意组合的分割重组。
         li
             h3 Scope Hoisting
             p new webpack.optimize.ModuleConcatenationPlugin()
@@ -78,9 +77,9 @@ block 4
             h3 Lazy load
             p 如果只用到某个库的一部分内容，就不需要讲整个源码都包含入bundle中。
             p 如蚂蚁金服ant.design的
-                a(src="https://github.com/ant-design/babel-plugin-import") babel-plugin-import
+                a(target="_blank" href="https://github.com/ant-design/babel-plugin-import") babel-plugin-import
                 |， 或者
-                a(src="https://github.com/lodash/lodash-webpack-plugin") lodash-webpack-plugin
+                a(target="_blank" href="https://github.com/lodash/lodash-webpack-plugin") lodash-webpack-plugin
                 |,以及lodash.xxx替代lodash的局部模块。
         li
             h3 devtool
@@ -89,19 +88,19 @@ block 4
         li
             h3 gzip/compression
             p 
-                a(src="https://github.com/webpack-contrib/compression-webpack-plugin") compression-webpack-plugin
+                a(target="_blank" href="https://github.com/webpack-contrib/compression-webpack-plugin") compression-webpack-plugin
                 |,
-                a(src="https://github.com/expressjs/compression") expressjs/compression
+                a(target="_blank" href="https://github.com/expressjs/compression") expressjs/compression
             p 文件压缩，非常重要，下文详细讲。
     h2 高级优化
     p 回到本文的开始的问题，答案就是
         b HTTP压缩。
     h3 原理
-    p 现代浏览器在进行http请求的时候，支持gzip压缩。这种优化不限制于javascript文件，css、html和图片都可以采用类似策略。在发出请求的时候，
+    p 现代浏览器在进行http请求的时候，普遍支持gzip压缩。这种优化不限制于javascript文件，css、html和图片都可以采用类似策略。在发出请求的时候，
         | 会在http头部显示Accept-Encoding:gzip, deflate
         | 也就是告诉服务器可以接受这两种压缩格式。
-    p 于是服务器就可以vue.js文件压缩，并设置Content-Encoding:gzip。浏览器看到这个头部设置，自动解压缩。这种压缩可以减少至少60%的体积。
-        | 所以两个vue.js文件的显示大小不一样。
+    p 于是服务器就可以把vue.js文件压缩，并设置Content-Encoding:gzip。浏览器看到这个头部设置，自动解压缩。这种压缩可以减少至少60%的体积。
+        | 所以两个vue.js文件的显示大小不一样，因为CDN对返回的脚本进行了压缩传输。
     h3 实际操作
     ul
         li
@@ -113,11 +112,12 @@ block 4
             h3 阿里云OSS，亚马逊的S3，或者CDN
             p 如果把javascript文件部署在OSS/S3上，默认不压缩。但是可以进行返回包http头的手动设置。
     p 通过以上各种方式的叠加组合，
-        | 基本可以将原来庞大的文件减少为1/10甚至1/20。如        
-        a(src="http://www.colorpk.com") ColorPK
-        | 以上步骤其实相对机械化，按着做完就能达到效果。
-        | 真正有意义的压缩还是代码内部优化变量作用域，提高提高模块化和复用率。
-    p 欢迎交流。
+        | 基本可以将原来庞大的文件减少为1/10甚至1/20，加载速度大幅提高。如
+        a(target="_blank" href="http://www.colorpk.com") ColorPK
+        | :)
+    p 以上步骤其实相对机械化，逐步完成就能达到效果。
+        | 当然，在项目代码内部，优化变量作用域，提高模块化和复用率等，其实更有意义和价值。
+        | 这部分抽空我再写一篇文章。
     
     
 
