@@ -2,11 +2,11 @@ extends generic
 block 4
     h2 前言
     p
-        | 当下，Vue、React和Angular火爆异常。而三者的共同点之一，就是都可以借助Webpack构建项目bundle文件。
+        | 当下，Vue、React和Angular火爆异常。三者的共同点之一，就是都可以借助Webpack构建项目bundle文件。
     p 本文重点讲述如何减少bundle体积，以及提升页面加载速度。
-        | 从Webpack开始入手，同时讲述如何借助常见云平台和node端提升加载效率。
+        | 从Webpack开始，同时讲述如何借助常见云平台和node端提升加载效率。
 
-    div(style="background:#ececec;padding:10px;border-radius:6px;")
+    div(style="background:#d0d0d0;padding:10px;border-radius:6px;")
         | 首先引入一个小问题：
         br
         | 请打开本页面的开发窗口（如果是Chrome用户点击F12），在Network标签下发现分别从两个地方下载了vue.js。
@@ -14,7 +14,7 @@ block 4
     p (图中浏览器Chrome:Mac Version 60.0.3112.101)
     .pure-g
         .pure-u-md-1-1
-            img.atcImg(src="//dkny1.oss-cn-hangzhou.aliyuncs.com/1/article/4/console.png")
+            img.atcImg(src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/article/4/console.png")
     script.
         var script0 = document.createElement('script');
         script0.type = "text/javascript";
@@ -25,13 +25,13 @@ block 4
         var script1 = document.createElement('script');
         script1.type = "text/javascript";
         script1.charset = "utf-8";
-        script1.src = '//dkny1.oss-cn-hangzhou.aliyuncs.com/1/article/4/vue.js';
+        script1.src = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/article/4/vue.js';
         document.head.appendChild(script1);
     h2 正文说明
     p
         | 关于Webpack优化，相关文章说明很多，也很详细。
-        | 但是由于版本更替， Webpack 1.x 到目前Webpack 3.5(2017.08.21)版本差异也造成了一些文章实时性不高。
-        | 此外，代码的可达性也十分重要。部署出人人可见的代码，必定是一个从前到后的过程，
+        | 但是由于版本更替， Webpack v1.x 到 v3.5(2017.08.30)版本差异也造成了一些文章实时性不高。
+        | 此外，代码的可达性也十分重要，部署出人人可见的代码，必定是一个从前到后的过程，
         | 只说一端总是不透彻。
     p 
         | 所以我就写个“本土化”的总结：过去反复讲述的东西，简单说明；而真正的干货，则详细展开。
@@ -68,7 +68,7 @@ block 4
             p
                 ul
                     li 单页应用: 生成类似app.js和vendor.js两个文件,由服务器本身提供加载，提升缓存效率；
-                    li 多页应用: 任意组合的分割重组。
+                    li 多页应用: 不同路由的任意组合的分割重组。
         li
             h3 Scope Hoisting
             p new webpack.optimize.ModuleConcatenationPlugin()
@@ -76,7 +76,7 @@ block 4
         li
             h3 Lazy load
             p 如果只用到某个库的一部分内容，就不需要讲整个源码都包含入bundle中。
-            p 如蚂蚁金服ant.design的
+            p 相关工具如蚂蚁金服ant.design的
                 a(target="_blank" href="https://github.com/ant-design/babel-plugin-import") babel-plugin-import
                 |， 或者
                 a(target="_blank" href="https://github.com/lodash/lodash-webpack-plugin") lodash-webpack-plugin
@@ -94,9 +94,10 @@ block 4
             p 文件压缩，非常重要，下文详细讲。
     h2 高级优化
     p 回到本文的开始的问题，答案就是
-        b HTTP压缩。
+        a(target="_blank" href="https://en.wikipedia.org/wiki/HTTP_compression") HTTP压缩
+        | 。
     h3 原理
-    p 现代浏览器在进行http请求的时候，普遍支持gzip压缩。这种优化不限制于javascript文件，css、html和图片都可以采用类似策略。在发出请求的时候，
+    p 现代浏览器在进行http请求的时候，普遍支持gzip压缩。这种优化不限制于webpack生成的bundle文件，css、html和图片都可以采用类似策略。在发出请求的时候，
         | 会在http头部显示Accept-Encoding:gzip, deflate
         | 也就是告诉服务器可以接受这两种压缩格式。
     p 于是服务器就可以把vue.js文件压缩，并设置Content-Encoding:gzip。浏览器看到这个头部设置，自动解压缩。这种压缩可以减少至少60%的体积。
@@ -105,14 +106,18 @@ block 4
     ul
         li
             h3 express.js
-            p express.js项目中，如果使用app.use(express.static('xxx'))，则默认以gzip方式进行静态文件返回;                
-                | 但是这种压缩并不是一劳永逸的，每次请求都要消耗服务器内部的部分资源。优化方法可以是提前压缩再存进去。
+            p express.js项目中，如果使用app.use(express.static('xxx', [options]))，服务器会主动查看gzip请求，
+                | 将静态文件压缩并返回, 也可以手动设置option参数。
+                | 但是这种压缩并非一劳永逸的，每次请求都要消耗服务器内部的部分资源。优化方法可以是提前压缩再放入路径。
             p 如果res.sendFile('vue.js')，默认是不压缩的。
         li
-            h3 阿里云OSS，亚马逊的S3，或者CDN
-            p 如果把javascript文件部署在OSS/S3上，默认不压缩。但是可以进行返回包http头的手动设置。
+            h3 阿里云OSS，AWS的S3，或者CDN
+            p 如果把静态文件部署在OSS/S3上，默认不压缩。但是可以进行返回包http头的
+                a(target="_blank" href="https://help.aliyun.com/knowledge_detail/40136.html") 手动设置
+                |。
+    br
     p 通过以上各种方式的叠加组合，
-        | 基本可以将原来庞大的文件减少为1/10甚至1/20，加载速度大幅提高。如
+        | 基本可以将原来庞大的文件减少为1/10甚至1/20，加载时间大幅减少。如
         a(target="_blank" href="http://www.colorpk.com") ColorPK
         | :)
     p 以上步骤其实相对机械化，逐步完成就能达到效果。
