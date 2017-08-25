@@ -12,6 +12,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(task);
 app.use(route);
 
-let server = app.listen(globalEnv.port, globalEnv.ip, function () {
+const server = app.listen(globalEnv.port, globalEnv.ip, function () {
   console.log( "Listening on " + globalEnv.ip + ": " + globalEnv.port + ' ...' );
 });
