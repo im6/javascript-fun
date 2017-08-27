@@ -107,7 +107,7 @@ block 4
         li
             h3 express.js
             p express.js项目中，如果使用app.use(express.static('xxx', [options]))，服务器会主动查看gzip请求，
-                | 将静态文件压缩并返回, 也可以手动设置option参数。
+                | 如果有gzip header, 则将静态文件压缩并返回。当然也可以手动设置option参数。
                 | 但是这种压缩并非一劳永逸的，每次请求都要消耗服务器内部的部分资源。优化方法可以是提前压缩再放入路径。
             p 如果res.sendFile('vue.js')，默认是不压缩的。
         li
