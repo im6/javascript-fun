@@ -1,0 +1,90 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="keywords" content="javascript.fun javascript beginner npm github node.js"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><title>Most Popular Javascript Framework 2017 | Everything about JavaScript | JavaScript.fun</title><link rel="shortcut icon" type="image/png" href="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/fav.ico"><script type="text/javascript">if(window.location.hostname.indexOf('javascript.fun') > -1){
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q || []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-79220512-3', 'auto');
+    ga('send', 'pageview');
+}</script><script type="text/javascript" src="/build/article1.js?dc2"></script></head></html><body><div class="pure-g"><div class="pure-u-1-5 sidebar"><header class="header"><h1 id="sbttl1">JavaScript</h1><h1 id="sbttl2">for</h1><div class="type"></div><nav id="typed-strings"><p>2017</p><p>Developer</p><p>Designer</p><p>Architect</p><p>Beginner</p><p>Fun!</p></nav></header></div><div class="pure-u-4-5 content"><div class="menubar"><div role="group" class="pure-button-group"><a title="Front End Framework" href="/" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/vue.png"/></a><a title="Node.js Framework" href="/node" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/mongo.png"/></a><a title="JS Library" href="/library" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/bower.png"/></a><a title="Tool" href="/site/" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/site.png"/></a><a title="Article" href="/article/" class="pure-button pure-button-active"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/flight.png"/></a></div></div><article><div class="articleTitle"><p class="time">2017-07-01 13:00:00</p><h1 class="title">新浪微博(Weibo.com)前端构建详解之BigPipe</h1><div class="tag tag_0">BigPipe</div><div class="tag tag_1">architecture</div><div class="tag tag_2">weibo</div><div class="tag tag_3">Facebook</div></div><p>web构架是曲折前进的。</p><p>从刚开始Razor/Jade 后端渲染，到angular/react/vue等一大票SPA框架。
+于是冒出一大堆网站的主页面都是一个空div外加一个大bundle.js，清新简洁落落大方，沾沾自喜。</p><p>直到有人吐槽SEO性能太差，于是各大SPA又加上了server-side rendering属性。
+大伙玩的不亦乐乎， 新手上路分分钟甩出一个web app。
+各大互联网公司也热爱SPA， 比如instagram和WhatsApp就喜欢搞个纯纯的react.js用作首页。</p><b>注意，这里有一个大大的But： Facebook和新浪微博这种重型Web却扔在用一种“古老”的技术： BigPipe。</b><p>啥是BigPipe？ 有没有你的Big bundle.js牛逼? 本文对此进行简单分析。</p><h1>官方定义</h1><ul><li>BigPipe是一个重新设计的劢态网页服务体系。</li><li>将页面分解成一个个Pagelet，然后通过Web服务器和浏览器之间建立管道，进行分段输出（减少请求数）。</li><li>BigPipe不需要改变现有的网络浏览器或服务器。</li></ul><h2>特点：</h2><ul><li>后端程序无需等到页面所有 Pagelet 的API都读取执行完，才输出到浏览器，服务器端不浏览器端并行处理，加快了页面显示。</li><li>Pagelet的渲染和输出顺序可以由后端程序控制，及早输出用户关心的模块。</li></ul><h2>为什么使用BigPipe</h2><ul><li>解决速度瓶颈</li><li>降低延迟时间</li></ul><h1>源码分析</h1><p>通读源码并加以分析，参考<a href="/article/2/" target="_blank">JavaScript代码的逆向读取</a>，我将一些关键的要点进行了提炼和简单的梳理。</p><p>下面直接上干货。</p><p>抓取新浪微博截取最新的（2017,06,27）代码，</p><div class="pure-g"><div class="pure-u-md-1-1"><img src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/3/1.png" class="atcImg"></div></div><p>通过截图看得出来，初始状态下body内部的div构成非常简单。动态内容主要依靠FM.view贯穿全局渲染。我们重点查看FM模块。</p><p>虽然源码被混淆，不过加点注释还是可以读出其中的精髓的。</p><h2>Pagelet加载流程</h2><ol><li>用JavaScript异步加载css文件</li><li>当css文件下载完成, 将html插入入页面空DIV</li><li>启劢JavaScript，绑定事件等</li></ol><p>我们把微博分组模块作为范例(pl.nav.group.index)，来分析单个pagelet是如何加载的。</p><pre><code class="JavaScript">FM.view({
+ "ns":"pl.nav.group.index",  // pagelet/component reference name
+ "domid":"v6_pl_leftnav_group",  // DOM ID
+ "css": ["style/css/module/global/WB_left_nav.css?version=716feb1e4288c3e0"], // Style dependency, css
+ "js":["home/js/pl/nav/group/index.js?version=f35f25b485d9c6db"],  // Script dependency, js
+ "html": "&lt;div class=\"WB_left_nav WB_left_nav_Atest\" node-type=\"groupList\" fixed-item=\"true\"&gt;\n .... &lt;\/div&gt;"})  // body html
+});</code></pre><p> 一目了然，FM.view函数就是用来动态载入模块的，内部包括了所有的所有的js，css文件，同时还把HTML的markup引入。
+我们依次讲解如何加载各个依赖。</p><h2>JavaScript依赖</h2><pre><code class="Javascript">if (!Y(a, d)) {
+   var k = bd("script"), // bd = document.createElement
+       l = !1,
+       m, n;
+   bh(k, "src", a); // bh = set html attribute and value on element k
+   bh(k, "charset", "UTF-8");
+   m = k.onerror = k.onload = k.onreadystatechange = function() {
+       if (!l && (!k.readyState || /loaded|complete/.test(k.readyState))) {
+           l = !0;
+           j(n);
+           k.onerror = k.onload = k.onreadystatechange = null;
+           g.removeChild(k);
+           Z(a)
+       }
+   };
+   n = h(m, 3e4); // h = settimeout, 延迟并绑定onerror和onload函数
+   g.insertBefore(k, g.firstChild) // insert into
+}</code></pre><p>一个FM.view的返回内容为JavaScript代码，这段代码自动调用pagelet中的内容。</p><h2>CSS依赖（异步加载，兼容IE）</h2><pre><code class="Javascript">function bl(a) {
+   var b, c;
+   if (m) { // 老版本ie检测以及处理，懒得分析
+       for (b in bj)
+           if (bj[b].length < 31) {
+               c = p(b);
+               break
+           }
+       if (!c) {
+           b = x();
+           c = bd("style");
+           bh(c, "type", "text/css");
+           bh(c, "id", b);
+           g.appendChild(c);
+           bj[b] = []
+       }(c.styleSheet || c.sheet).addImport(a);
+       bj[b].push(a)
+   } else { // 现代浏览器部分
+       b = x(); //生成script tag
+       var d = bd("link");  // 设置script元素属性
+       bh(d, "rel", "stylesheet");
+       bh(d, "type", "text/css");
+       bh(d, "href", a);
+       bh(d, "id", b);
+       g.appendChild(d)  //插入 document.head尾部
+   }
+   bi[a] = b // 对已处理的script文件进行标注管理
+}</code></pre><h2>HTML元素</h2><pre><code class="Javascript">function s() {
+    function b(b) {
+        r();
+        b || a[P] || bH()
+    }
+    d ? bv(function() {
+        bF(d, function(f) {
+            if (!a[P] && f && e != c) {
+                bG(f, d);
+                f.innerHTML = e || "";  // html injection
+                br(b);
+                delete a.html
+            } else b(!0)
+        })
+    }) : b(!0)
+}</code></pre><h1>状态管理</h1><p>FM作为前端加载器，控制和执行各个模块的加载以及状态的改变。</p><p>由于页面中同时存在多个pagelet， 所以FM要设立一个变量存储各个view的状态。当每个view状态ready或者
+重新载入的时候，记录各个view的最新状态。</p><p>每个pagelet有一个ID, 这个string是状态管理器中的primary key。
+具体的状态管理十分冗长，建议去看我逆推出来的<a href="https://github.com/zj1926/vanilla_js_practice/blob/master/src/weibo/fm.js" target="_blank">源码</a>。</p><p>下图是加载一个view的状态变化。</p><pre><code class="Javascript">var view_id = view_domid || view_componentRef;
+// .....
+function loadView() {
+    if (!a[PL_ABORT]) {
+        if (view_componentRef) {
+            fmClear(view_componentRef, view_domid);
+            fmStart(view_componentRef, view_domid, a)
+        }
+        assertViewComplete(view_id, a)
+}
+    updateEvent(PL_JSREADY, a)
+}</code></pre><h1>适用场合</h1><p>当我们用react或者Vue生成一个硕大的bundle文件以后，首屏载入速度必然受到这个单个巨大bundle文件影响。</p><p>因此，除了SSR之外，bigpipe也是一种很好的处理方法。</p><p>bigpipe实际加载效果</p><div class="pure-g"><div class="pure-u-md-1-1"><img src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/3/2.png" class="atcImg"></div></div><p>单个bundle实际加载效果</p><div class="pure-g"><div class="pure-u-md-1-1"><img src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/3/3.png" class="atcImg"></div></div><p>综上，BigPipe并不是适用于所有的场合，类似于Facebook和微博，他主要适用于：</p><ul><li>第一个请求时间较长，后端程序需要读取多个API</li><li>页面上的劢态内容可以划分在多个区块内显示，且各个区块之间的关系不大（极弱耦合）</li><li>SEO需求较弱</li></ul><h2>完整源码分析<a href="https://github.com/zj1926/vanilla_js_practice/blob/master/src/weibo/fm.js" target="_blank">点击这里</a></h2></article><div class="menubar"><div role="group" class="pure-button-group"><a title="Front End Framework" href="/" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/vue.png"/></a><a title="Node.js Framework" href="/node" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/mongo.png"/></a><a title="JS Library" href="/library" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/bower.png"/></a><a title="Tool" href="/site/" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/site.png"/></a><a title="Article" href="/article/" class="pure-button pure-button-active"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/flight.png"/></a></div></div><footer><span>&copy; 2017 JavaScript.fun</span></footer></div></div></body>

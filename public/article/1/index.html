@@ -1,0 +1,42 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="keywords" content="javascript.fun javascript beginner npm github node.js"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><title>Most Popular Javascript Framework 2017 | Everything about JavaScript | JavaScript.fun</title><link rel="shortcut icon" type="image/png" href="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/fav.ico"><script type="text/javascript">if(window.location.hostname.indexOf('javascript.fun') > -1){
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q || []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-79220512-3', 'auto');
+    ga('send', 'pageview');
+}</script><script type="text/javascript" src="/build/article1.js?dc2"></script></head></html><body><div class="pure-g"><div class="pure-u-1-5 sidebar"><header class="header"><h1 id="sbttl1">JavaScript</h1><h1 id="sbttl2">for</h1><div class="type"></div><nav id="typed-strings"><p>2017</p><p>Developer</p><p>Designer</p><p>Architect</p><p>Beginner</p><p>Fun!</p></nav></header></div><div class="pure-u-4-5 content"><div class="menubar"><div role="group" class="pure-button-group"><a title="Front End Framework" href="/" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/vue.png"/></a><a title="Node.js Framework" href="/node" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/mongo.png"/></a><a title="JS Library" href="/library" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/bower.png"/></a><a title="Tool" href="/site/" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/site.png"/></a><a title="Article" href="/article/" class="pure-button pure-button-active"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/flight.png"/></a></div></div><article><div class="articleTitle"><p class="time">2017-06-15 13:00:00</p><h1 class="title">如何写一手漂亮的React（一）：state vs redux</h1><div class="tag tag_0">react</div><div class="tag tag_1">redux</div></div><h2>前言</h2><p>Facebook 出品的react.js 作为时下最火热的UI库，用函数式思想快速渲染视图层。
+关于状态管理，也涌现出各式各样的方案，如redux， mobx等。</p><b>首先要承认一点： redux不是必须使用的，但是redux对于大型项目而言非常有用。</b><p>许多初级和中级程序员在使用react + redux的时候，往往在 state vs. props 中犹豫不定，胡乱做出选择，
+导致程序出现混乱，代码丑陋不堪。</p><p>于是有人在知乎上问了这个问题：<a href="https://www.zhihu.com/question/39187479" target="_blank">如何可以将react中的state用redux正确地托管?</a></p><p>底下人的回答参差不齐，有人回答要把所有的state都放入redux保管，有人回答分开托管，但是也不是很具体。</p><b>先说我的结论：<br>局部逻辑不需要放入redux，且存放地点基本唯一，为的是的代码更清晰，维护更高效。
+局部逻辑定义，包括UI状态以及局部变量。</b><p>本文要借助一个简单的案例，教你如何安排你的状态作用域，写出真正优雅的react。</p><h2>预备知识</h2><p>state称为内部状态或者局部状态，内部状态的操作配合React事件系统，可以实现用户交互的功能</p><p>props则用于在组件间传递数据。使用props传递数据简单清晰, 是函数式组件的核心。</p><p>context官方不推荐，个人不推荐，当使用redux或者mobx的时候更加没有使用的必要。</p><p>例子借助ant design,</p><h2>案例<a href="https://github.com/zj1926/react_starter/tree/master/src/modules/hello/components/UserList" target="_blank"> ( 源 码 在 此 )</a></h2><p>设计一个用户列表，用于显示当前所有用户，可以给每个用户重置密码, 如下图所示。</p><div class="pure-g"><div class="pure-u-1-1"><img src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/1/1.png" class="atcImg"></div></div><p>当点击重置按钮时候，弹出密码界面</p><div class="pure-g"><div class="pure-u-1-1"><img src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/1/2.png" class="atcImg"></div></div><h2>模块结构（左图）</h2><div class="pure-g"><div class="pure-u-md-1-2 pure-u-sm-1-1"><img src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/1/3.png" class="atcImg"></div><div class="pure-u-md-1-2 pure-u-sm-1-1"><img src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/1/4.png" class="atcImg"></div></div><p>ModalResetPass是弹出框，里面包含了密码重置模块PasswordInput。
+将PasswordInput列为独立模块好处很多，比如在添加新用户的弹窗中，可以复用密码模块等（上图右）。</p><h2>状态分析</h2><P>当我们设计某个状态变量存储位置的时候，判定的标准一定是：</P><br><b>1，作用域：哪里需要用到这个变量；</b><br><b>2，业务逻辑：业务里这个变量是否重要;</b><p>本案例涉及到以下几个变量：</p><ol><li><h3>用户列表(List)</h3><p>从redux官网todo例子中，我们可以轻易得出，用户完整列表一定是存在reducer中的。也满足作用域（广）+ 业务逻辑（强）的判定条件。
+同时上图中的Table组件也是一个stateless component。</p></li><li><h3>被选中用户(Object)</h3><p>这个变量一定是由Table模块的onClick产生，被ModalResetPass模块使用（显示username）。</p><p>寄存位置只能是在reducer或者UserList的state中，但是其实最优化的选择还是local state，
+上图中标号1。
+因为现有功能设计中，没有其他地方用到这个变量，作用域需求不够大； 业务逻辑偏弱，没必要入reducer。</p></li><li><h3>弹窗状态（Bool）</h3><p>作用域窄，业务性弱，UI属性强，放在UserList中的state没争议。上图位置1。</p></li><li><h3>密码框验证状态（Bool）</h3><p>这个状态非常具体，完全和业务逻辑不沾边，只是一个判定两个密码是否一致的功能，
+只能放入图中4的位置，无争议。</p><p>当密码不一致时，状态显示如下：</p><div class="pure-g"><div class="pure-u-1-1"><img src="http://dkny.oss-cn-hangzhou.aliyuncs.com/1/article/1/5.png" class="atcImg"></div></div><p>此外，把密码验证加入PasswordInput模块，对逻辑进行隔离，也是很好的实践。</p><pre><code class="JavaScript">onBlur(a) {
+  const me = this;
+  if (a === 'pass1') {
+    const isValid = me.validate();
+    if (isValid) {
+      me.props.onChange(me.state.pass0);
+    } else {
+      me.props.onChange(null);
+    }
+    me.setState({
+      error: !isValid,
+    });
+  }
+}</code></pre></li><li><h3>密码框字符串(String)</h3><p>由于不是最终的密码串，所以毫无业务价值，作用域也只限于密码输入，所以是图中位置的3或4。
+由于3是主要是负责密码重置逻辑，与输入字符串无关，所以只能是4。</p><pre><code class="JavaScript">// state in PasswordInput Component
+me.state = {
+  pass0: null,
+  pass1: null,
+  error: false,
+};</code></pre></li><li><h3>最终新密码(String)</h3><p>ModalResetPass的作用主要用于“提交”动作，最终返回JSON的格式是{ username: "Timothy"， password: "test1234" }。</p><p>这个模块不可或缺，因为username和模块PasswordInput一点关系都没有，而未确定的密码和上一级模块UserList又一点关系都没有，
+所以必须设立一个中间模块存储状态，ModalResetPass就是用来管理最终新密码。</p><p>所以，存储位置上，最终新密码这个值必须在图中3的位置，既不能偏上，也不能偏下。</p><p>存储到this.state.tempPass后发现，
+这个值不需要显示，因为PasswordInput内部控制了显示的字符；同时，当合法密码生成后必须第一时间更新这个值，
+所以：</p><b>最佳实践是：直接存储到this.tempPass。</b><pre><code class="JavaScript">// 更新this.newPassword
+onPassChange(n) {
+  const me = this;
+  me.tempPass = n;
+}</code></pre><p>之后点击update时，可以绑定onclick事件去更新reducer或者触发saga，thunk等。</p></li></ol><h2>总结</h2><p>虽然为了这么一个简单的功能构造出这么多模块，但从长远角度十分有益：</p><ol><li>保持了单项数据流</li><li>创造了可复用模块</li><li>纯化了redux store</li></ol><a href="https://github.com/zj1926/react_starter/issues" target="_blank">建议或者意见，到这里留言</a></article><div class="menubar"><div role="group" class="pure-button-group"><a title="Front End Framework" href="/" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/vue.png"/></a><a title="Node.js Framework" href="/node" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/mongo.png"/></a><a title="JS Library" href="/library" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/bower.png"/></a><a title="Tool" href="/site/" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/site.png"/></a><a title="Article" href="/article/" class="pure-button pure-button-active"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/flight.png"/></a></div></div><footer><span>&copy; 2017 JavaScript.fun</span></footer></div></div></body>

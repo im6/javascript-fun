@@ -1,0 +1,63 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="keywords" content="javascript.fun javascript beginner npm github node.js"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><title>Most Popular Javascript Framework 2017 | Everything about JavaScript | JavaScript.fun</title><link rel="shortcut icon" type="image/png" href="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/fav.ico"><script type="text/javascript">if(window.location.hostname.indexOf('javascript.fun') > -1){
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q || []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-79220512-3', 'auto');
+    ga('send', 'pageview');
+}</script><script type="text/javascript" src="/build/article1.js?dc2"></script></head></html><body><div class="pure-g"><div class="pure-u-1-5 sidebar"><header class="header"><h1 id="sbttl1">JavaScript</h1><h1 id="sbttl2">for</h1><div class="type"></div><nav id="typed-strings"><p>2017</p><p>Developer</p><p>Designer</p><p>Architect</p><p>Beginner</p><p>Fun!</p></nav></header></div><div class="pure-u-4-5 content"><div class="menubar"><div role="group" class="pure-button-group"><a title="Front End Framework" href="/" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/vue.png"/></a><a title="Node.js Framework" href="/node" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/mongo.png"/></a><a title="JS Library" href="/library" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/bower.png"/></a><a title="Tool" href="/site/" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/site.png"/></a><a title="Article" href="/article/" class="pure-button pure-button-active"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/flight.png"/></a></div></div><article><div class="articleTitle"><p class="time">2017-06-28 13:00:00</p><h1 class="title">JavaScript代码的逆向读取</h1><div class="tag tag_0">uglify</div><div class="tag tag_1">minify</div></div><h3>前言</h3><p>javascript的压缩混淆随处可见，包括uglify、compressor、clouser等。</p><p>而uglify带来的好处很多，除了压缩代码体积之外，还可以维持源代码的可读性。</p><p>目前社交类网站如FaceBook、微博等，出于保护前端（业务或者技术）逻辑的目的，
+生产代码的源码并没有开源。
+了解混淆原理可以帮助我们进行代码逻辑的逆推，重塑源代码，学到更多“非开源”的内容。</p><p>本篇文章主要是围绕<b>新浪微博</b>前端代码为例子，进行逆向读取的<b>语法分析。</b></p><h2>1. if条件句</h2><p>当条件执行语句只有一行时，转换为条件赋值语句(conditional/ternary Operator)</p><pre><code class="Javascript">var s = false;
+if(s) {
+    console.log(123);
+}
+&nbsp;
+// after uglification
+&nbsp;
+var s=!1;s&&console.log(123);</code></pre><p>语句短路</p><pre><code class="Javascript">var s = true;
+if(!s) {
+    console.log(123);
+}
+&nbsp;
+// after uglification
+&nbsp;
+var s=!0;s||console.log(123);</code></pre><pre><code class="Javascript">var a = true;
+var b = false;
+if(!a) {
+   if(!b) {
+       console.log(123);
+   }
+}
+&nbsp;
+// after uglification
+&nbsp;
+var a=!0,b=!1;a||b||console.log(123);</code></pre><h2>2. 函数</h2><h3>2.1 函数声明</h3><p>主要是参数名称的简化。</p><pre><code class="Javascript">function add(num1, num2) {
+  return num1 + num2;
+}
+&nbsp;
+// after uglification
+&nbsp;
+function add(a,t){return a+t}</code></pre><h3>2.2 Self-invoking functions</h3><p>通过“!”触发函数</p><pre><code class="Javascript">(function(num1, num2) {
+   return num1 + num2;
+})(2,3);
+&nbsp;
+// after uglification
+&nbsp;
+!function(a,t){return a+t}(2,3);</code></pre><h3>2.3 破坏可读性的混淆</h3><p>这种方式虽然对可读性进行了破坏，但是大多数情况，恢复起来的难度并不大。</p><pre><code class="Javascript">var a = document.getElementById('a');
+a.innerHTML = 'hello world';
+&nbsp;
+// after uglification
+&nbsp;
+(function(a, b, c, d, e, f){
+    a[d] = a[b][c](d);
+    a[d][e]=f;
+})(this, 'document', 'getElementById', 'a', 'innerHTML', 'hello world');</code></pre><h2>3. 变量</h2><h3>3.1 作用域区分</h3><p>由于压缩需要对现有变量名称进行改写，所以会出现相同的名称出现在不同区域，这时候的结局方案是：<b>“就近原则”</b></p><p>下图例子代码来自weibo.com页面源码。</p><pre><code class="Javascript">var a = $CONFIG, // a表示变量$CONFIG
+    b = FM.view;
+FM.view = function(a) {
+    a = a || {}; // a表示方程的第一个argument，而不是外面的$CONFIG
+    return a;
+}</code></pre><h3>3.2 赋值</h3><p>赋值操作的返回值是等号右边的引用，所以多重引用传递写成一行。</p><p>下图例子代码来自weibo.com页面源码。</p><pre><code class="Javascript">m = k.onerror = k.onload = k.onreadystatechange = function() {
+    // ... ...
+    // function body
+    // ... ...
+}</code></pre><h2>总结</h2><p>本文主要涉及的是传统JavaScript的逆向读取的几个常见情况，稍后我会更新es2015的加密与混淆。</p></article><div class="menubar"><div role="group" class="pure-button-group"><a title="Front End Framework" href="/" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/vue.png"/></a><a title="Node.js Framework" href="/node" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/mongo.png"/></a><a title="JS Library" href="/library" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/bower.png"/></a><a title="Tool" href="/site/" class="pure-button"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/site.png"/></a><a title="Article" href="/article/" class="pure-button pure-button-active"><img src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets/flight.png"/></a></div></div><footer><span>&copy; 2017 JavaScript.fun</span></footer></div></div></body>
