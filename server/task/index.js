@@ -1,9 +1,13 @@
 'use strict';
-const express = require('express'),
-  router = express.Router(),
-  globalConfig = require('../config/env'),
-  ctr = require("./ctr");
 
-router.use(ctr.main);
+const globalConfig = require('../config/env'),
+  mysql = require('../resource/mysqlConnection'),
+  path = require('path'),
+  inst1 = require('./render/main'),
+  inst2 = require('./render/site');
 
-module.exports = router;
+console.log("================================");
+console.log(`updating the views...`);
+console.log("================================");
+inst1.start();
+inst2.start();
