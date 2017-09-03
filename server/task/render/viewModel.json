@@ -1,6 +1,6 @@
 {
   "pretty": null,
-  "bundleDir_NOTUSE": "http://dkny.oss-cn-hangzhou.aliyuncs.com/1/build/",
+  "bundleDir_NOTUSE": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/build/",
   "bundleDir": "/build/",
   "remoteAsset": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets",
   "type":[

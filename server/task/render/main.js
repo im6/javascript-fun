@@ -15,17 +15,17 @@ const fs = require('fs'),
     {
       page: 1,
       input: path.join(__dirname, '../../../views/main/index.jade'),
-      output: path.join(__dirname, '../../../public/main/index.html')
+      output: path.join(__dirname, '../../../public/index.html')
     },
     {
       page: 2,
       input: path.join(__dirname, '../../../views/main/index.jade'),
-      output: path.join(__dirname, '../../../public/main/node.html')
+      output: path.join(__dirname, '../../../public/node/index.html')
     },
     {
       page: 3,
       input: path.join(__dirname, '../../../views/main/index.jade'),
-      output: path.join(__dirname, '../../../public/main/library.html')
+      output: path.join(__dirname, '../../../public/library/index.html')
     }
   ];
 
@@ -107,14 +107,13 @@ const privateFn = {
   },
 
   confirmDirExist: () => {
-    var dir1 = path.join(__dirname, '../../../public/main');
-    var dir2 = path.join(__dirname, '../../../public/site');
-    if (!fs.existsSync(dir1)){
-      fs.mkdirSync(dir1);
-    }
-    if (!fs.existsSync(dir2)){
-      fs.mkdirSync(dir2);
-    }
+    var dirs = ['node', 'library', 'site', 'article'];
+    dirs.forEach(function(v){
+      var oneD = path.join(__dirname, '../../../public/' + v);
+      if (!fs.existsSync(oneD)){
+        fs.mkdirSync(oneD);
+      }
+    });
   }
 };
 
