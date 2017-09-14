@@ -5,5 +5,5 @@ document.addEventListener("DOMContentLoaded", () => {
   let now = new Date();
   let dt = now.toDateString();
   const timeElem = document.getElementsByClassName('updateTxt')[0];
-  timeElem.innerText = `Last Update:   ${dt}, 0:00 AM`;
+  timeElem.innerText = `Last Update:  ${dt}`;
 });
