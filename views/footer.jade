@@ -1,7 +1,9 @@
 footer
-    //-span &copy; 2017 JavaScript.fun
-    span
-        | Made with &nbsp;
-        i.fa.fa-heart(style="color: #ea7a7a")
-        | &nbsp;by &nbsp;
-        a(href="/about" target="_blank") ZJ Guo
+    if page < 4
+        span
+            | Made with &nbsp;
+            i.fa.fa-heart(style="color: #ea7a7a")
+            | &nbsp;by &nbsp;
+            a(href="/about" target="_blank") ZJ Guo
+    else
+        span &copy; 2017 JavaScript.fun
