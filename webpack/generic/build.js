@@ -47,11 +47,11 @@ var webpackConfig = {
         NODE_ENV: JSON.stringify("production")
       }
     }),
-    new CompressionPlugin({
-      asset: "[path]",
-      algorithm: "gzip",
-      test: /\.js$/,
-    }),
+    //new CompressionPlugin({
+    //  asset: "[path]",
+    //  algorithm: "gzip",
+    //  test: /\.js$/,
+    //}),
   ],
   //entry: './client/modules/site/index.jsx',
   //output: {
