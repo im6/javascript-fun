@@ -1,6 +1,7 @@
 "use strict";
 var webpack = require('webpack');
 var path = require('path');
+var CompressionPlugin = require("compression-webpack-plugin");
 
 var webpackConfig = {
   //devtool: 'cheap-module-source-map',
@@ -45,6 +46,11 @@ var webpackConfig = {
       "process.env": {
         NODE_ENV: JSON.stringify("production")
       }
+    }),
+    new CompressionPlugin({
+      asset: "[path]",
+      algorithm: "gzip",
+      test: /\.js$/,
     }),
   ],
   //entry: './client/modules/site/index.jsx',
