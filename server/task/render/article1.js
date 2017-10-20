@@ -10,6 +10,7 @@ var isDev = process.env.NODE_ENV === 'dev',
 try {
   configJson = JSON.parse(fs.readFileSync(jsonDir));
   configJson.article = configJson['article'].filter(v => v.id === configJson.id)[0];
+  configJson.page = 6;
 
   if(isDev){
     configJson.bundleDir = `/build/${configJson.article.fileName}.js`;

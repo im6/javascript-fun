@@ -2,6 +2,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var CompressionPlugin = require("compression-webpack-plugin");
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var webpackConfig = {
   //devtool: 'cheap-module-source-map',
@@ -22,11 +23,19 @@ var webpackConfig = {
       },
       {
         test: /\.less$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'less-loader'
-        ],
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            //'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true,
+              }
+            },
+            'less-loader'
+          ],
+        }),
         exclude: /node_modules/
       },
     ]
@@ -46,6 +55,9 @@ var webpackConfig = {
       "process.env": {
         NODE_ENV: JSON.stringify("production")
       }
+    }),
+    new ExtractTextPlugin({
+      filename: "[name].css",
     }),
     //new CompressionPlugin({
     //  asset: "[path]",

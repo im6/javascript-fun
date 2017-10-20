@@ -9,6 +9,7 @@ var configJson = null,
 
 try {
   configJson = JSON.parse(fs.readFileSync(jsonDir));
+  configJson.page = 5;
 
   if(isDev){
     configJson.bundleDir = `/build/${configJson.main}.js`;
