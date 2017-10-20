@@ -1,5 +1,6 @@
-import 'style-loader!css-loader!purecss/build/pure-min.css';
-import 'style-loader!css-loader!purecss/build/grids-responsive-min.css';
+//import 'style-loader!css-loader!purecss/build/buttons-min.css';
+//import 'style-loader!css-loader!purecss/build/grids-min.css';
+//import 'style-loader!css-loader!purecss/build/grids-responsive-min.css';
 import './style.less';
 import './typed.less';
 import './pureOverwrite.less';
