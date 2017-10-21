@@ -22,8 +22,9 @@ const privateFn = {
     return list.filter(v => !v[JOBFLAG]);
   },
 
-  promiseLoop: (data, resolve, reject) => {
-    async.mapLimit(data, CONCURRENCY, (v, cb) => {
+  promiseLoop: (data0, resolve, reject) => {
+    console.log(`downloading ${data0.length} packages...`);
+    async.mapLimit(data0, CONCURRENCY, (v, cb) => {
       privateFn.checkNameExist(v);
       privateFn.getNum(v, cb);
     }, (error, data) => {

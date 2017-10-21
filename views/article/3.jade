@@ -132,9 +132,6 @@ block 3
     p 由于页面中同时存在多个pagelet， 所以FM要设立一个变量存储各个view的状态。当每个view状态ready或者
         | 重新载入的时候，记录各个view的最新状态。
     p 每个pagelet有一个ID, 这个string是状态管理器中的primary key。
-        | 具体的状态管理十分冗长，建议去看我逆推出来的
-        a(href="https://github.com/zj1926/vanilla_js_practice/blob/master/src/weibo/fm.js" target="_blank") 源码
-        |。
     p 下图是加载一个view的状态变化。
     pre
         code.Javascript
@@ -168,7 +165,3 @@ block 3
         li 第一个请求时间较长，后端程序需要读取多个API
         li 页面上的劢态内容可以划分在多个区块内显示，且各个区块之间的关系不大（极弱耦合）
         li SEO需求较弱
-
-    h2 完整源码分析
-        a(href="https://github.com/zj1926/vanilla_js_practice/blob/master/src/weibo/fm.js" target="_blank") 点击这里
-
