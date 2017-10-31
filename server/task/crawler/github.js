@@ -18,9 +18,6 @@ const privateFn = {
       v.name = gitList[1];
     }
   },
-  getUnfinished: (list) => {
-    return list.filter(v => !v[JOBFLAG]);
-  },
 
   promiseLoop: (data0, resolve, reject) => {
     console.log(`downloading ${data0.length} packages...`);
@@ -28,8 +25,8 @@ const privateFn = {
       privateFn.checkNameExist(v);
       privateFn.getNum(v, cb);
     }, (error, data) => {
-      let unfinished = privateFn.getUnfinished(data);
-      finished = finished.concat(data);
+      let unfinished = data.filter(v => !v[JOBFLAG]);
+      finished = finished.concat(data.filter(v => v[JOBFLAG]));
       if(unfinished.length > 0){
         return privateFn.promiseLoop(unfinished, resolve, reject);
       }else{
