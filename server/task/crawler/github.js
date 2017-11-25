@@ -71,7 +71,7 @@ const publicFn = {
       sqlConn.sqlExecOne(qr).then((db) => {
         privateFn.promiseLoop(db, resolve, reject)
       }, (err) => {
-        console.error(err);
+        console.error('sql executed fails1.');
       });
     });
 

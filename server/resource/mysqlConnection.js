@@ -17,6 +17,7 @@ module.exports = {
     return new Promise(function(resolve, reject){
       pool.query(qr, function(err, rows, fields){
         if(err){
+          console.error(err.message);
           reject(err);
         }else{
           resolve(rows);
