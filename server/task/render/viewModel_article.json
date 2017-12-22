@@ -3,7 +3,7 @@
   "page": 5,
   "bundleDir_NOTUSE": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/build/",
   "bundleDir": "/build/",
-  "remoteAsset": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/assets",
+  "remoteAsset": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons",
   "main": "article0",
   "route": "/article/",
   "type":[
