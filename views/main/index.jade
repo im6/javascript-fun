@@ -17,7 +17,7 @@ block content
                                 h5(title=oneLink.desc) #{oneLink.name}
                                 div
                                     a(href="https://github.com/#{oneLink.github}" target="_blank")
-                                        img(src=remoteAsset + '/github1.svg')
+                                        img(src=remoteAsset + '/' + (icon || icon_default))
                                         | #{oneLink.star}
             br
     p.updateTxt
