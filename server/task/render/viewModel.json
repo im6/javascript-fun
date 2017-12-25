@@ -4,7 +4,7 @@
   "bundleDir": "/build/",
   "remoteAsset": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons",
   "icon": "xmas.png",
-  "icon_default": "github1.svg",
+  "icon_default": "github2.svg",
   "type":[
     "2017",
     "Developer",
