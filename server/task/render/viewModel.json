@@ -3,8 +3,6 @@
   "bundleDir_NOTUSE": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/build/",
   "bundleDir": "/build/",
   "remoteAsset": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons",
-  "icon": "xmas.png",
-  "icon_default": "github2.svg",
   "type":[
     "2017",
     "Developer",

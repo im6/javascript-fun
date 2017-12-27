@@ -9,16 +9,10 @@ block content
             .pure-g
                 each oneLink, index2 in oneGroup.list
                     .pure-u-xl-1-4.pure-u-lg-1-3.pure-u-md-1-2.pure-u-sm-1-2.pure-u-1-2
-                        .box
+                        .box(data-i=oneLink.img data-g=oneLink.github data-s=oneLink.star)
                             .boxLeft
-                                - var imgPath = remoteAsset + '/' + (oneLink.img ? oneLink.img : (icon || icon_default));
-                                img(src=imgPath)
                             .boxRight
                                 h5(title=oneLink.desc) #{oneLink.name}
                                 div
-                                    a(href="https://github.com/#{oneLink.github}" target="_blank")
-                                        img(src=remoteAsset + '/github1.svg')
-                                        | #{oneLink.star}
             br
     p.updateTxt
-//-  Customize icon options: xmas.png

@@ -1,9 +1,31 @@
 import '../layout';
 import './style.less';
 
-document.addEventListener("DOMContentLoaded", () => {
-  let now = new Date();
-  let dt = now.toDateString();
+const OSSURL = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons',
+  GITHUBURL = 'https://github.com',
+  ICON = 'xmas.png';  // candidate: xmas.png, github2.svg
+
+const setTime = () => {
+  const now = new Date();
+  const dt = now.toDateString();
   const timeElem = document.getElementsByClassName('updateTxt')[0];
   timeElem.innerText = `Last Update:  ${dt}`;
-});
+};
+
+const setImg = () => {
+  const list = document.getElementsByClassName('box');
+  for(let j = 0; j < list.length; j++) {
+    const d1 = list[j];
+    const { i, g, s } = d1.dataset;
+
+    const iconUrl = i ? i : ICON;
+    const leftBox = d1.getElementsByClassName('boxLeft')[0];
+    leftBox.innerHTML = `<img src="${OSSURL}/${iconUrl}">`;
+
+    const rightBox = d1.getElementsByTagName('div')[2];
+    rightBox.innerHTML = `<a href="${GITHUBURL}/${g}" target="_blank"><img src="${OSSURL}/github1.svg">${s}</a>`;
+  }
+};
+
+setTime();
+setImg();
