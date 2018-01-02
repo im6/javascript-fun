@@ -3,7 +3,7 @@ import './style.less';
 
 const OSSURL = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons',
   GITHUBURL = 'https://github.com',
-  ICON = 'xmas.png';  // candidate: xmas.png, github2.svg
+  ICON = 'github2.svg';  // candidate: xmas.png, github2.svg
 
 const setTime = () => {
   const now = new Date();
