@@ -118,7 +118,7 @@ const privateFn = {
 };
 
 const inst = {
-  start: () => {
+  start: (done) => {
     let me = this;
     let p1 = privateFn.getGroupIcon();
     privateFn.confirmDirExist();
@@ -144,6 +144,7 @@ const inst = {
         vm['lastUpdate'] = moment().format('LLL');
         privateFn.render(vm, v.input, v.output);
       });
+      done();
     }, err => {
       console.error(err);
     });

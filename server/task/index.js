@@ -25,5 +25,8 @@ console.log("================================");
 console.log(`updating the views...`);
 console.log("================================");
 
-inst1.start();
+inst1.start(() => {
+  console.log('Finished Sucess!');
+  process.exit();
+});
 inst2.start();
