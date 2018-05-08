@@ -8,6 +8,7 @@ const cheerio = require('cheerio'),
   globalConfig = require('../../config/env'),
 
   CONCURRENCY = 10,
+  TIMEOUT = 5 * 1000,
   JOBFLAG = '_JOBDONE';
 
 let finished = null;
@@ -40,7 +41,7 @@ const privateFn = {
     //console.log('download ' + obj.name);
     rp({
       uri: 'https://github.com/' + obj.github,
-      timeout: 3 * 1000,
+      timeout: TIMEOUT,
       transform: function (body) {
         return cheerio.load(body);
       }
