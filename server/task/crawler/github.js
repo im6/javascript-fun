@@ -67,7 +67,7 @@ const publicFn = {
     const deferred = new Promise((resolve, reject) => {
       var qr = "SELECT * FROM git WHERE `group` IS NOT NULL";
       if(globalConfig.isDev){
-        qr = "SELECT * FROM git WHERE `group` IS NOT NULL AND id < 20";
+        qr = "SELECT * FROM git WHERE `group` IS NOT NULL AND id > 419";
       }
       sqlConn.sqlExecOne(qr).then((db) => {
         privateFn.promiseLoop(db, resolve, reject)

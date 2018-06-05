@@ -31,7 +31,7 @@ const fs = require('fs'),
 
 const privateFn = {
   getPrototype: () => {
-    var result = null;
+    let result = null;
     try {
       result = JSON.parse(fs.readFileSync(PROTOTYPEINPUT));
     }
@@ -45,7 +45,7 @@ const privateFn = {
 
   render: (data, inputUrl, outputUrl)=> {
     try {
-      var html = jade.renderFile(inputUrl, data);
+      const html = jade.renderFile(inputUrl, data);
       fs.openSync(outputUrl, 'w');
       fs.writeFileSync(outputUrl, html);
       console.log("================================");
@@ -60,7 +60,7 @@ const privateFn = {
   },
 
   getGroupIcon: () => {
-    var qr = 'SELECT * FROM category_git';
+    const qr = 'SELECT * FROM category_git';
     const deferred = new Promise((resolve, reject) => {
       sqlConn.sqlExecOne(qr).then((db) => {
         resolve(db);
@@ -94,9 +94,11 @@ const privateFn = {
      _.each(data2, (v, k) => {
        let newItem = iconMap['k' + k];
        newItem['list'] = v;
-       if(newItem.icon){
+       if(newItem.icon) {
          newItem['list'].forEach(v => {
-           v.img = newItem.icon;
+           if(!v.img){
+             v.img = newItem.icon;
+           }
          });
        }
       result.push(newItem);
@@ -107,9 +109,9 @@ const privateFn = {
   },
 
   confirmDirExist: () => {
-    var dirs = ['node', 'library', 'site', 'article'];
+    const dirs = ['node', 'library', 'site', 'article'];
     dirs.forEach(function(v){
-      var oneD = path.join(__dirname, '../../../public/' + v);
+      const oneD = path.join(__dirname, '../../../public/' + v);
       if (!fs.existsSync(oneD)){
         fs.mkdirSync(oneD);
       }
