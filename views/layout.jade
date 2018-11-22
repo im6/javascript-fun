@@ -27,18 +27,16 @@ mixin CustomizeDropdown(v)
                 img(src="//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons/flight.png")
 
 
-
-
 doctype html
 html
     include head
-body
-    .pure-g
-        .pure-u-1-5.sidebar
-            include sidebar
-        .pure-u-4-5.content
-            +CustomizeDropdown(page)
-            block content
-            +CustomizeDropdown(page)
-            include footer
-    script(type='text/javascript' src='#{bundleDir}?ed5')
+    body
+        .pure-g
+            .pure-u-1-5.sidebar
+                include sidebar
+            .pure-u-4-5.content
+                +CustomizeDropdown(page)
+                block content
+                +CustomizeDropdown(page)
+                include footer
+        script(type='text/javascript' src='#{bundleDir}?ed5')
