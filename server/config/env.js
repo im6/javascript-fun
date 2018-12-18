@@ -1,6 +1,4 @@
-"use strict";
-
-const env = process.env;
+const { env } = process;
 
 module.exports = {
   isDev: env.NODE_ENV === 'dev',
