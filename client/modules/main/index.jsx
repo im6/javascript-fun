@@ -1,9 +1,9 @@
 import '../layout';
 import './style.less';
 
-const OSSURL = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons',
-  GITHUBURL = 'https://github.com',
-  ICON = 'github2.svg';  // candidate: xmas.png, github2.svg, fireworks.png
+const OSSURL = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons';
+const GITHUBURL = 'https://github.com';
+const ICON = 'github2.svg'; // candidate: xmas.png, github2.svg, fireworks.png
 
 const setTime = () => {
   const now = new Date();
@@ -14,11 +14,11 @@ const setTime = () => {
 
 const setImg = () => {
   const list = document.getElementsByClassName('box');
-  for(let j = 0; j < list.length; j++) {
+  for (let j = 0; j < list.length; j += 1) {
     const d1 = list[j];
     const { i, g, s } = d1.dataset;
 
-    const iconUrl = i ? i : ICON;
+    const iconUrl = i || ICON;
     const leftBox = d1.getElementsByClassName('boxLeft')[0];
     leftBox.innerHTML = `<img src="${OSSURL}/${iconUrl}">`;
 
