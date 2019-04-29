@@ -1,6 +1,5 @@
 "use strict";
 var webpack = require('webpack');
-var path = require('path');
 
 var webpackConfig = {
   devtool: 'source-map',
@@ -15,7 +14,7 @@ var webpackConfig = {
         use: [{
           loader: 'babel-loader',
           options: {
-            "presets": ["es2015"]
+            "presets": ["@babel/preset-env"]
           }
         }]
       },
@@ -25,7 +24,6 @@ var webpackConfig = {
           'style-loader',
           'css-loader',
           'less-loader',
-          'autoprefixer-loader'
         ],
         exclude: /node_modules/
       },
