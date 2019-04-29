@@ -1,12 +1,10 @@
 
-var isDev = process.env.NODE_ENV === 'dev',
-  fs = require('fs'),
+var fs = require('fs'),
   path = require('path'),
-  jade = require('jade');
+  pug = require('pug');
 
 var configJson = null,
   jsonDir = path.join(__dirname, './viewModel_article.json');
-
 
 const inst = {
   start: () => {
@@ -14,7 +12,7 @@ const inst = {
       configJson = JSON.parse(fs.readFileSync(jsonDir));
       configJson.page = 5;
 
-      if(isDev){
+      if(process.env.NODE_ENV === 'development'){
         configJson.bundleDir = `/build/${configJson.main}.js`;
       }else{
         configJson.bundleDir += `${configJson.main}.js`;
@@ -26,14 +24,14 @@ const inst = {
     }
 
     try {
-      var jadePath = path.join(__dirname, '../../../views/article/index.jade');
-      var html = jade.renderFile(jadePath, configJson);
+      var pugPath = path.join(__dirname, '../../../views/article/index.pug');
+      var html = pug.renderFile(pugPath, configJson);
       var filePwd = path.join(__dirname, '../../../public/article/index.html');
       fs.openSync(filePwd, 'w');
       fs.writeFileSync(filePwd, html);
     }
     catch(err){
-      console.error("Jade Build Error: " + err.message);
+      console.error("Pug Build Error: " + err.message);
     }
 
     console.log("render article list success!");

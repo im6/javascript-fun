@@ -7,7 +7,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var webpackConfig = {
   //devtool: 'cheap-module-source-map',
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js'],
   },
   module: {
     rules: [

@@ -1,17 +1,12 @@
 "use strict";
 
 const fs = require('fs'),
-  _ = require('lodash'),
+  groupBy = require('lodash.groupby'),
   path = require('path'),
-  numeral = require('numeral'),
-  moment = require('moment'),
-  jade = require('jade'),
+  pug = require('pug'),
   sqlConn = require('../../resource/mysqlConnection'),
-  globalConfig = require('../../config/env'),
-
-  ISDEV = globalConfig.isDev,
-
-  HTMLINPUT = path.join(__dirname, '../../../views/site/index.jade'),
+  ISDEV = process.env.NODE_ENV === 'development',
+  HTMLINPUT = path.join(__dirname, '../../../views/site/index.pug'),
   HTMLOUTPUT = path.join(__dirname, '../../../public/site/index.html'),
   PROTOTYPEINPUT = path.join(__dirname, './viewModel.json');
 
@@ -34,7 +29,7 @@ const privateFn = {
 
   render: (data, inputUrl, outputUrl)=> {
     try {
-      var html = jade.renderFile(inputUrl, data);
+      var html = pug.renderFile(inputUrl, data);
       fs.openSync(outputUrl, 'w');
       fs.writeFileSync(outputUrl, html);
       console.log("================================");
@@ -43,7 +38,7 @@ const privateFn = {
     }
     catch(err){
       console.error("================================");
-      console.error("Jade Build Error: " + err.message);
+      console.error("pug Build Error: " + err.message);
       console.error("================================");
     }
   },
@@ -78,7 +73,7 @@ const privateFn = {
       grpRef['k' + v.id] = v;
     });
 
-    let result = _.groupBy(data, "grp");
+    let result = groupBy(data, "grp");
     let result2 = [];
     for(let i in result){
       if(result.hasOwnProperty(i)){

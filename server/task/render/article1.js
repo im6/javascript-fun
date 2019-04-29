@@ -1,8 +1,7 @@
 "use strict";
 
-var isDev = process.env.NODE_ENV === 'dev',
-  fs = require('fs'),
-  jade = require('jade'),
+var fs = require('fs'),
+  pug = require('pug'),
   path = require('path'),
   configJson = null,
   jsonDir = path.join(__dirname, './viewModel_article.json');
@@ -15,7 +14,7 @@ const inst = {
       configJson.article = configJson['article'].filter(v => v.id === configJson.id)[0];
       configJson.page = 6;
 
-      if(isDev){
+      if(process.env.NODE_ENV === 'development'){
         configJson.bundleDir = `/build/${configJson.article.fileName}.js`;
       }else{
         configJson.bundleDir += `${configJson.article.fileName}.js`;
@@ -26,14 +25,14 @@ const inst = {
     }
 
     try {
-      var jadePath = path.join(__dirname, `../../../views/article/${configJson.id}.jade`);
-      var html = jade.renderFile(jadePath, configJson);
+      var pugPath = path.join(__dirname, `../../../views/article/${configJson.id}.pug`);
+      var html = pug.renderFile(pugPath, configJson);
       var filePwd = path.join(__dirname, `../../../public/article/${configJson.id}/index.html`);
       fs.openSync(filePwd, 'w');
       fs.writeFileSync(filePwd, html);
     }
     catch(err){
-      console.error("Jade Build Error: " + err.message);
+      console.error("Pug Build Error: " + err.message);
     }
 
     console.log(`render article ${configJson.id} success!`);

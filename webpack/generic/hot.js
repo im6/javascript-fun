@@ -5,7 +5,7 @@ var path = require('path');
 var webpackConfig = {
   devtool: 'source-map',
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js'],
   },
   module: {
     rules: [
@@ -36,7 +36,7 @@ var webpackConfig = {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
-        NODE_ENV: JSON.stringify("dev")
+        NODE_ENV: JSON.stringify("development")
       }
     }),
   ],
