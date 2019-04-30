@@ -2,8 +2,6 @@ const cheerio = require('cheerio');
 const async = require('async');
 const rp = require('request-promise');
 const sqlConn = require('../../resource/mysqlConnection');
-const globalConfig = require('../../config/env');
-
 const CONCURRENCY = 10;
 const TIMEOUT = 5 * 1000;
 const JOBFLAG = '_JOBDONE';
@@ -44,6 +42,7 @@ const privateFn = {
         obj.star = num;
         obj[JOBFLAG] = true;
         cb(null, obj);
+        return obj;
       })
       .catch(() => {
         console.error(`crawler timeout on ${obj.name}`);
@@ -57,7 +56,7 @@ const publicFn = {
     finished = [];
     const deferred = new Promise((resolve, reject) => {
       let qr = 'SELECT * FROM git WHERE `group` IS NOT NULL';
-      if (globalConfig.isDev) {
+      if (process.env.NODE_ENV === 'development') {
         qr = 'SELECT * FROM git WHERE `group` IS NOT NULL AND id > 419';
       }
       sqlConn.sqlExecOne(qr).then((db) => {

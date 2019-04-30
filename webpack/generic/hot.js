@@ -1,12 +1,15 @@
 "use strict";
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
 
-var webpackConfig = {
-  devtool: 'source-map',
+const webpackConfig = {
+  mode: 'development',
+  devtool: 'cheap-module-eval-source-map',
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js'],
   },
+  watchOptions: {
+    ignored: /node_modules/,
+  }, 
   module: {
     rules: [
       {
@@ -15,7 +18,7 @@ var webpackConfig = {
         use: [{
           loader: 'babel-loader',
           options: {
-            "presets": ["es2015"]
+            "presets": ["@babel/preset-env"]
           }
         }]
       },
@@ -25,7 +28,6 @@ var webpackConfig = {
           'style-loader',
           'css-loader',
           'less-loader',
-          'autoprefixer-loader'
         ],
         exclude: /node_modules/
       },
@@ -36,7 +38,7 @@ var webpackConfig = {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
-        NODE_ENV: JSON.stringify("dev")
+        NODE_ENV: JSON.stringify("development")
       }
     }),
   ],

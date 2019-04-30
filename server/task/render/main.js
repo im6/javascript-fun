@@ -1,30 +1,29 @@
 "use strict";
 const fs = require('fs'),
-  _ = require('lodash'),
+  groupBy = require('lodash.groupby'),
+  orderBy = require('lodash.orderby'),
   path = require('path'),
   numeral = require('numeral'),
   moment = require('moment'),
-  jade = require('jade'),
+  pug = require('pug'),
   crawlerGit = require('../crawler/github'),
   sqlConn = require('../../resource/mysqlConnection'),
-  globalConfig = require('../../config/env'),
-
   PROTOTYPEINPUT = path.join(__dirname, './viewModel.json'),
-  ISDEV = globalConfig.isDev,
+  ISDEV = process.env.NODE_ENV === 'development',
   PAGECONFIG = [
     {
       page: 1,
-      input: path.join(__dirname, '../../../views/main/index.jade'),
+      input: path.join(__dirname, '../../../views/main/index.pug'),
       output: path.join(__dirname, '../../../public/index.html')
     },
     {
       page: 2,
-      input: path.join(__dirname, '../../../views/main/index.jade'),
+      input: path.join(__dirname, '../../../views/main/index.pug'),
       output: path.join(__dirname, '../../../public/node/index.html')
     },
     {
       page: 3,
-      input: path.join(__dirname, '../../../views/main/index.jade'),
+      input: path.join(__dirname, '../../../views/main/index.pug'),
       output: path.join(__dirname, '../../../public/library/index.html')
     }
   ];
@@ -45,7 +44,7 @@ const privateFn = {
 
   render: (data, inputUrl, outputUrl)=> {
     try {
-      const html = jade.renderFile(inputUrl, data);
+      const html = pug.renderFile(inputUrl, data);
       fs.openSync(outputUrl, 'w');
       fs.writeFileSync(outputUrl, html);
       console.log("================================");
@@ -54,7 +53,7 @@ const privateFn = {
     }
     catch(err){
       console.error("================================");
-      console.error("Jade Build Error: " + err.message);
+      console.error("Pug Build Error: " + err.message);
       console.error("================================");
     }
   },
@@ -83,29 +82,26 @@ const privateFn = {
   },
 
   group: (data, iconMap) => {
-    let result = [];
-
-    let data1 =  _.orderBy(data, (v) => {
+    const data1 =  orderBy(data, (v) => {
       return numeral(v.star).value();
     }, 'desc');
 
-    let data2 = _.groupBy(data1, "group");
-
-     _.each(data2, (v, k) => {
-       let newItem = iconMap['k' + k];
-       newItem['list'] = v;
-       if(newItem.icon) {
-         newItem['list'].forEach(v => {
-           if(!v.img){
-             v.img = newItem.icon;
-           }
-         });
-       }
-      result.push(newItem);
+    const data2 = groupBy(data1, "group");
+    const data3 = Object.keys(data2);
+    const result = data3.map((k) => {
+      const v = data2[k];
+      const newItem = iconMap['k' + k];
+      newItem['list'] = v;
+      if(newItem.icon) {
+        newItem['list'].forEach(v => {
+          if(!v.img){
+            v.img = newItem.icon;
+          }
+        });
+      }
+      return newItem;
     });
-
-    result = _.orderBy(result, ['page', 'sort']);
-    return result;
+    return orderBy(result, ['page', 'sort']);
   },
 
   confirmDirExist: () => {
@@ -121,7 +117,6 @@ const privateFn = {
 
 const inst = {
   start: (done) => {
-    let me = this;
     let p1 = privateFn.getGroupIcon();
     privateFn.confirmDirExist();
     let p2 = crawlerGit.start();
@@ -131,16 +126,16 @@ const inst = {
       let data = privateFn.group(d[1],iconMap);
 
       let vm = privateFn.getPrototype();
-      const bundleUrl = vm['bundleDir'];
+      const bundleUrl = vm.bundleDir;
 
       PAGECONFIG.forEach(v => {
         vm.list = data.filter(v1 => v1.page === v.page);
         vm.page = v.page;
         vm['pretty'] = ISDEV;
         if(ISDEV) {
-          vm['bundleDir'] = '/build/main.js';
+          vm.bundleDir = '/build/main.js';
         } else {
-          vm['bundleDir'] = bundleUrl + 'main.js';
+          vm.bundleDir = bundleUrl + 'main.js';
         }
 
         vm['lastUpdate'] = moment().format('LLL');

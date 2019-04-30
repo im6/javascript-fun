@@ -1,13 +1,10 @@
 "use strict";
-var webpack = require('webpack');
-var path = require('path');
-var CompressionPlugin = require("compression-webpack-plugin");
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-var webpackConfig = {
-  //devtool: 'cheap-module-source-map',
+const webpackConfig = {
+  mode: 'production',
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js'],
   },
   module: {
     rules: [
@@ -17,60 +14,44 @@ var webpackConfig = {
         use: [{
           loader: 'babel-loader',
           options: {
-            "presets": ["es2015"]
+            "presets": ["@babel/preset-env"]
           }
         }]
       },
       {
         test: /\.less$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            //'style-loader',
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: true,
-              }
+        use: [
+          // 'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: false,
             },
-            'less-loader'
-          ],
-        }),
+          },
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                require('autoprefixer')(),
+                require('cssnano')()
+              ],
+            },
+          },
+          'less-loader'
+        ],
         exclude: /node_modules/
       },
     ]
   },
+  optimization: {
+    minimize: true,
+  },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      mange:{
-        "screw-ie8" : true
-      },
-      compress : {
-        "screw_ie8" : true,
-        warnings: false
-      }
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
     }),
-    new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify("production")
-      }
-    }),
-    new ExtractTextPlugin({
-      filename: "[name].css",
-    }),
-    //new CompressionPlugin({
-    //  asset: "[path]",
-    //  algorithm: "gzip",
-    //  test: /\.js$/,
-    //}),
   ],
-  //entry: './client/modules/site/index.jsx',
-  //output: {
-  //  filename: 'bundle.js',
-  //  path: path.join(__dirname, '../public/site'),
-  //  publicPath: '/site',
-  //}
 };
 
 module.exports = webpackConfig;

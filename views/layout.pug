@@ -1,7 +1,6 @@
 mixin TagGroup(tags)
     each v,k in tags
-        - var tagCls = "tag_" + (k % 4);
-        div.tag(class="#{tagCls}")=v
+        div.tag(class=`tag_${k % 4}`)=v
 mixin ArticleTitle(obj)
     .articleTitle
         p.time=obj.time
@@ -39,4 +38,4 @@ html
                 block content
                 +CustomizeDropdown(page)
                 include footer
-        script(type='text/javascript' src='#{bundleDir}?ed5')
+        script(type='text/javascript' src=`${bundleDir}?ed6`)
