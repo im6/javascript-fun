@@ -2,7 +2,8 @@
 var webpack = require('webpack');
 
 var webpackConfig = {
-  devtool: 'source-map',
+  mode: 'development',
+  devtool: 'cheap-module-eval-source-map',
   resolve: {
     extensions: ['.js'],
   },

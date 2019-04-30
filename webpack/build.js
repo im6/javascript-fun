@@ -17,7 +17,6 @@ webpackConfig.output = {
   filename: "[name].js",
   path: path.join(__dirname, `../public/build`),
   publicPath: '/build',
-
 };
 
 module.exports = webpackConfig;
