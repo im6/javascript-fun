@@ -1,10 +1,7 @@
 "use strict";
-var webpack = require('webpack');
-var path = require('path');
-var CompressionPlugin = require("compression-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-var webpackConfig = {
+const webpackConfig = {
   mode: 'production',
   resolve: {
     extensions: ['.js'],
@@ -32,6 +29,15 @@ var webpackConfig = {
             },
           },
           'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                require('autoprefixer')(),
+                require('cssnano')()
+              ],
+            },
+          },
           'less-loader'
         ],
         exclude: /node_modules/
@@ -45,11 +51,6 @@ var webpackConfig = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
-    //new CompressionPlugin({
-    //  asset: "[path]",
-    //  algorithm: "gzip",
-    //  test: /\.js$/,
-    //}),
   ],
 };
 

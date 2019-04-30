@@ -1,12 +1,15 @@
 "use strict";
-var webpack = require('webpack');
+const webpack = require('webpack');
 
-var webpackConfig = {
+const webpackConfig = {
   mode: 'development',
   devtool: 'cheap-module-eval-source-map',
   resolve: {
     extensions: ['.js'],
   },
+  watchOptions: {
+    ignored: /node_modules/,
+  }, 
   module: {
     rules: [
       {
