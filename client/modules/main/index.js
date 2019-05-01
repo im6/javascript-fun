@@ -6,9 +6,15 @@ const OSSURL = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons';
 const GITHUBURL = 'https://github.com';
 const ICON = 'github2.svg'; // candidate: xmas.png, github2.svg, fireworks.png
 
+const { pathname } = window.location;
 const list = document.getElementsByClassName('box');
 const len = list.length;
-const step = [0, parseInt(len * 0.25), parseInt(len * 0.5), parseInt(len * 0.75), len];
+const lazyloadConfig = {
+  '/': [0, parseInt(len * 0.2), parseInt(len * 0.4), parseInt(len * 0.6), parseInt(len * 0.8), len],
+  '/node/': [0, parseInt(len * 0.35), parseInt(len * 0.7), len],
+  '/library/': [0, parseInt(len * 0.2), parseInt(len * 0.4), parseInt(len * 0.6), parseInt(len * 0.8), len],
+}
+const step = lazyloadConfig[pathname];
 let stepIndex = 0;
 
 const setTime = () => {
