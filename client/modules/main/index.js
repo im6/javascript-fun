@@ -10,9 +10,9 @@ const { pathname } = window.location;
 const list = document.getElementsByClassName('box');
 const len = list.length;
 const lazyloadConfig = {
-  '/': [0, parseInt(len * 0.2), parseInt(len * 0.4), parseInt(len * 0.6), parseInt(len * 0.8), len],
+  '/': [0, parseInt(len * 0.25), parseInt(len * 0.5), parseInt(len * 0.75), len],
   '/node/': [0, parseInt(len * 0.35), parseInt(len * 0.7), len],
-  '/library/': [0, parseInt(len * 0.2), parseInt(len * 0.4), parseInt(len * 0.6), parseInt(len * 0.8), len],
+  '/library/': [0, parseInt(len * 0.25), parseInt(len * 0.5), parseInt(len * 0.75), len],
 }
 const step = lazyloadConfig[pathname];
 let stepIndex = 0;
