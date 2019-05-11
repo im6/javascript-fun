@@ -141,6 +141,7 @@ const inst = {
         vm['lastUpdate'] = moment().format('LLL');
         privateFn.render(vm, v.input, v.output);
       });
+      console.log('Finished rendering main icon pages.');
       done();
     }, err => {
       console.error(err);

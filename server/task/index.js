@@ -3,6 +3,7 @@ const inst2 = require('./render/site');
 const inst3 = require('./render/article2');
 const inst4 = require('./render/article1');
 const vm = require('./render/viewModel_article.json');
+const copy = require('./copy');
 
 
 console.log('================================');
@@ -21,7 +22,9 @@ console.log('updating the views...');
 console.log('================================');
 
 inst1.start(() => {
-  console.log('Finished Sucess!');
-  process.exit();
+  copy(() => {
+    console.log('Finished Sucess!');
+    process.exit();
+  });
 });
 inst2.start();
