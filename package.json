@@ -1,5 +1,5 @@
 {
-  "name": "javascript_fun",
+  "name": "javascript-fun",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zj1926/javascript_fun.git"
+    "url": "git+https://github.com/im6/javascript-fun.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zj1926/javascript_fun/issues"
+    "url": "https://github.com/im6/javascript-fun/issues"
   },
-  "homepage": "https://github.com/zj1926/javascript_fun#readme",
+  "homepage": "https://github.com/im6/javascript-fun#readme",
   "dependencies": {
     "async": "^2.6.2",
     "cheerio": "^1.0.0-rc.3",
