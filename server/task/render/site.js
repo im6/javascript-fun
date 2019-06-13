@@ -10,7 +10,6 @@ const fs = require('fs'),
   HTMLOUTPUT = path.join(__dirname, '../../../public/site/index.html'),
   PROTOTYPEINPUT = path.join(__dirname, './viewModel.json');
 
-
 const privateFn = {
   getPrototype: () => {
     var result = null;

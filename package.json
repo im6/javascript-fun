@@ -10,48 +10,40 @@
     "build": "webpack --config webpack/build.js",
     "server": "PORT=3000 node ./server"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/im6/javascript-fun.git"
-  },
-  "author": "",
+  "repository": "git+https://github.com/im6/javascript-fun.git",
+  "author": "im6 <ee2win@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/im6/javascript-fun/issues"
   },
   "homepage": "https://github.com/im6/javascript-fun#readme",
+  "private": false,
   "dependencies": {
-    "async": "^2.6.2",
+    "@babel/core": "^7.4.5",
+    "async": "^3.0.1",
+    "autoprefixer": "^9.6.0",
+    "babel-loader": "^8.0.6",
     "cheerio": "^1.0.0-rc.3",
-    "express": "^4.16.4",
+    "css-loader": "^3.0.0",
+    "cssnano": "^4.1.10",
+    "express": "^4.17.1",
+    "highlight.js": "^9.15.8",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
     "lodash.groupby": "^4.6.0",
     "lodash.orderby": "^4.6.0",
+    "mini-css-extract-plugin": "^0.7.0",
     "moment": "^2.24.0",
     "mysql": "^2.17.1",
     "numeral": "^2.0.6",
-    "pug": "^2.0.3",
-    "request-promise": "^4.2.4"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
-    "autoprefixer": "^9.5.1",
-    "babel-loader": "^8.0.5",
-    "css-loader": "^2.1.1",
-    "cssnano": "^4.1.10",
-    "eslint": "^5.10.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
-    "highlight.js": "^9.15.6",
-    "less": "^3.9.0",
-    "less-loader": "^5.0.0",
-    "mini-css-extract-plugin": "^0.6.0",
     "postcss-loader": "^3.0.0",
+    "pug": "^2.0.3",
     "purecss": "^1.0.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
     "style-loader": "^0.23.1",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.1",
-    "webpack-dev-server": "^3.3.1"
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-dev-server": "^3.7.1"
   }
 }
