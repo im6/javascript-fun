@@ -10,15 +10,15 @@ const pool = mysql.createPool({
 });
 
 module.exports = {
-  getPool: () => pool,
-  sqlExecOne: qr => new Promise((resolve, reject) => {
-    pool.query(qr, (err, rows) => {
-      if (err) {
-        console.error(err.message);
-        reject(err);
-      } else {
-        resolve(rows);
-      }
-    });
-  }),
+  sqlExecOne: qr =>
+    new Promise((resolve, reject) => {
+      pool.query(qr, (err, rows) => {
+        if (err) {
+          console.error(err.message);
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      });
+    }),
 };

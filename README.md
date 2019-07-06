@@ -1,8 +1,8 @@
-# [JavaScript.fun](http://www.javascript.fun)
+# JavaScript.Fun
 
-## Demo Site
+![www.javascript.fun](https://github.com/zj1926/javascript_fun/blob/master/assets/logo.png 'www.javascript.fun')
 
-![www.javascript.fun](https://github.com/zj1926/javascript_fun/blob/master/assets/logo.png "www.javascript.fun")
+## [Demo Site](www.javascript.fun)
 
 ## Quick Start
 

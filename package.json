@@ -19,9 +19,9 @@
   "homepage": "https://github.com/im6/javascript-fun#readme",
   "private": false,
   "dependencies": {
-    "@babel/core": "^7.4.5",
-    "async": "^3.0.1",
-    "autoprefixer": "^9.6.0",
+    "@babel/core": "^7.5.0",
+    "async": "^3.1.0",
+    "autoprefixer": "^9.6.1",
     "babel-loader": "^8.0.6",
     "cheerio": "^1.0.0-rc.3",
     "css-loader": "^3.0.0",
@@ -37,13 +37,13 @@
     "mysql": "^2.17.1",
     "numeral": "^2.0.6",
     "postcss-loader": "^3.0.0",
-    "pug": "^2.0.3",
+    "pug": "^2.0.4",
     "purecss": "^1.0.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
     "style-loader": "^0.23.1",
-    "webpack": "^4.33.0",
-    "webpack-cli": "^3.3.4",
-    "webpack-dev-server": "^3.7.1"
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
   }
 }
