@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const fs = require('fs'),
   groupBy = require('lodash.groupby'),
@@ -17,51 +17,50 @@ const privateFn = {
       result = JSON.parse(fs.readFileSync(PROTOTYPEINPUT));
       result['module'] = 'site';
       result['pretty'] = ISDEV;
-    }
-
-    catch(err){
-      console.error("JSON Error: " + err.message);
+    } catch (err) {
+      console.error('JSON Error: ' + err.message);
     }
 
     return result;
   },
 
-  render: (data, inputUrl, outputUrl)=> {
+  render: (data, inputUrl, outputUrl) => {
     try {
       var html = pug.renderFile(inputUrl, data);
       fs.openSync(outputUrl, 'w');
       fs.writeFileSync(outputUrl, html);
-      console.log("================================");
       console.log(`render page ( ${data.page} ) success!`);
-      console.log("================================");
-    }
-    catch(err){
-      console.error("================================");
-      console.error("pug Build Error: " + err.message);
-      console.error("================================");
+    } catch (err) {
+      console.error('pug Build Error: ' + err.message);
     }
   },
 
   getGroup: () => {
     var qr = 'SELECT * FROM category_git';
     const deferred = new Promise((resolve, reject) => {
-      sqlConn.sqlExecOne(qr).then((db) => {
-        resolve(db);
-      }, (res) => {
-        reject(res);
-      });
+      sqlConn.sqlExecOne(qr).then(
+        db => {
+          resolve(db);
+        },
+        res => {
+          reject(res);
+        }
+      );
     });
     return deferred;
   },
 
-  getSite:() => {
+  getSite: () => {
     var qr = 'SELECT * FROM site where grp is NOT NULL';
     const deferred = new Promise((resolve, reject) => {
-      sqlConn.sqlExecOne(qr).then((db) => {
-        resolve(db);
-      }, (res) => {
-        reject(res);
-      });
+      sqlConn.sqlExecOne(qr).then(
+        db => {
+          resolve(db);
+        },
+        res => {
+          reject(res);
+        }
+      );
     });
     return deferred;
   },
@@ -72,17 +71,17 @@ const privateFn = {
       grpRef['k' + v.id] = v;
     });
 
-    let result = groupBy(data, "grp");
+    let result = groupBy(data, 'grp');
     let result2 = [];
-    for(let i in result){
-      if(result.hasOwnProperty(i)){
+    for (let i in result) {
+      if (result.hasOwnProperty(i)) {
         let obj = grpRef['k' + i];
         obj['list'] = result[i];
         result2.push(obj);
       }
     }
     return result2;
-  }
+  },
 };
 
 const inst = {
@@ -96,7 +95,7 @@ const inst = {
     const bundleUrl = vm['bundleDir'];
 
     Promise.all([p1, p2]).then(d => {
-      if(ISDEV) {
+      if (ISDEV) {
         vm['bundleDir'] = '/build/site.js';
       } else {
         vm['bundleDir'] = bundleUrl + 'site.js';
@@ -106,7 +105,7 @@ const inst = {
       vm.page = 4;
       privateFn.render(vm, HTMLINPUT, HTMLOUTPUT);
     });
-  }
+  },
 };
 
 module.exports = inst;
