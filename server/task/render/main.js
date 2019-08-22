@@ -1,11 +1,11 @@
 'use strict';
 const fs = require('fs'),
+  path = require('path'),
+  pug = require('pug'),
+  moment = require('moment'),
+  numeral = require('numeral'),
   groupBy = require('lodash.groupby'),
   orderBy = require('lodash.orderby'),
-  path = require('path'),
-  numeral = require('numeral'),
-  moment = require('moment'),
-  pug = require('pug'),
   crawlerGit = require('../crawler/github'),
   sqlConn = require('../../resource/mysqlConnection'),
   PROTOTYPEINPUT = path.join(__dirname, './viewModel.json'),
@@ -30,14 +30,12 @@ const fs = require('fs'),
 
 const privateFn = {
   getPrototype: () => {
-    let result = null;
     try {
-      result = JSON.parse(fs.readFileSync(PROTOTYPEINPUT));
+      return JSON.parse(fs.readFileSync(PROTOTYPEINPUT));
     } catch (err) {
       console.error('JSON Error: ' + err.message);
+      return null;
     }
-
-    return result;
   },
 
   render: (data, inputUrl, outputUrl) => {
@@ -63,29 +61,20 @@ const privateFn = {
         }
       );
     });
-
     return deferred;
   },
   convertGroupIcon: data => {
-    let result = {};
-    data.forEach(v => {
-      if (v.icon.length == 0) {
-        v.icon = null;
+    return data.reduce(function(accumulator, currentValue) {
+      if (currentValue.icon.length === 0) {
+        currentValue.icon = null;
       }
-      result['k' + v.id] = v;
-    });
-    return result;
+      accumulator['k' + currentValue.id] = currentValue;
+      return accumulator;
+    }, {});
   },
 
   group: (data, iconMap) => {
-    const data1 = orderBy(
-      data,
-      v => {
-        return numeral(v.star).value();
-      },
-      'desc'
-    );
-
+    const data1 = orderBy(data, v => numeral(v.star).value(), 'desc');
     const data2 = groupBy(data1, 'group');
     const data3 = Object.keys(data2);
     const result = data3.map(k => {

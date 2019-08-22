@@ -27,4 +27,5 @@ inst1.start(() => {
     process.exit();
   });
 });
+
 inst2.start();
