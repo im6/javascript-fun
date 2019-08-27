@@ -1,14 +1,12 @@
-'use strict';
 const fs = require('fs'),
-  path = require('path'),
   pug = require('pug'),
+  path = require('path'),
   moment = require('moment'),
   numeral = require('numeral'),
   groupBy = require('lodash.groupby'),
   orderBy = require('lodash.orderby'),
-  crawlerGit = require('../crawler/github'),
+  getPackageList = require('../crawler/github'),
   sqlConn = require('../../resource/mysqlConnection'),
-  PROTOTYPEINPUT = path.join(__dirname, './viewModel.json'),
   ISDEV = process.env.NODE_ENV === 'development',
   PAGECONFIG = [
     {
@@ -29,29 +27,18 @@ const fs = require('fs'),
   ];
 
 const privateFn = {
-  getPrototype: () => {
-    try {
-      return JSON.parse(fs.readFileSync(PROTOTYPEINPUT));
-    } catch (err) {
-      console.error('JSON Error: ' + err.message);
-      return null;
-    }
-  },
-
+  getPrototype: () =>
+    JSON.parse(fs.readFileSync(path.join(__dirname, './viewModel.json'))),
   render: (data, inputUrl, outputUrl) => {
-    try {
-      const html = pug.renderFile(inputUrl, data);
-      fs.openSync(outputUrl, 'w');
-      fs.writeFileSync(outputUrl, html);
-      console.log(`render page ( ${data.page} ) success!`);
-    } catch (err) {
-      console.error('Pug Build Error: ' + err.message);
-    }
+    const html = pug.renderFile(inputUrl, data);
+    fs.openSync(outputUrl, 'w');
+    fs.writeFileSync(outputUrl, html);
+    console.log(`render page ( ${data.page} ) success!`);
   },
 
   getGroupIcon: () => {
     const qr = 'SELECT * FROM category_git';
-    const deferred = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       sqlConn.sqlExecOne(qr).then(
         db => {
           resolve(db);
@@ -61,10 +48,10 @@ const privateFn = {
         }
       );
     });
-    return deferred;
   },
+
   convertGroupIcon: data => {
-    return data.reduce(function(accumulator, currentValue) {
+    return data.reduce((accumulator, currentValue) => {
       if (currentValue.icon.length === 0) {
         currentValue.icon = null;
       }
@@ -80,9 +67,9 @@ const privateFn = {
     const result = data3.map(k => {
       const v = data2[k];
       const newItem = iconMap['k' + k];
-      newItem['list'] = v;
+      newItem.list = v;
       if (newItem.icon) {
-        newItem['list'].forEach(v => {
+        newItem.list.forEach(v => {
           if (!v.img) {
             v.img = newItem.icon;
           }
@@ -95,7 +82,7 @@ const privateFn = {
 
   confirmDirExist: () => {
     const dirs = ['node', 'library', 'site', 'article'];
-    dirs.forEach(function(v) {
+    dirs.forEach(v => {
       const oneD = path.join(__dirname, '../../../public/' + v);
       if (!fs.existsSync(oneD)) {
         fs.mkdirSync(oneD);
@@ -104,41 +91,30 @@ const privateFn = {
   },
 };
 
-const inst = {
-  start: done => {
-    let p1 = privateFn.getGroupIcon();
-    privateFn.confirmDirExist();
-    let p2 = crawlerGit.start();
+module.exports = done => {
+  privateFn.confirmDirExist();
+  const p0 = privateFn.getGroupIcon();
+  const p1 = getPackageList();
 
-    Promise.all([p1, p2]).then(
-      d => {
-        let iconMap = privateFn.convertGroupIcon(d[0]);
-        let data = privateFn.group(d[1], iconMap);
+  Promise.all([p0, p1]).then(
+    d => {
+      const iconMap = privateFn.convertGroupIcon(d[0]);
+      const data = privateFn.group(d[1], iconMap);
+      const vm = privateFn.getPrototype();
 
-        let vm = privateFn.getPrototype();
-        const bundleUrl = vm.bundleDir;
-
-        PAGECONFIG.forEach(v => {
-          vm.list = data.filter(v1 => v1.page === v.page);
-          vm.page = v.page;
-          vm['pretty'] = ISDEV;
-          if (ISDEV) {
-            vm.bundleDir = '/build/main.js';
-          } else {
-            vm.bundleDir = bundleUrl + 'main.js';
-          }
-
-          vm['lastUpdate'] = moment().format('LLL');
-          privateFn.render(vm, v.input, v.output);
-        });
-        console.log('Finished rendering main icon pages.');
-        done();
-      },
-      err => {
-        console.error(err);
-      }
-    );
-  },
+      PAGECONFIG.forEach(v => {
+        vm.list = data.filter(v1 => v1.page === v.page);
+        vm.page = v.page;
+        vm.pretty = ISDEV;
+        vm.lastUpdate = moment().format('LLL');
+        vm.bundleDir = ISDEV ? '/build/main.js' : vm.bundleDir + 'main.js';
+        privateFn.render(vm, v.input, v.output);
+      });
+      console.log('Finished rendering main icon pages.');
+      done();
+    },
+    err => {
+      console.error(err);
+    }
+  );
 };
-
-module.exports = inst;
