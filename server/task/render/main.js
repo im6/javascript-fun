@@ -101,13 +101,13 @@ module.exports = done => {
       const iconMap = privateFn.convertGroupIcon(d[0]);
       const data = privateFn.group(d[1], iconMap);
       const vm = privateFn.getPrototype();
+      vm.bundleDir = ISDEV ? '/build/main.js' : `${vm.bundleDir}main.js`; // object mutating
 
       PAGECONFIG.forEach(v => {
         vm.list = data.filter(v1 => v1.page === v.page);
         vm.page = v.page;
         vm.pretty = ISDEV;
         vm.lastUpdate = moment().format('LLL');
-        vm.bundleDir = ISDEV ? '/build/main.js' : vm.bundleDir + 'main.js';
         privateFn.render(vm, v.input, v.output);
       });
       console.log('Finished rendering main icon pages.');

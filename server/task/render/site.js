@@ -71,9 +71,9 @@ module.exports = () => {
   const p0 = privateFn.getGroup();
   const p1 = privateFn.getSite();
   const vm = privateFn.getPrototype();
+  vm.bundleDir = ISDEV ? '/build/site.js' : `${vm.bundleDir}site.js`; // object mutate
 
   Promise.all([p0, p1]).then(d => {
-    vm.bundleDir = ISDEV ? '/build/site.js' : vm.bundleDir + 'site.js';
     vm.list = privateFn.group(d[1], d[0]);
     vm.pretty = ISDEV;
     vm.module = 'site';
