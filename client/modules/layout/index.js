@@ -1,6 +1,7 @@
 //  import 'style-loader!css-loader!purecss/build/buttons-min.css';
 //  import 'style-loader!css-loader!purecss/build/grids-min.css';
 //  import 'style-loader!css-loader!purecss/build/grids-responsive-min.css';
+import 'core-js/features/array';
 import './style.less';
 import './typed.less';
 import './pureOverwrite.less';
@@ -20,7 +21,7 @@ const init = () => {
   const COLORCOUNT = TYPECOLOR.length;
   const dropdowns = document.getElementsByTagName('select');
   for (let i = 0; i < dropdowns.length; i += 1) {
-    dropdowns[i].onchange = (e) => {
+    dropdowns[i].onchange = e => {
       window.location.href = e.target.value;
     };
   }
@@ -29,7 +30,7 @@ const init = () => {
     stringsElement: document.getElementById('typed-strings'),
     typeSpeed: 70,
     loop: true,
-    preStringTyped: (index) => {
+    preStringTyped: index => {
       const typeCurosr = document.getElementsByClassName('typed-cursor')[0];
       typeCurosr.style.color = TYPECOLOR[index % COLORCOUNT][0];
       typeElem.style.color = TYPECOLOR[index % COLORCOUNT][0];

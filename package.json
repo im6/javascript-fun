@@ -20,10 +20,12 @@
   "private": false,
   "dependencies": {
     "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.5",
     "async": "^3.1.0",
     "autoprefixer": "^9.6.1",
     "babel-loader": "^8.0.6",
     "cheerio": "^1.0.0-rc.3",
+    "core-js": "^3.2.1",
     "css-loader": "^3.0.0",
     "cssnano": "^4.1.10",
     "express": "^4.17.1",

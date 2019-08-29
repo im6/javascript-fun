@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const webpackConfig = {
@@ -11,7 +11,12 @@ const webpackConfig = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
       },
       {
         test: /\.less$/,
@@ -27,17 +32,14 @@ const webpackConfig = {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: [
-                require('autoprefixer')(),
-                require('cssnano')()
-              ],
+              plugins: [require('autoprefixer')(), require('cssnano')()],
             },
           },
-          'less-loader'
+          'less-loader',
         ],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
-    ]
+    ],
   },
   optimization: {
     minimize: true,
