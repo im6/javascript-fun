@@ -1,81 +1,97 @@
 @import (css) url('//fonts.googleapis.com/css?family=Oxygen');
+
+@mobile_size: 1.3em;
+@title-space: 5px;
+
 body {
-    margin: 0;
+  margin: 0;
 }
-h1,h2,h3,h4,h5,p,span,em,a,div {
-    font-family: 'Oxygen', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+span,
+em,
+a,
+div {
+  font-family: 'Oxygen', sans-serif;
 }
 
 .sidebar {
-    background: #3d4f5d;
-    .header {
-        //border: 1px solid yellow;
-        position: fixed;
-        width: 20%;
-        top: 15%;
-        text-align: center;
-        h1 {
-            color: #fff;
-            font-size: 2.4em;
-            margin: 0;
-            #sbttl2 {
-                transition: color 0.4s;
-            }
-        }
-    }
-}
-
-.content{
-    padding-top: 0;
-}
-
-.updateTxt{
+  background: #3d4f5d;
+  .header {
+    //border: 1px solid yellow;
+    position: fixed;
+    width: 20%;
+    top: 15%;
     text-align: center;
-    color: #b9b9b9;
+    h1 {
+      color: #fff;
+      font-size: 2.4em;
+      margin: 0;
+      #sbttl2 {
+        transition: color 0.4s;
+      }
+    }
+  }
 }
 
-footer{
-    padding: 10px;
-    border-top: 1px solid #e6e6e6;
-    text-align: center;
-    a,span {
-        text-decoration: none;
-        color: #5b788e;
-        margin: 0;
-    }
-    svg {
-        margin: 0 3px -4.5px 0;
-    }
+.content {
+  padding-top: 0;
 }
 
+.updateTxt {
+  text-align: center;
+  color: #b9b9b9;
+}
 
+footer {
+  padding: 10px;
+  border-top: 1px solid #e6e6e6;
+  text-align: center;
+  a,
+  span {
+    text-decoration: none;
+    color: #5b788e;
+    margin: 0;
+  }
+  svg {
+    margin: 0 3px -4.5px 0;
+  }
+}
 
 @media (max-width: 768px) {
-    @mobile_size: 1.3em;
-    @title-space: 5px;
-    .sidebar {
-        width: 100%;
-        height: 46px;
-        position: fixed;
+  .sidebar {
+    width: 100%;
+    height: 46px;
+    position: fixed;
 
-        .header {
-            top: 0;
-            width: 100%;
-            margin-top: 8px;
-            padding-left: 18px;
-            text-align: left;
-            h1{
-                font-size: @mobile_size;
-                display: inline-block;
-                margin-right: @title-space;
-            }
-            #sbttl2 {
-                transition: color 0.4s;
-            }
-        }
+    .header {
+      top: 0;
+      width: 100%;
+      margin-top: 8px;
+      padding-left: 18px;
+      text-align: left;
+      h1 {
+        font-size: @mobile_size;
+        display: inline-block;
+        margin-right: @title-space;
+      }
+      #sbttl2 {
+        transition: color 0.4s;
+      }
     }
-    .content{
-        padding-top: 50px;
-        width: 100%;
-    }
+  }
+  .content {
+    padding-top: 50px;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .sidebar .header h1 {
+    font-size: 2em;
+  }
 }
