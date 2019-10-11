@@ -6,6 +6,7 @@
 
 ```sh
 yarn install
+npm run build // generate the bundle js file
 ```
 
 ## Highlight
