@@ -1,6 +1,5 @@
 # JavaScript.Fun
 
-[![www.javascript.fun](https://github.com/zj1926/javascript_fun/blob/master/assets/logo.png 'www.javascript.fun')](https://www.javascript.fun)
 This is the content and build scripts for https://www.javascript.fun/
 
 ## Highlight
@@ -17,3 +16,7 @@ This is the content and build scripts for https://www.javascript.fun/
 yarn install
 npm run build // generate the bundle js file
 ```
+
+## Preview
+
+[![www.javascript.fun](https://github.com/zj1926/javascript_fun/blob/master/assets/logo.png 'www.javascript.fun')](https://www.javascript.fun)
