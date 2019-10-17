@@ -1,13 +1,7 @@
 # JavaScript.Fun
 
 [![www.javascript.fun](https://github.com/zj1926/javascript_fun/blob/master/assets/logo.png 'www.javascript.fun')](https://www.javascript.fun)
-
-## Quick Start
-
-```sh
-yarn install
-npm run build // generate the bundle js file
-```
+This is the content and build scripts for https://www.javascript.fun/
 
 ## Highlight
 
@@ -16,3 +10,10 @@ npm run build // generate the bundle js file
 - mysql
 - cheerio
 - ES6
+
+## Develop in local
+
+```sh
+yarn install
+npm run build // generate the bundle js file
+```
