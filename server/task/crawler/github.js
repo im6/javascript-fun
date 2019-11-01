@@ -1,11 +1,13 @@
 const async = require('async');
 const cheerio = require('cheerio');
+const numeral = require('numeral');
 const rp = require('request-promise');
 
 const sqlConn = require('../../resource/mysqlConnection');
 const CONCURRENCY = 10;
 const TIMEOUT = 5 * 1000;
 const JOBFLAG = '_JOBDONE';
+const showInteger = true;
 
 let finished = []; // must be global for recursive purpose
 
@@ -47,10 +49,17 @@ const privateFn = {
       transform: body => cheerio.load(body),
     })
       .then($ => {
-        const elems = $('.social-count.js-social-count');
+        const elems = $('a.social-count.js-social-count');
         const starElem = elems[0];
-        const num = starElem.children[0].data.trim();
-        obj.star = num;
+        if (showInteger) {
+          const numLabel = starElem.attribs['aria-label'];
+          const numStr = numLabel.split(' ')[0];
+          const num = numeral(numStr).format('0,0');
+          obj.star = num;
+        } else {
+          const num = starElem.children[0].data.trim();
+          obj.star = num;
+        }
         obj[JOBFLAG] = true;
         cb(null, obj);
         return obj;
