@@ -75,7 +75,7 @@ module.exports = () => {
   finished = [];
   const deferred = new Promise((resolve, reject) => {
     const qr = `SELECT * FROM git WHERE \`group\` IS NOT NULL ${
-      process.env.NODE_ENV === 'development' ? 'AND id > 419' : ''
+      process.env.NODE_ENV === 'development' ? 'AND id > 500' : ''
     }`;
     sqlConn.sqlExecOne(qr).then(
       db => {

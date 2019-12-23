@@ -2,14 +2,7 @@
   "pretty": null,
   "bundleDir": "/cdn/0/",
   "remoteAsset": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons",
-  "type":[
-    "2019",
-    "Developer",
-    "Designer",
-    "Architect",
-    "Beginner",
-    "Fun!"
-  ],
+  "type": ["2020", "Developer", "Designer", "Architect", "Beginner", "Fun!"],
   "list": [],
   "page": null
 }
