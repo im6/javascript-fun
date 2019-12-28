@@ -9,6 +9,5 @@ app.set('x-powered-by', false);
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.listen(port, host, () => {
-  const msg = `Listening on http://${host}:${port}`;
-  console.log(msg);
+  console.log(`Listening on http://${host}:${port}`);
 });

@@ -6,7 +6,7 @@ const fs = require('fs'),
   groupBy = require('lodash.groupby'),
   orderBy = require('lodash.orderby'),
   getPackageList = require('../crawler/github'),
-  sqlConn = require('../../resource/mysqlConnection'),
+  sqlConn = require('../mysqlConnection'),
   ISDEV = process.env.NODE_ENV === 'development',
   PAGECONFIG = [
     {

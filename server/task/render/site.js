@@ -3,7 +3,7 @@ const pug = require('pug');
 const path = require('path');
 const groupBy = require('lodash.groupby');
 
-const sqlConn = require('../../resource/mysqlConnection');
+const sqlConn = require('../mysqlConnection');
 const HTMLINPUT = path.join(__dirname, '../../../views/site/index.pug');
 const HTMLOUTPUT = path.join(__dirname, '../../../public/site/index.html');
 const ISDEV = process.env.NODE_ENV === 'development';

@@ -3,7 +3,7 @@ const cheerio = require('cheerio');
 const numeral = require('numeral');
 const rp = require('request-promise');
 
-const sqlConn = require('../../resource/mysqlConnection');
+const sqlConn = require('../mysqlConnection');
 const CONCURRENCY = 10;
 const TIMEOUT = 5 * 1000;
 const JOBFLAG = '_JOBDONE';
