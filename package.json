@@ -7,7 +7,7 @@
     "prestart": "NODE_ENV=development node server/task/render/article1.js && NODE_ENV=development node server/task/render/article2.js",
     "start": "webpack-dev-server --progress --open --profile --colors --config webpack/dev.js",
     "prebuild": "node server/task/render/article1.js && node server/task/render/article2.js",
-    "build": "webpack --config webpack/build.js",
+    "build": "webpack --config webpack/prod.js",
     "server": "PORT=3000 node ./server"
   },
   "repository": "git+https://github.com/im6/javascript-fun.git",
