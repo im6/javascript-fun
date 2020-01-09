@@ -7,6 +7,7 @@ const fs = require('fs'),
   orderBy = require('lodash.orderby'),
   getPackageList = require('../crawler/github'),
   sqlConn = require('../mysqlConnection'),
+  vm0 = require('../../config'),
   ISDEV = process.env.NODE_ENV === 'development',
   PAGECONFIG = [
     {
@@ -27,8 +28,9 @@ const fs = require('fs'),
   ];
 
 const privateFn = {
-  getPrototype: () =>
-    JSON.parse(fs.readFileSync(path.join(__dirname, './viewModel.json'))),
+  getPrototype: () => {
+    return Object.assign({}, vm0);
+  },
   render: (data, inputUrl, outputUrl) => {
     const html = pug.renderFile(inputUrl, data);
     fs.openSync(outputUrl, 'w');

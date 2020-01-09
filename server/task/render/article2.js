@@ -1,21 +1,23 @@
 const fs = require('fs');
 const pug = require('pug');
 const path = require('path');
-
+const configJson = require('../../config.js');
 module.exports = () => {
-  const configJson = JSON.parse(
-    fs.readFileSync(path.join(__dirname, './viewModel_article.json'))
+  const viewModel = Object.assign(
+    {
+      page: 5,
+    },
+    configJson
   );
-  configJson.page = 5;
 
   if (process.env.NODE_ENV === 'development') {
-    configJson.bundleDir = `/build/${configJson.main}.js`;
+    viewModel.bundleDir = `/build/${configJson.main}.js`;
   } else {
-    configJson.bundleDir += `${configJson.main}.js`;
+    viewModel.bundleDir += `${configJson.main}.js`;
   }
 
   const pugPath = path.join(__dirname, '../../../views/article/index.pug');
-  const html = pug.renderFile(pugPath, configJson);
+  const html = pug.renderFile(pugPath, viewModel);
   const filePwd = path.join(__dirname, '../../../public/article/index.html');
   fs.openSync(filePwd, 'w');
   fs.writeFileSync(filePwd, html);

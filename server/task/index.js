@@ -5,13 +5,11 @@ const createSitePage = require('./render/site');
 const createArticleList = require('./render/article2');
 const createArticleContent = require('./render/article1');
 
-const vm = require('./render/viewModel_article.json');
+const vm = require('../config');
 const copy = require('./copy');
 
 createArticleList();
-vm.article.forEach(v => {
-  createArticleContent(v.id);
-});
+vm.articles.forEach(v => createArticleContent(v));
 createSitePage();
 createGithubPage(() => {
   copy(() => {

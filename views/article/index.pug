@@ -1,7 +1,7 @@
 extends ../layout
 block content
     .post_container
-        each val, index in article
+        each val, index in articles
             .post
                 +ArticleTitle(val)
                 p.art_desc=val.content

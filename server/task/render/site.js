@@ -6,11 +6,13 @@ const groupBy = require('lodash.groupby');
 const sqlConn = require('../mysqlConnection');
 const HTMLINPUT = path.join(__dirname, '../../../views/site/index.pug');
 const HTMLOUTPUT = path.join(__dirname, '../../../public/site/index.html');
+const vm0 = require('../../config');
 const ISDEV = process.env.NODE_ENV === 'development';
 
 const privateFn = {
-  getPrototype: () =>
-    JSON.parse(fs.readFileSync(path.join(__dirname, './viewModel.json'))),
+  getPrototype: () => {
+    return Object.assign({}, vm0);
+  },
 
   render: (data, inputUrl, outputUrl) => {
     const html = pug.renderFile(inputUrl, data);
