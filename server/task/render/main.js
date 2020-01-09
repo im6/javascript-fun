@@ -1,7 +1,6 @@
 const fs = require('fs'),
   pug = require('pug'),
   path = require('path'),
-  moment = require('moment'),
   numeral = require('numeral'),
   groupBy = require('lodash.groupby'),
   orderBy = require('lodash.orderby'),
@@ -109,7 +108,6 @@ module.exports = done => {
         vm.list = data.filter(v1 => v1.page === v.page);
         vm.page = v.page;
         vm.pretty = ISDEV;
-        vm.lastUpdate = moment().format('LLL');
         privateFn.render(vm, v.input, v.output);
       });
       console.log('Finished rendering main icon pages.');

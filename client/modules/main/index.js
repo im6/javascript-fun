@@ -13,7 +13,7 @@ const lazyloadConfig = {
   '/': [0, parseInt(len * 0.35), len],
   '/node/': [0, parseInt(len * 0.35), len],
   '/library/': [0, parseInt(len * 0.35), len],
-}
+};
 const step = lazyloadConfig[pathname];
 let stepIndex = 0;
 
@@ -32,9 +32,8 @@ const setImg = (start, end) => {
     const iconUrl = i || ICON;
     const leftBox = d1.getElementsByClassName('boxLeft')[0];
     leftBox.innerHTML = `<img src="${OSSURL}/${iconUrl}">`;
-
     const rightBox = d1.getElementsByTagName('div')[2];
-    rightBox.innerHTML = `<a href="${GITHUBURL}/${g}" target="_blank"><img src="${OSSURL}/github1.svg">${s}</a>`;
+    rightBox.innerHTML = `<a href="${GITHUBURL}/${g}" target="_blank">&#9733; ${s}</a>`;
   }
 };
 

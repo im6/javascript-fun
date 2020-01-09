@@ -1,10 +1,12 @@
+const yearName = new Date().getFullYear();
+
 module.exports = {
   pretty: false,
   bundleDir: '/assets/',
   remoteAsset: '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons',
   main: 'article0',
   route: '/article/',
-  type: ['2020', 'Developer', 'Designer', 'Architect', 'Beginner', 'Fun!'],
+  type: [yearName, 'Developer', 'Designer', 'Architect', 'Beginner', 'Fun!'],
   articles: [
     {
       id: 4,
