@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const src = path.join(__dirname, '../../../public/');
 const dest = path.join(__dirname, '../../../../im6.github.io');
-const jsDest = path.join(__dirname, '../../../../im6.github.io/cdn/0/');
+const jsDest = path.join(__dirname, '../../../../im6.github.io/assets/');
 
 const files = [
   'index.html',
@@ -22,9 +22,9 @@ const jsFiles = [
   'build/article1.js',
   'build/main.js',
   'build/site.js',
-]
+];
 
-const copy = (cb) => {
+const copy = cb => {
   console.log('start copy...');
   files.forEach(v => {
     console.log(`copying ${path.join(src, v)}`);
@@ -33,10 +33,13 @@ const copy = (cb) => {
 
   jsFiles.forEach(v => {
     console.log(`copying ${path.join(src, v)}`);
-    fs.copyFileSync(path.join(src, v), path.join(jsDest, v.replace(/(.)+\//, '')));
+    fs.copyFileSync(
+      path.join(src, v),
+      path.join(jsDest, v.replace(/(.)+\//, ''))
+    );
   });
   console.log('copy complete.');
   cb();
-}
+};
 
 module.exports = copy;

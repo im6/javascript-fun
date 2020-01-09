@@ -1,7 +1,7 @@
 {
   "id": 4,
   "page": 5,
-  "bundleDir": "/cdn/0/",
+  "bundleDir": "/assets/",
   "remoteAsset": "//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons",
   "main": "article0",
   "route": "/article/",
