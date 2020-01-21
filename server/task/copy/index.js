@@ -10,16 +10,16 @@ const files = [
   'node/index.html',
   'library/index.html',
   'site/index.html',
-  'article/index.html',
-  'article/1/index.html',
-  'article/2/index.html',
-  'article/3/index.html',
-  'article/4/index.html',
+  // 'article/index.html',
+  // 'article/1/index.html',
+  // 'article/2/index.html',
+  // 'article/3/index.html',
+  // 'article/4/index.html',
 ];
 
 const jsFiles = [
-  'build/article0.js',
-  'build/article1.js',
+  //'build/article0.js',
+  //'build/article1.js',
   'build/main.js',
   'build/site.js',
 ];

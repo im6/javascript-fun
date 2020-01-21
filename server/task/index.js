@@ -8,8 +8,8 @@ const createArticleContent = require('./render/article1');
 const vm = require('../config');
 const copy = require('./copy');
 
-createArticleList();
-vm.articles.forEach(v => createArticleContent(v));
+// createArticleList();
+// vm.articles.forEach(v => createArticleContent(v));
 createSitePage();
 createGithubPage(() => {
   copy(() => {
