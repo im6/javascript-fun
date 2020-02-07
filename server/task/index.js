@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { execSync } = require('child_process');
 
 const createGithubPage = require('./render/main');
