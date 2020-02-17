@@ -111,6 +111,11 @@ module.exports = done => {
         privateFn.render(vm, v.input, v.output);
       });
       console.log('Finished rendering main icon pages.');
+
+      const jsonOutputUrl = path.join(__dirname, `../../../public/github.json`);
+      fs.writeFileSync(jsonOutputUrl, JSON.stringify(data));
+      console.log('output json file');
+
       done();
     },
     err => {
