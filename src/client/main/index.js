@@ -1,6 +1,6 @@
 import '../layout';
-import './style.less';
 import { debounce } from '../util';
+import style from '../../modules/Layout/style.less';
 
 const OSSURL = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons';
 const GITHUBURL = 'https://github.com';
@@ -20,7 +20,7 @@ let stepIndex = 0;
 const setTime = () => {
   const now = new Date();
   const dt = now.toDateString();
-  const timeElem = document.getElementsByClassName('updateTxt')[0];
+  const timeElem = document.getElementsByClassName(style.updateTime)[0];
   timeElem.innerText = `Last Update:  ${dt}`;
 };
 
@@ -45,6 +45,6 @@ const debounceLoadImage = debounce(() => {
 }, 300);
 
 setTime();
-setImg(step[stepIndex], step[1 + stepIndex++]);
+// setImg(step[stepIndex], step[1 + stepIndex++]);
 
-window.addEventListener('scroll', debounceLoadImage);
+// window.addEventListener('scroll', debounceLoadImage);

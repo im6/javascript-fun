@@ -1,0 +1,54 @@
+.typed-cursor {
+  opacity: 1;
+  font-size: 1.4em;
+  -webkit-animation: blink 0.7s infinite;
+  -moz-animation: blink 0.7s infinite;
+  animation: blink 0.7s infinite;
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.type {
+  font-size: 1.4em;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .type {
+    font-size: 1.3em;
+  }
+  .typed-cursor {
+    font-size: 1.3em;
+  }
+}

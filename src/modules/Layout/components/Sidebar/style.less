@@ -1,0 +1,36 @@
+.header {
+  // border: 1px solid yellow;
+  position: fixed;
+  width: 20%;
+  top: 15%;
+  text-align: center;
+  h1 {
+    color: #fff;
+    font-size: 2.4em;
+    margin: 0;
+    #sbttl2 {
+      transition: color 0.4s;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    top: 0;
+    width: 100%;
+    margin-top: 8px;
+    padding-left: 18px;
+    text-align: left;
+    h1 {
+      font-size: 1.3em;
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .header h1 {
+    font-size: 1.8em;
+  }
+}

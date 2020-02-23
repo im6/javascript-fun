@@ -1,12 +1,14 @@
-//  import 'style-loader!css-loader!purecss/build/buttons-min.css';
-//  import 'style-loader!css-loader!purecss/build/grids-min.css';
-//  import 'style-loader!css-loader!purecss/build/grids-responsive-min.css';
 import 'core-js/features/array';
-import './style.less';
-import './typed.less';
-import './pureOverwrite.less';
 
-import '../../assets/typed.min';
+import './style.less';
+import '../../modules/Layout/components/TopNav/style.less';
+import '../../modules/Layout/components/Footer/style.less';
+import '../../modules/Layout/components/Sidebar/style.less';
+import '../../modules/BoxGroup/style.less';
+import '../../modules/GitBox/style.less';
+import '../../modules/Layout/style.less';
+
+import Typed from 'typed.js';
 
 const TYPECOLOR = [
   ['#7bd0ff', '#F38181'],
@@ -26,10 +28,13 @@ const init = () => {
     };
   }
 
-  window.Typed.new('.type', {
+  new Typed('.type', {
     stringsElement: document.getElementById('typed-strings'),
     typeSpeed: 70,
+    backSpeed: 50,
+    smartBackspace: false,
     loop: true,
+    autoInsertCss: false,
     preStringTyped: index => {
       const typeCurosr = document.getElementsByClassName('typed-cursor')[0];
       typeCurosr.style.color = TYPECOLOR[index % COLORCOUNT][0];
