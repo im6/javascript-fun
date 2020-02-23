@@ -1,24 +1,22 @@
-const path = require("path");
-const webpack = require("webpack");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CompressionPlugin = require("compression-webpack-plugin");
-const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
+const path = require('path');
+const webpack = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const CompressionPlugin = require('compression-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const {
-  withoutCssModuleFiles,
   clientBaseConfig,
   serverBaseConfig,
-  localIdentName
-} = require("./base");
+  localIdentName,
+} = require('./base');
 
 const client = Object.assign(clientBaseConfig, {
-  mode: "production",
+  mode: 'production',
   output: {
-    publicPath: "//dkny.oss-cn-hangzhou.aliyuncs.com/2/",
-    path: path.join(__dirname, "../dist/public"),
-    filename: "[name].js"
+    path: path.join(__dirname, '../dist/public'),
+    filename: '[name].js',
   },
   module: {
     rules: [
@@ -27,68 +25,55 @@ const client = Object.assign(clientBaseConfig, {
         exclude: /node_modules/,
         use: [
           {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
-              presets: ["@babel/preset-env", "@babel/preset-react"],
-              plugins: ["@babel/plugin-syntax-dynamic-import"]
-            }
-          }
-        ]
-      },
-      {
-        test: /\.sass$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader
+              presets: ['@babel/preset-env'],
+            },
           },
-          "css-loader",
-          "sass-loader"
         ],
-        include: withoutCssModuleFiles
       },
       {
-        test: /\.sass$/,
+        test: /\.less$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader
+            loader: MiniCssExtractPlugin.loader,
           },
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               modules: {
-                localIdentName
-              }
-            }
+                localIdentName,
+              },
+            },
           },
-          "sass-loader"
+          'less-loader',
         ],
-        exclude: withoutCssModuleFiles
-      }
-    ]
+      },
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new OptimizeCssAssetsPlugin(),
     new MiniCssExtractPlugin({
-      filename: "[name].css"
+      filename: '[name].css',
     }),
-    new CompressionPlugin({
-      filename: "[path]",
-      minRatio: 1
-    }),
+    // new CompressionPlugin({
+    //   filename: '[path]',
+    //   minRatio: 1,
+    // }),
     new webpack.DefinePlugin({
-      "process.env.lastBuildDate": JSON.stringify(
+      'process.env.lastBuildDate': JSON.stringify(
         `${new Date().toLocaleString()} UTC`
-      )
-    })
-  ]
+      ),
+    }),
+  ],
 });
 
 const server = Object.assign(serverBaseConfig, {
-  mode: "production",
+  mode: 'production',
   output: {
-    path: path.join(__dirname, "../dist/server"),
-    filename: "index.js"
+    path: path.join(__dirname, '../dist/server'),
+    filename: 'index.js',
   },
   module: {
     rules: [
@@ -97,39 +82,38 @@ const server = Object.assign(serverBaseConfig, {
         exclude: /node_modules/,
         use: [
           {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
-              presets: ["@babel/preset-env", "@babel/preset-react"]
-            }
-          }
-        ]
+              presets: ['@babel/preset-env', '@babel/preset-react'],
+            },
+          },
+        ],
       },
       {
-        test: /\.sass$/,
+        test: /\.less$/,
         use: [
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               onlyLocals: true,
               modules: {
-                localIdentName
-              }
-            }
+                localIdentName,
+              },
+            },
           },
-          "sass-loader"
-        ]
-      }
-    ]
+          'less-loader',
+        ],
+      },
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
-      "process.env.lastBuildDate": JSON.stringify(
+      'process.env.lastBuildDate': JSON.stringify(
         `${new Date().toLocaleString()} EST`
-      )
+      ),
     }),
-    new CopyWebpackPlugin([])
-  ]
+  ],
 });
 
 module.exports = [client, server];

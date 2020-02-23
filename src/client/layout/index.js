@@ -21,7 +21,7 @@ const initTyped = () => {
     backSpeed: 40,
     smartBackspace: false,
     loop: true,
-    autoInsertCss: false,
+    autoInsertCss: true,
     preStringTyped: index => {
       const typeCurosr = document.getElementsByClassName('typed-cursor')[0];
       typeCurosr.style.color = leftNavTextColors[index % colorNum][0];

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import CriticalCss from './CriticalCss';
 import MetaInfo from './MetaInfo';
 
-const Html = ({ favIconUrl, year, script, children, version }) => (
+const Html = ({ favIconUrl, year, style, script, children, version }) => (
   <html lang="en">
     <head>
       <MetaInfo />
@@ -13,6 +13,7 @@ const Html = ({ favIconUrl, year, script, children, version }) => (
       </title>
       <link rel="shortcut icon" type="image/png" href={favIconUrl} />
       <CriticalCss />
+      <link href={`${style}?${version}`} rel="stylesheet" />
     </head>
     <body>
       {children}

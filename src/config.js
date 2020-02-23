@@ -1,4 +1,6 @@
-export const port = 3000;
+export const port = process.env.PORT || 3000;
+export const staticFolder =
+  process.env.NODE_ENV == 'development' ? 'local' : 'dist';
 export const iconCdnUrl = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons';
 export const defaultIcon = 'github2.svg';
 export const githubUrl = 'https://github.com';
@@ -25,9 +27,9 @@ export const pageLink = {
   '/site/': 4,
 };
 
-export const pageScript = {
-  '/': 'main.js',
-  '/node/': 'main.js',
-  '/library/': 'main.js',
-  '/site/': 'site.js',
+export const pageAssetFileName = {
+  '/': 'main',
+  '/node/': 'main',
+  '/library/': 'main',
+  '/site/': 'site',
 };

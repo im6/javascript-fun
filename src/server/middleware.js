@@ -14,7 +14,7 @@ import {
   githubUrl,
   defaultIcon,
   pageLink,
-  pageScript,
+  pageAssetFileName,
 } from '../config';
 
 export const linkMd = (req, res) => {
@@ -33,7 +33,8 @@ export const linkMd = (req, res) => {
     <Html
       year={leftNavText[0]}
       favIconUrl={`${iconCdnUrl}/fav.ico`}
-      script={`/${pageScript[req.url]}`}
+      script={`/${pageAssetFileName[req.url]}.js`}
+      style={`/${pageAssetFileName[req.url]}.css`}
       lastBuildDate={process.env.lastBuildDate || 'dev'}
       version="abc"
     >
@@ -71,7 +72,8 @@ export const gitMd = (req, res) => {
     <Html
       year={leftNavText[0]}
       favIconUrl={`${iconCdnUrl}/fav.ico`}
-      script={`/${pageScript[req.url]}`}
+      style={`/${pageAssetFileName[req.url]}.css`}
+      script={`/${pageAssetFileName[req.url]}.js`}
       lastBuildDate={process.env.lastBuildDate || 'dev'}
       version="abc"
     >

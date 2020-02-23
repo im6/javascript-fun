@@ -10,7 +10,9 @@
     "prebuild": "node server/task/render/article1.js && node server/task/render/article2.js",
     "build": "webpack --config webpack/prod.js",
     "web": "PORT=3000 node ./server",
-    "dev1": "webpack --config ./webpack1/develop.js"
+    "dev1": "webpack --config ./webpack1/develop.js",
+    "build1": "webpack --config ./webpack1/production.js",
+    "web1": "node ./dist/server"
   },
   "repository": "git+https://github.com/im6/javascript-fun.git",
   "author": "im6",
@@ -43,6 +45,7 @@
     "mini-css-extract-plugin": "^0.9.0",
     "mysql": "^2.17.1",
     "numeral": "^2.0.6",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
     "pug": "^2.0.4",
     "purecss": "^1.0.1",

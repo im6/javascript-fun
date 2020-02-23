@@ -34,7 +34,9 @@ const client = Object.assign(clientBaseConfig, {
       {
         test: /\.less$/,
         use: [
-          'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
           {
             loader: 'css-loader',
             options: {
