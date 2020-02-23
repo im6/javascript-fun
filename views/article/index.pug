@@ -1,9 +1,0 @@
-extends ../layout
-block content
-    .post_container
-        each val, index in articles
-            .post
-                +ArticleTitle(val)
-                p.art_desc=val.content
-                if val.id != 0
-                    a(href=(route + val.id + "/")).pure-button.button-small View All
