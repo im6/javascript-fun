@@ -1,16 +1,16 @@
 {
   "name": "javascript-fun",
   "version": "1.0.0",
-  "description": "",
+  "description": "source code generator for javascript.fun",
   "main": "index.js",
   "scripts": {
+    "daily": "yarn collect && yarn render && yarn copy",
     "dev": "webpack --config ./webpack/develop.js",
     "build": "webpack --config ./webpack/production.js",
     "web": "node ./dist/node/server.js",
     "render": "node ./dist/node/render.js",
     "collect": "node task/index.js",
     "copy": "./push.sh",
-    "daily": "yarn collect && yarn render && yarn copy",
     "lint": "eslint ./webpack ./src"
   },
   "repository": "git+https://github.com/im6/javascript-fun.git",
