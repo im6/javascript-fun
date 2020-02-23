@@ -83,7 +83,7 @@ module.exports = () => {
     privateFn.render(vm, HTMLINPUT, HTMLOUTPUT);
 
     const jsonOutputUrl = path.join(__dirname, `../../../public/site.json`);
-    fs.writeFileSync(jsonOutputUrl, JSON.stringify(vm));
+    fs.writeFileSync(jsonOutputUrl, JSON.stringify(vm.list));
     console.log('output site json file');
   });
 };
