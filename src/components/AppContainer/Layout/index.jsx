@@ -15,7 +15,7 @@ const Layout = ({ page, children, leftNavText }) => (
       <TopNav page={page} />
       <div className={style.main}>{children}</div>
       <p className={style.updateTime} />
-      <TopNav />
+      <TopNav page={page} />
       <Footer />
     </div>
   </div>

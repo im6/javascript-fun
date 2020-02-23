@@ -7,7 +7,10 @@
     "dev": "webpack --config ./webpack/develop.js",
     "build": "webpack --config ./webpack/production.js",
     "web": "node ./dist/node/server.js",
-    "render": "node ./dist/node/render.js"
+    "render": "node ./dist/node/render.js",
+    "collect": "node task/index.js",
+    "copy": "./push.sh",
+    "daily": "yarn collect && yarn render && yarn copy"
   },
   "repository": "git+https://github.com/im6/javascript-fun.git",
   "author": "im6",
@@ -50,5 +53,9 @@
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
     "webpack-node-externals": "^1.7.2"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "cover 99.5%"
+  ]
 }

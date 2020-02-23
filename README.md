@@ -1,6 +1,6 @@
 # JavaScript.Fun
 
-This is the content and build scripts for https://www.javascript.fun/
+Code generator for [javascript.fun](https://www.javascript.fun/)
 
 ## Highlight
 
@@ -8,8 +8,12 @@ This is the content and build scripts for https://www.javascript.fun/
 - webpack
 - express.js
 - mySQL
+- async
+- [Pure.css](https://purecss.io/)
 
-## Develop in local
+## Quick Start
+
+create `.env` file for DB connections.
 
 ```sh
 yarn install

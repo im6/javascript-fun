@@ -2,9 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const CompressionPlugin = require('compression-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
 const uuid = require('uuid');
 
 const {
@@ -47,6 +45,12 @@ const client = Object.assign(clientBaseConfig, {
               },
             },
           },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [require('autoprefixer')()],
+            },
+          },
           'less-loader',
         ],
       },
@@ -54,14 +58,10 @@ const client = Object.assign(clientBaseConfig, {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new OptimizeCssAssetsPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
-    // new CompressionPlugin({
-    //   filename: '[path]',
-    //   minRatio: 1,
-    // }),
+    new OptimizeCssAssetsPlugin(),
     new webpack.DefinePlugin({
       'process.env.lastBuildDate': JSON.stringify(
         `${new Date().toLocaleString()} UTC`

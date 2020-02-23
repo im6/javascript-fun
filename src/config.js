@@ -2,7 +2,7 @@ export const port = process.env.PORT || 3000;
 export const staticFolder =
   process.env.NODE_ENV == 'development' ? 'local' : 'dist';
 export const renderOutputFolder = 'dist/views';
-export const publicPath = '/static';
+export const publicPath = '/assets';
 export const iconCdnUrl = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons';
 export const defaultIcon = 'github2.svg';
 export const githubUrl = 'https://github.com';

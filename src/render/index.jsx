@@ -4,6 +4,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 
 import GitPage from '../pages/GitPage';
 import LinkPage from '../pages/LinkPage';
+
 import {
   iconCdnUrl,
   githubUrl,
@@ -12,9 +13,12 @@ import {
   renderOutputFolder,
 } from '../config';
 
+const gitJsonDir = 'dist/github.json';
+const siteJsonDir = 'dist/site.json';
+
 const generateGitPage = url => {
   const css0 = fs.readFileSync('dist/public/main.css');
-  const rawdata = fs.readFileSync('dist/github.json');
+  const rawdata = fs.readFileSync(gitJsonDir);
   const gitSource = JSON.parse(rawdata);
   const htmlDOM = (
     <GitPage
@@ -28,14 +32,13 @@ const generateGitPage = url => {
   );
   const html = `<!DOCTYPE html>${renderToStaticMarkup(htmlDOM)}`;
   const jsonOutputUrl = `${renderOutputFolder}${url}index.html`;
-  console.log(jsonOutputUrl);
   fs.writeFileSync(jsonOutputUrl, html);
-  console.log(`output ${url} file`);
+  console.log(`output ${url} success`);
 };
 
 const generateSitePage = url => {
   const css1 = fs.readFileSync('dist/public/site.css');
-  const rawdata = fs.readFileSync('dist/site.json');
+  const rawdata = fs.readFileSync(siteJsonDir);
   const siteSource = JSON.parse(rawdata);
   const htmlDOM = (
     <LinkPage
@@ -46,9 +49,8 @@ const generateSitePage = url => {
   );
   const html = `<!DOCTYPE html>${renderToStaticMarkup(htmlDOM)}`;
   const jsonOutputUrl = `${renderOutputFolder}${url}index.html`;
-  console.log(jsonOutputUrl);
   fs.writeFileSync(jsonOutputUrl, html);
-  console.log(`output ${url} file`);
+  console.log(`output ${url} success`);
 };
 
 if (!fs.existsSync(renderOutputFolder)) {
