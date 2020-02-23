@@ -1,0 +1,53 @@
+@import '../../constant.less';
+
+.box {
+  border-top: 1px solid @grp-border-color;
+  padding: 6px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  .left {
+    margin-right: 14px;
+    width: 48px;
+    height: 48px;
+    img {
+      height: 48px;
+      border-radius: 5px;
+    }
+  }
+  .right {
+    //border: 1px solid #3d4f5d;
+    h5 {
+      margin: 0 0 7px 0;
+      color: @git-name-color;
+      font-size: 18px;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    div {
+      margin: 0;
+      font-size: 14px;
+      a {
+        text-decoration: none;
+        color: @star-text-color;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .box .right h5 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+  }
+  .box .right div {
+    font-size: 12px;
+  }
+}

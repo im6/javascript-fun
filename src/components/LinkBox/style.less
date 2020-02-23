@@ -1,0 +1,32 @@
+@import '../../constant.less';
+
+.box {
+  border-bottom: 1px dashed @grp-border-color;
+  height: 55px;
+  padding: 4px 0 0 5px;
+  a {
+    color: @site-name-color;
+    display: block;
+    margin: 5px 0;
+    text-decoration: none;
+    transition: color 0.4s;
+    &:hover {
+      color: @site-name-color-hover;
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: 13px;
+    color: #454553;
+  }
+}
+
+@media (max-width: 768px) {
+  .box {
+    height: 65px;
+    a {
+      margin: 2px 0;
+    }
+  }
+}

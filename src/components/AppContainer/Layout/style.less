@@ -1,0 +1,32 @@
+@import '../../../constant.less';
+
+.left {
+  background-color: @side-bar-bg-color;
+}
+
+.right {
+  padding-top: 0;
+}
+
+.main {
+  padding: 0 0 40px 30px;
+}
+
+.updateTime {
+  text-align: center;
+  color: @update-date-color;
+}
+
+@media (max-width: 768px) {
+  .left {
+    height: 46px;
+    position: fixed;
+  }
+  .right {
+    padding-top: 50px;
+  }
+  .main {
+    overflow-x: hidden;
+    padding: 0 0 10px 20px;
+  }
+}

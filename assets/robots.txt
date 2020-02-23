@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /demo/*
+
+Sitemap: https://www.javascript.fun/sitemap.xml

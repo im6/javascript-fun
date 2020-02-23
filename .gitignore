@@ -3,5 +3,7 @@
 .vscode
 node_modules/
 npm-debug.log
-public
+yarn-error.log
+local
+dist
 .env
