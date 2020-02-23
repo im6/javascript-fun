@@ -12,7 +12,7 @@
     "web": "PORT=3000 node ./server"
   },
   "repository": "git+https://github.com/im6/javascript-fun.git",
-  "author": "im6 <ee2win@gmail.com>",
+  "author": "im6",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/im6/javascript-fun/issues"
