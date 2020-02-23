@@ -4,10 +4,9 @@ import Footer from './components/Footer';
 import TopNav from './components/TopNav';
 import SideBar from './components/Sidebar';
 
-import { leftNavText, leftNavBgColor } from '../../config';
 import style from './style.less';
 
-const Layout = ({ page, children }) => (
+const Layout = ({ page, children, leftNavText, leftNavBgColor }) => (
   <div className="pure-g">
     <div
       className={`pure-u-1 pure-u-md-1-6 pure-u-lg-1-5 ${style.left}`}
@@ -28,6 +27,8 @@ const Layout = ({ page, children }) => (
 Layout.propTypes = {
   page: PropTypes.number,
   children: PropTypes.node,
+  leftNavText: PropTypes.array,
+  leftNavBgColor: PropTypes.string,
 };
 
 export default Layout;

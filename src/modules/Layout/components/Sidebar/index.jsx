@@ -4,14 +4,14 @@ import style from './style.less';
 
 const Sidebar = ({ words }) => (
   <header className={style.header}>
-    <h1 id="sbttl1">JavaScript</h1>
-    <h1 id="sbttl2">for</h1>
-    <div className="type"></div>
-    <nav id="typed-strings">
+    <h1>JavaScript</h1>
+    <h1>for</h1>
+    <div className={style.type} />
+    <div className={style.typedStrings}>
       {words.map(v => (
         <p key={v}>{v}</p>
       ))}
-    </nav>
+    </div>
   </header>
 );
 

@@ -16,7 +16,7 @@ const LinkBox = ({ url, name, desc }) => (
 LinkBox.propTypes = {
   url: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  desc: PropTypes.string.isRequired,
+  desc: PropTypes.string,
 };
 
 export default LinkBox;

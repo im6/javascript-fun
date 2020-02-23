@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PureCss from './CriticalCss';
+import CriticalCss from './CriticalCss';
+import MetaInfo from './MetaInfo';
 
-const Html = ({ title, script, children, version }) => (
+const Html = ({ favIconUrl, year, script, children, version }) => (
   <html lang="en">
     <head>
-      <meta charSet="utf-8" />
-      <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-      <title>{title}</title>
-      <PureCss />
+      <MetaInfo />
+      <title>
+        JavaScript Fun | Most Popular JavaScript Framework in {year} | Top
+        JavaScript Library | 前端框架 | web前端开发 | JS library Ranking
+      </title>
+      <link rel="shortcut icon" type="image/png" href={favIconUrl} />
+      <CriticalCss />
     </head>
     <body>
       {children}
@@ -18,7 +22,8 @@ const Html = ({ title, script, children, version }) => (
 );
 
 Html.propTypes = {
-  title: PropTypes.string.isRequired,
+  year: PropTypes.string.isRequired,
+  favIconUrl: PropTypes.string.isRequired,
   lastBuildDate: PropTypes.string.isRequired,
   script: PropTypes.string.isRequired,
   children: PropTypes.object.isRequired,

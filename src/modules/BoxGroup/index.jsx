@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import style from './style.less';
 
 const BoxGroup = ({ title, children, isWebsite }) => (
-  <div>
+  <Fragment>
     <h3 className={isWebsite ? style.websiteTitle : style.title}>{title}</h3>
     <div className="pure-g">{children}</div>
-  </div>
+  </Fragment>
 );
 
 BoxGroup.propTypes = {

@@ -39,15 +39,7 @@
   }
 }
 
-.type {
-  font-size: 1.4em;
-  display: inline-block;
-}
-
 @media (max-width: 768px) {
-  .type {
-    font-size: 1.3em;
-  }
   .typed-cursor {
     font-size: 1.3em;
   }

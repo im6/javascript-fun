@@ -8,10 +8,19 @@
     color: #fff;
     font-size: 2.4em;
     margin: 0;
-    #sbttl2 {
-      transition: color 0.4s;
+    &:nth-child(2) {
+      transition: color 0.5s;
     }
   }
+}
+
+.type {
+  font-size: 1.4em;
+  display: inline-block;
+}
+
+.typedStrings {
+  display: none;
 }
 
 @media (max-width: 768px) {
@@ -26,6 +35,9 @@
       display: inline-block;
       margin-right: 5px;
     }
+  }
+  .type {
+    font-size: 1.3em;
   }
 }
 
