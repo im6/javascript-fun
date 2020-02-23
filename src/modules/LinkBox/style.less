@@ -1,1 +1,30 @@
+.box {
+  border-bottom: 1px dashed #ccc;
+  height: 60px;
+  padding: 4px 0 0 5px;
+  a {
+    color: #4aa0d5;
+    display: block;
+    margin: 5px 0;
+    text-decoration: none;
+    transition: color 0.4s;
+    &:hover {
+      color: #eb586f;
+    }
+  }
 
+  p {
+    margin: 0;
+    font-size: 13px;
+    color: #454553;
+  }
+}
+
+@media (max-width: 768px) {
+  .box {
+    height: 45px;
+    a {
+      margin: 2px 0;
+    }
+  }
+}

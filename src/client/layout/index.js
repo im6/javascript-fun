@@ -6,6 +6,7 @@ import '../../modules/Layout/components/Footer/style.less';
 import '../../modules/Layout/components/Sidebar/style.less';
 import '../../modules/BoxGroup/style.less';
 import '../../modules/GitBox/style.less';
+import '../../modules/LinkBox/style.less';
 import '../../modules/Layout/style.less';
 
 import Typed from 'typed.js';

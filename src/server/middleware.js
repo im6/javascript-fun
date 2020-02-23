@@ -5,7 +5,9 @@ import Layout from '../modules/Layout';
 
 import BoxGroup from '../modules/BoxGroup';
 import GitBox from '../modules/GitBox';
-import source from '../../public/github.json';
+import LinkBox from '../modules/LinkBox';
+import gitSource from '../../public/github.json';
+import siteSource from '../../public/site.json';
 import {
   iconCdnUrl,
   githubUrl,
@@ -15,13 +17,45 @@ import {
 } from '../config';
 
 export const linkMd = (req, res) => {
-  res.json({ hello: 'link' });
+  const app = (
+    <div>
+      {siteSource.list.map(v => {
+        return (
+          <BoxGroup key={v.id} title={v.name} isWebsite>
+            {v.list.map(v1 => {
+              return (
+                <LinkBox
+                  key={v1.url}
+                  name={v1.name}
+                  desc={v1.desc}
+                  url={v1.url}
+                />
+              );
+            })}
+          </BoxGroup>
+        );
+      })}
+    </div>
+  );
+  const htmlDOM = (
+    <Html
+      title="jsfun"
+      script={`/${pageScript[req.url]}`}
+      lastBuildDate={process.env.lastBuildDate || 'dev'}
+      version="abc"
+    >
+      <Layout page={pageLink[req.url]}>{app}</Layout>
+    </Html>
+  );
+  const html = renderToStaticMarkup(htmlDOM);
+  res.status(200);
+  res.send(`<!DOCTYPE html>${html}`);
 };
 
 export const gitMd = (req, res) => {
   const app = (
     <div>
-      {source
+      {gitSource
         .filter(v => v.page === pageLink[req.url])
         .map(v => {
           return (
