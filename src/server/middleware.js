@@ -1,7 +1,6 @@
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
-import AppContainer from '../components/AppContainer';
 import GitPage from '../pages/GitPage';
 import LinkPage from '../pages/LinkPage';
 
@@ -11,11 +10,7 @@ import siteSource from '../../public/site.json';
 import { iconCdnUrl, githubUrl, defaultIcon, pageLink } from '../config';
 
 export const linkMd = (req, res) => {
-  const htmlDOM = (
-    <AppContainer url={req.url}>
-      <LinkPage source={siteSource.list} />
-    </AppContainer>
-  );
+  const htmlDOM = <LinkPage url={req.url} source={siteSource.list} />;
   const html = renderToStaticMarkup(htmlDOM);
   res.status(200);
   res.send(`<!DOCTYPE html>${html}`);
@@ -23,14 +18,13 @@ export const linkMd = (req, res) => {
 
 export const gitMd = (req, res) => {
   const htmlDOM = (
-    <AppContainer url={req.url}>
-      <GitPage
-        source={gitSource.filter(v => v.page === pageLink[req.url])}
-        githubUrl={githubUrl}
-        iconCdnUrl={iconCdnUrl}
-        defaultIcon={defaultIcon}
-      />
-    </AppContainer>
+    <GitPage
+      url={req.url}
+      source={gitSource.filter(v => v.page === pageLink[req.url])}
+      githubUrl={githubUrl}
+      iconCdnUrl={iconCdnUrl}
+      defaultIcon={defaultIcon}
+    />
   );
   const html = renderToStaticMarkup(htmlDOM);
   res.status(200);

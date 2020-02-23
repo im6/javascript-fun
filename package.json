@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack --config ./webpack/develop.js",
     "build": "webpack --config ./webpack/production.js",
-    "web": "node ./dist/server"
+    "web": "node ./dist/node/server.js",
+    "render": "node ./dist/node/render.js"
   },
   "repository": "git+https://github.com/im6/javascript-fun.git",
   "author": "im6",

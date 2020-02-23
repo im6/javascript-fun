@@ -1,10 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import BoxGroup from '../../components/BoxGroup';
-import LinkBox from '../../components/LinkBox';
 
-const LinkPage = ({ source }) => (
-  <Fragment>
+import LinkBox from '../../components/LinkBox';
+import BoxGroup from '../../components/BoxGroup';
+import AppContainer from '../../components/AppContainer';
+
+const LinkPage = ({ url, source }) => (
+  <AppContainer url={url}>
     {source.map(v => (
       <BoxGroup key={v.id} title={v.name} isWebsite>
         {v.list.map(v1 => (
@@ -12,10 +14,11 @@ const LinkPage = ({ source }) => (
         ))}
       </BoxGroup>
     ))}
-  </Fragment>
+  </AppContainer>
 );
 
 LinkPage.propTypes = {
+  url: PropTypes.string,
   source: PropTypes.array,
 };
 

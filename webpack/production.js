@@ -72,9 +72,13 @@ const client = Object.assign(clientBaseConfig, {
 
 const server = Object.assign(serverBaseConfig, {
   mode: 'production',
+  entry: {
+    server: path.join(__dirname, '../src/server'),
+    render: path.join(__dirname, '../src/render'),
+  },
   output: {
-    path: path.join(__dirname, '../dist/server'),
-    filename: 'index.js',
+    path: path.join(__dirname, '../dist/node'),
+    filename: '[name].js',
   },
   module: {
     rules: [

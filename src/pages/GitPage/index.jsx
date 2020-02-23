@@ -1,10 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import AppContainer from '../../components/AppContainer';
 import BoxGroup from '../../components/BoxGroup';
 import GitBox from '../../components/GitBox';
 
-const GitPage = ({ source, githubUrl, iconCdnUrl, defaultIcon }) => (
-  <Fragment>
+const GitPage = ({ url, source, githubUrl, iconCdnUrl, defaultIcon }) => (
+  <AppContainer url={url}>
     {source.map(v => (
       <BoxGroup key={v.id} title={v.name}>
         {v.list.map(v1 => (
@@ -18,10 +19,11 @@ const GitPage = ({ source, githubUrl, iconCdnUrl, defaultIcon }) => (
         ))}
       </BoxGroup>
     ))}
-  </Fragment>
+  </AppContainer>
 );
 
 GitPage.propTypes = {
+  url: PropTypes.string,
   source: PropTypes.array,
   githubUrl: PropTypes.string,
   iconCdnUrl: PropTypes.string,

@@ -65,6 +65,7 @@ const client = Object.assign(clientBaseConfig, {
 const server = Object.assign(serverBaseConfig, {
   watch: true,
   mode: 'development',
+  entry: path.join(__dirname, '../src/server'),
   output: {
     path: path.join(__dirname, '../local/server'),
     filename: 'index.js',
