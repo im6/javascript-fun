@@ -1,18 +1,12 @@
 {
   "name": "javascript-fun",
-  "version": "0.3.2",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./server/task/index.js",
-    "start-dev": "NODE_ENV=development node ./server/task/index.js",
-    "dev": "webpack-dev-server --progress --open --profile --colors --config webpack/dev.js",
-    "prebuild": "node server/task/render/article1.js && node server/task/render/article2.js",
-    "build": "webpack --config webpack/prod.js",
-    "web": "PORT=3000 node ./server",
-    "dev1": "webpack --config ./webpack1/develop.js",
-    "build1": "webpack --config ./webpack1/production.js",
-    "web1": "node ./dist/server"
+    "dev": "webpack --config ./webpack/develop.js",
+    "build": "webpack --config ./webpack/production.js",
+    "web": "node ./dist/server"
   },
   "repository": "git+https://github.com/im6/javascript-fun.git",
   "author": "im6",
@@ -34,10 +28,8 @@
     "clean-webpack-plugin": "^3.0.0",
     "core-js": "^3.2.1",
     "css-loader": "^3.4.2",
-    "cssnano": "^4.1.10",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "highlight.js": "^9.15.8",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
     "lodash.groupby": "^4.6.0",
@@ -47,7 +39,6 @@
     "numeral": "^2.0.6",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
-    "pug": "^2.0.4",
     "purecss": "^1.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -58,7 +49,6 @@
     "uuid": "^3.4.0",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.7.2",
     "webpack-node-externals": "^1.7.2"
   }
 }
