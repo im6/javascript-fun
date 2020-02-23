@@ -40,7 +40,7 @@ const generateSitePage = url => {
   const htmlDOM = (
     <LinkPage
       url={url}
-      source={siteSource.list}
+      source={siteSource}
       criticalCss={<style dangerouslySetInnerHTML={{ __html: css1 }} />}
     />
   );

@@ -104,7 +104,7 @@ const server = Object.assign(serverBaseConfig, {
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
-      'process.env.version': JSON.stringify(Date.now()),
+      'process.env.version': JSON.stringify(Date.now().toString()),
     }),
     new ServerStartPlugin('./local/server'),
   ],

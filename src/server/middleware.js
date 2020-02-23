@@ -10,7 +10,7 @@ import siteSource from '../../public/site.json';
 import { iconCdnUrl, githubUrl, defaultIcon, pageLink } from '../config';
 
 export const linkMd = (req, res) => {
-  const htmlDOM = <LinkPage url={req.url} source={siteSource.list} />;
+  const htmlDOM = <LinkPage url={req.url} source={siteSource} />;
   const html = renderToStaticMarkup(htmlDOM);
   res.status(200);
   res.send(`<!DOCTYPE html>${html}`);
