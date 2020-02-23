@@ -48,4 +48,8 @@ const TopNav = ({ page }) => {
   );
 };
 
+TopNav.prototype = {
+  page: PropTypes.number,
+};
+
 export default TopNav;

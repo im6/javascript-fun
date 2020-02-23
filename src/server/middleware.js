@@ -1,11 +1,12 @@
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import Html from '../modules/Html';
-import Layout from '../modules/Layout';
 
-import BoxGroup from '../modules/BoxGroup';
-import GitBox from '../modules/GitBox';
-import LinkBox from '../modules/LinkBox';
+import Html from '../components/Html';
+import Layout from '../components/Layout';
+import BoxGroup from '../components/BoxGroup';
+import GitBox from '../components/GitBox';
+import LinkBox from '../components/LinkBox';
+
 import gitSource from '../../public/github.json';
 import siteSource from '../../public/site.json';
 import {

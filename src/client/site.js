@@ -1,2 +1,2 @@
 import './layout';
-import '../modules/LinkBox/style.less';
+import '../components/LinkBox/style.less';

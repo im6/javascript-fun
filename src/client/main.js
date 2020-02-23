@@ -1,6 +1,6 @@
 import './layout';
-import '../modules/GitBox/style.less';
-import { updateTime } from '../modules/Layout/style.less';
+import '../components/GitBox/style.less';
+import { updateTime } from '../components/Layout/style.less';
 
 const setTime = () => {
   const now = new Date();
