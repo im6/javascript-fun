@@ -12,7 +12,7 @@ import {
   pageAssetFileName,
 } from '../../config';
 const { version } = process.env;
-const AppContainer = ({ url, children }) => (
+const AppContainer = ({ url, children, criticalCss }) => (
   <Html
     year={leftNavText[0]}
     favIconUrl={`${iconCdnUrl}/fav.ico`}
@@ -20,6 +20,7 @@ const AppContainer = ({ url, children }) => (
     style={`${publicPath}/${pageAssetFileName[url]}.css`}
     lastBuildDate={process.env.lastBuildDate || 'dev'}
     version={version}
+    criticalCss={criticalCss}
   >
     <Layout page={pageLink[url]} leftNavText={leftNavText}>
       {children}
@@ -29,6 +30,7 @@ const AppContainer = ({ url, children }) => (
 
 AppContainer.propTypes = {
   url: PropTypes.string.isRequired,
+  criticalCss: PropTypes.node,
   children: PropTypes.node.isRequired,
 };
 

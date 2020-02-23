@@ -4,8 +4,15 @@ import AppContainer from '../../components/AppContainer';
 import BoxGroup from '../../components/BoxGroup';
 import GitBox from '../../components/GitBox';
 
-const GitPage = ({ url, source, githubUrl, iconCdnUrl, defaultIcon }) => (
-  <AppContainer url={url}>
+const GitPage = ({
+  url,
+  source,
+  githubUrl,
+  iconCdnUrl,
+  defaultIcon,
+  criticalCss,
+}) => (
+  <AppContainer url={url} criticalCss={criticalCss}>
     {source.map(v => (
       <BoxGroup key={v.id} title={v.name}>
         {v.list.map(v1 => (
@@ -28,6 +35,7 @@ GitPage.propTypes = {
   githubUrl: PropTypes.string,
   iconCdnUrl: PropTypes.string,
   defaultIcon: PropTypes.string,
+  criticalCss: PropTypes.node,
 };
 
 export default GitPage;

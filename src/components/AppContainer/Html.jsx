@@ -1,9 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CriticalCss from './CriticalCss';
+import PureCss from './PureCss';
 import MetaInfo from './MetaInfo';
 
-const Html = ({ favIconUrl, year, style, script, children, version }) => (
+const Html = ({
+  favIconUrl,
+  year,
+  style,
+  script,
+  children,
+  version,
+  criticalCss,
+}) => (
   <html lang="en">
     <head>
       <MetaInfo />
@@ -12,8 +20,8 @@ const Html = ({ favIconUrl, year, style, script, children, version }) => (
         JavaScript Library | 前端框架 | web前端开发 | JS library Ranking
       </title>
       <link rel="shortcut icon" type="image/png" href={favIconUrl} />
-      <CriticalCss />
-      <link href={`${style}?${version}`} rel="stylesheet" />
+      <PureCss />
+      {criticalCss || <link href={`${style}?${version}`} rel="stylesheet" />}
     </head>
     <body>
       {children}
@@ -28,6 +36,8 @@ Html.propTypes = {
   lastBuildDate: PropTypes.string.isRequired,
   script: PropTypes.string.isRequired,
   children: PropTypes.object.isRequired,
+  version: PropTypes.string,
+  criticalCss: PropTypes.node,
 };
 
 export default Html;

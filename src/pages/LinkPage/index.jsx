@@ -5,8 +5,8 @@ import LinkBox from '../../components/LinkBox';
 import BoxGroup from '../../components/BoxGroup';
 import AppContainer from '../../components/AppContainer';
 
-const LinkPage = ({ url, source }) => (
-  <AppContainer url={url}>
+const LinkPage = ({ url, source, criticalCss }) => (
+  <AppContainer url={url} criticalCss={criticalCss}>
     {source.map(v => (
       <BoxGroup key={v.id} title={v.name} isWebsite>
         {v.list.map(v1 => (
@@ -20,6 +20,7 @@ const LinkPage = ({ url, source }) => (
 LinkPage.propTypes = {
   url: PropTypes.string,
   source: PropTypes.array,
+  criticalCss: PropTypes.node,
 };
 
 export default LinkPage;

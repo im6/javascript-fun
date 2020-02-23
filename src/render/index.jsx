@@ -4,10 +4,6 @@ import { renderToStaticMarkup } from 'react-dom/server';
 
 import GitPage from '../pages/GitPage';
 import LinkPage from '../pages/LinkPage';
-
-import gitSource from '../../public/github.json';
-import siteSource from '../../public/site.json';
-
 import {
   iconCdnUrl,
   githubUrl,
@@ -17,6 +13,9 @@ import {
 } from '../config';
 
 const generateGitPage = url => {
+  const css0 = fs.readFileSync('dist/public/main.css');
+  const rawdata = fs.readFileSync('public/github.json');
+  const gitSource = JSON.parse(rawdata);
   const htmlDOM = (
     <GitPage
       url={url}
@@ -24,6 +23,7 @@ const generateGitPage = url => {
       githubUrl={githubUrl}
       iconCdnUrl={iconCdnUrl}
       defaultIcon={defaultIcon}
+      criticalCss={<style dangerouslySetInnerHTML={{ __html: css0 }} />}
     />
   );
   const html = `<!DOCTYPE html>${renderToStaticMarkup(htmlDOM)}`;
@@ -34,7 +34,16 @@ const generateGitPage = url => {
 };
 
 const generateSitePage = url => {
-  const htmlDOM = <LinkPage url={url} source={siteSource.list} />;
+  const css1 = fs.readFileSync('dist/public/site.css');
+  const rawdata = fs.readFileSync('public/site.json');
+  const siteSource = JSON.parse(rawdata);
+  const htmlDOM = (
+    <LinkPage
+      url={url}
+      source={siteSource.list}
+      criticalCss={<style dangerouslySetInnerHTML={{ __html: css1 }} />}
+    />
+  );
   const html = `<!DOCTYPE html>${renderToStaticMarkup(htmlDOM)}`;
   const jsonOutputUrl = `${renderOutputFolder}${url}index.html`;
   console.log(jsonOutputUrl);
