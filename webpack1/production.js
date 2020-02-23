@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const CompressionPlugin = require('compression-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
+const uuid = require('uuid');
 
 const {
   clientBaseConfig,
@@ -112,6 +113,7 @@ const server = Object.assign(serverBaseConfig, {
       'process.env.lastBuildDate': JSON.stringify(
         `${new Date().toLocaleString()} EST`
       ),
+      'process.env.version': JSON.stringify(uuid.v1().substring(0, 8)),
     }),
   ],
 });

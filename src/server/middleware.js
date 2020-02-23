@@ -9,6 +9,7 @@ import LinkBox from '../modules/LinkBox';
 import gitSource from '../../public/github.json';
 import siteSource from '../../public/site.json';
 import {
+  publicPath,
   leftNavText,
   iconCdnUrl,
   githubUrl,
@@ -16,6 +17,8 @@ import {
   pageLink,
   pageAssetFileName,
 } from '../config';
+
+const { version } = process.env;
 
 export const linkMd = (req, res) => {
   const app = siteSource.list.map(v => {
@@ -33,10 +36,10 @@ export const linkMd = (req, res) => {
     <Html
       year={leftNavText[0]}
       favIconUrl={`${iconCdnUrl}/fav.ico`}
-      script={`/${pageAssetFileName[req.url]}.js`}
-      style={`/${pageAssetFileName[req.url]}.css`}
+      script={`${publicPath}/${pageAssetFileName[req.url]}.js`}
+      style={`${publicPath}/${pageAssetFileName[req.url]}.css`}
       lastBuildDate={process.env.lastBuildDate || 'dev'}
-      version="abc"
+      version={version}
     >
       <Layout page={pageLink[req.url]} leftNavText={leftNavText}>
         {app}
@@ -72,10 +75,10 @@ export const gitMd = (req, res) => {
     <Html
       year={leftNavText[0]}
       favIconUrl={`${iconCdnUrl}/fav.ico`}
-      style={`/${pageAssetFileName[req.url]}.css`}
-      script={`/${pageAssetFileName[req.url]}.js`}
+      style={`${publicPath}/${pageAssetFileName[req.url]}.css`}
+      script={`${publicPath}/${pageAssetFileName[req.url]}.js`}
       lastBuildDate={process.env.lastBuildDate || 'dev'}
-      version="abc"
+      version={version}
     >
       <Layout page={pageLink[req.url]} leftNavText={leftNavText}>
         {app}
