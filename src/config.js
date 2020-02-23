@@ -24,3 +24,10 @@ export const pageLink = {
   '/node/': 2,
   '/library/': 3,
 };
+
+export const pageScript = {
+  '/': 'main.js',
+  '/node/': 'main.js',
+  '/library/': 'main.js',
+  '/site/': 'site.js',
+};

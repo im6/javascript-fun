@@ -9,18 +9,12 @@ import '../../modules/GitBox/style.less';
 import '../../modules/Layout/style.less';
 
 import Typed from 'typed.js';
-
-const TYPECOLOR = [
-  ['#7bd0ff', '#F38181'],
-  ['#e8ec8b', '#57cc9d'],
-  ['#EAFFD0', '#88A6E5'],
-  ['#ffb077', '#b0cadb'],
-];
+import { leftNavTextColors } from '../../config';
 
 const init = () => {
   const typeElem = document.getElementsByClassName('type')[0];
   const funTxt = document.getElementById('sbttl2');
-  const COLORCOUNT = TYPECOLOR.length;
+  const COLORCOUNT = leftNavTextColors.length;
   const dropdowns = document.getElementsByTagName('select');
   for (let i = 0; i < dropdowns.length; i += 1) {
     dropdowns[i].onchange = e => {
@@ -37,9 +31,9 @@ const init = () => {
     autoInsertCss: false,
     preStringTyped: index => {
       const typeCurosr = document.getElementsByClassName('typed-cursor')[0];
-      typeCurosr.style.color = TYPECOLOR[index % COLORCOUNT][0];
-      typeElem.style.color = TYPECOLOR[index % COLORCOUNT][0];
-      funTxt.style.color = TYPECOLOR[index % COLORCOUNT][1];
+      typeCurosr.style.color = leftNavTextColors[index % COLORCOUNT][0];
+      typeElem.style.color = leftNavTextColors[index % COLORCOUNT][0];
+      funTxt.style.color = leftNavTextColors[index % COLORCOUNT][1];
     },
   });
 };

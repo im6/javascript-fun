@@ -6,7 +6,13 @@ import Layout from '../modules/Layout';
 import BoxGroup from '../modules/BoxGroup';
 import GitBox from '../modules/GitBox';
 import source from '../../public/github.json';
-import { iconCdnUrl, githubUrl, defaultIcon, pageLink } from '../config';
+import {
+  iconCdnUrl,
+  githubUrl,
+  defaultIcon,
+  pageLink,
+  pageScript,
+} from '../config';
 
 export const linkMd = (req, res) => {
   res.json({ hello: 'link' });
@@ -39,7 +45,7 @@ export const gitMd = (req, res) => {
   const htmlDOM = (
     <Html
       title="jsfun"
-      script="/main.js"
+      script={`/${pageScript[req.url]}`}
       lastBuildDate={process.env.lastBuildDate || 'dev'}
       version="abc"
     >
