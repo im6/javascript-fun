@@ -6,7 +6,6 @@ const rp = require('request-promise');
 const sqlConn = require('../mysqlConnection');
 const CONCURRENCY = 10;
 const TIMEOUT = 5 * 1000;
-const JOBFLAG = '_JOBDONE';
 const showInteger = true;
 
 let finished = []; // must be global for recursive purpose
@@ -29,9 +28,10 @@ const privateFn = {
           reject(error);
           return;
         }
-        const unfinished = data.filter(v => !v[JOBFLAG]);
-        finished = finished.concat(data.filter(v => v[JOBFLAG]));
+        const unfinished = data.filter(v => v.star === null);
+        finished = finished.concat(data.filter(v => v.star !== null));
         if (unfinished.length > 0) {
+          console.log(`retry ${unfinished.length} pkgs...`);
           return privateFn.promiseLoop(unfinished, resolve, reject);
         } else {
           resolve(finished);
@@ -60,7 +60,6 @@ const privateFn = {
           const num = starElem.children[0].data.trim();
           obj.star = num;
         }
-        obj[JOBFLAG] = true;
         cb(null, obj);
         return obj;
       })
@@ -74,7 +73,7 @@ const privateFn = {
 module.exports = () => {
   finished = [];
   const deferred = new Promise((resolve, reject) => {
-    const qr = `SELECT * FROM git WHERE \`group\` IS NOT NULL ${
+    const qr = `SELECT *, NULL as star FROM git WHERE \`group\` IS NOT NULL ${
       process.env.NODE_ENV === 'development' ? 'AND id > 500' : ''
     }`;
     sqlConn.sqlExecOne(qr).then(

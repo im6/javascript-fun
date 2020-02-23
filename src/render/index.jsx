@@ -14,7 +14,7 @@ import {
 
 const generateGitPage = url => {
   const css0 = fs.readFileSync('dist/public/main.css');
-  const rawdata = fs.readFileSync('public/github.json');
+  const rawdata = fs.readFileSync('dist/github.json');
   const gitSource = JSON.parse(rawdata);
   const htmlDOM = (
     <GitPage
@@ -35,7 +35,7 @@ const generateGitPage = url => {
 
 const generateSitePage = url => {
   const css1 = fs.readFileSync('dist/public/site.css');
-  const rawdata = fs.readFileSync('public/site.json');
+  const rawdata = fs.readFileSync('dist/site.json');
   const siteSource = JSON.parse(rawdata);
   const htmlDOM = (
     <LinkPage

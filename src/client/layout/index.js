@@ -1,4 +1,3 @@
-import 'core-js/features/array';
 import Typed from 'typed.js';
 
 import './style.less';

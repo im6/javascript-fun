@@ -31,7 +31,7 @@ const Html = ({
 );
 
 Html.propTypes = {
-  year: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired,
   favIconUrl: PropTypes.string.isRequired,
   lastBuildDate: PropTypes.string.isRequired,
   script: PropTypes.string.isRequired,

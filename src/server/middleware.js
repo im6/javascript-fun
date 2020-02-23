@@ -4,8 +4,8 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import GitPage from '../pages/GitPage';
 import LinkPage from '../pages/LinkPage';
 
-import gitSource from '../../public/github.json';
-import siteSource from '../../public/site.json';
+import gitSource from '../../dist/github.json';
+import siteSource from '../../dist/site.json';
 
 import { iconCdnUrl, githubUrl, defaultIcon, pageLink } from '../config';
 

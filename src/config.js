@@ -7,7 +7,7 @@ export const iconCdnUrl = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons';
 export const defaultIcon = 'github2.svg';
 export const githubUrl = 'https://github.com';
 export const leftNavText = [
-  '2020',
+  new Date().getFullYear(),
   'Developer',
   'Designer',
   'Architect',
