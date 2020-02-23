@@ -1,4 +1,4 @@
-# JavaScript.Fun
+# JavaScript.Fun ![](https://github.com/im6/javascript-fun/workflows/build/badge.svg)
 
 Code generator for [javascript.fun](https://www.javascript.fun/)
 

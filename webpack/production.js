@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 const uuid = require('uuid');
 
 const {
@@ -48,7 +49,7 @@ const client = Object.assign(clientBaseConfig, {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: [require('autoprefixer')()],
+              plugins: [autoprefixer()],
             },
           },
           'less-loader',
