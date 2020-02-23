@@ -6,6 +6,7 @@ const BoxGroup = ({ title, children, isWebsite }) => (
   <Fragment>
     <h3 className={isWebsite ? style.websiteTitle : style.title}>{title}</h3>
     <div className="pure-g">{children}</div>
+    <br />
   </Fragment>
 );
 

@@ -22,6 +22,7 @@ export const pageLink = {
   '/': 1,
   '/node/': 2,
   '/library/': 3,
+  '/site/': 4,
 };
 
 export const pageScript = {

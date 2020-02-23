@@ -4,7 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ServerStartPlugin = require('./plugins/ServerStartPlugin');
 
 const {
-  withoutCssModuleFiles,
   clientBaseConfig,
   serverBaseConfig,
   localIdentName,
@@ -14,17 +13,7 @@ const client = Object.assign(clientBaseConfig, {
   watch: true,
   mode: 'development',
   devtool: 'inline-source-map',
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-      cacheGroups: {
-        default: false,
-        vendors: false,
-      },
-    },
-  },
   output: {
-    publicPath: '/static/',
     path: path.join(__dirname, '../local/public'),
     filename: '[name].js',
   },
