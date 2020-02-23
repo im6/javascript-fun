@@ -81,5 +81,9 @@ module.exports = () => {
     vm.module = 'site';
     vm.page = 4;
     privateFn.render(vm, HTMLINPUT, HTMLOUTPUT);
+
+    const jsonOutputUrl = path.join(__dirname, `../../../public/site.json`);
+    fs.writeFileSync(jsonOutputUrl, JSON.stringify(vm));
+    console.log('output site json file');
   });
 };

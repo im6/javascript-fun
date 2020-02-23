@@ -114,7 +114,7 @@ module.exports = done => {
 
       const jsonOutputUrl = path.join(__dirname, `../../../public/github.json`);
       fs.writeFileSync(jsonOutputUrl, JSON.stringify(data));
-      console.log('output json file');
+      console.log('output github json file');
 
       done();
     },
