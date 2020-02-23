@@ -2,18 +2,18 @@ import 'core-js/features/array';
 import Typed from 'typed.js';
 
 import './style.less';
-import '../../components/Layout/components/TopNav/style.less';
-import '../../components/Layout/components/Footer/style.less';
-import '../../components/Layout/components/Sidebar/style.less';
+import '../../components/AppContainer/Layout/components/TopNav/style.less';
+import '../../components/AppContainer/Layout/components/Footer/style.less';
+import '../../components/AppContainer/Layout/components/Sidebar/style.less';
+import '../../components/AppContainer/Layout/style.less';
 import '../../components/BoxGroup/style.less';
-import '../../components/Layout/style.less';
 
 import { leftNavTextColors } from '../../config';
 import {
   type,
   header,
   typedStrings,
-} from '../../components/Layout/components/Sidebar/style.less';
+} from '../../components/AppContainer/Layout/components/Sidebar/style.less';
 
 const initTyped = () => {
   const typeElem = document.getElementsByClassName(type)[0];

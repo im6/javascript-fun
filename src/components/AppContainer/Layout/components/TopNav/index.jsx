@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import style from './style.less';
-import { iconCdnUrl, pageLink } from '../../../../config';
+import { iconCdnUrl, pageLink } from '../../../../../config';
 
 const getSelectedState = (currentPage, link) => {
   return classNames({
