@@ -1,6 +1,7 @@
+@import '../../constant.less';
 .typed-cursor {
   opacity: 1;
-  font-size: 1.4em;
+  font-size: @side-bar-typed-font-size;
   -webkit-animation: blink 0.7s infinite;
   -moz-animation: blink 0.7s infinite;
   animation: blink 0.7s infinite;
@@ -41,6 +42,6 @@
 
 @media (max-width: 768px) {
   .typed-cursor {
-    font-size: 1.3em;
+    font-size: @side-bar-typed-font-size-mobile;
   }
 }

@@ -1,3 +1,5 @@
+@import '../../constant.less';
+
 .box {
   border-top: 1px solid #e8e8e8;
   padding: 6px;
@@ -17,17 +19,16 @@
     //border: 1px solid #3d4f5d;
     h5 {
       margin: 0 0 7px 0;
-      color: #6d6d6d;
+      color: @git-name-color;
       font-size: 18px;
       cursor: default;
     }
     div {
       margin: 0;
-      color: #6b6b6b;
       font-size: 14px;
       a {
         text-decoration: none;
-        color: #546e98;
+        color: @star-text-color;
       }
     }
   }
@@ -41,7 +42,6 @@
   }
   .box .right h5 {
     margin: 0 0 5px 0;
-    color: #6d6d6d;
     font-size: 14px;
   }
   .box .right div {

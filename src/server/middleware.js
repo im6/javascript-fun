@@ -10,7 +10,6 @@ import gitSource from '../../public/github.json';
 import siteSource from '../../public/site.json';
 import {
   leftNavText,
-  leftNavBgColor,
   iconCdnUrl,
   githubUrl,
   defaultIcon,
@@ -38,11 +37,7 @@ export const linkMd = (req, res) => {
       lastBuildDate={process.env.lastBuildDate || 'dev'}
       version="abc"
     >
-      <Layout
-        page={pageLink[req.url]}
-        leftNavText={leftNavText}
-        leftNavBgColor={leftNavBgColor}
-      >
+      <Layout page={pageLink[req.url]} leftNavText={leftNavText}>
         {app}
       </Layout>
     </Html>
@@ -80,11 +75,7 @@ export const gitMd = (req, res) => {
       lastBuildDate={process.env.lastBuildDate || 'dev'}
       version="abc"
     >
-      <Layout
-        page={pageLink[req.url]}
-        leftNavText={leftNavText}
-        leftNavBgColor={leftNavBgColor}
-      >
+      <Layout page={pageLink[req.url]} leftNavText={leftNavText}>
         {app}
       </Layout>
     </Html>

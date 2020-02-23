@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import './style.less';
+import style from './style.less';
 
 const Footer = () => (
-  <footer>
+  <footer className={style.footer}>
     <span>
       Made with &nbsp;
       <svg

@@ -6,12 +6,9 @@ import SideBar from './components/Sidebar';
 
 import style from './style.less';
 
-const Layout = ({ page, children, leftNavText, leftNavBgColor }) => (
+const Layout = ({ page, children, leftNavText }) => (
   <div className="pure-g">
-    <div
-      className={`pure-u-1 pure-u-md-1-6 pure-u-lg-1-5 ${style.left}`}
-      style={{ background: leftNavBgColor }}
-    >
+    <div className={`pure-u-1 pure-u-md-1-6 pure-u-lg-1-5 ${style.left}`}>
       <SideBar words={leftNavText} />
     </div>
     <div className={`pure-u-1 pure-u-md-5-6 pure-u-lg-4-5 ${style.right}`}>
@@ -28,7 +25,6 @@ Layout.propTypes = {
   page: PropTypes.number,
   children: PropTypes.node,
   leftNavText: PropTypes.array,
-  leftNavBgColor: PropTypes.string,
 };
 
 export default Layout;

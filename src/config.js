@@ -2,7 +2,6 @@ export const port = 3000;
 export const iconCdnUrl = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons';
 export const defaultIcon = 'github2.svg';
 export const githubUrl = 'https://github.com';
-export const leftNavBgColor = '#3d4f5d';
 export const leftNavText = [
   '2020',
   'Developer',
