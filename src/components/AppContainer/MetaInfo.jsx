@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 
 const MetaInfo = () => (
   <Fragment>
@@ -30,5 +29,4 @@ const MetaInfo = () => (
 );
 
 MetaInfo.propTypes = {};
-
 export default MetaInfo;
