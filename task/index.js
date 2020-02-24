@@ -9,6 +9,6 @@ const siteOutputPath = path.join(process.cwd(), 'dist/site.json');
 
 createSitePage(siteOutputPath);
 createGithubPage(gitOutputPath, () => {
-  console.log('finished Sucess!');
+  console.log('Finish successfully!');
   process.exit();
 });

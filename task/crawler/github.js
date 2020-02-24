@@ -6,18 +6,19 @@ const rp = require('request-promise');
 const sqlConn = require('../mysqlConnection');
 const CONCURRENCY = 10;
 const TIMEOUT = 5 * 1000;
-const showInteger = true;
+const SHOWFULLNUM = true;
 
 let finished = []; // must be global for recursive purpose
 
 const privateFn = {
-  promiseLoop: (data0, resolve, reject) => {
-    console.log(`downloading ${data0.length} packages...`);
+  promiseLoop: (taskList, resolve, reject) => {
+    console.log(`downloading ${taskList.length} packages...`);
     async.mapLimit(
-      data0,
+      taskList,
       CONCURRENCY,
       (v, cb) => {
         if (v.name.length === 0) {
+          // empty string
           const gitList = v.github.split('/');
           v.name = gitList[1];
         }
@@ -51,7 +52,7 @@ const privateFn = {
       .then($ => {
         const elems = $('a.social-count.js-social-count');
         const starElem = elems[0];
-        if (showInteger) {
+        if (SHOWFULLNUM) {
           const numLabel = starElem.attribs['aria-label'];
           const numStr = numLabel.split(' ')[0];
           const num = numeral(numStr).format('0,0');
@@ -65,7 +66,7 @@ const privateFn = {
       })
       .catch(() => {
         console.error(`crawler timeout on ${obj.name}`);
-        cb(null, obj);
+        cb(null, obj); // no err object, but collect failed items for next round.
       });
   },
 };
@@ -73,9 +74,7 @@ const privateFn = {
 module.exports = () => {
   finished = [];
   const deferred = new Promise((resolve, reject) => {
-    const qr = `SELECT *, NULL as star FROM git WHERE \`group\` IS NOT NULL ${
-      process.env.NODE_ENV === 'development' ? 'AND id > 500' : ''
-    }`;
+    const qr = 'SELECT *, NULL as star FROM git WHERE `group` IS NOT NULL';
     sqlConn.sqlExecOne(qr).then(
       db => {
         privateFn.promiseLoop(db, resolve, reject);
