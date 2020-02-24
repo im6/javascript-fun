@@ -24,6 +24,14 @@ const Html = ({
       {criticalCss || <link href={`${style}?${version}`} rel="stylesheet" />}
     </head>
     <body>
+      <noscript>
+        <iframe
+          src="https://www.googletagmanager.com/ns.html?id=GTM-KQ9MZHN"
+          height="0"
+          width="0"
+          style={{ display: 'none', visibility: 'hidden' }}
+        />
+      </noscript>
       {children}
       <script src={`${script}?${version}`} type="text/javascript" />
     </body>
