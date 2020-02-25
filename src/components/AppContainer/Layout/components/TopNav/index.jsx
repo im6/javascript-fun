@@ -2,54 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import style from './style.less';
-import { iconCdnUrl, pageLink } from '../../../../../config';
+import { iconCdnUrl, topNavConfig } from '../../../../../config';
 
-const getSelectedState = (currentPage, link) => {
-  return classNames({
-    'pure-button': true,
-    'pure-button-active': currentPage === pageLink[link],
-  });
-};
-
-const TopNav = ({ page }) => {
+const TopNav = ({ url }) => {
   return (
     <div className={style.menubar}>
       <div className="pure-button-group" role="group">
-        <a
-          className={getSelectedState(page, '/')}
-          title="Front End Framework"
-          href="/"
-        >
-          <img src={`${iconCdnUrl}/vue.png`} alt="framework" />
-        </a>
-        <a
-          className={getSelectedState(page, '/node/')}
-          title="Node.js Framework"
-          href="/node/"
-        >
-          <img src={`${iconCdnUrl}/mongo.png`} alt="node" />
-        </a>
-        <a
-          className={getSelectedState(page, '/library/')}
-          title="JS Library"
-          href="/library/"
-        >
-          <img src={`${iconCdnUrl}/bower.png`} alt="library" />
-        </a>
-        <a
-          className={getSelectedState(page, '/site/')}
-          title="Tool"
-          href="/site/"
-        >
-          <img src={`${iconCdnUrl}/site.png`} alt="site" />
-        </a>
+        {topNavConfig.map(v => (
+          <a
+            key={v.to}
+            className={classNames({
+              'pure-button': true,
+              'pure-button-active': v.to === url,
+            })}
+            title={v.title}
+            href={v.to}
+          >
+            <img src={`${iconCdnUrl}/${v.img}`} alt={v.alt} />
+          </a>
+        ))}
       </div>
     </div>
   );
 };
 
 TopNav.prototype = {
-  page: PropTypes.number,
+  url: PropTypes.string.isRequired,
 };
 
 export default TopNav;

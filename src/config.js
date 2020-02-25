@@ -4,7 +4,13 @@ export const staticFolder =
 export const renderOutputFolder = 'dist/views';
 export const publicPath = '/assets';
 export const iconCdnUrl = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons';
-export const defaultIcon = 'github2.svg';
+export const defaultIcon = [
+  'github0.png',
+  'github1.svg',
+  'github2.svg',
+  'github3.png',
+  'github4.png',
+][0];
 export const githubUrl = 'https://github.com';
 export const leftNavText = [
   new Date().getFullYear(),
@@ -22,16 +28,21 @@ export const leftNavTextColors = [
   ['#ffb077', '#b0cadb'],
 ];
 
-export const pageLink = {
-  '/': 1,
-  '/node/': 2,
-  '/library/': 3,
-  '/site/': 4,
-};
-
 export const pageAssetFileName = {
   '/': 'main',
   '/node/': 'main',
   '/library/': 'main',
   '/site/': 'site',
 };
+
+export const topNavConfig = [
+  { to: '/', img: 'vue.png', title: 'Front End Framework', alt: 'framework' },
+  { to: '/node/', img: 'mongo.png', title: 'Node.js Framework', alt: 'node' },
+  { to: '/library/', img: 'bower.png', title: 'JS Library', alt: 'library' },
+  { to: '/site/', img: 'site.png', title: 'Tool', alt: 'site' },
+];
+
+export const pageLink = topNavConfig.reduce((acc, cur, k) => {
+  acc[cur.to] = k + 1;
+  return acc;
+}, {});

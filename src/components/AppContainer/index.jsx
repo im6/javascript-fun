@@ -8,7 +8,6 @@ import {
   publicPath,
   leftNavText,
   iconCdnUrl,
-  pageLink,
   pageAssetFileName,
 } from '../../config';
 const { version } = process.env;
@@ -22,7 +21,7 @@ const AppContainer = ({ url, children, criticalCss }) => (
     version={version}
     criticalCss={criticalCss}
   >
-    <Layout page={pageLink[url]} leftNavText={leftNavText}>
+    <Layout url={url} leftNavText={leftNavText}>
       {children}
     </Layout>
   </Html>

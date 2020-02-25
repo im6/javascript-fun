@@ -6,23 +6,23 @@ import SideBar from './components/Sidebar';
 
 import style from './style.less';
 
-const Layout = ({ page, children, leftNavText }) => (
+const Layout = ({ url, children, leftNavText }) => (
   <div className="pure-g">
     <div className={`pure-u-1 pure-u-md-1-6 pure-u-lg-1-5 ${style.left}`}>
       <SideBar words={leftNavText} />
     </div>
     <div className={`pure-u-1 pure-u-md-5-6 pure-u-lg-4-5 ${style.right}`}>
-      <TopNav page={page} />
+      <TopNav url={url} />
       <div className={style.main}>{children}</div>
       <p className={style.updateTime} />
-      <TopNav page={page} />
+      <TopNav url={url} />
       <Footer />
     </div>
   </div>
 );
 
 Layout.propTypes = {
-  page: PropTypes.number,
+  url: PropTypes.string.isRequired,
   children: PropTypes.node,
   leftNavText: PropTypes.array,
 };
