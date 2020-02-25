@@ -5,10 +5,12 @@ import style from './style.less';
 const LinkBox = ({ url, name, desc }) => (
   <div className="pure-u-xl-1-4 pure-u-lg-1-3 pure-u-md-1-2 pure-u-sm-1-2 pure-u-1-2">
     <div className={style.box}>
-      <a href={url} target="_blank">
-        {name}
-      </a>
-      {desc && <p>{desc}</p>}
+      <h3>
+        <a href={url} target="_blank">
+          {name}
+        </a>
+      </h3>
+      <p>{desc}&nbsp;</p>
     </div>
   </div>
 );
