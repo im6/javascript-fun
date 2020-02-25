@@ -14,7 +14,7 @@ const Layout = ({ url, children, leftNavText }) => (
     <div className={`pure-u-1 pure-u-md-5-6 pure-u-lg-4-5 ${style.right}`}>
       <TopNav url={url} />
       <div className={style.main}>{children}</div>
-      <p className={style.updateTime} />
+      {url !== '/site/' && <p className={style.updateTime} />}
       <TopNav url={url} />
       <Footer />
     </div>
