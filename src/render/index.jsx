@@ -15,9 +15,11 @@ import {
 
 const gitJsonDir = 'dist/github.json';
 const siteJsonDir = 'dist/site.json';
+const gitCssDir = 'dist/public/main.css';
+const siteCssDir = 'dist/public/site.css';
 
 const generateGitPage = url => {
-  const css0 = fs.readFileSync('dist/public/main.css');
+  const appCss = fs.readFileSync(gitCssDir);
   const rawdata = fs.readFileSync(gitJsonDir);
   const gitSource = JSON.parse(rawdata);
   const htmlDOM = (
@@ -27,7 +29,7 @@ const generateGitPage = url => {
       githubUrl={githubUrl}
       iconCdnUrl={iconCdnUrl}
       defaultIcon={defaultIcon}
-      criticalCss={<style dangerouslySetInnerHTML={{ __html: css0 }} />}
+      criticalCss={<style dangerouslySetInnerHTML={{ __html: appCss }} />}
     />
   );
   const html = `<!DOCTYPE html>${renderToStaticMarkup(htmlDOM)}`;
@@ -37,14 +39,14 @@ const generateGitPage = url => {
 };
 
 const generateSitePage = url => {
-  const css1 = fs.readFileSync('dist/public/site.css');
+  const appCss = fs.readFileSync(siteCssDir);
   const rawdata = fs.readFileSync(siteJsonDir);
   const siteSource = JSON.parse(rawdata);
   const htmlDOM = (
     <LinkPage
       url={url}
       source={siteSource}
-      criticalCss={<style dangerouslySetInnerHTML={{ __html: css1 }} />}
+      criticalCss={<style dangerouslySetInnerHTML={{ __html: appCss }} />}
     />
   );
   const html = `<!DOCTYPE html>${renderToStaticMarkup(htmlDOM)}`;

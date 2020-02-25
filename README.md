@@ -4,11 +4,11 @@ Code generator for [javascript.fun](https://www.javascript.fun/)
 
 ## Highlight
 
-- react.js
-- webpack
-- express.js
+- React.js
+- Webpack
+- Express.js
 - mySQL
-- async
+- Async
 - [Pure.css](https://purecss.io/)
 
 ## Quick Start

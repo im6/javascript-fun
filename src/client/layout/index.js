@@ -35,6 +35,4 @@ const initTyped = () => {
   });
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  initTyped();
-});
+initTyped();
