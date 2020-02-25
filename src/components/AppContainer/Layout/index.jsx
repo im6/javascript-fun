@@ -13,8 +13,7 @@ const Layout = ({ url, children, leftNavText }) => (
     </div>
     <div className={`pure-u-1 pure-u-md-5-6 pure-u-lg-4-5 ${style.right}`}>
       <TopNav url={url} />
-      <div className={style.main}>{children}</div>
-      {url !== '/site/' && <p className={style.updateTime} />}
+      {children}
       <TopNav url={url} />
       <Footer />
     </div>
@@ -23,7 +22,8 @@ const Layout = ({ url, children, leftNavText }) => (
 
 Layout.propTypes = {
   url: PropTypes.string.isRequired,
-  children: PropTypes.array,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.element])
+    .isRequired,
   leftNavText: PropTypes.array,
 };
 
