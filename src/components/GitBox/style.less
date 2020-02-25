@@ -6,19 +6,17 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  .left {
-    margin-right: 14px;
-    width: 48px;
-    height: 48px;
-    img {
-      height: 48px;
-      border-radius: 5px;
-    }
+  align-items: center;
+  img {
+    height: @git-img-size;
+    width: @git-img-size;
+    border-radius: 5px;
+    margin-right: 10px;
   }
-  .right {
+  .rightText {
     //border: 1px solid #3d4f5d;
-    h5 {
-      margin: 0 0 7px 0;
+    h3 {
+      margin: 0 0 3px 0;
       color: @git-name-color;
       font-size: 18px;
 
@@ -26,28 +24,26 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    div {
-      margin: 0;
+    a {
       font-size: 14px;
-      a {
-        text-decoration: none;
-        color: @star-text-color;
-      }
+      text-decoration: none;
+      color: @star-text-color;
     }
   }
 }
 
 @media (max-width: 768px) {
   .box {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-  }
-  .box .right h5 {
-    margin: 0 0 5px 0;
-    font-size: 14px;
-  }
-  .box .right div {
-    font-size: 12px;
+    img {
+      margin-right: 8px;
+    }
+    .rightText {
+      h3 {
+        font-size: 14px;
+      }
+      a {
+        font-size: 12px;
+      }
+    }
   }
 }
