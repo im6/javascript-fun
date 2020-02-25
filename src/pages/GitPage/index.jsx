@@ -35,7 +35,7 @@ GitPage.propTypes = {
   githubUrl: PropTypes.string,
   iconCdnUrl: PropTypes.string,
   defaultIcon: PropTypes.string,
-  criticalCss: PropTypes.node,
+  criticalCss: PropTypes.element,
 };
 
 export default GitPage;

@@ -1,5 +1,4 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import style from './style.less';
 
 const Footer = () => (
@@ -26,9 +25,5 @@ const Footer = () => (
     </span>
   </footer>
 );
-
-Footer.propTypes = {
-  children: PropTypes.node,
-};
 
 export default Footer;

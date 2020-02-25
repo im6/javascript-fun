@@ -23,7 +23,7 @@ const Layout = ({ url, children, leftNavText }) => (
 
 Layout.propTypes = {
   url: PropTypes.string.isRequired,
-  children: PropTypes.node,
+  children: PropTypes.array,
   leftNavText: PropTypes.array,
 };
 

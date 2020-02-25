@@ -29,8 +29,8 @@ const AppContainer = ({ url, children, criticalCss }) => (
 
 AppContainer.propTypes = {
   url: PropTypes.string.isRequired,
-  criticalCss: PropTypes.node,
-  children: PropTypes.node.isRequired,
+  criticalCss: PropTypes.element,
+  children: PropTypes.array.isRequired,
 };
 
 export default AppContainer;

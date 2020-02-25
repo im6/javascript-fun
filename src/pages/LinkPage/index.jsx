@@ -20,7 +20,7 @@ const LinkPage = ({ url, source, criticalCss }) => (
 LinkPage.propTypes = {
   url: PropTypes.string,
   source: PropTypes.array,
-  criticalCss: PropTypes.node,
+  criticalCss: PropTypes.element,
 };
 
 export default LinkPage;

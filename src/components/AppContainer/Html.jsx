@@ -43,9 +43,9 @@ Html.propTypes = {
   favIconUrl: PropTypes.string.isRequired,
   lastBuildDate: PropTypes.string.isRequired,
   script: PropTypes.string.isRequired,
-  children: PropTypes.object.isRequired,
+  children: PropTypes.element.isRequired,
   version: PropTypes.string,
-  criticalCss: PropTypes.node,
+  criticalCss: PropTypes.element,
 };
 
 export default Html;
