@@ -1,6 +1,6 @@
 import Typed from 'typed.js';
 
-import './style.less';
+import './font.less';
 import '../../components/AppContainer/Layout/components/TopNav/style.less';
 import '../../components/AppContainer/Layout/components/Footer/style.less';
 // import '../../components/AppContainer/Layout/components/Sidebar/style.less';

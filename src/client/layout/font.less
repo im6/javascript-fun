@@ -1,0 +1,65 @@
+@import (css) url('//fonts.googleapis.com/css?family=Oxygen');
+@import '../../constant.less';
+
+:global {
+  body {
+    margin: 0;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  p,
+  span,
+  em,
+  a,
+  div {
+    font-family: 'Oxygen', sans-serif;
+    font-weight: normal;
+  }
+
+  h1 {
+    font-size: 2.4em;
+  }
+
+  h2 {
+    font-size: 1.25em;
+  }
+  h3 {
+    font-size: 1.125em;
+  }
+  a {
+    font-size: 0.875em;
+  }
+
+  p {
+    font-size: 0.875em;
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    h1 {
+      font-size: 1.6em;
+    }
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: @side-bar-typed-font-size-mobile;
+    }
+    h2 {
+      font-size: 1em;
+    }
+    h3 {
+      font-size: 0.875em;
+    }
+    a {
+      font-size: 0.75em;
+    }
+    p {
+      font-size: 0.75em;
+    }
+  }
+
+  @import './typed.less';
+}

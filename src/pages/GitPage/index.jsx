@@ -32,7 +32,7 @@ const GitPage = ({
         </BoxGroup>
       ))}
     </div>
-    <p className={style.updateTime} />
+    <h4 className={style.updateTime} />
   </AppContainer>
 );
 

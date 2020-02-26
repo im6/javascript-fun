@@ -4,7 +4,7 @@ import style from './style.less';
 
 const BoxGroup = ({ title, children, isWebsite }) => (
   <Fragment>
-    <h3 className={isWebsite ? style.websiteTitle : style.title}>{title}</h3>
+    <h2 className={isWebsite ? style.websiteTitle : style.title}>{title}</h2>
     <div className="pure-g">{children}</div>
     <br />
   </Fragment>
