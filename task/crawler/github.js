@@ -8,36 +8,47 @@ const CONCURRENCY = 10;
 const TIMEOUT = 5 * 1000;
 const SHOWFULLNUM = true;
 
-let finished = []; // must be global for recursive purpose
-
 const privateFn = {
-  promiseLoop: (taskList, resolve, reject) => {
+  collectStarNum: (db, resolve, reject) => {
+    let unfinished = db,
+      finished = [];
+    async.whilst(
+      cb => {
+        cb(null, unfinished.length > 0);
+      },
+      callback => {
+        if (finished.length > 0) {
+          console.log(`retry ${unfinished.length} pkgs...`);
+        }
+        privateFn.oneLoop(unfinished, (err, data) => {
+          unfinished = data.filter(v => v.star === null);
+          finished = finished.concat(data.filter(v => v.star !== null));
+          callback(err, finished);
+        });
+      },
+      (err, data) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve(data);
+      }
+    );
+  },
+  oneLoop: (taskList, cb) => {
     console.log(`downloading ${taskList.length} packages...`);
     async.mapLimit(
       taskList,
       CONCURRENCY,
       (v, cb) => {
-        if (v.name.length === 0) {
-          // empty string
-          const gitList = v.github.split('/');
-          v.name = gitList[1];
-        }
         privateFn.getNum(v, cb);
       },
       (error, data) => {
         if (error) {
-          reject(error);
+          cb(error);
           return;
         }
-        const unfinished = data.filter(v => v.star === null);
-        finished = finished.concat(data.filter(v => v.star !== null));
-        if (unfinished.length > 0) {
-          console.log(`retry ${unfinished.length} pkgs...`);
-          return privateFn.promiseLoop(unfinished, resolve, reject);
-        } else {
-          resolve(finished);
-          return 0;
-        }
+        cb(null, data);
       }
     );
   },
@@ -61,8 +72,14 @@ const privateFn = {
           const num = starElem.children[0].data.trim();
           obj.star = num;
         }
+
+        if (obj.name.length === 0) {
+          // empty string
+          const gitList = obj.github.split('/');
+          obj.name = gitList[1];
+        }
+
         cb(null, obj);
-        return obj;
       })
       .catch(() => {
         console.error(`crawler timeout on ${obj.name}`);
@@ -72,15 +89,15 @@ const privateFn = {
 };
 
 module.exports = () => {
-  finished = [];
   const deferred = new Promise((resolve, reject) => {
     const qr = 'SELECT *, NULL as star FROM git WHERE `group` IS NOT NULL';
     sqlConn.sqlExecOne(qr).then(
       db => {
-        privateFn.promiseLoop(db, resolve, reject);
+        privateFn.collectStarNum(db, resolve, reject);
       },
       err => {
         console.error('sql executed fails', err);
+        reject(err);
       }
     );
   });
