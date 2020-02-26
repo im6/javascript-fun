@@ -76,6 +76,10 @@ const server = Object.assign(serverBaseConfig, {
   entry: {
     server: path.join(__dirname, '../src/server'),
     render: path.join(__dirname, '../src/render'),
+    collect: path.join(__dirname, '../src/collect'),
+  },
+  optimization: {
+    minimize: true,
   },
   output: {
     path: path.join(__dirname, '../dist/node'),

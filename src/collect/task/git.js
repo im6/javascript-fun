@@ -1,15 +1,15 @@
-const fs = require('fs'),
-  numeral = require('numeral'),
-  groupBy = require('lodash.groupby'),
-  orderBy = require('lodash.orderby'),
-  getPackageList = require('../crawler/github'),
-  sqlConn = require('../mysqlConnection');
+import fs from 'fs';
+import numeral from 'numeral';
+import groupBy from 'lodash.groupby';
+import orderBy from 'lodash.orderby';
+import getPackageList from './crawler';
+import sqlExecOne from '../mysqlConnection';
 
 const privateFn = {
   getGroupIcon: () => {
     const qr = 'SELECT * FROM category_git';
     return new Promise((resolve, reject) => {
-      sqlConn.sqlExecOne(qr).then(
+      sqlExecOne(qr).then(
         db => {
           resolve(db);
         },
@@ -22,10 +22,10 @@ const privateFn = {
 
   convertGroupIcon: data => {
     return data.reduce((accumulator, currentValue) => {
+      accumulator[`k${currentValue.id}`] = currentValue;
       if (currentValue.icon.length === 0) {
-        currentValue.icon = null;
+        accumulator[`k${currentValue.id}`].icon = null;
       }
-      accumulator['k' + currentValue.id] = currentValue;
       return accumulator;
     }, {});
   },
@@ -36,12 +36,12 @@ const privateFn = {
     const data3 = Object.keys(data2);
     const result = data3.map(k => {
       const v = data2[k];
-      const newItem = iconMap['k' + k];
+      const newItem = iconMap[`k${k}`];
       newItem.list = v;
       if (newItem.icon) {
-        newItem.list.forEach(v => {
-          if (!v.img) {
-            v.img = newItem.icon;
+        newItem.list.forEach((v1, k1) => {
+          if (!v1.img) {
+            newItem.list[k1].img = newItem.icon;
           }
         });
       }
@@ -51,7 +51,7 @@ const privateFn = {
   },
 };
 
-module.exports = (targetPath, done) => {
+export default (targetPath, done) => {
   const p0 = privateFn.getGroupIcon();
   const p1 = getPackageList();
 
@@ -60,11 +60,11 @@ module.exports = (targetPath, done) => {
       const iconMap = privateFn.convertGroupIcon(d[0]);
       const data = privateFn.group(d[1], iconMap);
       fs.writeFileSync(targetPath, JSON.stringify(data));
-      console.log('output github json file');
+      console.log('output github json file'); // eslint-disable-line no-console
       done();
     },
     err => {
-      console.error(err);
+      console.error(err); // eslint-disable-line no-console
     }
   );
 };

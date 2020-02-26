@@ -1,24 +1,25 @@
-const async = require('async');
-const cheerio = require('cheerio');
-const numeral = require('numeral');
-const rp = require('request-promise');
+import async from 'async';
+import cheerio from 'cheerio';
+import numeral from 'numeral';
+import rp from 'request-promise';
 
-const sqlConn = require('../mysqlConnection');
+import sqlExecOne from '../mysqlConnection';
+
 const CONCURRENCY = 10;
 const TIMEOUT = 5 * 1000;
 const SHOWFULLNUM = true;
 
 const privateFn = {
   collectStarNum: (db, resolve, reject) => {
-    let unfinished = db,
-      finished = [];
+    let unfinished = db;
+    let finished = [];
     async.whilst(
       cb => {
         cb(null, unfinished.length > 0);
       },
       callback => {
         if (finished.length > 0) {
-          console.log(`retry ${unfinished.length} pkgs...`);
+          console.log(`retry ${unfinished.length} pkgs...`); // eslint-disable-line no-console
         }
         privateFn.oneLoop(unfinished, (err, data) => {
           unfinished = data.filter(v => v.star === null);
@@ -36,12 +37,12 @@ const privateFn = {
     );
   },
   oneLoop: (taskList, cb) => {
-    console.log(`downloading ${taskList.length} packages...`);
+    console.log(`downloading ${taskList.length} packages...`); // eslint-disable-line no-console
     async.mapLimit(
       taskList,
       CONCURRENCY,
-      (v, cb) => {
-        privateFn.getNum(v, cb);
+      (v, cb1) => {
+        privateFn.getNum(v, cb1);
       },
       (error, data) => {
         if (error) {
@@ -54,7 +55,7 @@ const privateFn = {
   },
 
   getNum: (obj0, cb) => {
-    const obj = Object.assign({}, obj0);
+    const obj = { ...obj0 };
     rp({
       uri: `https://github.com/${obj.github}`,
       timeout: TIMEOUT,
@@ -76,27 +77,27 @@ const privateFn = {
         if (obj.name.length === 0) {
           // empty string
           const gitList = obj.github.split('/');
-          obj.name = gitList[1];
+          [, obj.name] = gitList;
         }
 
         cb(null, obj);
       })
       .catch(() => {
-        console.error(`crawler timeout on ${obj.name}`);
+        console.error(`crawler timeout on ${obj.name}`); // eslint-disable-line no-console
         cb(null, obj); // no err object, but collect failed items for next round.
       });
   },
 };
 
-module.exports = () => {
+export default () => {
   const deferred = new Promise((resolve, reject) => {
-    const qr = 'SELECT *, NULL as star FROM git WHERE `group` IS NOT NULL';
-    sqlConn.sqlExecOne(qr).then(
+    const qr = 'SELECT *, NULL as star FROM git WHERE `group` IS NOT NULL'; //  AND id < 100
+    sqlExecOne(qr).then(
       db => {
         privateFn.collectStarNum(db, resolve, reject);
       },
       err => {
-        console.error('sql executed fails', err);
+        console.error('sql executed fails', err); // eslint-disable-line no-console
         reject(err);
       }
     );

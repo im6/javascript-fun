@@ -17,6 +17,7 @@ create `.env` file for DB connections.
 
 ```sh
 yarn install
+yarn build # generate collect build
 yarn collect
 yarn build
 yarn daily

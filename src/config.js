@@ -46,3 +46,8 @@ export const pageLink = topNavConfig.reduce((acc, cur, k) => {
   acc[cur.to] = k + 1;
   return acc;
 }, {});
+
+export const viewModelPath = {
+  git: 'dist/github.json',
+  site: 'dist/site.json',
+};

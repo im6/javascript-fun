@@ -9,7 +9,7 @@
     "build": "webpack --config ./webpack/production.js",
     "web": "node ./dist/node/server.js",
     "render": "node ./dist/node/render.js",
-    "collect": "node task/index.js",
+    "collect": "node -r dotenv/config dist/node/collect.js",
     "cp": "./cp.sh",
     "lint": "eslint ./webpack ./src"
   },

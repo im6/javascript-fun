@@ -1,3 +1,4 @@
+import fs from 'fs';
 import React from 'react';
 import path from 'path';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -5,18 +6,18 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import GitPage from '../pages/GitPage';
 import LinkPage from '../pages/LinkPage';
 
-import gitSource from '../../dist/github.json';
-import siteSource from '../../dist/site.json';
-
 import {
   iconCdnUrl,
   githubUrl,
   defaultIcon,
   pageLink,
   renderOutputFolder,
+  viewModelPath,
 } from '../config';
 
 export const linkMd = (req, res) => {
+  const rawdata = fs.readFileSync(viewModelPath.site);
+  const siteSource = JSON.parse(rawdata);
   const htmlDOM = <LinkPage url={req.url} source={siteSource} />;
   const html = renderToStaticMarkup(htmlDOM);
   res.status(200);
@@ -24,6 +25,8 @@ export const linkMd = (req, res) => {
 };
 
 export const gitMd = (req, res) => {
+  const rawdata = fs.readFileSync(viewModelPath.git);
+  const gitSource = JSON.parse(rawdata);
   const htmlDOM = (
     <GitPage
       url={req.url}

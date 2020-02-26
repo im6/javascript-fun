@@ -11,16 +11,15 @@ import {
   defaultIcon,
   pageLink,
   renderOutputFolder,
+  viewModelPath
 } from '../config';
 
-const gitJsonDir = 'dist/github.json';
-const siteJsonDir = 'dist/site.json';
 const gitCssDir = 'dist/public/main.css';
 const siteCssDir = 'dist/public/site.css';
 
 const generateGitPage = url => {
   const appCss = fs.readFileSync(gitCssDir);
-  const rawdata = fs.readFileSync(gitJsonDir);
+  const rawdata = fs.readFileSync(viewModelPath.git);
   const gitSource = JSON.parse(rawdata);
   const htmlDOM = (
     <GitPage
@@ -40,7 +39,7 @@ const generateGitPage = url => {
 
 const generateSitePage = url => {
   const appCss = fs.readFileSync(siteCssDir);
-  const rawdata = fs.readFileSync(siteJsonDir);
+  const rawdata = fs.readFileSync(viewModelPath.site);
   const siteSource = JSON.parse(rawdata);
   const htmlDOM = (
     <LinkPage
