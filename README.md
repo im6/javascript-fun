@@ -4,7 +4,7 @@ Code generator for [javascript.fun](https://www.javascript.fun/)
 
 ## Highlight
 
-- React.js
+- React
 - Webpack
 - Express.js
 - mySQL
