@@ -1,12 +1,30 @@
 import './layout';
 import '../components/GitBox/style.less';
 import { updateTime } from '../pages/GitPage/style.less';
+import { debounce, getNow } from './util';
+import { defaultIcon } from '../config';
 
 const setTime = () => {
-  const now = new Date();
-  const dt = now.toDateString();
   const timeElem = document.getElementsByClassName(updateTime)[0];
-  timeElem.innerText = `Last Update:  ${dt}`;
+  timeElem.innerText = `Last Update:  ${getNow()}`;
 };
 
+const lazyLoadImg = () => {
+  const imgElems = document.getElementsByTagName('img');
+  for (let j = 0; j < imgElems.length; j += 1) {
+    const imgObj = imgElems[j];
+    const { i } = imgObj.dataset;
+    if (i) {
+      imgObj.src = imgObj.src.replace(defaultIcon, i);
+      imgObj.removeAttribute('data-i');
+    }
+  }
+};
+
+const initLazyLoad = debounce(() => {
+  lazyLoadImg();
+  window.removeEventListener('scroll', initLazyLoad);
+}, 500);
+
+window.addEventListener('scroll', initLazyLoad);
 setTime();
