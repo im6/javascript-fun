@@ -6,7 +6,7 @@ import SideBar from './components/Sidebar';
 
 import style from './style.less';
 
-const Layout = ({ url, children, leftNavText, author }) => (
+const Layout = ({ url, children, leftNavText, author, year }) => (
   <div className="pure-g">
     <div className={`pure-u-1 pure-u-md-1-6 pure-u-lg-1-5 ${style.left}`}>
       <SideBar words={leftNavText} />
@@ -15,7 +15,7 @@ const Layout = ({ url, children, leftNavText, author }) => (
       <TopNav url={url} />
       {children}
       <TopNav url={url} />
-      <Footer author={author} />
+      <Footer author={author} year={year} />
     </div>
   </div>
 );
@@ -23,6 +23,7 @@ const Layout = ({ url, children, leftNavText, author }) => (
 Layout.propTypes = {
   url: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired,
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.element])
     .isRequired,
   leftNavText: PropTypes.array,

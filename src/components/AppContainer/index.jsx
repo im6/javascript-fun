@@ -23,7 +23,12 @@ const AppContainer = ({ url, children, criticalCss }) => (
     criticalCss={criticalCss}
     author={author}
   >
-    <Layout url={url} leftNavText={leftNavText} author={author}>
+    <Layout
+      url={url}
+      leftNavText={leftNavText}
+      author={author}
+      year={leftNavText[0]}
+    >
       {children}
     </Layout>
   </Html>
