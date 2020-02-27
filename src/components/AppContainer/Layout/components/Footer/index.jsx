@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import style from './style.less';
 
-const Footer = () => (
+const Footer = ({ author }) => (
   <footer className={style.footer}>
     <span>
       Made with &nbsp;
@@ -20,10 +21,14 @@ const Footer = () => (
       </svg>
       &nbsp;by &nbsp;
       <a href="/about/" target="_blank">
-        ZJ Guo
+        {author}
       </a>
     </span>
   </footer>
 );
+
+Footer.propTypes = {
+  author: PropTypes.string.isRequired,
+};
 
 export default Footer;

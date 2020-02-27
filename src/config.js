@@ -5,6 +5,7 @@ export const renderOutputFolder = 'dist/views';
 export const publicPath = '/assets';
 export const iconCdnUrl = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons';
 export const directImgGrpNum = 2;
+export const author = 'ZJ Guo';
 export const defaultIcon = [
   'github0.png',
   'github1.svg',
@@ -52,3 +53,7 @@ export const viewModelPath = {
   git: 'dist/github.json',
   site: 'dist/site.json',
 };
+
+export const crawlerTimeout = 5 * 1000;
+export const crawlerShowFullNumber = true;
+export const crawlerConcurrency = 8;

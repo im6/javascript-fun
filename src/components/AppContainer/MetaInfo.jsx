@@ -1,16 +1,22 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
-const MetaInfo = () => (
+const MetaInfo = ({ author }) => (
   <Fragment>
     <meta charSet="utf-8" />
     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content={author} />
+    <meta
+      name="description"
+      content="javascript top ranking, front end library"
+    />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
     />
     <meta
       name="keywords"
-      content="javascript.fun javascriptfun jsfun react vue angular"
+      content="javascript.fun,front end learning,web app,jsfun,react,vue,angular"
     />
     <meta name="google" content="notranslate" />
     <meta name="ROBOTS" content="INDEX,FOLLOW" />
@@ -28,5 +34,7 @@ const MetaInfo = () => (
   </Fragment>
 );
 
-MetaInfo.propTypes = {};
+MetaInfo.propTypes = {
+  author: PropTypes.string.isRequired,
+};
 export default MetaInfo;

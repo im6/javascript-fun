@@ -4,10 +4,11 @@ import numeral from 'numeral';
 import rp from 'request-promise';
 
 import sqlExecOne from '../mysqlConnection';
-
-const CONCURRENCY = 10;
-const TIMEOUT = 5 * 1000;
-const SHOWFULLNUM = true;
+import {
+  crawlerTimeout as timeout,
+  crawlerShowFullNumber,
+  crawlerConcurrency,
+} from '../../config';
 
 const privateFn = {
   collectStarNum: (db, resolve, reject) => {
@@ -40,7 +41,7 @@ const privateFn = {
     console.log(`downloading ${taskList.length} packages...`); // eslint-disable-line no-console
     async.mapLimit(
       taskList,
-      CONCURRENCY,
+      crawlerConcurrency,
       (v, cb1) => {
         privateFn.getNum(v, cb1);
       },
@@ -58,13 +59,13 @@ const privateFn = {
     const obj = { ...obj0 };
     rp({
       uri: `https://github.com/${obj.github}`,
-      timeout: TIMEOUT,
+      timeout,
       transform: body => cheerio.load(body),
     })
       .then($ => {
         const elems = $('a.social-count.js-social-count');
         const starElem = elems[0];
-        if (SHOWFULLNUM) {
+        if (crawlerShowFullNumber) {
           const numLabel = starElem.attribs['aria-label'];
           const numStr = numLabel.split(' ')[0];
           const num = numeral(numStr).format('0,0');

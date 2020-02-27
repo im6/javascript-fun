@@ -5,6 +5,7 @@ import Html from './Html';
 import Layout from './Layout';
 
 import {
+  author,
   publicPath,
   leftNavText,
   iconCdnUrl,
@@ -20,8 +21,9 @@ const AppContainer = ({ url, children, criticalCss }) => (
     lastBuildDate={process.env.lastBuildDate || 'dev'}
     version={version}
     criticalCss={criticalCss}
+    author={author}
   >
-    <Layout url={url} leftNavText={leftNavText}>
+    <Layout url={url} leftNavText={leftNavText} author={author}>
       {children}
     </Layout>
   </Html>

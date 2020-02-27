@@ -6,6 +6,7 @@ import MetaInfo from './MetaInfo';
 const Html = ({
   favIconUrl,
   year,
+  author,
   style,
   script,
   children,
@@ -14,7 +15,7 @@ const Html = ({
 }) => (
   <html lang="en">
     <head>
-      <MetaInfo />
+      <MetaInfo author={author} />
       <title>
         JavaScript Fun | Most Popular JavaScript Framework in {year} | Top
         JavaScript Library | 前端框架 | web前端开发 | JS library Ranking
@@ -43,6 +44,7 @@ Html.propTypes = {
   favIconUrl: PropTypes.string.isRequired,
   lastBuildDate: PropTypes.string.isRequired,
   script: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired,
   version: PropTypes.string,
   criticalCss: PropTypes.element,
