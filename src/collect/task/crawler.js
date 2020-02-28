@@ -2,6 +2,7 @@ import async from 'async';
 import cheerio from 'cheerio';
 import numeral from 'numeral';
 import rp from 'request-promise';
+import ProgressBar from 'progress';
 
 import sqlExecOne from '../mysqlConnection';
 import {
@@ -38,11 +39,17 @@ const privateFn = {
     );
   },
   oneLoop: (taskList, cb) => {
-    console.log(`downloading ${taskList.length} packages...`); // eslint-disable-line no-console
+    const bar = new ProgressBar(
+      'downloading :current of :total (:percent): :gtnm',
+      {
+        total: taskList.length,
+      }
+    );
     async.mapLimit(
       taskList,
       crawlerConcurrency,
       (v, cb1) => {
+        bar.tick({ gtnm: v.name || v.github });
         privateFn.getNum(v, cb1);
       },
       (error, data) => {
