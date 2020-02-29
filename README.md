@@ -8,7 +8,7 @@ Code generator for [javascript.fun](https://www.javascript.fun/)
 - Webpack
 - Express.js
 - mySQL
-- Async
+- [Async.js](https://caolan.github.io/async/v3/)
 - [Pure.css](https://purecss.io/)
 
 ## Quick Start

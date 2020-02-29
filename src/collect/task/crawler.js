@@ -40,12 +40,9 @@ const privateFn = {
     );
   },
   oneLoop: (taskList, cb) => {
-    const bar = new ProgressBar(
-      'downloading :current of :total (:percent): :gtnm',
-      {
-        total: taskList.length,
-      }
-    );
+    const bar = new ProgressBar('downloading :current of :total: :gtnm', {
+      total: taskList.length,
+    });
     async.mapLimit(
       taskList,
       crawlerConcurrency,
