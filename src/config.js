@@ -4,7 +4,7 @@ export const staticFolder =
 export const renderOutputFolder = 'dist/views';
 export const publicPath = '/assets';
 export const iconCdnUrl = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons';
-export const directImgGrpNum = 2;
+export const nonLazyImg = 2;
 export const author = 'ZJ Guo';
 export const githubUrl = 'https://github.com';
 export const gitRepo = `${githubUrl}/im6/javascript-fun`;
@@ -16,7 +16,7 @@ export const defaultIcon = [
   'github4.png',
 ][0];
 export const leftNavText = [
-  new Date().getFullYear(),
+  new Date().getFullYear() + (new Date().getMonth() < 11 ? 0 : 1),
   'Developer',
   'Designer',
   'Architect',

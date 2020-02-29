@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import AppContainer from '../../components/AppContainer';
-import BoxGroup from '../../components/BoxGroup';
 import GitBox from '../../components/GitBox';
+import BoxGroup from '../../components/BoxGroup';
+import AppContainer from '../../components/AppContainer';
 
 import style from './style.less';
 import sharedStyle from '../style.less';
-import { directImgGrpNum } from '../../config';
+import { nonLazyImg } from '../../config';
 
 const GitPage = ({
   url,
@@ -20,7 +20,7 @@ const GitPage = ({
   <AppContainer url={url} criticalCss={criticalCss}>
     <div className={sharedStyle.main}>
       {source.map((v, k) => {
-        const lazyLoad = k > directImgGrpNum;
+        const lazyLoad = k > nonLazyImg;
         return (
           <BoxGroup key={v.id} title={v.name}>
             {v.list.map(v1 => (

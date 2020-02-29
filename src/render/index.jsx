@@ -11,7 +11,7 @@ import {
   defaultIcon,
   pageLink,
   renderOutputFolder,
-  viewModelPath
+  viewModelPath,
 } from '../config';
 
 const gitCssDir = 'dist/public/main.css';
@@ -55,6 +55,7 @@ const generateSitePage = url => {
 };
 
 if (!fs.existsSync(renderOutputFolder)) {
+  fs.mkdirSync(renderOutputFolder);
   fs.mkdirSync(`${renderOutputFolder}/node`);
   fs.mkdirSync(`${renderOutputFolder}/library`);
   fs.mkdirSync(`${renderOutputFolder}/site`);
