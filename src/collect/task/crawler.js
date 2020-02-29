@@ -6,6 +6,7 @@ import ProgressBar from 'progress';
 
 import sqlExecOne from '../mysqlConnection';
 import {
+  githubUrl,
   crawlerTimeout as timeout,
   crawlerShowFullNumber,
   crawlerConcurrency,
@@ -65,7 +66,7 @@ const privateFn = {
   getNum: (obj0, cb) => {
     const obj = { ...obj0 };
     rp({
-      uri: `https://github.com/${obj.github}`,
+      uri: `${githubUrl}/${obj.github}`,
       timeout,
       transform: body => cheerio.load(body),
     })

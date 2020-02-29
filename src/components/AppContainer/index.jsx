@@ -6,6 +6,7 @@ import Layout from './Layout';
 
 import {
   author,
+  gitRepo,
   publicPath,
   leftNavText,
   iconCdnUrl,
@@ -27,6 +28,7 @@ const AppContainer = ({ url, children, criticalCss }) => (
       url={url}
       leftNavText={leftNavText}
       author={author}
+      gitRepo={gitRepo}
       year={leftNavText[0]}
     >
       {children}

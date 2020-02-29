@@ -17,6 +17,7 @@ const TopNav = ({ url }) => {
             })}
             title={v.title}
             href={v.to}
+            aria-label={v.title}
           >
             <img src={`${iconCdnUrl}/${v.img}`} alt={v.alt} />
           </a>

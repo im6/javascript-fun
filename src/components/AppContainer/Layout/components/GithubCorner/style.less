@@ -1,0 +1,44 @@
+@import '../../../../../constant.less';
+
+.corner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  & > path {
+    &:nth-child(1) {
+      fill: @side-bar-bg-color;
+    }
+    &:nth-child(2),
+    &:nth-child(3) {
+      fill: @main-bg-color;
+    }
+  }
+}
+
+.octoArm {
+  -webkit-transform-origin: 130px 106px;
+  transform-origin: 130px 106px;
+  .link:hover & {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+}
+
+@keyframes octocat-wave {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  20%,
+  60% {
+    transform: rotate(-25deg);
+  }
+  40%,
+  80% {
+    transform: rotate(10deg);
+  }
+}
+@media (max-width: 768px) {
+  .link {
+    display: none;
+  }
+}

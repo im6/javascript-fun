@@ -6,6 +6,8 @@ export const publicPath = '/assets';
 export const iconCdnUrl = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons';
 export const directImgGrpNum = 2;
 export const author = 'ZJ Guo';
+export const githubUrl = 'https://github.com';
+export const gitRepo = `${githubUrl}/im6/javascript-fun`;
 export const defaultIcon = [
   'github0.png',
   'github1.svg',
@@ -13,7 +15,6 @@ export const defaultIcon = [
   'github3.png',
   'github4.png',
 ][0];
-export const githubUrl = 'https://github.com';
 export const leftNavText = [
   new Date().getFullYear(),
   'Developer',
