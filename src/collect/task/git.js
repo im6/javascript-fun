@@ -1,4 +1,5 @@
 import fs from 'fs';
+import async from 'async';
 import numeral from 'numeral';
 import groupBy from 'lodash.groupby';
 import orderBy from 'lodash.orderby';
@@ -6,20 +7,6 @@ import getPackageList from './crawler';
 import sqlExecOne from '../mysqlConnection';
 
 const privateFn = {
-  getGroupIcon: () => {
-    const qr = 'SELECT * FROM category_git';
-    return new Promise((resolve, reject) => {
-      sqlExecOne(qr).then(
-        db => {
-          resolve(db);
-        },
-        res => {
-          reject(res);
-        }
-      );
-    });
-  },
-
   convertGroupIcon: data => {
     return data.reduce((accumulator, currentValue) => {
       accumulator[`k${currentValue.id}`] = currentValue;
@@ -51,20 +38,26 @@ const privateFn = {
   },
 };
 
-export default (targetPath, done) => {
-  const p0 = privateFn.getGroupIcon();
-  const p1 = getPackageList();
-
-  Promise.all([p0, p1]).then(
-    d => {
-      const iconMap = privateFn.convertGroupIcon(d[0]);
-      const data = privateFn.group(d[1], iconMap);
-      fs.writeFileSync(targetPath, JSON.stringify(data));
-      console.log('output github json file'); // eslint-disable-line no-console
-      done();
-    },
-    err => {
-      console.error(err); // eslint-disable-line no-console
+export default (targetPath, cb0) => {
+  async.parallel(
+    [
+      cb => {
+        sqlExecOne('SELECT * FROM category_git', cb);
+      },
+      cb => {
+        getPackageList(cb);
+      },
+    ],
+    (err, [d0, d1]) => {
+      if (err) {
+        cb0(err);
+      } else {
+        const iconMap = privateFn.convertGroupIcon(d0);
+        const data = privateFn.group(d1, iconMap);
+        fs.writeFileSync(targetPath, JSON.stringify(data));
+        console.log('output github json file'); // eslint-disable-line no-console
+        cb0(null);
+      }
     }
   );
 };

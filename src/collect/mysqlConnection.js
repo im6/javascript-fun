@@ -9,14 +9,8 @@ const pool = mysql.createPool({
   database: process.env.SQL_DATABASE,
 });
 
-export default qr =>
-  new Promise((resolve, reject) => {
-    pool.query(qr, (err, rows) => {
-      if (err) {
-        console.error(err.message); // eslint-disable-line no-console
-        reject(err);
-      } else {
-        resolve(rows);
-      }
-    });
+export default (qr, cb) => {
+  pool.query(qr, (err, rows) => {
+    cb(err, rows);
   });
+};
