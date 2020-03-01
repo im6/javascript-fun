@@ -1,3 +1,4 @@
+import fs from 'fs';
 import path from 'path';
 import collectGit from './task/git';
 import collectSite from './task/site';
@@ -8,15 +9,25 @@ if (!process.env.SQL_HOST) {
   process.exit();
 }
 
-const gitOutputPath = path.join(process.cwd(), viewModelPath.git);
 const siteOutputPath = path.join(process.cwd(), viewModelPath.site);
+const gitOutputPath = path.join(process.cwd(), viewModelPath.git);
 
-collectSite(siteOutputPath);
-collectGit(gitOutputPath, err => {
+collectSite((err, data) => {
+  if (err) {
+    console.log('site job failed!'); // eslint-disable-line no-console
+  } else {
+    fs.writeFileSync(siteOutputPath, JSON.stringify(data));
+    console.log('output site json successfully.'); // eslint-disable-line no-console
+  }
+});
+
+collectGit((err, data) => {
   if (err) {
     console.log('Github job failed!'); // eslint-disable-line no-console
   } else {
-    console.log('Finish successfully!'); // eslint-disable-line no-console
+    fs.writeFileSync(gitOutputPath, JSON.stringify(data));
+    console.log('output github json successfully.'); // eslint-disable-line no-console
   }
+
   process.exit();
 });

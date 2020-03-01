@@ -1,4 +1,3 @@
-import fs from 'fs';
 import async from 'async';
 import groupBy from 'lodash.groupby';
 import sqlExecOne from '../mysqlConnection';
@@ -17,18 +16,17 @@ const group = (data, grp) => {
   return result2;
 };
 
-export default targetPath => {
+export default cb => {
   const querys = [
     'SELECT * FROM category_git',
     'SELECT * FROM site where grp is NOT NULL',
   ];
   async.map(querys, sqlExecOne, (err, d) => {
     if (err) {
-      console.error(err); // eslint-disable-line no-console
-      return;
+      cb(err);
+    } else {
+      const siteList = group(d[1], d[0]);
+      cb(null, siteList);
     }
-    const siteList = group(d[1], d[0]);
-    fs.writeFileSync(targetPath, JSON.stringify(siteList));
-    console.log('output site json success.'); // eslint-disable-line no-console
   });
 };

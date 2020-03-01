@@ -1,4 +1,3 @@
-import fs from 'fs';
 import async from 'async';
 import numeral from 'numeral';
 import groupBy from 'lodash.groupby';
@@ -38,7 +37,7 @@ const privateFn = {
   },
 };
 
-export default (targetPath, cb0) => {
+export default cb0 => {
   async.parallel(
     [
       cb => {
@@ -54,9 +53,7 @@ export default (targetPath, cb0) => {
       } else {
         const iconMap = privateFn.convertGroupIcon(d0);
         const data = privateFn.group(d1, iconMap);
-        fs.writeFileSync(targetPath, JSON.stringify(data));
-        console.log('output github json file'); // eslint-disable-line no-console
-        cb0(null);
+        cb0(null, data);
       }
     }
   );
