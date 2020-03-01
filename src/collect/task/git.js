@@ -42,7 +42,10 @@ export default cb0 => {
         sqlExecOne('SELECT * FROM category_git', cb);
       },
       cb => {
-        getPackageList(cb);
+        getPackageList(
+          'SELECT *, NULL as star FROM git WHERE `group` IS NOT NULL', // [ AND id < 20]
+          cb
+        );
       },
     ],
     (err, [d0, d1]) => {

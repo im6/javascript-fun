@@ -68,33 +68,18 @@ const collectStarNum = (db, cb0) => {
     cb1 => {
       cb1(null, unfinished.length > 0);
     },
-    callback => {
+    cb2 => {
       if (finished.length > 0) {
         console.log(`retry ${unfinished.length} pkgs...`); // eslint-disable-line no-console
       }
       oneLoop(unfinished, (err, data) => {
         unfinished = data.filter(v => v.star === null);
         finished = finished.concat(data.filter(v => v.star !== null));
-        callback(err, finished);
+        cb2(err, finished);
       });
     },
     cb0
   );
 };
 
-export default cb0 => {
-  const qr = 'SELECT *, NULL as star FROM git WHERE `group` IS NOT NULL'; //  AND id < 100
-  sqlExecOne(qr, (err0, db) => {
-    if (err0) {
-      cb0(err0);
-    } else {
-      collectStarNum(db, (err1, data) => {
-        if (err1) {
-          cb0(err1);
-        } else {
-          cb0(null, data);
-        }
-      });
-    }
-  });
-};
+export default async.seq(sqlExecOne, collectStarNum);

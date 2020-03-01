@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "daily": "yarn collect && yarn render && yarn cp",
+    "lint": "eslint ./webpack ./src",
+    "test": "jest --coverage",
     "dev": "webpack --config ./webpack/develop.js",
     "build": "webpack --config ./webpack/production.js",
     "web": "node ./dist/node/server.js",
     "render": "node ./dist/node/render.js",
     "collect": "node -r dotenv/config dist/node/collect.js",
-    "cp": "./cp.sh",
-    "lint": "eslint ./webpack ./src"
+    "cp": "./cp.sh"
   },
   "repository": "git+https://github.com/im6/javascript-fun.git",
   "author": "im6",
@@ -25,6 +26,7 @@
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
+    "@testing-library/react": "^9.4.1",
     "async": "^3.2.0",
     "autoprefixer": "^9.7.4",
     "babel-loader": "^8.0.6",
@@ -37,11 +39,12 @@
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-jest": "^23.7.0",
+    "eslint-plugin-jest": "^23.8.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "7.18.3",
     "express": "^4.17.1",
+    "jest": "^25.1.0",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
     "lodash.groupby": "^4.6.0",
@@ -98,6 +101,31 @@
     "env": {
       "browser": true,
       "jest/globals": true
+    }
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  },
+  "jest": {
+    "verbose": false,
+    "clearMocks": true,
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less)$": "<rootDir>/src/testing/styleMock.js"
+    },
+    "coverageDirectory": "coverage",
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": -10
+      }
     }
   }
 }

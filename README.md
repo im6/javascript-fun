@@ -2,15 +2,6 @@
 
 Code generator for [javascript.fun](https://www.javascript.fun/)
 
-## Highlight
-
-- React
-- Webpack
-- Express.js
-- mySQL
-- [Async.js](https://caolan.github.io/async/v3/)
-- [Pure.css](https://purecss.io/)
-
 ## Quick Start
 
 create `.env` file for DB connections.

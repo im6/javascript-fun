@@ -21,11 +21,11 @@ export default cb => {
     'SELECT * FROM category_git',
     'SELECT * FROM site where grp is NOT NULL',
   ];
-  async.map(querys, sqlExecOne, (err, d) => {
+  async.map(querys, sqlExecOne, (err, [grps, sites]) => {
     if (err) {
       cb(err);
     } else {
-      const siteList = group(d[1], d[0]);
+      const siteList = group(sites, grps);
       cb(null, siteList);
     }
   });
