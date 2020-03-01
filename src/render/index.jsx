@@ -12,13 +12,11 @@ import {
   pageLink,
   renderOutputFolder,
   viewModelPath,
+  criticalCssPath,
 } from '../config';
 
-const gitCssDir = 'dist/public/main.css';
-const siteCssDir = 'dist/public/site.css';
-
 const generateGitPage = url => {
-  const appCss = fs.readFileSync(gitCssDir);
+  const appCss = fs.readFileSync(criticalCssPath.git);
   const rawdata = fs.readFileSync(viewModelPath.git);
   const gitSource = JSON.parse(rawdata);
   const htmlDOM = (
@@ -38,7 +36,7 @@ const generateGitPage = url => {
 };
 
 const generateSitePage = url => {
-  const appCss = fs.readFileSync(siteCssDir);
+  const appCss = fs.readFileSync(criticalCssPath.git);
   const rawdata = fs.readFileSync(viewModelPath.site);
   const siteSource = JSON.parse(rawdata);
   const htmlDOM = (

@@ -2,7 +2,6 @@
   "name": "javascript-fun",
   "version": "1.0.0",
   "description": "source code generator for javascript.fun",
-  "main": "index.js",
   "scripts": {
     "daily": "yarn collect && yarn render && yarn cp",
     "lint": "eslint ./webpack ./src",
@@ -21,7 +20,6 @@
     "url": "https://github.com/im6/javascript-fun/issues"
   },
   "homepage": "https://github.com/im6/javascript-fun#readme",
-  "private": false,
   "dependencies": {
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",

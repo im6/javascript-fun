@@ -55,6 +55,11 @@ export const viewModelPath = {
   site: 'dist/site.json',
 };
 
+export const criticalCssPath = {
+  git: 'dist/public/main.css',
+  site: 'dist/public/site.css',
+};
+
 export const crawlerTimeout = 5 * 1000;
 export const crawlerShowFullNumber = true;
 export const crawlerConcurrency = 8;

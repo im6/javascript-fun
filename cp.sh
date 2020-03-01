@@ -1,11 +1,13 @@
+im6_dir="../im6.github.io"
+
 # copy
-cp dist/public/main.js ../im6.github.io/assets/
-cp dist/public/site.js ../im6.github.io/assets/
-cp -a dist/views/. ../im6.github.io/
-cp -a assets/. ../im6.github.io/
+cp dist/public/main.js "$im6_dir/assets/"
+cp dist/public/site.js "$im6_dir/assets/"
+cp -a dist/views/. $im6_dir
+cp -a assets/. $im6_dir
 
 # push
-cd ../im6.github.io/
+cd $im6_dir
 git add .
 git commit -a -m "update"
 git push
