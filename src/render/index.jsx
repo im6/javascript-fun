@@ -36,7 +36,7 @@ const generateGitPage = url => {
 };
 
 const generateSitePage = url => {
-  const appCss = fs.readFileSync(criticalCssPath.git);
+  const appCss = fs.readFileSync(criticalCssPath.site);
   const rawdata = fs.readFileSync(viewModelPath.site);
   const siteSource = JSON.parse(rawdata);
   const htmlDOM = (
