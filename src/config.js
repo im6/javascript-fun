@@ -7,7 +7,7 @@ export const iconCdnUrl = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons';
 export const nonLazyImg = 2;
 export const author = 'ZJ Guo';
 export const githubUrl = 'https://github.com';
-export const gitRepo = `${githubUrl}/im6/javascript-fun`;
+export const gitRepo = `${githubUrl}/im6/javascript-fun/issues`;
 export const defaultIcon = [
   'github0.png',
   'github1.svg',
