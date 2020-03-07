@@ -11,6 +11,7 @@ const BoxGroup = ({ title, children, isWebsite }) => (
 );
 
 BoxGroup.propTypes = {
+  isWebsite: PropTypes.bool,
   title: PropTypes.string.isRequired,
   children: PropTypes.array.isRequired,
 };
