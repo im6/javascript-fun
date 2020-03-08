@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PureCss from './PureCss';
-import MetaInfo from './MetaInfo';
+import PureCss from '../PureCss';
+import MetaInfo from '../MetaInfo';
 
 const Html = ({
   favIconUrl,
