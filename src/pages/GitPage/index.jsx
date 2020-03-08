@@ -1,26 +1,23 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import GitBox from '../../components/GitBox';
 import BoxGroup from '../../components/BoxGroup';
-import AppContainer from '../../components/AppContainer';
 
 import style from './style.less';
 import sharedStyle from '../style.less';
-import { nonLazyImg } from '../../config';
 
 const GitPage = ({
-  url,
   source,
   githubUrl,
   iconCdnUrl,
   defaultIcon,
-  criticalCss,
+  nonLazyImgIndex,
 }) => (
-  <AppContainer url={url} criticalCss={criticalCss}>
+  <Fragment>
     <div className={sharedStyle.main}>
       {source.map((v, k) => {
-        const lazyLoad = k > nonLazyImg;
+        const lazyLoad = k > nonLazyImgIndex;
         return (
           <BoxGroup key={v.id} title={v.name}>
             {v.list.map(v1 => (
@@ -39,16 +36,15 @@ const GitPage = ({
       })}
     </div>
     <h4 className={style.updateTime} />
-  </AppContainer>
+  </Fragment>
 );
 
 GitPage.propTypes = {
-  url: PropTypes.string,
   source: PropTypes.array,
   githubUrl: PropTypes.string,
   iconCdnUrl: PropTypes.string,
   defaultIcon: PropTypes.string,
-  criticalCss: PropTypes.element,
+  nonLazyImgIndex: PropTypes.number,
 };
 
 export default GitPage;

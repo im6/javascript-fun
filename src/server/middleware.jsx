@@ -3,10 +3,12 @@ import React from 'react';
 import path from 'path';
 import { renderToStaticMarkup } from 'react-dom/server';
 
+import AppContainer from '../components/AppContainer';
 import GitPage from '../pages/GitPage';
 import LinkPage from '../pages/LinkPage';
 
 import {
+  nonLazyImg,
   iconCdnUrl,
   githubUrl,
   defaultIcon,
@@ -18,7 +20,11 @@ import {
 export const linkMd = (req, res) => {
   const rawdata = fs.readFileSync(viewModelPath.site);
   const siteSource = JSON.parse(rawdata);
-  const htmlDOM = <LinkPage url={req.url} source={siteSource} />;
+  const htmlDOM = (
+    <AppContainer url={req.url}>
+      <LinkPage source={siteSource} />
+    </AppContainer>
+  );
   const html = renderToStaticMarkup(htmlDOM);
   res.status(200);
   res.send(`<!DOCTYPE html>${html}`);
@@ -28,13 +34,15 @@ export const gitMd = (req, res) => {
   const rawdata = fs.readFileSync(viewModelPath.git);
   const gitSource = JSON.parse(rawdata);
   const htmlDOM = (
-    <GitPage
-      url={req.url}
-      source={gitSource.filter(v => v.page === pageLink[req.url])}
-      githubUrl={githubUrl}
-      iconCdnUrl={iconCdnUrl}
-      defaultIcon={defaultIcon}
-    />
+    <AppContainer url={req.url}>
+      <GitPage
+        nonLazyImgIndex={nonLazyImg}
+        source={gitSource.filter(v => v.page === pageLink[req.url])}
+        githubUrl={githubUrl}
+        iconCdnUrl={iconCdnUrl}
+        defaultIcon={defaultIcon}
+      />
+    </AppContainer>
   );
   const html = renderToStaticMarkup(htmlDOM);
   res.status(200);

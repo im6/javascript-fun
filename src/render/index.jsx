@@ -2,6 +2,7 @@ import fs from 'fs';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
+import AppContainer from '../components/AppContainer';
 import GitPage from '../pages/GitPage';
 import LinkPage from '../pages/LinkPage';
 
@@ -13,6 +14,7 @@ import {
   renderOutputFolder,
   viewModelPath,
   criticalCssPath,
+  nonLazyImg,
 } from '../config';
 
 const generateGitPage = url => {
@@ -20,14 +22,18 @@ const generateGitPage = url => {
   const rawdata = fs.readFileSync(viewModelPath.git);
   const gitSource = JSON.parse(rawdata);
   const htmlDOM = (
-    <GitPage
+    <AppContainer
       url={url}
-      source={gitSource.filter(v => v.page === pageLink[url])}
-      githubUrl={githubUrl}
-      iconCdnUrl={iconCdnUrl}
-      defaultIcon={defaultIcon}
       criticalCss={<style dangerouslySetInnerHTML={{ __html: appCss }} />}
-    />
+    >
+      <GitPage
+        nonLazyImgIndex={nonLazyImg}
+        source={gitSource.filter(v => v.page === pageLink[url])}
+        githubUrl={githubUrl}
+        iconCdnUrl={iconCdnUrl}
+        defaultIcon={defaultIcon}
+      />
+    </AppContainer>
   );
   const html = `<!DOCTYPE html>${renderToStaticMarkup(htmlDOM)}`;
   const jsonOutputUrl = `${renderOutputFolder}${url}index.html`;
@@ -40,11 +46,12 @@ const generateSitePage = url => {
   const rawdata = fs.readFileSync(viewModelPath.site);
   const siteSource = JSON.parse(rawdata);
   const htmlDOM = (
-    <LinkPage
+    <AppContainer
       url={url}
-      source={siteSource}
       criticalCss={<style dangerouslySetInnerHTML={{ __html: appCss }} />}
-    />
+    >
+      <LinkPage source={siteSource} />
+    </AppContainer>
   );
   const html = `<!DOCTYPE html>${renderToStaticMarkup(htmlDOM)}`;
   const jsonOutputUrl = `${renderOutputFolder}${url}index.html`;
