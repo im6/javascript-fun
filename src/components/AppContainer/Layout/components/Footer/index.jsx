@@ -2,13 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import style from './style.less';
 
-const Footer = ({ author, year }) => (
+const Footer = ({ hideAuthor, author, year }) => (
   <footer className={style.footer}>
     <span>
       &copy; Copyright {year}&nbsp;
-      <a href="/about/" target="_blank">
-        {author}
-      </a>
+      {!hideAuthor ? (
+        <a href="/about/" target="_blank">
+          {author}
+        </a>
+      ) : (
+        'Javascript.Fun'
+      )}
       .&nbsp;All rights reserved. &#9989; by&nbsp;
       <a
         href="https://developers.google.com/speed/pagespeed/insights/?url=www.javascript.fun&tab=desktop"
@@ -23,6 +27,7 @@ const Footer = ({ author, year }) => (
 
 Footer.propTypes = {
   author: PropTypes.string.isRequired,
+  hideAuthor: PropTypes.bool,
 };
 
 export default Footer;
