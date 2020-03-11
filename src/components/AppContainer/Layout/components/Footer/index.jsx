@@ -28,6 +28,7 @@ const Footer = ({ hideAuthor, author, year }) => (
 Footer.propTypes = {
   author: PropTypes.string.isRequired,
   hideAuthor: PropTypes.bool,
+  year: PropTypes.string.isRequired,
 };
 
 export default Footer;
