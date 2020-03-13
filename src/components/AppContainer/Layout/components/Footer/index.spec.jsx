@@ -6,9 +6,9 @@ describe('render properly', () => {
   test('render correct', () => {
     const authorName = 'hello';
     const { getByText, rerender } = render(
-      <Footer author={authorName} year="1998" hideAuthor />
+      <Footer author={authorName} year={1998} hideAuthor />
     );
-    rerender(<Footer author={authorName} year="1998" />);
+    rerender(<Footer author={authorName} year={1998} />);
     expect(getByText(authorName)).toBeTruthy();
   });
 });
