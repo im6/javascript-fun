@@ -12,6 +12,7 @@ import {
   leftNavText,
   iconCdnUrl,
   pageAssetFileName,
+  topNavConfig,
 } from '../../config';
 const { version } = process.env;
 const AppContainer = ({ url, children, criticalCss }) => (
@@ -27,6 +28,8 @@ const AppContainer = ({ url, children, criticalCss }) => (
   >
     <Layout
       url={url}
+      iconCdnUrl={iconCdnUrl}
+      topNavConfig={topNavConfig}
       leftNavText={leftNavText}
       author={author}
       gitRepo={gitRepo}

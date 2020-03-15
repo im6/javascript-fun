@@ -12,6 +12,8 @@ const Layout = ({
   children,
   leftNavText,
   author,
+  iconCdnUrl,
+  topNavConfig,
   hideOwnerDetail,
   gitRepo,
   year,
@@ -22,9 +24,9 @@ const Layout = ({
     </div>
     <div className={`pure-u-1 pure-u-md-5-6 pure-u-lg-4-5 ${style.right}`}>
       {!hideOwnerDetail && <GithubCorner url={gitRepo} />}
-      <TopNav url={url} />
+      <TopNav url={url} topNavConfig={topNavConfig} iconCdnUrl={iconCdnUrl} />
       {children}
-      <TopNav url={url} />
+      <TopNav url={url} topNavConfig={topNavConfig} iconCdnUrl={iconCdnUrl} />
       <Footer hideAuthor={hideOwnerDetail} author={author} year={year} />
     </div>
   </div>
@@ -32,12 +34,14 @@ const Layout = ({
 
 Layout.propTypes = {
   url: PropTypes.string.isRequired,
+  iconCdnUrl: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   hideOwnerDetail: PropTypes.bool,
   gitRepo: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.element])
     .isRequired,
+  topNavConfig: PropTypes.array.isRequired,
   leftNavText: PropTypes.array,
 };
 

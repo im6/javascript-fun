@@ -8,9 +8,7 @@ const GitBox = ({ name, url, img, imgSrc, star, lazyImg }) => (
       <img src={`${imgSrc}/${img}`} alt={name} data-i={lazyImg} />
       <div className={style.rightText}>
         <h3>{name}</h3>
-        <a href={url} target="_blank">
-          &#9733; {star}
-        </a>
+        <a href={url}>&#9733; {star}</a>
       </div>
     </div>
   </div>
