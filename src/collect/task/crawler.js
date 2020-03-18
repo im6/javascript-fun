@@ -40,8 +40,8 @@ const getNum = (obj0, cb) => {
 
       cb(null, obj);
     })
-    .catch(() => {
-      console.error(`crawler timeout on ${obj.name}`); // eslint-disable-line no-console
+    .catch(({ statusCode }) => {
+      console.error('error: ', statusCode); // eslint-disable-line no-console
       cb(null, obj); // no err object, but collect failed items for next round.
     });
 };
