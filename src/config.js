@@ -61,6 +61,8 @@ export const criticalCssPath = {
   site: 'dist/public/site.css',
 };
 
+// crawler config
 export const crawlerTimeout = 5 * 1000;
+export const abusePauseTimeout = 30 * 1000;
 export const crawlerShowFullNumber = true;
-export const crawlerConcurrency = 2;
+export const crawlerStepDelay = 100;

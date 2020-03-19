@@ -9,7 +9,8 @@ import {
   githubUrl,
   crawlerTimeout as timeout,
   crawlerShowFullNumber,
-  crawlerConcurrency,
+  abusePauseTimeout,
+  crawlerStepDelay,
 } from '../../config';
 
 const getNum = (obj0, cb) => {
@@ -40,22 +41,33 @@ const getNum = (obj0, cb) => {
 
       cb(null, obj);
     })
-    .catch(({ statusCode }) => {
-      console.error('error: ', statusCode); // eslint-disable-line no-console
-      cb(null, obj); // no err object, but collect failed items for next round.
+    .catch(err => {
+      cb(err, obj);
     });
 };
 
 const oneLoop = (taskList, cb0) => {
+  let abuseFlag = false;
   const bar = new ProgressBar('downloading :current of :total: :gtnm', {
     total: taskList.length,
   });
-  async.mapLimit(
+  async.mapSeries(
     taskList,
-    crawlerConcurrency,
     (v, cb1) => {
       bar.tick({ gtnm: v.name || v.github });
-      getNum(v, cb1);
+      if (abuseFlag) cb1(null, v);
+      else {
+        getNum(v, (err, data) => {
+          if (err) {
+            abuseFlag = true;
+            cb1(null, v);
+          } else {
+            setTimeout(() => {
+              cb1(null, data);
+            }, crawlerStepDelay);
+          }
+        });
+      }
     },
     cb0
   );
@@ -69,13 +81,22 @@ const collectStarNum = (db, cb0) => {
       cb1(null, unfinished.length > 0);
     },
     cb2 => {
-      if (finished.length > 0) {
-        console.log(`retry ${unfinished.length} pkgs...`); // eslint-disable-line no-console
-      }
       oneLoop(unfinished, (err, data) => {
         unfinished = data.filter(v => v.star === null);
         finished = finished.concat(data.filter(v => v.star !== null));
-        cb2(err, finished);
+        const unfinishedLen = unfinished.length;
+        if (unfinishedLen > 0) {
+          // eslint-disable-next-line no-console
+          console.log(
+            `pause for ${abusePauseTimeout /
+              1000} secs for another ${unfinishedLen} pkgs ...`
+          );
+          setTimeout(() => {
+            cb2(err, finished);
+          }, abusePauseTimeout);
+        } else {
+          cb2(err, finished);
+        }
       });
     },
     cb0
