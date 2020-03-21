@@ -12,6 +12,7 @@ import {
   abusePauseTimeout,
   crawlerStepDelay,
   crawlerStepNum,
+  cookie,
 } from '../../config';
 
 const getNum = (obj0, cb) => {
@@ -19,10 +20,16 @@ const getNum = (obj0, cb) => {
   rp({
     uri: `${githubUrl}/${obj.github}`,
     timeout,
+    headers: {
+      Cookie: cookie,
+      'User-Agent':
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36',
+      Host: 'github.com',
+    },
     transform: body => cheerio.load(body),
   })
     .then($ => {
-      const elems = $('.social-count');
+      const elems = $('a.social-count.js-social-count');
       const starElem = elems[1];
       if (crawlerShowFullNumber) {
         const numLabel = starElem.attribs['aria-label'];
