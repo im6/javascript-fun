@@ -65,4 +65,5 @@ export const criticalCssPath = {
 export const crawlerTimeout = 5 * 1000;
 export const abusePauseTimeout = 30 * 1000;
 export const crawlerShowFullNumber = true;
-export const crawlerStepDelay = 100;
+export const crawlerStepDelay = 2000;
+export const crawlerStepNum = 7;

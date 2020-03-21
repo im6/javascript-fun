@@ -11,6 +11,7 @@ import {
   crawlerShowFullNumber,
   abusePauseTimeout,
   crawlerStepDelay,
+  crawlerStepNum,
 } from '../../config';
 
 const getNum = (obj0, cb) => {
@@ -21,8 +22,8 @@ const getNum = (obj0, cb) => {
     transform: body => cheerio.load(body),
   })
     .then($ => {
-      const elems = $('a.social-count.js-social-count');
-      const starElem = elems[0];
+      const elems = $('.social-count');
+      const starElem = elems[1];
       if (crawlerShowFullNumber) {
         const numLabel = starElem.attribs['aria-label'];
         const numStr = numLabel.split(' ')[0];
@@ -59,12 +60,20 @@ const oneLoop = (taskList, cb0) => {
       else {
         getNum(v, (err, data) => {
           if (err) {
-            abuseFlag = true;
-            cb1(null, v);
+            if (err.statusCode === 429) {
+              console.log('abuse detection mechanism triggered'); // eslint-disable-line no-console
+              abuseFlag = true;
+              cb1(null, v);
+            } else {
+              cb1(err, v);
+            }
           } else {
-            setTimeout(() => {
-              cb1(null, data);
-            }, crawlerStepDelay);
+            setTimeout(
+              () => {
+                cb1(null, data);
+              },
+              data.id % crawlerStepNum === 0 ? crawlerStepDelay : 0
+            );
           }
         });
       }
@@ -82,6 +91,10 @@ const collectStarNum = (db, cb0) => {
     },
     cb2 => {
       oneLoop(unfinished, (err, data) => {
+        if (err) {
+          cb2(err);
+          return;
+        }
         unfinished = data.filter(v => v.star === null);
         finished = finished.concat(data.filter(v => v.star !== null));
         const unfinishedLen = unfinished.length;
