@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-const uuid = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 
 const {
   clientBaseConfig,
@@ -115,7 +115,7 @@ const server = Object.assign(serverBaseConfig, {
       'process.env.lastBuildDate': JSON.stringify(
         `${new Date().toLocaleString()} EST`
       ),
-      'process.env.version': JSON.stringify(uuid.v1().substring(0, 8)),
+      'process.env.version': JSON.stringify(uuidv4().substring(0, 8)),
     }),
   ],
 });
