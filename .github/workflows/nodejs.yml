@@ -25,10 +25,10 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - name: npm install, test and build
+      - name: yarn install, test and build
         run: |
-          npm i
-          npm run lint
-          npm run test
+          yarn install
+          yarn lint
+          yarn test
         env:
           CI: true
