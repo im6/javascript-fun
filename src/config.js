@@ -6,6 +6,8 @@ export const publicPath = '/assets';
 export const iconCdnUrl = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons';
 export const nonLazyImg = 2;
 export const author = 'ZJ Guo';
+export const pageSpeedUrl =
+  'https://developers.google.com/speed/pagespeed/insights/?url=www.javascript.fun&tab=desktop';
 export const hideOwnerDetail = false;
 export const githubUrl = 'https://github.com';
 export const gitRepo = `${githubUrl}/im6/javascript-fun/issues`;

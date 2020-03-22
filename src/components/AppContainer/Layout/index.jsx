@@ -12,6 +12,7 @@ const Layout = ({
   children,
   leftNavText,
   author,
+  pageSpeedUrl,
   iconCdnUrl,
   topNavConfig,
   hideOwnerDetail,
@@ -27,7 +28,12 @@ const Layout = ({
       <TopNav url={url} topNavConfig={topNavConfig} iconCdnUrl={iconCdnUrl} />
       {children}
       <TopNav url={url} topNavConfig={topNavConfig} iconCdnUrl={iconCdnUrl} />
-      <Footer hideAuthor={hideOwnerDetail} author={author} year={year} />
+      <Footer
+        hideAuthor={hideOwnerDetail}
+        author={author}
+        year={year}
+        pageSpeedUrl={pageSpeedUrl}
+      />
     </div>
   </div>
 );
@@ -36,6 +42,7 @@ Layout.propTypes = {
   url: PropTypes.string.isRequired,
   iconCdnUrl: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
+  pageSpeedUrl: PropTypes.string.isRequired,
   hideOwnerDetail: PropTypes.bool,
   gitRepo: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
