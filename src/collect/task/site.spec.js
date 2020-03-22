@@ -27,7 +27,7 @@ describe('Testing site query functionality', () => {
         ]);
       }
     });
-    runSite(err => {
+    runSite((err) => {
       expect(err).toBe(null);
     });
   });
@@ -35,7 +35,7 @@ describe('Testing site query functionality', () => {
     sqlExecOne.mockImplementation((qry, cb) => {
       cb(true);
     });
-    runSite(err => {
+    runSite((err) => {
       expect(err).toBe(true);
     });
   });

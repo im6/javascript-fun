@@ -8,7 +8,7 @@ const group = (data, grp) => {
     return acc;
   }, {});
   const result = groupBy(data, 'grp');
-  const result2 = Object.keys(result).map(i => {
+  const result2 = Object.keys(result).map((i) => {
     const obj = grpRef[`k${i}`];
     obj.list = result[i];
     return obj;
@@ -16,7 +16,7 @@ const group = (data, grp) => {
   return result2;
 };
 
-export default cb => {
+export default (cb) => {
   const querys = [
     'SELECT * FROM category_git',
     'SELECT * FROM site where grp is NOT NULL',

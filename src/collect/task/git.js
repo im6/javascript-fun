@@ -5,7 +5,7 @@ import orderBy from 'lodash.orderby';
 import getPackageList from './crawler';
 import sqlExecOne from '../mysqlConnection';
 
-const convertGroupIcon = data => {
+const convertGroupIcon = (data) => {
   return data.reduce((accumulator, currentValue) => {
     accumulator[`k${currentValue.id}`] = currentValue;
     if (currentValue.icon.length === 0) {
@@ -16,10 +16,10 @@ const convertGroupIcon = data => {
 };
 
 const group = (data, iconMap) => {
-  const data1 = orderBy(data, v => numeral(v.star).value(), 'desc');
+  const data1 = orderBy(data, (v) => numeral(v.star).value(), 'desc');
   const data2 = groupBy(data1, 'group');
   const data3 = Object.keys(data2);
-  const result = data3.map(k => {
+  const result = data3.map((k) => {
     const v = data2[k];
     const newItem = iconMap[`k${k}`];
     newItem.list = v;
@@ -35,13 +35,13 @@ const group = (data, iconMap) => {
   return orderBy(result, ['page', 'sort']);
 };
 
-export default cb0 => {
+export default (cb0) => {
   async.parallel(
     [
-      cb => {
+      (cb) => {
         sqlExecOne('SELECT * FROM category_git', cb);
       },
-      cb => {
+      (cb) => {
         getPackageList(
           'SELECT *, NULL as star FROM git WHERE `group` IS NOT NULL', // [ AND id < 20]
           cb

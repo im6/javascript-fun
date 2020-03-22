@@ -26,9 +26,9 @@ const getNum = (obj0, cb) => {
         'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36',
       Host: 'github.com',
     },
-    transform: body => cheerio.load(body),
+    transform: (body) => cheerio.load(body),
   })
-    .then($ => {
+    .then(($) => {
       const elems = $('a.social-count.js-social-count');
       const starElem = elems[1];
       if (crawlerShowFullNumber) {
@@ -49,7 +49,7 @@ const getNum = (obj0, cb) => {
 
       cb(null, obj);
     })
-    .catch(err => {
+    .catch((err) => {
       cb(err, obj);
     });
 };
@@ -93,23 +93,24 @@ const collectStarNum = (db, cb0) => {
   let unfinished = db;
   let finished = [];
   async.whilst(
-    cb1 => {
+    (cb1) => {
       cb1(null, unfinished.length > 0);
     },
-    cb2 => {
+    (cb2) => {
       oneLoop(unfinished, (err, data) => {
         if (err) {
           cb2(err);
           return;
         }
-        unfinished = data.filter(v => v.star === null);
-        finished = finished.concat(data.filter(v => v.star !== null));
+        unfinished = data.filter((v) => v.star === null);
+        finished = finished.concat(data.filter((v) => v.star !== null));
         const unfinishedLen = unfinished.length;
         if (unfinishedLen > 0) {
           // eslint-disable-next-line no-console
           console.log(
-            `pause for ${abusePauseTimeout /
-              1000} secs for another ${unfinishedLen} pkgs ...`
+            `pause for ${
+              abusePauseTimeout / 1000
+            } secs for another ${unfinishedLen} pkgs ...`
           );
           setTimeout(() => {
             cb2(err, finished);

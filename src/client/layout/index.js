@@ -20,7 +20,7 @@ const initTyped = () => {
     smartBackspace: false,
     loop: true,
     autoInsertCss: true,
-    preStringTyped: index => {
+    preStringTyped: (index) => {
       const typeCurosr = document.getElementsByClassName('typed-cursor')[0];
       typeCurosr.style.color = leftNavTextColors[index % colorNum][0]; // eslint-disable-line prefer-destructuring
       typeElem.style.color = leftNavTextColors[index % colorNum][0]; // eslint-disable-line prefer-destructuring

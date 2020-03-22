@@ -11,21 +11,21 @@ if (!process.env.SQL_HOST) {
 
 async.parallel(
   [
-    cb => {
+    (cb) => {
       collectSite((err0, data) => {
-        fs.writeFile(viewModelPath.site, JSON.stringify(data), err1 => {
+        fs.writeFile(viewModelPath.site, JSON.stringify(data), (err1) => {
           cb(err0 || err1);
         });
       });
     },
-    cb =>
+    (cb) =>
       collectGit((err0, data) => {
-        fs.writeFile(viewModelPath.git, JSON.stringify(data), err1 => {
+        fs.writeFile(viewModelPath.git, JSON.stringify(data), (err1) => {
           cb(err0 || err1);
         });
       }),
   ],
-  err => {
+  (err) => {
     if (err) {
       console.error('job failed!', err); // eslint-disable-line no-console
     } else {

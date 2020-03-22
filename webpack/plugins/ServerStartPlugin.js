@@ -26,7 +26,7 @@ class ServerStartPlugin {
       });
       console.log('[server]: start server');
       this.child.stdout.on('data', ServerStartPlugin.onStdOut);
-      this.child.stderr.on('data', x => process.stderr.write(x));
+      this.child.stderr.on('data', (x) => process.stderr.write(x));
       callback();
     });
   }
