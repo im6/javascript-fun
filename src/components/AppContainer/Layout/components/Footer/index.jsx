@@ -15,7 +15,7 @@ const Footer = ({ hideAuthor, author, year }) => (
       )}
       .&nbsp;All rights reserved. &#9989; by&nbsp;
       <a
-        href={`https://developers.google.com/speed/pagespeed/insights/?url=www.javascript.fun&tab=desktop`}
+        href="https://developers.google.com/speed/pagespeed/insights/?url=www.javascript.fun&tab=desktop"
         target="_blank"
         className={style.blue}
       >
