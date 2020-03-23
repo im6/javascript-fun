@@ -68,7 +68,7 @@ const oneLoop = (taskList, cb0) => {
         getNum(v, (err, data) => {
           if (err) {
             if (err.statusCode === 429) {
-              console.log('abuse detection mechanism triggered'); // eslint-disable-line no-console
+              console.error('abuse detection mechanism triggered'); // eslint-disable-line no-console
               abuseFlag = true;
               cb1(null, v);
             } else {

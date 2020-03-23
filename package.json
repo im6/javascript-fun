@@ -107,6 +107,7 @@
       [
         "@babel/preset-react",
         {
+          "development": false,
           "runtime": "classic"
         }
       ]
