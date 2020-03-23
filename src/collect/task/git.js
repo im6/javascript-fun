@@ -5,15 +5,11 @@ import orderBy from 'lodash.orderby';
 import getPackageList from './crawler';
 import sqlExecOne from '../mysqlConnection';
 
-const convertGroupIcon = (data) => {
-  return data.reduce((accumulator, currentValue) => {
+const convertGroupIcon = (data) =>
+  data.reduce((accumulator, currentValue) => {
     accumulator[`k${currentValue.id}`] = currentValue;
-    if (currentValue.icon.length === 0) {
-      accumulator[`k${currentValue.id}`].icon = null;
-    }
     return accumulator;
   }, {});
-};
 
 const group = (data, iconMap) => {
   const data1 = orderBy(data, (v) => numeral(v.star).value(), 'desc');
@@ -43,7 +39,7 @@ export default (cb0) => {
       },
       (cb) => {
         getPackageList(
-          'SELECT *, NULL as star FROM git WHERE `group` IS NOT NULL', // [ AND id < 20]
+          'SELECT *, NULL as star FROM git WHERE `group` IS NOT NULL', // " AND id < 20"
           cb
         );
       },

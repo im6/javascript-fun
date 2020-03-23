@@ -41,10 +41,8 @@ const getNum = (obj0, cb) => {
         obj.star = num;
       }
 
-      if (obj.name.length === 0) {
-        // empty string
-        const gitList = obj.github.split('/');
-        [, obj.name] = gitList;
+      if (!obj.name) {
+        [, obj.name] = obj.github.split('/');
       }
 
       cb(null, obj);
