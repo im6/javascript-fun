@@ -34,19 +34,35 @@ export const leftNavTextColors = [
   ['#ffb077', '#b0cadb'],
 ];
 
-export const pageAssetFileName = {
-  '/': 'main',
-  '/node/': 'main',
-  '/library/': 'main',
-  '/site/': 'site',
-};
-
 export const topNavConfig = [
-  { to: '/', img: 'vue.png', title: 'Front End Framework', alt: 'framework' },
-  { to: '/node/', img: 'mongo.png', title: 'Node.js Framework', alt: 'node' },
-  { to: '/library/', img: 'bower.png', title: 'JS Library', alt: 'library' },
-  { to: '/site/', img: 'site.png', title: 'Tool', alt: 'site' },
+  {
+    to: '/',
+    img: 'vue.png',
+    title: 'Front End Framework',
+    alt: 'framework',
+    asset: 'main',
+  },
+  {
+    to: '/node/',
+    img: 'mongo.png',
+    title: 'Node.js Framework',
+    alt: 'node',
+    asset: 'main',
+  },
+  {
+    to: '/library/',
+    img: 'bower.png',
+    title: 'JS Library',
+    alt: 'library',
+    asset: 'main',
+  },
+  { to: '/site/', img: 'site.png', title: 'Tool', alt: 'site', asset: 'site' },
 ];
+
+export const pageAssetFileName = topNavConfig.reduce((acc, cur) => {
+  acc[cur.to] = cur.asset;
+  return acc;
+}, {});
 
 export const pageLink = topNavConfig.reduce((acc, cur, k) => {
   acc[cur.to] = k + 1;

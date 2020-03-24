@@ -11,7 +11,8 @@ const setTime = () => {
 
 const lazyLoadImg = () => {
   const imgElems = document.getElementsByTagName('img');
-  for (let j = 0; j < imgElems.length; j += 1) {
+  const imgLen = imgElems.length;
+  for (let j = 0; j < imgLen; j += 1) {
     const imgObj = imgElems[j];
     const { i } = imgObj.dataset;
     if (i) {

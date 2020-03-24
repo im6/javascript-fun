@@ -1,6 +1,6 @@
 import async from 'async';
-import cheerio from 'cheerio';
 import numeral from 'numeral';
+import cheerio from 'cheerio';
 import rp from 'request-promise';
 import ProgressBar from 'progress';
 
