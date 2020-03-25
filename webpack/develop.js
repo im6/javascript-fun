@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ServerStartPlugin = require('./plugins/ServerStartPlugin');
 
 const {
+  include,
   clientBaseConfig,
   serverBaseConfig,
   localIdentName,
@@ -28,7 +29,7 @@ const client = Object.assign(clientBaseConfig, devBase, {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        include,
         use: [
           {
             loader: 'babel-loader',
@@ -40,6 +41,7 @@ const client = Object.assign(clientBaseConfig, devBase, {
       },
       {
         test: /\.less$/,
+        include,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -75,11 +77,12 @@ const server = Object.assign(serverBaseConfig, devBase, {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        include,
         use: ['babel-loader'],
       },
       {
         test: /\.less$/,
+        include,
         use: [
           {
             loader: 'css-loader',

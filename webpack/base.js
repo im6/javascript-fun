@@ -20,3 +20,4 @@ exports.serverBaseConfig = {
 };
 
 exports.localIdentName = '[hash:base64:5]';
+exports.include = path.resolve(__dirname, '../src');

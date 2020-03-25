@@ -10,6 +10,7 @@ const {
   clientBaseConfig,
   serverBaseConfig,
   localIdentName,
+  include,
 } = require('./base');
 
 const prodBase = {
@@ -28,7 +29,7 @@ const client = Object.assign(clientBaseConfig, prodBase, {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        include,
         use: [
           {
             loader: 'babel-loader',
@@ -40,6 +41,7 @@ const client = Object.assign(clientBaseConfig, prodBase, {
       },
       {
         test: /\.less$/,
+        include,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -91,11 +93,12 @@ const server = Object.assign(serverBaseConfig, prodBase, {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        include,
         use: ['babel-loader'],
       },
       {
         test: /\.less$/,
+        include,
         use: [
           {
             loader: 'css-loader',
