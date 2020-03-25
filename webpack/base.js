@@ -5,8 +5,6 @@ const resolve = {
   extensions: ['.js', '.jsx'],
 };
 
-exports.withoutCssModuleFiles = [];
-
 exports.clientBaseConfig = {
   resolve,
   entry: {

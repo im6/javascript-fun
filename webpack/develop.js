@@ -10,10 +10,16 @@ const {
   localIdentName,
 } = require('./base');
 
-const client = Object.assign(clientBaseConfig, {
+const devBase = {
   watch: true,
   mode: 'development',
   devtool: 'inline-source-map',
+  watchOptions: {
+    ignored: /node_modules/,
+  },
+};
+
+const client = Object.assign(clientBaseConfig, devBase, {
   output: {
     path: path.join(__dirname, '../local/public'),
     filename: '[name].js',
@@ -57,14 +63,9 @@ const client = Object.assign(clientBaseConfig, {
       filename: '[name].css',
     }),
   ],
-  watchOptions: {
-    ignored: /node_modules/,
-  },
 });
 
-const server = Object.assign(serverBaseConfig, {
-  watch: true,
-  mode: 'development',
+const server = Object.assign(serverBaseConfig, devBase, {
   entry: path.join(__dirname, '../src/server'),
   output: {
     path: path.join(__dirname, '../local/server'),
@@ -101,9 +102,6 @@ const server = Object.assign(serverBaseConfig, {
     }),
     new ServerStartPlugin('./local/server'),
   ],
-  watchOptions: {
-    ignored: /node_modules/,
-  },
 });
 
 module.exports = [client, server];

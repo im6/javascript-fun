@@ -12,8 +12,14 @@ const {
   localIdentName,
 } = require('./base');
 
-const client = Object.assign(clientBaseConfig, {
+const prodBase = {
   mode: 'production',
+  optimization: {
+    minimize: true,
+  },
+};
+
+const client = Object.assign(clientBaseConfig, prodBase, {
   output: {
     path: path.join(__dirname, '../dist/public'),
     filename: '[name].js',
@@ -71,15 +77,11 @@ const client = Object.assign(clientBaseConfig, {
   ],
 });
 
-const server = Object.assign(serverBaseConfig, {
-  mode: 'production',
+const server = Object.assign(serverBaseConfig, prodBase, {
   entry: {
     server: path.join(__dirname, '../src/server'),
     render: path.join(__dirname, '../src/render'),
     collect: path.join(__dirname, '../src/collect'),
-  },
-  optimization: {
-    minimize: true,
   },
   output: {
     path: path.join(__dirname, '../dist/node'),
