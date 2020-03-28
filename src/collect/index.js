@@ -4,7 +4,11 @@ import collectGit from './task/git';
 import collectSite from './task/site';
 import { viewModelPath } from '../config';
 
-if (!process.env.SQL_HOST) {
+if (
+  !process.env.SQL_HOST ||
+  !process.env.SQL_USERNAME ||
+  !process.env.SQL_PASSWORD
+) {
   console.error('DB connection info missing.'); // eslint-disable-line no-console
   process.exit();
 }
