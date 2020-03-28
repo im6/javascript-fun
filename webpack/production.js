@@ -71,11 +71,6 @@ const client = Object.assign(clientBaseConfig, prodBase, {
       filename: '[name].css',
     }),
     new OptimizeCssAssetsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.lastBuildDate': JSON.stringify(
-        `${new Date().toLocaleString()} UTC`
-      ),
-    }),
   ],
 });
 
@@ -117,10 +112,10 @@ const server = Object.assign(serverBaseConfig, prodBase, {
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
+      'process.env.version': JSON.stringify(uuidv4().substring(0, 8)),
       'process.env.lastBuildDate': JSON.stringify(
         `${new Date().toLocaleString()} EST`
       ),
-      'process.env.version': JSON.stringify(uuidv4().substring(0, 8)),
     }),
   ],
 });

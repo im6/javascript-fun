@@ -12,10 +12,11 @@ const Html = ({
   children,
   version,
   criticalCss,
+  lastBuildDate,
 }) => (
   <html lang="en">
     <head>
-      <MetaInfo author={author} />
+      <MetaInfo author={author} lastBuildDate={lastBuildDate} />
       <title>
         JavaScript Fun | Most Popular JavaScript Framework in {year} | Top
         JavaScript Library | 前端框架 | web前端开发 | JS library Ranking

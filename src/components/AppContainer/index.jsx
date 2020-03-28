@@ -15,15 +15,15 @@ import {
   pageAssetFileName,
   topNavConfig,
 } from '../../config';
-const { version } = process.env;
+
 const AppContainer = ({ url, children, criticalCss }) => (
   <Html
     year={leftNavText[0]}
     favIconUrl={`${iconCdnUrl}/fav.ico`}
     script={`${publicPath}/${pageAssetFileName[url]}.js`}
     style={`${publicPath}/${pageAssetFileName[url]}.css`}
-    lastBuildDate={process.env.lastBuildDate || 'dev'}
-    version={version}
+    lastBuildDate={process.env.lastBuildDate}
+    version={process.env.version}
     criticalCss={criticalCss}
     author={author}
   >
