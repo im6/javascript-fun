@@ -7,7 +7,6 @@ const GithubCorner = ({ url }) => (
   <a
     className={style.link}
     href={url}
-    target="_blank"
     aria-label="report an issue"
     title="report an issue"
   >

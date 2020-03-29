@@ -17,7 +17,7 @@ export const defaultIcon = [
   'github2.svg',
   'github3.png',
   'github4.png',
-][0];
+][2];
 export const leftNavText = [
   new Date().getFullYear() + (new Date().getMonth() < 11 ? 0 : 1),
   'Developer',
