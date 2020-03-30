@@ -5,12 +5,13 @@ import collectSite from './task/site';
 import { viewModelPath } from '../config';
 
 if (
+  !process.env.MY_COOKIE ||
   !process.env.SQL_HOST ||
   !process.env.SQL_USERNAME ||
   !process.env.SQL_PASSWORD
 ) {
   console.error('DB connection info missing.'); // eslint-disable-line no-console
-  process.exit();
+  process.exit(1);
 }
 
 async.parallel(
@@ -32,9 +33,10 @@ async.parallel(
   (err) => {
     if (err) {
       console.error('\nJob Failed.', err.toString()); // eslint-disable-line no-console
+      process.exit(1);
     } else {
       console.log('job success!'); // eslint-disable-line no-console
+      process.exit();
     }
-    process.exit();
   }
 );

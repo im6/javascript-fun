@@ -12,8 +12,9 @@ import {
   abusePauseTimeout,
   crawlerStepDelay,
   crawlerStepNum,
-  cookie,
 } from '../../config';
+
+const { MY_COOKIE: Cookie } = process.env;
 
 const getNum = (obj0, cb) => {
   const obj = { ...obj0 };
@@ -21,7 +22,7 @@ const getNum = (obj0, cb) => {
     uri: `${githubUrl}/${obj.github}`,
     timeout,
     headers: {
-      Cookie: cookie,
+      Cookie,
       'User-Agent':
         'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36',
       Host: 'github.com',

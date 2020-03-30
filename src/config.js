@@ -85,4 +85,3 @@ export const abusePauseTimeout = 30 * 1000;
 export const crawlerShowFullNumber = true;
 export const crawlerStepDelay = 2000;
 export const crawlerStepNum = 5;
-export const { cookie } = process.env;
