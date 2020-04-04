@@ -27,12 +27,20 @@
   display: none;
 }
 
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .header {
+    width: 16.67%;
+  }
+}
+
 @media (max-width: 768px) {
   .header {
     position: relative;
     width: 100%;
-    padding: 8px 15px;
+    top: 0;
     text-align: left;
+
+    padding: 8px 15px;
     h1 {
       display: inline-block;
       margin-right: 5px; // word spacing
@@ -40,11 +48,5 @@
   }
   .type {
     font-size: @side-bar-typed-font-size-mobile;
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .header {
-    width: 16.67%;
   }
 }
