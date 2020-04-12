@@ -1,5 +1,5 @@
 import Typed from 'typed.js';
-import './style.js';
+import './style';
 
 import { leftNavTextColors } from '../../config';
 import {
