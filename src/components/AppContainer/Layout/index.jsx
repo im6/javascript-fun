@@ -15,7 +15,7 @@ const Layout = ({
   pageSpeedUrl,
   iconCdnUrl,
   topNavConfig,
-  hideOwnerDetail,
+  hideGithubCorner,
   gitRepo,
   year,
 }) => (
@@ -24,12 +24,12 @@ const Layout = ({
       <SideBar words={leftNavText} />
     </div>
     <div className={`pure-u-1 pure-u-md-5-6 pure-u-lg-4-5 ${style.right}`}>
-      {!hideOwnerDetail && <GithubCorner url={gitRepo} />}
+      {!hideGithubCorner && <GithubCorner url={gitRepo} />}
       <TopNav url={url} topNavConfig={topNavConfig} iconCdnUrl={iconCdnUrl} />
       {children}
       <TopNav url={url} topNavConfig={topNavConfig} iconCdnUrl={iconCdnUrl} />
       <Footer
-        hideAuthor={hideOwnerDetail}
+        hideAuthor={hideGithubCorner}
         author={author}
         year={year}
         pageSpeedUrl={pageSpeedUrl}
@@ -43,7 +43,7 @@ Layout.propTypes = {
   iconCdnUrl: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   pageSpeedUrl: PropTypes.string.isRequired,
-  hideOwnerDetail: PropTypes.bool,
+  hideGithubCorner: PropTypes.bool,
   gitRepo: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.element])
