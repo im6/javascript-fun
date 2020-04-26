@@ -77,16 +77,6 @@ export const topNavDict = topNavConfig.reduce((acc, cur, k) => {
   return acc;
 }, {});
 
-export const pageAssetFileName = topNavConfig.reduce((acc, cur) => {
-  acc[cur.to] = cur.asset;
-  return acc;
-}, {});
-
-export const pageLink = topNavConfig.reduce((acc, cur, k) => {
-  acc[cur.to] = k + 1;
-  return acc;
-}, {});
-
 export const viewModelPath = {
   git: 'dist/github.json',
   site: 'dist/site.json',

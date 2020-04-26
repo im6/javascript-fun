@@ -10,14 +10,14 @@ import {
   iconCdnUrl,
   githubUrl,
   defaultIcon,
-  pageLink,
+  topNavDict,
   renderOutputFolder,
   viewModelPath,
   criticalCssPath,
   nonLazyImg,
 } from '../config';
 
-const generateGitPage = url => {
+const generateGitPage = (url) => {
   const appCss = fs.readFileSync(criticalCssPath.git);
   const rawdata = fs.readFileSync(viewModelPath.git);
   const gitSource = JSON.parse(rawdata);
@@ -28,7 +28,7 @@ const generateGitPage = url => {
     >
       <GitPage
         nonLazyImgIndex={nonLazyImg}
-        source={gitSource.filter(v => v.page === pageLink[url])}
+        source={gitSource.filter((v) => v.page === topNavDict[url].link)}
         githubUrl={githubUrl}
         iconCdnUrl={iconCdnUrl}
         defaultIcon={defaultIcon}
@@ -41,7 +41,7 @@ const generateGitPage = url => {
   console.log(`output ${url} success`);
 };
 
-const generateSitePage = url => {
+const generateSitePage = (url) => {
   const appCss = fs.readFileSync(criticalCssPath.site);
   const rawdata = fs.readFileSync(viewModelPath.site);
   const siteSource = JSON.parse(rawdata);

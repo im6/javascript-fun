@@ -11,7 +11,6 @@ const Html = ({
   style,
   script,
   children,
-  version,
   criticalCss,
   lastBuildDate,
 }) => (
@@ -21,7 +20,7 @@ const Html = ({
       <title>{title} | JavaScript.Fun</title>
       <link rel="shortcut icon" type="image/png" href={favIconUrl} />
       <PureCss />
-      {criticalCss || <link href={`${style}?${version}`} rel="stylesheet" />}
+      {criticalCss || <link href={style} rel="stylesheet" />}
     </head>
     <body>
       <noscript>
@@ -33,7 +32,7 @@ const Html = ({
         />
       </noscript>
       {children}
-      <script src={`${script}?${version}`} type="text/javascript" />
+      <script src={script} type="text/javascript" />
     </body>
   </html>
 );
@@ -46,7 +45,6 @@ Html.propTypes = {
   script: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired,
-  version: PropTypes.string,
   criticalCss: PropTypes.element,
 };
 

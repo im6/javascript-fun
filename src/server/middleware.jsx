@@ -12,7 +12,7 @@ import {
   iconCdnUrl,
   githubUrl,
   defaultIcon,
-  pageLink,
+  topNavDict,
   renderOutputFolder,
   viewModelPath,
 } from '../config';
@@ -37,7 +37,7 @@ export const gitMd = (req, res) => {
     <AppContainer url={req.url}>
       <GitPage
         nonLazyImgIndex={nonLazyImg}
-        source={gitSource.filter(v => v.page === pageLink[req.url])}
+        source={gitSource.filter((v) => v.page === topNavDict[req.url].link)}
         githubUrl={githubUrl}
         iconCdnUrl={iconCdnUrl}
         defaultIcon={defaultIcon}

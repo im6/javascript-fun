@@ -12,7 +12,6 @@ import {
   publicPath,
   leftNavText,
   iconCdnUrl,
-  pageAssetFileName,
   topNavConfig,
   topNavDict,
 } from '../../config';
@@ -22,10 +21,9 @@ const AppContainer = ({ url, children, criticalCss }) => (
     title={topNavDict[url].title}
     year={leftNavText[0]}
     favIconUrl={`${iconCdnUrl}/fav.ico`}
-    script={`${publicPath}/${pageAssetFileName[url]}.js`}
-    style={`${publicPath}/${pageAssetFileName[url]}.css`}
+    script={`${publicPath}/${topNavDict[url].asset}.js?${process.env.version}`}
+    style={`${publicPath}/${topNavDict[url].asset}.css?${process.env.version}`}
     lastBuildDate={process.env.lastBuildDate}
-    version={process.env.version}
     criticalCss={criticalCss}
     author={author}
   >
