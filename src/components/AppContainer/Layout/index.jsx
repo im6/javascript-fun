@@ -45,7 +45,7 @@ Layout.propTypes = {
   pageSpeedUrl: PropTypes.string.isRequired,
   hideGithubCorner: PropTypes.bool,
   gitRepo: PropTypes.string.isRequired,
-  year: PropTypes.number.isRequired,
+  year: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.element])
     .isRequired,
   topNavConfig: PropTypes.array.isRequired,

@@ -25,7 +25,7 @@ Footer.propTypes = {
   author: PropTypes.string.isRequired,
   pageSpeedUrl: PropTypes.string.isRequired,
   hideAuthor: PropTypes.bool,
-  year: PropTypes.number.isRequired,
+  year: PropTypes.string.isRequired,
 };
 
 export default Footer;
