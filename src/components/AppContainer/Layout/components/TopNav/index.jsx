@@ -5,13 +5,18 @@ import style from './style.less';
 
 const TopNav = ({ url, topNavConfig, iconCdnUrl }) => (
   <div className={style.menubar}>
-    <div className="pure-button-group" role="group">
-      {topNavConfig.map(v => (
+    <div
+      style={{ width: topNavConfig.length > 4 ? 265 : 212 }}
+      className="pure-button-group"
+      role="group"
+    >
+      {topNavConfig.map((v) => (
         <a
           key={v.to}
           className={classNames({
             'pure-button': true,
             'pure-button-active': v.to === url,
+            [style.success]: v.alt === 'add',
           })}
           title={v.title}
           href={v.to}

@@ -56,7 +56,19 @@ export const topNavConfig = [
     alt: 'library',
     asset: 'main',
   },
-  { to: '/site/', img: 'site.png', title: 'Tool', alt: 'site', asset: 'site' },
+  {
+    to: '/site/',
+    img: 'site.png',
+    title: 'Website',
+    alt: 'site',
+    asset: 'site',
+  },
+  {
+    to: 'https://github.com/im6/javascript-fun/issues/5',
+    img: 'fa-plus-wht.svg',
+    title: 'Submit Github Link',
+    alt: 'add',
+  },
 ];
 
 export const pageAssetFileName = topNavConfig.reduce((acc, cur) => {

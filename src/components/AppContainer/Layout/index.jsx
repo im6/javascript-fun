@@ -25,9 +25,19 @@ const Layout = ({
     </div>
     <div className={`pure-u-1 pure-u-md-5-6 pure-u-lg-4-5 ${style.right}`}>
       {!hideGithubCorner && <GithubCorner url={gitRepo} />}
-      <TopNav url={url} topNavConfig={topNavConfig} iconCdnUrl={iconCdnUrl} />
+      <TopNav
+        url={url}
+        topNavConfig={topNavConfig.filter((v) => v.alt !== 'add')}
+        iconCdnUrl={iconCdnUrl}
+      />
       {children}
-      <TopNav url={url} topNavConfig={topNavConfig} iconCdnUrl={iconCdnUrl} />
+      <TopNav
+        url={url}
+        topNavConfig={topNavConfig.filter(
+          (v) => !(v.alt === 'add' && hideGithubCorner)
+        )}
+        iconCdnUrl={iconCdnUrl}
+      />
       <Footer
         hideAuthor={hideGithubCorner}
         author={author}
