@@ -4,6 +4,7 @@ import PureCss from '../PureCss';
 import MetaInfo from '../MetaInfo';
 
 const Html = ({
+  title,
   favIconUrl,
   year,
   author,
@@ -16,11 +17,8 @@ const Html = ({
 }) => (
   <html lang="en">
     <head>
-      <MetaInfo author={author} lastBuildDate={lastBuildDate} />
-      <title>
-        JavaScript Fun | Most Popular JavaScript Framework in {year} | Top
-        JavaScript Library | 前端框架 | web前端开发 | JS library Ranking
-      </title>
+      <MetaInfo author={author} lastBuildDate={lastBuildDate} year={year} />
+      <title>{title} | JavaScript.Fun</title>
       <link rel="shortcut icon" type="image/png" href={favIconUrl} />
       <PureCss />
       {criticalCss || <link href={`${style}?${version}`} rel="stylesheet" />}
@@ -41,6 +39,7 @@ const Html = ({
 );
 
 Html.propTypes = {
+  title: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,
   favIconUrl: PropTypes.string.isRequired,
   lastBuildDate: PropTypes.string.isRequired,

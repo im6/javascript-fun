@@ -14,10 +14,12 @@ import {
   iconCdnUrl,
   pageAssetFileName,
   topNavConfig,
+  topNavDict,
 } from '../../config';
 
 const AppContainer = ({ url, children, criticalCss }) => (
   <Html
+    title={topNavDict[url].title}
     year={leftNavText[0]}
     favIconUrl={`${iconCdnUrl}/fav.ico`}
     script={`${publicPath}/${pageAssetFileName[url]}.js`}

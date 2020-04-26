@@ -2,14 +2,14 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import OpenGraph from './OpenGraph';
 
-const MetaInfo = ({ author, lastBuildDate }) => (
+const MetaInfo = ({ author, lastBuildDate, year }) => (
   <Fragment>
     <meta charSet="utf-8" />
     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
     <meta name="author" content={author} />
     <meta
       name="description"
-      content="javascript top ranking, front end library"
+      content={`${year} Most Popular JavaScript Library,Front End Framework Ranking,前端框架,web开发`}
     />
     <meta
       name="viewport"
@@ -33,5 +33,6 @@ const MetaInfo = ({ author, lastBuildDate }) => (
 MetaInfo.propTypes = {
   author: PropTypes.string.isRequired,
   lastBuildDate: PropTypes.string.isRequired,
+  year: PropTypes.string.isRequired,
 };
 export default MetaInfo;

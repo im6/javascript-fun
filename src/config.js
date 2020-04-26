@@ -38,21 +38,21 @@ export const topNavConfig = [
   {
     to: '/',
     img: 'vue.png',
-    title: 'Front End Framework',
+    title: 'Front End',
     alt: 'framework',
     asset: 'main',
   },
   {
     to: '/node/',
     img: 'mongo.png',
-    title: 'Node.js Framework',
+    title: 'Node.js',
     alt: 'node',
     asset: 'main',
   },
   {
     to: '/library/',
     img: 'bower.png',
-    title: 'JS Library',
+    title: 'Miscellaneous',
     alt: 'library',
     asset: 'main',
   },
@@ -70,6 +70,12 @@ export const topNavConfig = [
     alt: 'add',
   },
 ];
+
+export const topNavDict = topNavConfig.reduce((acc, cur, k) => {
+  acc[cur.to] = cur;
+  acc[cur.to].link = k + 1;
+  return acc;
+}, {});
 
 export const pageAssetFileName = topNavConfig.reduce((acc, cur) => {
   acc[cur.to] = cur.asset;
