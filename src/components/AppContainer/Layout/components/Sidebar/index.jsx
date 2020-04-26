@@ -2,21 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import style from './style.less';
 
-const Sidebar = ({ words }) => (
+const color = '#adf7ff';
+
+const Sidebar = ({ defaultType }) => (
   <header className={style.header}>
     <h1>JavaScript</h1>
     <h1>for</h1>
-    <div className={style.type} />
-    <div className={style.typedStrings}>
-      {words.map(v => (
-        <p key={v}>{v}</p>
-      ))}
+    <div className={style.type} style={{ color }}>
+      {defaultType}
     </div>
   </header>
 );
 
 Sidebar.propTypes = {
-  words: PropTypes.array,
+  defaultType: PropTypes.string,
 };
 
 export default Sidebar;

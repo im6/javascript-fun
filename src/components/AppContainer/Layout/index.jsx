@@ -10,7 +10,7 @@ import style from './style.less';
 const Layout = ({
   url,
   children,
-  leftNavText,
+  leftNavInitText,
   author,
   pageSpeedUrl,
   iconCdnUrl,
@@ -21,7 +21,7 @@ const Layout = ({
 }) => (
   <div className="pure-g">
     <div className={`pure-u-1 pure-u-md-1-6 pure-u-lg-1-5 ${style.left}`}>
-      <SideBar words={leftNavText} />
+      <SideBar defaultType={leftNavInitText} />
     </div>
     <div className={`pure-u-1 pure-u-md-5-6 pure-u-lg-4-5 ${style.right}`}>
       {!hideGithubCorner && <GithubCorner url={gitRepo} />}
@@ -49,7 +49,7 @@ Layout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.element])
     .isRequired,
   topNavConfig: PropTypes.array.isRequired,
-  leftNavText: PropTypes.array,
+  leftNavInitText: PropTypes.string,
 };
 
 export default Layout;

@@ -31,7 +31,7 @@ const AppContainer = ({ url, children, criticalCss }) => (
       url={url}
       iconCdnUrl={iconCdnUrl}
       topNavConfig={topNavConfig}
-      leftNavText={leftNavText}
+      leftNavInitText={leftNavText[5]}
       author={author}
       pageSpeedUrl={pageSpeedUrl}
       gitRepo={gitRepo}

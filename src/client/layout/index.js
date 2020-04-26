@@ -1,11 +1,10 @@
 import Typed from 'typed.js';
 import './style';
 
-import { leftNavTextColors } from '../../config';
+import { leftNavTextColors, leftNavText } from '../../config';
 import {
   type,
   header,
-  typedStrings,
 } from '../../components/AppContainer/Layout/components/Sidebar/style.less';
 
 const initTyped = () => {
@@ -13,8 +12,10 @@ const initTyped = () => {
   const funTxt = document.getElementsByClassName(header)[0].children[1];
   const colorNum = leftNavTextColors.length;
 
+  typeElem.innerText = '';
+
   return new Typed(`.${type}`, {
-    stringsElement: document.getElementsByClassName(typedStrings)[0],
+    strings: leftNavText,
     typeSpeed: 70,
     backSpeed: 40,
     smartBackspace: false,
