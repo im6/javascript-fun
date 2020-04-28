@@ -4,7 +4,7 @@ export const staticFolder =
 export const renderOutputFolder = 'dist/views';
 export const publicPath = '/assets';
 export const iconCdnUrl = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons';
-export const nonLazyImg = 2;
+export const nonLazyImg = 1;
 export const author = 'ZJ Guo';
 export const pageSpeedUrl =
   'https://developers.google.com/speed/pagespeed/insights/?url=www.javascript.fun&tab=desktop';
