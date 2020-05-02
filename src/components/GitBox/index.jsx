@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import numeral from 'numeral';
 import style from './style.less';
 
 const GitBox = ({ name, url, img, imgSrc, star, lazyImg }) => (
@@ -8,7 +9,9 @@ const GitBox = ({ name, url, img, imgSrc, star, lazyImg }) => (
       <img src={`${imgSrc}/${img}`} alt={name} data-i={lazyImg} />
       <div className={style.rightText}>
         <h3>{name}</h3>
-        <a href={url}>&#9733; {star}</a>
+        <a href={url} aria-label={`${star} users starred this repository`}>
+          &#9733; {numeral(star).format('0,0')}
+        </a>
       </div>
     </div>
   </div>
@@ -19,7 +22,7 @@ GitBox.propTypes = {
   name: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
   imgSrc: PropTypes.string,
-  star: PropTypes.string.isRequired,
+  star: PropTypes.number.isRequired,
   lazyImg: PropTypes.string,
 };
 

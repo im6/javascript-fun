@@ -9,13 +9,13 @@ describe('render properly', () => {
     const { getByText, rerender } = render(
       <Footer
         author={authorName}
-        year={1998}
+        year="1998"
         hideAuthor
         pageSpeedUrl={pageSpeedUrl}
       />
     );
     rerender(
-      <Footer author={authorName} year={1998} pageSpeedUrl={pageSpeedUrl} />
+      <Footer author={authorName} year="1998" pageSpeedUrl={pageSpeedUrl} />
     );
     expect(getByText(authorName)).toBeTruthy();
   });

@@ -1,5 +1,4 @@
 import async from 'async';
-import numeral from 'numeral';
 import groupBy from 'lodash.groupby';
 import orderBy from 'lodash.orderby';
 import getPackageList from './crawler';
@@ -12,7 +11,7 @@ const convertGroupIcon = (data) =>
   }, {});
 
 const group = (data, iconMap) => {
-  const data1 = orderBy(data, (v) => numeral(v.star).value(), 'desc');
+  const data1 = orderBy(data, (v) => v.star, 'desc');
   const data2 = groupBy(data1, 'group');
   const data3 = Object.keys(data2);
   const result = data3.map((k) => {

@@ -11,7 +11,7 @@ describe('render properly', () => {
         name={name}
         img="news"
         imgSrc="news"
-        star="123"
+        star={123}
       />
     );
     expect(getAllByText(name)).toHaveLength(1);

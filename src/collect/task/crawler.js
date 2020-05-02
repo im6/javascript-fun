@@ -1,5 +1,4 @@
 import async from 'async';
-import numeral from 'numeral';
 import cheerio from 'cheerio';
 import rp from 'request-promise';
 import ProgressBar from 'progress';
@@ -8,7 +7,6 @@ import sqlExecOne from '../mysqlConnection';
 import {
   githubUrl,
   crawlerTimeout as timeout,
-  crawlerShowFullNumber,
   abusePauseTimeout,
   crawlerStepDelay,
   crawlerStepNum,
@@ -32,15 +30,10 @@ const getNum = (obj0, cb) => {
     .then(($) => {
       const elems = $('a.social-count.js-social-count');
       const starElem = elems[1];
-      if (crawlerShowFullNumber) {
-        const numLabel = starElem.attribs['aria-label'];
-        const numStr = numLabel.split(' ')[0];
-        const num = numeral(numStr).format('0,0');
-        obj.star = num;
-      } else {
-        const num = starElem.children[0].data.trim();
-        obj.star = num;
-      }
+
+      const numLabel = starElem.attribs['aria-label'];
+      const numStr = numLabel.split(' ')[0];
+      obj.star = parseInt(numStr, 10);
 
       if (!obj.name) {
         [, obj.name] = obj.github.split('/');
