@@ -19,8 +19,13 @@ const GitPage = ({
       {source.map((v, k) => {
         const lazyLoad = k > nonLazyImgIndex;
         return (
-          <BoxGroup key={v.id} title={v.name}>
-            {v.list.map(v1 => (
+          <BoxGroup
+            key={v.id}
+            title={v.name}
+            anchorId={v.anchorId}
+            linkIconUrl={`${iconCdnUrl}/fa-link.svg`}
+          >
+            {v.list.map((v1) => (
               <GitBox
                 key={v1.github}
                 name={v1.name}

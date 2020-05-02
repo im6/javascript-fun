@@ -22,7 +22,7 @@ export const linkMd = (req, res) => {
   const siteSource = JSON.parse(rawdata);
   const htmlDOM = (
     <AppContainer url={req.url}>
-      <LinkPage source={siteSource} />
+      <LinkPage source={siteSource} iconCdnUrl={iconCdnUrl} />
     </AppContainer>
   );
   const html = renderToStaticMarkup(htmlDOM);

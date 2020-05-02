@@ -2,11 +2,24 @@
 
 @title-margin: 16px 0 9px 0;
 
-.title {
+.gitColor {
   color: @grp-title-main-color;
-  margin: @title-margin;
 }
-.websiteTitle {
+.webColor {
   color: @grp-title-site-color;
+}
+.title {
   margin: @title-margin;
+  & > a {
+    display: none;
+    & > img {
+      width: 15px;
+      height: 15px;
+      margin-right: 5px;
+    }
+  }
+
+  &:hover > a {
+    display: inline;
+  }
 }

@@ -8,6 +8,7 @@ describe('render properly', () => {
       {
         id: 1,
         name: 'grp1',
+        anchorId: 'hello',
         list: [
           {
             name: 'vue',
@@ -17,7 +18,7 @@ describe('render properly', () => {
         ],
       },
     ];
-    const { getByText } = render(<LinkPage source={src} />);
+    const { getByText } = render(<LinkPage source={src} iconCdnUrl="cdn" />);
     expect(getByText(src[0].name)).toBeTruthy();
   });
 });

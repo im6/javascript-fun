@@ -6,13 +6,13 @@ describe('render properly', () => {
   test('render correct', () => {
     const title = 'cnn';
     const { getAllByText, rerender } = render(
-      <BoxGroup title={title}>
+      <BoxGroup title={title} linkIconUrl="cdn" anchorId="hello">
         <h1>hello</h1>
         <h1>hello</h1>
       </BoxGroup>
     );
     rerender(
-      <BoxGroup title={title} isWebsite>
+      <BoxGroup title={title} linkIconUrl="cdn" anchorId="hello" isWebsite>
         <h1>hello</h1>
         <h1>hello</h1>
       </BoxGroup>

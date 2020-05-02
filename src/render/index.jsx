@@ -50,7 +50,7 @@ const generateSitePage = (url) => {
       url={url}
       criticalCss={<style dangerouslySetInnerHTML={{ __html: appCss }} />}
     >
-      <LinkPage source={siteSource} />
+      <LinkPage source={siteSource} iconCdnUrl={iconCdnUrl} />
     </AppContainer>
   );
   const html = `<!DOCTYPE html>${renderToStaticMarkup(htmlDOM)}`;

@@ -8,6 +8,7 @@ describe('render properly', () => {
       {
         id: '1',
         name: 'grp1',
+        anchorId: 'hello',
         list: [
           {
             name: 'vue',
