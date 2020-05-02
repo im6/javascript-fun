@@ -17,7 +17,7 @@ const Html = ({
   <html lang="en">
     <head>
       <MetaInfo author={author} lastBuildDate={lastBuildDate} year={year} />
-      <title>{title} | JavaScript.Fun</title>
+      <title>{title} | JavaScript Fun | 前端坊 </title>
       <link rel="shortcut icon" type="image/png" href={favIconUrl} />
       <PureCss />
       {criticalCss || <link href={style} rel="stylesheet" />}

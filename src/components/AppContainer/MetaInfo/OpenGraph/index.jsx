@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-const ogTitle = 'JavaScript for FUN';
+const ogTitle = 'JavaScript Fun | 前端坊';
 const ogSiteName = 'javascript.fun';
 const ogDescription =
   'javascript top framework | front end library ranking | 前端框架 ｜ react vue angular';

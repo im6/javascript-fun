@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import style from './style.less';
 
-const color = '#adf7ff';
+const color = '#adf7ff'; // typed.js skeleton
 
 const Sidebar = ({ defaultType }) => (
   <header className={style.header}>
