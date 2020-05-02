@@ -18,6 +18,7 @@ const group = (data, iconMap) => {
     const v = data2[k];
     const newItem = iconMap[`k${k}`];
     newItem.list = v;
+    newItem.anchorId = newItem.name.replace(/\W+/g, '-');
     if (newItem.icon) {
       newItem.list.forEach((v1, k1) => {
         if (!v1.img) {

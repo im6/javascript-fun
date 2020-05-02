@@ -11,6 +11,7 @@ const group = (data, grp) => {
   const result2 = Object.keys(result).map((i) => {
     const obj = grpRef[`k${i}`];
     obj.list = result[i];
+    obj.anchorId = obj.name.replace(/\W+/g, '-');
     return obj;
   });
   return result2;
