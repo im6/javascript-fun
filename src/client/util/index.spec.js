@@ -1,4 +1,4 @@
-import { debounce, getNow } from './util';
+import { debounce, getNow } from '.';
 
 describe('debounce', () => {
   test('repeat calling', () => {
