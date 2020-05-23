@@ -1,7 +1,12 @@
-name: build
+name: CI
 
 on:
   push:
+    paths:
+      - '.github/**'
+      - 'src/**'
+      - 'webpack/**'
+      - 'package.json'
     branches:
       - master
 
