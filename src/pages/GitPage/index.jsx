@@ -29,11 +29,11 @@ const GitPage = ({
               <GitBox
                 key={v1.github}
                 name={v1.name}
-                img={lazyLoad ? defaultIcon : v1.img || defaultIcon}
+                img={(!lazyLoad && v1.img) || defaultIcon}
                 imgSrc={iconCdnUrl}
                 star={v1.star}
                 url={`${githubUrl}/${v1.github}`}
-                lazyImg={lazyLoad ? v1.img : null}
+                lazyImg={lazyLoad ? v1.img : undefined}
               />
             ))}
           </BoxGroup>
