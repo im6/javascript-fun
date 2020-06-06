@@ -14,7 +14,12 @@ const Footer = ({ hideAuthor, author, year, pageSpeedUrl }) => (
         'Javascript.Fun'
       )}
       .&nbsp;All rights reserved. &#9989; by&nbsp;
-      <a href={pageSpeedUrl} target="_blank" className={style.blue}>
+      <a
+        href={pageSpeedUrl}
+        className={style.blue}
+        target="_blank"
+        rel="noopener"
+      >
         Google PageSpeed
       </a>
     </span>

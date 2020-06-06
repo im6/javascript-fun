@@ -30,7 +30,7 @@ export const leftNavText = [
 export const leftNavTextColors = [
   ['#7bd0ff', '#F38181'],
   ['#e8ec8b', '#57cc9d'],
-  ['#EAFFD0', '#88A6E5'],
+  ['#EAFFD0', '#a7e5e4'],
   ['#ffb077', '#b0cadb'],
 ];
 
