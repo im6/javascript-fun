@@ -1,4 +1,5 @@
 export const port = process.env.PORT || 3000;
+/* istanbul ignore next */
 export const staticFolder =
   process.env.NODE_ENV === 'development' ? 'local' : 'dist';
 export const renderOutputFolder = 'dist/views';
@@ -10,7 +11,7 @@ export const pageSpeedUrl =
   'https://developers.google.com/speed/pagespeed/insights/?url=www.javascript.fun&tab=desktop';
 export const hideGithubCorner = false;
 export const githubUrl = 'https://github.com';
-export const gitRepo = `${githubUrl}/im6/javascript-fun/issues`;
+export const gitRepo = `${githubUrl}/im6/javascript-fun`;
 export const defaultIcon = [
   'github0.png',
   'github1.svg',
@@ -18,6 +19,8 @@ export const defaultIcon = [
   'github3.png',
   'github4.png',
 ][2];
+
+/* istanbul ignore next */
 export const leftNavText = [
   (new Date().getFullYear() + (new Date().getMonth() < 11 ? 0 : 1)).toString(),
   'Developer',
@@ -64,7 +67,7 @@ export const topNavConfig = [
     asset: 'site',
   },
   {
-    to: 'https://github.com/im6/javascript-fun/issues/5',
+    to: `${gitRepo}/issues/5`,
     img: 'fa-plus-wht.svg',
     title: 'Submit Github Link',
     alt: 'add',
