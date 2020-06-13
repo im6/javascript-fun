@@ -3,7 +3,7 @@
 Code generator for [javascript.fun](https://www.javascript.fun/)
 
 <p align="center">
-  <img width="507" height="185.5" src="https://github.com/im6/javascript-fun/blob/master/assets/screenshot.png" title="www.JavaScript.Fun">
+  <img width="800" height="292.7" src="https://github.com/im6/javascript-fun/blob/master/assets/screenshot.png" title="www.JavaScript.Fun">
 </p>
 
 ## Quick Start
