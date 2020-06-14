@@ -6,13 +6,7 @@ const Footer = ({ hideAuthor, author, year, pageSpeedUrl }) => (
   <footer className={style.footer}>
     <span>
       &copy; Copyright {year}&nbsp;
-      {!hideAuthor ? (
-        <a href="/about/" target="_blank">
-          {author}
-        </a>
-      ) : (
-        'Javascript.Fun'
-      )}
+      {hideAuthor ? 'Javascript.Fun' : <a href="/about/">{author}</a>}
       .&nbsp;All rights reserved. &#9989; by&nbsp;
       <a
         href={pageSpeedUrl}
