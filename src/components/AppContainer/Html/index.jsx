@@ -5,7 +5,8 @@ import MetaInfo from '../MetaInfo';
 
 const Html = ({
   title,
-  favIconUrl,
+  favIconPngUrl,
+  favIconSvgUrl,
   year,
   author,
   style,
@@ -18,7 +19,11 @@ const Html = ({
     <head>
       <MetaInfo author={author} lastBuildDate={lastBuildDate} year={year} />
       <title>{title} | JavaScript Fun | 前端工坊 </title>
-      <link rel="shortcut icon" type="image/png" href={favIconUrl} />
+
+      <link rel="icon" type="image/svg+xml" href={favIconSvgUrl} />
+      <link rel="mask-icon" href={favIconSvgUrl} color="#000000" />
+      <link rel="alternate icon" type="image/png" href={favIconPngUrl} />
+
       <PureCss />
       {criticalCss || <link href={style} rel="stylesheet" />}
     </head>
@@ -40,7 +45,8 @@ const Html = ({
 Html.propTypes = {
   title: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,
-  favIconUrl: PropTypes.string.isRequired,
+  favIconPngUrl: PropTypes.string.isRequired,
+  favIconSvgUrl: PropTypes.string.isRequired,
   lastBuildDate: PropTypes.string.isRequired,
   script: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
