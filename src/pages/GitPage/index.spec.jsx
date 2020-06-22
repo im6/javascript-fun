@@ -14,7 +14,7 @@ describe('render properly', () => {
             name: 'vue',
             github: '/vue',
             desc: 'vue desc',
-            img: 'vue.png',
+            img: 'vue.svg',
             imgSrc: '/',
             star: 39,
           },

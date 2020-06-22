@@ -42,7 +42,7 @@ export const leftNavTextColors = [
 export const topNavConfig = [
   {
     to: '/',
-    img: 'vue.png',
+    img: 'vue.svg',
     title: 'Front End',
     alt: 'framework',
     asset: 'main',
