@@ -3,13 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import style from './style.less';
 
+const title = 'View source code';
+
 const GithubCorner = ({ url }) => (
-  <a
-    className={style.link}
-    href={url}
-    aria-label="report an issue"
-    title="report an issue"
-  >
+  <a className={style.link} href={url} aria-label={title} title={title}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="80"

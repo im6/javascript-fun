@@ -14,13 +14,7 @@ export const pageSpeedUrl =
 export const hideGithubCorner = false;
 export const githubUrl = 'https://github.com';
 export const gitRepo = `${githubUrl}/im6/javascript-fun`;
-export const defaultIcon = [
-  'github0.png',
-  'github1.svg',
-  'github2.svg',
-  'github3.png',
-  'github4.png',
-][2];
+export const defaultIcon = ['github0.png', 'github1.svg', 'github2.svg'][2];
 
 /* istanbul ignore next */
 export const leftNavText = [

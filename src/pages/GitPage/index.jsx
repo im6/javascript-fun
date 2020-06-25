@@ -45,11 +45,11 @@ const GitPage = ({
 );
 
 GitPage.propTypes = {
-  source: PropTypes.array,
-  githubUrl: PropTypes.string,
-  iconCdnUrl: PropTypes.string,
-  defaultIcon: PropTypes.string,
-  nonLazyImgIndex: PropTypes.number,
+  source: PropTypes.array.isRequired,
+  githubUrl: PropTypes.string.isRequired,
+  iconCdnUrl: PropTypes.string.isRequired,
+  defaultIcon: PropTypes.string.isRequired,
+  nonLazyImgIndex: PropTypes.number.isRequired,
 };
 
 export default GitPage;

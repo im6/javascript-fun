@@ -6,6 +6,6 @@ describe('render properly', () => {
   test('render correct', () => {
     const url = 'www.github.com';
     const { getByTitle } = render(<GithubCorner url={url} />);
-    expect(getByTitle('report an issue')).toBeTruthy();
+    expect(getByTitle('View source code')).toBeTruthy();
   });
 });
