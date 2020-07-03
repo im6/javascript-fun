@@ -5,7 +5,7 @@ import GithubCorner from '.';
 describe('render properly', () => {
   test('render correct', () => {
     const url = 'www.github.com';
-    const { getByTitle } = render(<GithubCorner url={url} />);
-    expect(getByTitle('View source code')).toBeTruthy();
+    const { queryAllByTitle } = render(<GithubCorner url={url} />);
+    expect(queryAllByTitle('View source code')).toHaveLength(2);
   });
 });

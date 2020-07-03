@@ -59,7 +59,7 @@ Layout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.element])
     .isRequired,
   topNavConfig: PropTypes.array.isRequired,
-  leftNavInitText: PropTypes.string,
+  leftNavInitText: PropTypes.string.isRequired,
 };
 
 export default Layout;
