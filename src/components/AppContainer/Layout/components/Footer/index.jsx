@@ -4,10 +4,8 @@ import style from './style.less';
 
 const Footer = ({ hideAuthor, author, year, pageSpeedUrl }) => (
   <footer className={style.footer}>
-    <span>
-      &copy; Copyright {year}&nbsp;
-      {hideAuthor ? 'Javascript.Fun' : <a href="/about/">{author}</a>}
-      .&nbsp;All rights reserved. &#9989; by&nbsp;
+    <div>
+      :) full score by&nbsp;
       <a
         href={pageSpeedUrl}
         className={style.blue}
@@ -16,7 +14,18 @@ const Footer = ({ hideAuthor, author, year, pageSpeedUrl }) => (
       >
         Google PageSpeed
       </a>
-    </span>
+    </div>
+    <div>
+      &copy; Copyright {year}&nbsp;
+      {hideAuthor ? (
+        'Javascript.Fun'
+      ) : (
+        <a href="/about/">
+          <b>{author}</b>
+        </a>
+      )}
+    </div>
+    <div>All rights reserved.</div>
   </footer>
 );
 

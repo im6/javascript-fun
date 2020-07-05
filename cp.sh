@@ -1,7 +1,7 @@
 im6_dir="../im6.github.io"
 
 if [ ! -d "$im6_dir" ]; then
-  echo 'GitHub page folder does not exist'
+  echo 'GitHub Page folder does not exist.'
   exit 1
 fi
 
