@@ -1,10 +1,11 @@
 .DS_Store
 .idea/
-.vscode
+.vscode/
 node_modules/
 npm-debug.log
 yarn-error.log
-coverage
-local
-dist
+coverage/
+local/
+dist/*
+!dist/public/
 .env

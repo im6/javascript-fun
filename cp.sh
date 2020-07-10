@@ -6,8 +6,8 @@ if [ ! -d "$im6_dir" ]; then
 fi
 
 # copy
-cp dist/public/main.js "$im6_dir/assets/"
-cp dist/public/site.js "$im6_dir/assets/"
+# cp dist/public/main.js "$im6_dir/assets/"
+# cp dist/public/site.js "$im6_dir/assets/"
 
 cp assets/CNAME $im6_dir
 cp assets/robots.txt $im6_dir
