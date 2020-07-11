@@ -15,3 +15,11 @@ yarn install
 yarn build # generate collect build
 yarn collect
 ```
+
+## Publish
+
+- bump the `version` in package.json, `no-commit`
+- `yarn build` to get the latest client build
+- `git` commit and push
+- draft new version and release
+- optional: `daily` task to update Github pages
