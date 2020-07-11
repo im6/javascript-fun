@@ -101,7 +101,6 @@ const server = Object.assign(serverBaseConfig, devBase, {
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
-      'process.env.version': JSON.stringify(Date.now().toString()),
       'process.env.lastBuildDate': JSON.stringify(
         `${new Date().toLocaleString()} EST`
       ),

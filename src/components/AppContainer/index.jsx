@@ -24,8 +24,8 @@ const AppContainer = ({ url, children, criticalCss }) => (
     year={leftNavText[0]}
     favIconPngUrl={favIconPngUrl}
     favIconSvgUrl={favIconSvgUrl}
-    script={`${publicPath}/${topNavDict[url].asset}.js?${process.env.version}`}
-    style={`${publicPath}/${topNavDict[url].asset}.css?${process.env.version}`}
+    script={`${publicPath}/${topNavDict[url].asset}.js`}
+    style={`${publicPath}/${topNavDict[url].asset}.css`}
     lastBuildDate={process.env.lastBuildDate}
     criticalCss={criticalCss}
     author={author}

@@ -1,9 +1,18 @@
+import { name, author as username, version } from '../package.json';
+
+const repoUrl = `${username}/${name}`;
+const assetDirectory = 'dist/public';
+
 export const port = process.env.PORT || 3000;
 /* istanbul ignore next */
 export const staticFolder =
   process.env.NODE_ENV === 'development' ? 'local' : 'dist';
 export const renderOutputFolder = 'dist/views';
-export const publicPath = '/assets';
+/* istanbul ignore next */
+export const publicPath =
+  process.env.NODE_ENV === 'development'
+    ? '/assets'
+    : `https://cdn.jsdelivr.net/gh/${repoUrl}@v${version}/${assetDirectory}`;
 export const iconCdnUrl = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons';
 export const nonLazyImg = 0;
 export const favIconSvgUrl = `${iconCdnUrl}/deno.svg`; // [fav.ico, deno-fav.png]
@@ -13,7 +22,7 @@ export const pageSpeedUrl =
   'https://developers.google.com/speed/pagespeed/insights/?url=www.javascript.fun&tab=desktop';
 export const hideGithubCorner = false;
 export const githubUrl = 'https://github.com';
-export const gitRepo = `${githubUrl}/im6/javascript-fun`;
+export const gitRepo = `${githubUrl}/${repoUrl}`;
 export const defaultIcon = ['github0.png', 'github1.svg', 'github2.svg'][2];
 
 /* istanbul ignore next */
@@ -82,8 +91,8 @@ export const viewModelPath = {
 };
 
 export const criticalCssPath = {
-  git: 'dist/public/main.css',
-  site: 'dist/public/site.css',
+  git: `${assetDirectory}/main.css`,
+  site: `${assetDirectory}/site.css`,
 };
 
 // crawler config
