@@ -21,7 +21,10 @@ export const linkMd = (req, res) => {
   const rawdata = fs.readFileSync(viewModelPath.site);
   const siteSource = JSON.parse(rawdata);
   const htmlDOM = (
-    <AppContainer url={req.url}>
+    <AppContainer
+      url={req.url}
+      lastBuildDate={`${new Date().toLocaleString()} EST`}
+    >
       <LinkPage source={siteSource} iconCdnUrl={iconCdnUrl} />
     </AppContainer>
   );
@@ -34,7 +37,10 @@ export const gitMd = (req, res) => {
   const rawdata = fs.readFileSync(viewModelPath.git);
   const gitSource = JSON.parse(rawdata);
   const htmlDOM = (
-    <AppContainer url={req.url}>
+    <AppContainer
+      url={req.url}
+      lastBuildDate={`${new Date().toLocaleString()} EST`}
+    >
       <GitPage
         nonLazyImgIndex={nonLazyImg}
         source={gitSource.filter((v) => v.page === topNavDict[req.url].link)}

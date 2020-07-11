@@ -17,6 +17,8 @@ import {
   nonLazyImg,
 } from '../config';
 
+const nowDate = `${new Date().toLocaleString()} EST`;
+
 const generateGitPage = (url) => {
   const appCss = fs.readFileSync(criticalCssPath.git);
   const rawdata = fs.readFileSync(viewModelPath.git);
@@ -24,6 +26,7 @@ const generateGitPage = (url) => {
   const htmlDOM = (
     <AppContainer
       url={url}
+      lastBuildDate={nowDate}
       criticalCss={<style dangerouslySetInnerHTML={{ __html: appCss }} />}
     >
       <GitPage
@@ -48,6 +51,7 @@ const generateSitePage = (url) => {
   const htmlDOM = (
     <AppContainer
       url={url}
+      lastBuildDate={nowDate}
       criticalCss={<style dangerouslySetInnerHTML={{ __html: appCss }} />}
     >
       <LinkPage source={siteSource} iconCdnUrl={iconCdnUrl} />

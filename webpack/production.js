@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -108,14 +107,7 @@ const server = Object.assign(serverBaseConfig, prodBase, {
       },
     ],
   },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.lastBuildDate': JSON.stringify(
-        `${new Date().toLocaleString()} EST`
-      ),
-    }),
-  ],
+  plugins: [new CleanWebpackPlugin()],
 });
 
 module.exports = [client, server];
