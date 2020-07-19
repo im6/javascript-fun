@@ -71,7 +71,7 @@
     "cover 99.5%"
   ],
   "prettier": {
-    "endOfLine": "lf",
+    "endOfLine": "auto",
     "trailingComma": "es5",
     "tabWidth": 2,
     "semi": true,
@@ -89,12 +89,6 @@
       "prettier",
       "jest"
     ],
-    "rules": {
-      "linebreak-style": [
-        "error",
-        "unix"
-      ]
-    },
     "env": {
       "browser": true,
       "jest/globals": true
