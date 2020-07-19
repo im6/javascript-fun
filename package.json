@@ -12,7 +12,7 @@
     "web": "node ./dist/node/server.js",
     "render": "node ./dist/node/render.js",
     "collect": "node -r dotenv/config dist/node/collect.js",
-    "cp": "./cp.sh"
+    "cp": ". ./cp.sh"
   },
   "repository": "git+https://github.com/im6/javascript-fun.git",
   "author": "im6",
