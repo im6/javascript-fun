@@ -38,6 +38,11 @@ const Layout = ({
         )}
         iconCdnUrl={iconCdnUrl}
       />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <Footer
         hideAuthor={hideGithubCorner}
         author={author}
