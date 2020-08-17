@@ -59,14 +59,14 @@ export const topNavConfig = [
   },
   {
     to: '/library/',
-    img: 'javascript.svg',
+    img: 'vscode.svg',
     title: 'Miscellaneous',
     alt: 'library',
     asset: 'main',
   },
   {
     to: '/site/',
-    img: 'vscode.svg',
+    img: 'javascript.svg',
     title: 'Website',
     alt: 'site',
     asset: 'site',
