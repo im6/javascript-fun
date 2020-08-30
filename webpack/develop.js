@@ -86,9 +86,9 @@ const server = Object.assign(serverBaseConfig, devBase, {
           {
             loader: 'css-loader',
             options: {
-              onlyLocals: true,
               modules: {
                 localIdentName,
+                exportOnlyLocals: true,
               },
             },
           },

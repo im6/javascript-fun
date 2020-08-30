@@ -96,9 +96,9 @@ const server = Object.assign(serverBaseConfig, prodBase, {
           {
             loader: 'css-loader',
             options: {
-              onlyLocals: true,
               modules: {
                 localIdentName,
+                exportOnlyLocals: true,
               },
             },
           },
