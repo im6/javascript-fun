@@ -17,7 +17,7 @@ export const iconCdnUrl = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons';
 export const nonLazyImg = 0;
 export const favIconSvgUrl = `${iconCdnUrl}/deno.svg`; // [fav.ico, deno-fav.png]
 export const favIconPngUrl = `${iconCdnUrl}/deno-fav.png`;
-export const author = 'ZJ Guo';
+export const author = 'Zijian Guo';
 export const pageSpeedUrl =
   'https://developers.google.com/speed/pagespeed/insights/?url=www.javascript.fun&tab=desktop';
 export const hideGithubCorner = false;
