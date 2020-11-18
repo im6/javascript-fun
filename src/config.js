@@ -1,4 +1,4 @@
-import { name, author as username, version } from '../package.json';
+const { name, author: username, version } = require('../package.json');
 
 const repoUrl = `${username}/${name}`;
 const assetDirectory = 'dist/public';
