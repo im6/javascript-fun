@@ -1,4 +1,3 @@
-import React from 'react';
 import purecss0 from 'css-loader!purecss/build/buttons-min.css';
 import purecss1 from 'css-loader!purecss/build/grids-min.css';
 import purecss2 from 'css-loader!purecss/build/grids-responsive-min.css';

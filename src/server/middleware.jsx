@@ -1,5 +1,4 @@
 import fs from 'fs';
-import React from 'react';
 import path from 'path';
 import { renderToStaticMarkup } from 'react-dom/server';
 

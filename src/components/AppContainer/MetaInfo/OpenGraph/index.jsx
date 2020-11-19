@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 
 const ogTitle = 'JavaScript Fun | 前端工坊';
 const ogSiteName = 'javascript.fun';

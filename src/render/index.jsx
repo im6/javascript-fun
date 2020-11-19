@@ -1,5 +1,4 @@
 import fs from 'fs';
-import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 import AppContainer from '../components/AppContainer';

@@ -1,5 +1,4 @@
 // https://github.com/tholman/github-corners
-import React from 'react';
 import PropTypes from 'prop-types';
 import style from './style.less';
 

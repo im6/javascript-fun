@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import SEO from './SEO';
 import OpenGraph from './OpenGraph';
