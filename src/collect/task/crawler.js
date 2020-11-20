@@ -1,6 +1,6 @@
 import async from 'async';
 import cheerio from 'cheerio';
-import rp from 'request-promise';
+import fetch from 'node-fetch';
 import ProgressBar from 'progress';
 
 import sqlExecOne from '../mysqlConnection';
@@ -16,8 +16,7 @@ const { MY_COOKIE: Cookie } = process.env;
 
 const getNum = (obj0, cb) => {
   const obj = { ...obj0 };
-  rp({
-    uri: `${githubUrl}/${obj.github}`,
+  fetch(`${githubUrl}/${obj.github}`, {
     timeout,
     headers: {
       Cookie,
@@ -25,8 +24,9 @@ const getNum = (obj0, cb) => {
         'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36',
       Host: 'github.com',
     },
-    transform: (body) => cheerio.load(body),
   })
+    .then((res) => res.text())
+    .then((body) => cheerio.load(body))
     .then(($) => {
       const elems = $('a.social-count.js-social-count');
       const starElem = elems[1];
