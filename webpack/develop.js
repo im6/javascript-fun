@@ -44,6 +44,9 @@ const client = Object.assign(clientBaseConfig, devBase, {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
+            options: {
+              esModule: false,
+            },
           },
           {
             loader: 'css-loader',
