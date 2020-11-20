@@ -3,7 +3,6 @@ const { name, author: username, version } = require('../package.json');
 const repoUrl = `${username}/${name}`;
 const assetDirectory = 'dist/public';
 
-export const port = process.env.PORT || 3000;
 /* istanbul ignore next */
 export const staticFolder =
   process.env.NODE_ENV === 'development' ? 'local' : 'dist';
