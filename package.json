@@ -2,6 +2,9 @@
   "name": "javascript-fun",
   "version": "1.4.0",
   "description": "source code generator for javascript.fun",
+  "engines": {
+    "node": ">=14.15.1"
+  },
   "scripts": {
     "daily": "yarn collect && yarn render && yarn cp",
     "lint": "eslint ./webpack ./src",
