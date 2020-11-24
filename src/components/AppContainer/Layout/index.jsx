@@ -37,11 +37,7 @@ const Layout = ({
         )}
         iconCdnUrl={iconCdnUrl}
       />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+      <div className={style.footerBlank} />
       <Footer
         hideAuthor={hideGithubCorner}
         author={author}
