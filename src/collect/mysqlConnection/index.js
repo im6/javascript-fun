@@ -9,6 +9,18 @@ const getConn = () =>
     database: process.env.SQL_DATABASE,
   });
 
+(() => {
+  const testConn = getConn();
+  testConn.connect((err) => {
+    if (err) {
+      console.error('mySQL connect error.');
+      throw err;
+    }
+    console.log('mySQL connect successfully.');
+    testConn.end();
+  });
+})();
+
 export default (qr, cb) => {
   const conn = getConn();
   conn.query(qr, (err, rows) => {
