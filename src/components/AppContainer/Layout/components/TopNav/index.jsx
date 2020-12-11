@@ -9,21 +9,25 @@ const TopNav = ({ url, topNavConfig, iconCdnUrl }) => (
       className="pure-button-group"
       role="group"
     >
-      {topNavConfig.map((v) => (
-        <a
-          key={v.to}
-          className={classNames({
-            'pure-button': true,
-            'pure-button-active': v.to === url,
-            [style.success]: v.alt === 'add',
-          })}
-          title={v.title}
-          href={v.to}
-          aria-label={v.title}
-        >
-          <img src={`${iconCdnUrl}/${v.img}`} alt={v.alt} />
-        </a>
-      ))}
+      {topNavConfig.map((v) => {
+        const isAddBtn = v.alt === 'add';
+        return (
+          <a
+            key={v.to}
+            className={classNames({
+              'pure-button': true,
+              'pure-button-active': v.to === url,
+              [style.success]: isAddBtn,
+            })}
+            title={v.title}
+            href={v.to}
+            aria-label={v.title}
+            target={isAddBtn ? '_blank' : '_self'}
+          >
+            <img src={`${iconCdnUrl}/${v.img}`} alt={v.alt} />
+          </a>
+        );
+      })}
     </div>
   </div>
 );
