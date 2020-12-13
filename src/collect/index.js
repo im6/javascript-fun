@@ -18,9 +18,14 @@ async.parallel(
   [
     (cb) => {
       collectSite((err0, data) => {
-        fs.writeFile(viewModelPath.site, JSON.stringify(data), (err1) => {
-          cb(err0 || err1);
-        });
+        if (err0) {
+          // mysql connection error will be caught here
+          cb(err0);
+        } else {
+          fs.writeFile(viewModelPath.site, JSON.stringify(data), (err1) => {
+            cb(err1);
+          });
+        }
       });
     },
     (cb) =>
