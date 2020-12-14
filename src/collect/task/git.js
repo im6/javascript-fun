@@ -11,7 +11,7 @@ const convertGroupIcon = (data) =>
   }, {});
 
 const group = (data, iconMap) => {
-  const data1 = orderBy(data, (v) => v.star, 'desc');
+  const data1 = orderBy(data, ['star'], ['desc']);
   const data2 = groupBy(data1, 'group');
   const data3 = Object.keys(data2);
   const result = data3.map((k) => {
