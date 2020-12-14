@@ -29,12 +29,15 @@ const getNum = (obj0, cb) => {
     .then((body) => cheerio.load(body))
     .then(($) => {
       const elems = $('a.social-count.js-social-count');
-      const starElem = elems[1];
-
-      const numLabel = starElem.attribs['aria-label'];
-      const numStr = numLabel.split(' ')[0];
-      obj.star = parseInt(numStr, 10);
-
+      if (elems.length === 0) {
+        console.error(` ${githubUrl}/${obj.github} url not found.`); // eslint-disable-line no-console
+        obj.star = -1;
+      } else {
+        const starElem = elems[1];
+        const numLabel = starElem.attribs['aria-label'];
+        const numStr = numLabel.split(' ')[0];
+        obj.star = parseInt(numStr, 10);
+      }
       if (!obj.name) {
         [, obj.name] = obj.github.split('/');
       }

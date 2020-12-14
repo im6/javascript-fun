@@ -37,7 +37,7 @@ async.parallel(
   ],
   (err) => {
     if (err) {
-      console.error('\nJob failed.', err.toString()); // eslint-disable-line no-console
+      console.error('\nJob failed.', err); // eslint-disable-line no-console
       process.exit(1);
     } else {
       console.log('\nJob success!'); // eslint-disable-line no-console
