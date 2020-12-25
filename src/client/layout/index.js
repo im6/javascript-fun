@@ -11,7 +11,7 @@ const typeElems = document.getElementsByClassName(type);
 const headerElems = document.getElementsByClassName(header);
 
 if (typeElems.length && headerElems.length) {
-  const typeElem = typeElems[0];
+  const [typeElem] = typeElems;
   const funTxtElem = headerElems[0].children[1];
   const colorNum = leftNavTextColors.length;
   typeElem.innerText = '';
@@ -27,9 +27,9 @@ if (typeElems.length && headerElems.length) {
     preStringTyped: (index) => {
       const selectedColor = leftNavTextColors[index % colorNum];
       const [typeCurosr] = document.getElementsByClassName('typed-cursor');
-      typeElem.style.color = selectedColor[0]; // eslint-disable-line prefer-destructuring
-      typeCurosr.style.color = selectedColor[0]; // eslint-disable-line prefer-destructuring
-      funTxtElem.style.color = selectedColor[1]; // eslint-disable-line prefer-destructuring
+      [typeElem.style.color] = selectedColor;
+      [typeCurosr.style.color] = selectedColor;
+      [, funTxtElem.style.color] = selectedColor;
     },
   });
 } else {
