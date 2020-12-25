@@ -25,8 +25,11 @@ export const gitRepo = `${githubUrl}/${repoUrl}`;
 export const defaultIcon = ['github0.png', 'github1.svg', 'github2.svg'][2];
 
 /* istanbul ignore next */
+export const primaryYear = (
+  new Date().getFullYear() + (new Date().getMonth() < 11 ? 0 : 1)
+).toString();
 export const leftNavText = [
-  (new Date().getFullYear() + (new Date().getMonth() < 11 ? 0 : 1)).toString(),
+  primaryYear,
   'Developer',
   'Designer',
   'Architect',

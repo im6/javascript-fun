@@ -9,6 +9,7 @@ import {
   hideGithubCorner,
   gitRepo,
   publicPath,
+  primaryYear,
   leftNavText,
   iconCdnUrl,
   topNavConfig,
@@ -20,7 +21,7 @@ import {
 const AppContainer = ({ url, children, criticalCss, lastBuildDate }) => (
   <Html
     title={topNavDict[url].title}
-    year={leftNavText[0]}
+    year={primaryYear}
     favIconPngUrl={favIconPngUrl}
     favIconSvgUrl={favIconSvgUrl}
     script={`${publicPath}/${topNavDict[url].asset}.js`}
@@ -31,13 +32,13 @@ const AppContainer = ({ url, children, criticalCss, lastBuildDate }) => (
   >
     <Layout
       url={url}
+      year={primaryYear}
       iconCdnUrl={iconCdnUrl}
       topNavConfig={topNavConfig}
       leftNavInitText={leftNavText[5]}
       author={author}
       pageSpeedUrl={pageSpeedUrl}
       gitRepo={gitRepo}
-      year={leftNavText[0]}
       hideGithubCorner={hideGithubCorner}
     >
       {children}
