@@ -1,14 +1,9 @@
 import Typed from 'typed.js';
-import './style';
-
+import { sidebarType, sidebarHeader } from './style';
 import { leftNavTextColors, leftNavText } from '../../config';
-import {
-  type,
-  header,
-} from '../../components/AppContainer/Layout/components/Sidebar/style.less';
 
-const typeElems = document.getElementsByClassName(type);
-const headerElems = document.getElementsByClassName(header);
+const typeElems = document.getElementsByClassName(sidebarType);
+const headerElems = document.getElementsByClassName(sidebarHeader);
 
 if (typeElems.length && headerElems.length) {
   const [typeElem] = typeElems;
@@ -17,7 +12,7 @@ if (typeElems.length && headerElems.length) {
   typeElem.innerText = '';
 
   // eslint-disable-next-line no-new
-  new Typed(`.${type}`, {
+  new Typed(`.${sidebarType}`, {
     strings: leftNavText,
     typeSpeed: 70,
     backSpeed: 40,
