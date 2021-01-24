@@ -12,7 +12,7 @@ const convertGroupIcon = (data) =>
 
 const group = (data, iconMap) => {
   const data1 = orderBy(data, ['star'], ['desc']);
-  const data2 = groupBy(data1, 'group');
+  const data2 = groupBy(data1, 'grp');
   const data3 = Object.keys(data2);
   const result = data3.map((k) => {
     const v = data2[k];
@@ -39,7 +39,7 @@ export default (cb0) => {
       },
       (cb) => {
         getPackageList(
-          'SELECT *, NULL as star FROM git WHERE `group` IS NOT NULL', // " AND id < 20"
+          'SELECT *, NULL as star FROM git WHERE `grp` IS NOT NULL', // " AND id < 20"
           cb
         );
       },
