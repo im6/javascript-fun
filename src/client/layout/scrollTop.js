@@ -7,9 +7,8 @@ const scrollTopElems = document.getElementsByClassName(scrollBtn);
 
 if (scrollTopElems.length) {
   const btn = scrollTopElems[0];
-  const handleBtnVisibility = () => {
-    const distance = window.scrollY;
-    if (distance > showBtnPositionY) {
+  const toggleBtn = (visible) => {
+    if (visible) {
       btn.style.opacity = 1;
       btn.style.visibility = 'visible';
     } else {
@@ -17,10 +16,15 @@ if (scrollTopElems.length) {
       btn.style.visibility = 'hidden';
     }
   };
+  const handleBtnVisibility = () => {
+    const distance = window.scrollY;
+    toggleBtn(distance > showBtnPositionY);
+  };
 
   window.addEventListener('scroll', debounce(handleBtnVisibility, scrollDelay));
   btn.addEventListener('click', () => {
     window.scrollTo(0, 0);
+    toggleBtn(false);
   });
 } else {
   console.error('render error.'); // eslint-disable-line no-console
