@@ -1,0 +1,30 @@
+@import '../../../../../constant.less';
+
+.scrollBtn {
+  opacity: 0;
+  visibility: hidden;
+
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+
+  background-color: @side-bar-bg-color;
+  width: 42px;
+  height: 42px;
+  text-align: center;
+  line-height: 48px;
+
+  cursor: pointer;
+  border-radius: 3px;
+
+  transition: opacity 0.3s, background-color 0.3s;
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  &:hover {
+    background-color: @star-text-hover-color;
+  }
+}

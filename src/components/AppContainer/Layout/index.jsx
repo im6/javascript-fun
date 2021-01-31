@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import Footer from './components/Footer';
 import TopNav from './components/TopNav';
 import SideBar from './components/Sidebar';
+import BackToTop from './components/BackToTop';
 import GithubCorner from './components/GithubCorner';
 
 import style from './style.less';
@@ -30,6 +31,7 @@ const Layout = ({
         iconCdnUrl={iconCdnUrl}
       />
       {children}
+      <BackToTop />
       <TopNav
         url={url}
         topNavConfig={topNavConfig.filter(

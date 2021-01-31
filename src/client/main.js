@@ -22,10 +22,14 @@ const lazyLoadImg = () => {
   }
 };
 
-const initLazyLoad = debounce(() => {
-  lazyLoadImg();
-  window.removeEventListener('scroll', initLazyLoad);
-}, 500);
+const initLazyLoad = debounce(
+  () => {
+    lazyLoadImg();
+    window.removeEventListener('scroll', initLazyLoad);
+  },
+  500,
+  true
+);
 
 window.addEventListener('scroll', initLazyLoad);
 setTime();

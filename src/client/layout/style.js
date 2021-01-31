@@ -6,6 +6,7 @@ import '../../components/AppContainer/Layout/style.less';
 import '../../components/BoxGroup/style.less';
 import '../../pages/style.less'; // shared page style
 
+export { scrollBtn } from '../../components/AppContainer/Layout/components/BackToTop/style.less';
 export {
   type as sidebarType,
   header as sidebarHeader,
