@@ -1,6 +1,6 @@
 {
   "name": "javascript-fun",
-  "version": "1.4.3",
+  "version": "1.5.0",
   "description": "source code generator for javascript.fun",
   "engines": {
     "node": ">=12.14.1"
