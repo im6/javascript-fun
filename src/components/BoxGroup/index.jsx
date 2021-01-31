@@ -18,7 +18,6 @@ const BoxGroup = ({ title, linkIconUrl, anchorId, children, isWebsite }) => {
         {title}
       </h2>
       <div className="pure-g">{children}</div>
-      <br />
     </Fragment>
   );
 };
