@@ -44,7 +44,7 @@ const Layout = ({
         year={year}
         pageSpeedUrl={pageSpeedUrl}
       />
-      <BackToTop />
+      <BackToTop iconCdnUrl={iconCdnUrl} />
     </div>
   </div>
 );

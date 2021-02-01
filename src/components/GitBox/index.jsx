@@ -9,7 +9,7 @@ const GitBox = ({ name, url, img, imgSrc, star, lazyImg }) => (
     <img src={`${imgSrc}/${img}`} alt={name} data-i={lazyImg} />
     <div className={style.rightText}>
       <h3>{name}</h3>
-      <a href={url} aria-label={`${star} users starred this repository`}>
+      <a href={url} aria-label={`${star} stars in Github`}>
         &#9733; {numeral(star).format('0,0')}
       </a>
     </div>
