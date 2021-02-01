@@ -4,7 +4,7 @@ import style from './style.less';
 const Footer = ({ hideAuthor, author, year, pageSpeedUrl }) => (
   <footer className={style.footer}>
     <div>
-      :) full score by&nbsp;
+      Full score &#9989; by &nbsp;
       <a
         href={pageSpeedUrl}
         className={style.blue}

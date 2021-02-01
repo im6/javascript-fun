@@ -31,7 +31,6 @@ const Layout = ({
         iconCdnUrl={iconCdnUrl}
       />
       {children}
-      <BackToTop />
       <TopNav
         url={url}
         topNavConfig={topNavConfig.filter(
@@ -45,6 +44,7 @@ const Layout = ({
         year={year}
         pageSpeedUrl={pageSpeedUrl}
       />
+      <BackToTop />
     </div>
   </div>
 );

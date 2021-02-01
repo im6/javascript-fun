@@ -5,7 +5,7 @@ import purecss2 from 'css-loader!purecss/build/grids-responsive-min.css';
 const PureCss = () => (
   <style
     dangerouslySetInnerHTML={{
-      __html: `${purecss0}\n${purecss1}\n${purecss2}`,
+      __html: `${purecss0}\n${purecss1}\n${purecss2}\n`,
     }}
   />
 );

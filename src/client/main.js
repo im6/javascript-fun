@@ -6,7 +6,7 @@ import { defaultIcon } from '../config';
 
 const setTime = () => {
   const timeElem = document.getElementsByClassName(updateTime)[0];
-  timeElem.innerText = `Last Update:  ${getNow()}`;
+  timeElem.innerText = `Last Update on ${getNow()}`;
 };
 
 const lazyLoadImg = () => {

@@ -40,7 +40,7 @@ const GitPage = ({
         );
       })}
     </div>
-    <h4 className={style.updateTime} />
+    <h3 className={style.updateTime} />
   </Fragment>
 );
 
