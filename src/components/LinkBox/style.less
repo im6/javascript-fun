@@ -10,9 +10,6 @@
       color: @site-name-color;
       text-decoration: none;
       transition: color 0.4s;
-      &:hover {
-        color: @site-name-color-hover;
-      }
     }
   }
 
@@ -23,6 +20,12 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+}
+
+@media (hover: hover) {
+  .box h3 a:hover {
+    color: @site-name-color-hover;
   }
 }
 
