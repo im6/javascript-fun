@@ -13,7 +13,7 @@
     "build": "webpack --config ./webpack/production.js",
     "web": "node ./dist/node/server.js",
     "render": "node ./dist/node/render.js",
-    "collect": "node -r dotenv/config dist/node/collect.js",
+    "collect": "node -r dotenv/config dist/node/collect.js dotenv_config_path=../javascript-fun.env",
     "cp": ". ./cp.sh"
   },
   "repository": "git+https://github.com/im6/javascript-fun.git",

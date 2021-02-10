@@ -8,8 +8,6 @@ Source code generator for [www.javascript.fun](https://www.javascript.fun/)
 
 ## Quick Start
 
-create `.env` file for DB connections.
-
 ```sh
 yarn install
 yarn build # generate collect build
