@@ -57,18 +57,15 @@ const oneLoop = (taskList, cb0) => {
   async.mapSeries(
     taskList,
     (v, cb1) => {
-      bar.tick({ gtnm: v.name || v.github });
-      if (abuseFlag) cb1(null, v);
-      else {
+      if (abuseFlag) {
+        cb1(null, v);
+      } else {
+        bar.tick({ gtnm: v.name || v.github });
         getNum(v, (err, data) => {
-          if (err) {
-            if (err.statusCode === 429) {
-              console.error('abuse detection mechanism triggered'); // eslint-disable-line no-console
-              abuseFlag = true;
-              cb1(null, v);
-            } else {
-              cb1(err, v);
-            }
+          if (err && err.statusCode === 429) {
+            console.error('\n Abuse detection mechanism triggered'); // eslint-disable-line no-console
+            abuseFlag = true;
+            cb1(null, v);
           } else {
             setTimeout(
               () => {
@@ -93,17 +90,13 @@ const collectStarNum = (db, cb0) => {
     },
     (cb2) => {
       oneLoop(unfinished, (err, data) => {
-        if (err) {
-          cb2(err);
-          return;
-        }
         unfinished = data.filter((v) => v.star === null);
         finished = finished.concat(data.filter((v) => v.star !== null));
         const unfinishedLen = unfinished.length;
         if (unfinishedLen > 0) {
           // eslint-disable-next-line no-console
           console.log(
-            `pause for ${
+            `\n pause for ${
               abusePauseTimeout / 1000
             } secs for another ${unfinishedLen} pkgs ...`
           );
