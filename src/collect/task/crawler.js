@@ -14,17 +14,19 @@ import {
 
 const { MY_COOKIE: Cookie } = process.env;
 
-const getNum = (obj0, cb) => {
+const httpOptions = {
+  timeout,
+  headers: {
+    Cookie,
+    'User-Agent':
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36',
+    Host: 'github.com',
+  },
+};
+
+const fetchStarNum = (obj0, cb) => {
   const obj = { ...obj0 };
-  fetch(`${githubUrl}/${obj.github}`, {
-    timeout,
-    headers: {
-      Cookie,
-      'User-Agent':
-        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36',
-      Host: 'github.com',
-    },
-  })
+  fetch(`${githubUrl}/${obj.github}`, httpOptions)
     .then((res) => res.text())
     .then((body) => cheerio.load(body))
     .then(($) => {
@@ -61,7 +63,7 @@ const oneLoop = (taskList, cb0) => {
         cb1(null, v);
       } else {
         bar.tick({ gtnm: v.name || v.github });
-        getNum(v, (err, data) => {
+        fetchStarNum(v, (err, data) => {
           if (err && err.statusCode === 429) {
             console.error('\n Abuse detection mechanism triggered'); // eslint-disable-line no-console
             abuseFlag = true;
