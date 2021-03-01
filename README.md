@@ -1,10 +1,6 @@
-# JavaScript.Fun ![](https://github.com/im6/javascript-fun/workflows/build/badge.svg)
+# JavaScript.Fun ![cicd](https://github.com/im6/javascript-fun/workflows/build/badge.svg)
 
-Source code generator for [www.javascript.fun](https://www.javascript.fun/)
-
-<p align="center">
-  <img width="800" height="292.7" src="https://github.com/im6/javascript-fun/blob/master/assets/screenshot.png" title="www.JavaScript.Fun">
-</p>
+Source code to generate [www.javascript.fun](https://www.javascript.fun/)
 
 ## Quick Start
 
