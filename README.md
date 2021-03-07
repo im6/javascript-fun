@@ -4,8 +4,22 @@ Source code to generate [www.javascript.fun](https://www.javascript.fun/)
 
 ## Quick Start
 
+### Run app in local
+
 ```sh
 yarn install
-yarn build # generate collect build
+yarn dev
+```
+
+### Update viewmodel
+
+```sh
+yarn build
 yarn collect
+```
+
+### Push to prod
+
+```sh
+yarn cp
 ```
