@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import PureCss from '../PureCss';
 import MetaInfo from '../MetaInfo';
+import GoogleFont from '../GoogleFont';
 
 const Html = ({
   title,
@@ -20,15 +21,10 @@ const Html = ({
       <title>{title} | JavaScript Fun | 前端工坊 </title>
 
       <link rel="preconnect" href="https://fonts.gstatic.com" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap"
-        rel="stylesheet"
-      />
-
       <link rel="icon" type="image/svg+xml" href={favIconSvgUrl} />
       <link rel="mask-icon" href={favIconSvgUrl} color="#000000" />
       <link rel="alternate icon" type="image/png" href={favIconPngUrl} />
-
+      <GoogleFont useLink={false} />
       <PureCss />
       {criticalCss || <link href={style} rel="stylesheet" />}
 
