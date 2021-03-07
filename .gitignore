@@ -6,5 +6,4 @@ npm-debug.log
 yarn-error.log
 coverage/
 local/
-dist/*
-!dist/public/
+dist/
