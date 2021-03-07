@@ -13,6 +13,7 @@ const Html = ({
   script,
   children,
   criticalCss,
+  criticalScript,
   lastBuildDate,
 }) => (
   <html lang="en">
@@ -44,7 +45,7 @@ const Html = ({
         />
       </noscript>
       {children}
-      <script src={script} type="text/javascript" />
+      {criticalScript || <script src={script} type="text/javascript" />}
     </body>
   </html>
 );
@@ -59,6 +60,7 @@ Html.propTypes = {
   author: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired,
   criticalCss: PropTypes.element,
+  criticalScript: PropTypes.element,
 };
 
 export default Html;

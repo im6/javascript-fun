@@ -18,7 +18,13 @@ import {
   favIconSvgUrl,
 } from '../../config';
 
-const AppContainer = ({ url, children, criticalCss, lastBuildDate }) => (
+const AppContainer = ({
+  url,
+  children,
+  criticalCss,
+  criticalScript,
+  lastBuildDate,
+}) => (
   <Html
     title={topNavDict[url].title}
     year={primaryYear}
@@ -28,6 +34,7 @@ const AppContainer = ({ url, children, criticalCss, lastBuildDate }) => (
     style={`${publicPath}/${topNavDict[url].asset}.css`}
     lastBuildDate={lastBuildDate}
     criticalCss={criticalCss}
+    criticalScript={criticalScript}
     author={author}
   >
     <Layout
@@ -50,6 +57,7 @@ AppContainer.propTypes = {
   url: PropTypes.string.isRequired,
   lastBuildDate: PropTypes.string.isRequired,
   criticalCss: PropTypes.element,
+  criticalScript: PropTypes.element,
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.element])
     .isRequired,
 };

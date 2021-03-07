@@ -6,20 +6,22 @@ import GitPage from '../pages/GitPage';
 import LinkPage from '../pages/LinkPage';
 
 import {
+  enableCdn,
   iconCdnUrl,
   githubUrl,
   defaultIcon,
   topNavDict,
   renderOutputFolder,
   viewModelPath,
-  criticalCssPath,
+  criticalAssetPath,
   nonLazyImg,
 } from '../config';
 
 const nowDate = `${new Date().toLocaleString()} EST`;
 
 const generateGitPage = (url) => {
-  const appCss = fs.readFileSync(criticalCssPath.git);
+  const appJs = fs.readFileSync(criticalAssetPath.gitJs);
+  const appCss = fs.readFileSync(criticalAssetPath.gitCss);
   const rawdata = fs.readFileSync(viewModelPath.git);
   const gitSource = JSON.parse(rawdata);
   const htmlDOM = (
@@ -27,6 +29,11 @@ const generateGitPage = (url) => {
       url={url}
       lastBuildDate={nowDate}
       criticalCss={<style dangerouslySetInnerHTML={{ __html: appCss }} />}
+      criticalScript={
+        enableCdn ? null : (
+          <script dangerouslySetInnerHTML={{ __html: appJs }} />
+        )
+      }
     >
       <GitPage
         nonLazyImgIndex={nonLazyImg}
@@ -44,7 +51,8 @@ const generateGitPage = (url) => {
 };
 
 const generateSitePage = (url) => {
-  const appCss = fs.readFileSync(criticalCssPath.site);
+  const appJs = fs.readFileSync(criticalAssetPath.siteJs);
+  const appCss = fs.readFileSync(criticalAssetPath.siteCss);
   const rawdata = fs.readFileSync(viewModelPath.site);
   const siteSource = JSON.parse(rawdata);
   const htmlDOM = (
@@ -52,6 +60,11 @@ const generateSitePage = (url) => {
       url={url}
       lastBuildDate={nowDate}
       criticalCss={<style dangerouslySetInnerHTML={{ __html: appCss }} />}
+      criticalScript={
+        enableCdn ? null : (
+          <script dangerouslySetInnerHTML={{ __html: appJs }} />
+        )
+      }
     >
       <LinkPage source={siteSource} iconCdnUrl={iconCdnUrl} />
     </AppContainer>

@@ -1,7 +1,14 @@
-const { name, author: username, version } = require('../package.json');
-
-const repoUrl = `${username}/${name}`;
+const cdnTag = 'v1.5.4';
+const repoUrl = 'im6/javascript-fun';
 const assetDirectory = 'dist/public';
+
+export const enableCdn = false;
+export const criticalAssetPath = {
+  gitJs: `${assetDirectory}/main.js`,
+  gitCss: `${assetDirectory}/main.css`,
+  siteJs: `${assetDirectory}/site.js`,
+  siteCss: `${assetDirectory}/site.css`,
+};
 
 /* istanbul ignore next */
 export const staticFolder =
@@ -11,7 +18,7 @@ export const renderOutputFolder = 'dist/views';
 export const publicPath =
   process.env.NODE_ENV === 'development'
     ? '/assets'
-    : `https://cdn.jsdelivr.net/gh/${repoUrl}@v${version}/${assetDirectory}`;
+    : `https://cdn.jsdelivr.net/gh/${repoUrl}@${cdnTag}/${assetDirectory}`;
 export const iconCdnUrl = '//dkny.oss-cn-hangzhou.aliyuncs.com/1/icons';
 export const nonLazyImg = 0;
 export const favIconSvgUrl = `${iconCdnUrl}/deno.svg`; // [fav.ico, deno-fav.png]
@@ -90,11 +97,6 @@ export const topNavDict = topNavConfig.reduce((acc, cur, k) => {
 export const viewModelPath = {
   git: 'dist/github.json',
   site: 'dist/site.json',
-};
-
-export const criticalCssPath = {
-  git: `${assetDirectory}/main.css`,
-  site: `${assetDirectory}/site.css`,
 };
 
 // crawler config
