@@ -11,15 +11,17 @@ yarn install
 yarn dev
 ```
 
-### Update viewmodel
+### Generate viewmodel
 
 ```sh
-yarn build
+yarn build-misc
 yarn collect
 ```
 
 ### Push to prod
 
 ```sh
+yarn build
+yarn render
 yarn cp
 ```

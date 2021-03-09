@@ -2,7 +2,7 @@ import async from 'async';
 import groupBy from 'lodash.groupby';
 import orderBy from 'lodash.orderby';
 import getPackageList from './crawler';
-import sqlExecOne from '../mysqlConnection';
+import sqlExecOne from '../../db';
 
 const convertGroupIcon = (data) =>
   data.reduce((accumulator, currentValue) => {

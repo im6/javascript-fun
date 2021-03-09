@@ -1,7 +1,7 @@
 import runSite from './site';
-import sqlExecOne from '../mysqlConnection';
+import sqlExecOne from '../../db';
 
-jest.mock('../mysqlConnection');
+jest.mock('../../db');
 
 describe('Testing site query functionality', () => {
   test('make success sql query', () => {

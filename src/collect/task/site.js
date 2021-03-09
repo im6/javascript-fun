@@ -1,6 +1,6 @@
 import async from 'async';
 import groupBy from 'lodash.groupby';
-import sqlExecOne from '../mysqlConnection';
+import sqlExecOne from '../../db';
 
 const group = (data, grp) => {
   const grpRef = grp.reduce((acc, cur) => {

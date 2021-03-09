@@ -11,8 +11,10 @@
     "test": "jest --coverage",
     "dev": "webpack --config ./webpack/develop.js",
     "build": "webpack --config ./webpack/production.js",
+    "build-misc": "webpack --config ./webpack/miscellaneous.js",
     "web": "node ./dist/node/server.js",
     "render": "node ./dist/node/render.js",
+    "admin": "node -r dotenv/config dist/node/admin.js dotenv_config_path=../javascript-fun.env",
     "collect": "node -r dotenv/config dist/node/collect.js dotenv_config_path=../javascript-fun.env",
     "cp": ". ./cp.sh"
   },
@@ -59,6 +61,7 @@
     "postcss-loader": "^5.1.0",
     "prettier": "^2.2.1",
     "progress": "^2.0.3",
+    "prompts": "^2.4.0",
     "purecss": "^2.0.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

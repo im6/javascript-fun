@@ -3,7 +3,7 @@ import cheerio from 'cheerio';
 import fetch from 'node-fetch';
 import ProgressBar from 'progress';
 
-import sqlExecOne from '../mysqlConnection';
+import sqlExecOne from '../../db';
 import {
   githubUrl,
   crawlerTimeout as timeout,
