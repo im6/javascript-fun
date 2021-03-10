@@ -44,6 +44,8 @@ async.parallel(
               message: 'What is the Github subUrl?',
               validate: (value) => {
                 if (value.toLowerCase() in gitMap) return 'Url exist';
+                if (!/^[a-zA-Z0-9]+\/[a-zA-Z0-9]+$/.test(value))
+                  return 'incorrect format';
                 return true;
               },
             },
