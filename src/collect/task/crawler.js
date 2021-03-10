@@ -35,7 +35,7 @@ const fetchStarNum = (obj0, cb) => {
         console.error(` ${githubUrl}/${obj.github} url not found.`); // eslint-disable-line no-console
         obj.star = -1;
       } else {
-        const starElem = elems[1];
+        const starElem = elems[0];
         const numLabel = starElem.attribs['aria-label'];
         const numStr = numLabel.split(' ')[0];
         obj.star = parseInt(numStr, 10);
