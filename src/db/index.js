@@ -1,5 +1,14 @@
 import mysql from 'mysql';
 
+if (
+  !process.env.SQL_HOST ||
+  !process.env.SQL_USERNAME ||
+  !process.env.SQL_PASSWORD
+) {
+  console.error('DB connection info missing.'); // eslint-disable-line no-console
+  process.exit(1);
+}
+
 const getConn = () =>
   mysql.createConnection({
     host: process.env.SQL_HOST,
