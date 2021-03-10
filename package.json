@@ -115,6 +115,9 @@
     "moduleDirectories": [
       "node_modules"
     ],
+    "setupFiles": [
+      "<rootDir>/src/testing/setEnvVars.js"
+    ],
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/src/testing/styleMock.js"
     },

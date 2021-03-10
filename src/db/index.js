@@ -1,5 +1,6 @@
 import mysql from 'mysql';
 
+/* istanbul ignore next */
 if (
   !process.env.SQL_HOST ||
   !process.env.SQL_USERNAME ||
