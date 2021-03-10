@@ -117,7 +117,7 @@ const server = Object.assign(serverBaseConfig, prodBase, {
       },
     ],
   },
-  plugins: [new CleanWebpackPlugin()],
+  // plugins: [new CleanWebpackPlugin()],
 });
 
 module.exports = [client, server];
