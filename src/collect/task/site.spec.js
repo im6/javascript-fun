@@ -6,7 +6,7 @@ jest.mock('../../db');
 describe('Testing site query functionality', () => {
   test('make success sql query', () => {
     sqlExecOne.mockImplementation((query, cb) => {
-      if (/SELECT \* FROM category_git/.test(query)) {
+      if (/SELECT \* FROM category/.test(query)) {
         cb(null, [
           {
             id: 1,

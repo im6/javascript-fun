@@ -19,7 +19,7 @@ const group = (data, grp) => {
 
 export default (cb) => {
   const querys = [
-    'SELECT * FROM category_git',
+    'SELECT * FROM category',
     'SELECT * FROM site where grp is NOT NULL',
   ];
   async.map(querys, sqlExecOne, (err, [grps, sites]) => {

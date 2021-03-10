@@ -35,7 +35,7 @@ export default (cb0) => {
   async.parallel(
     [
       (cb) => {
-        sqlExecOne('SELECT * FROM category_git', cb);
+        sqlExecOne('SELECT * FROM category', cb);
       },
       (cb) => {
         getPackageList(

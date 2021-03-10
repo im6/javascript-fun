@@ -8,7 +8,7 @@ async.parallel(
       sqlExecOne('SELECT * FROM git', cb);
     },
     (cb) => {
-      sqlExecOne('SELECT * FROM category_git', cb);
+      sqlExecOne('SELECT * FROM category', cb);
     },
   ],
   (err, [git, cate]) => {
@@ -32,7 +32,7 @@ async.parallel(
       choices: [
         { title: 'git', description: 'GitHub', value: 'git' },
         { title: 'site', description: 'Site', value: 'site' },
-        { title: 'category', description: 'Category', value: 'category_git' },
+        { title: 'category', description: 'Category', value: 'category' },
       ],
     }).then(({ table }) => {
       switch (table) {
