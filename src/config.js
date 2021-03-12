@@ -81,7 +81,7 @@ export const topNavConfig = [
     asset: 'site',
   },
   {
-    to: `${gitRepo}/issues/5`,
+    to: `${gitRepo}/discussions/7`,
     img: 'fa-plus-wht.svg',
     title: 'Submit Github Link',
     alt: 'add',
