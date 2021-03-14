@@ -4,13 +4,12 @@ import fetch from 'node-fetch';
 import ProgressBar from 'progress';
 
 import sqlExecOne from '../../db';
-import {
-  githubUrl,
-  crawlerTimeout as timeout,
-  abusePauseTimeout,
-  crawlerStepDelay,
-  crawlerStepNum,
-} from '../../config';
+import { githubUrl } from '../../config';
+
+const timeout = 5 * 1000;
+const abusePauseTimeout = 30 * 1000;
+const crawlerStepDelay = 2000;
+const crawlerStepNum = 5;
 
 const { MY_COOKIE: Cookie } = process.env;
 

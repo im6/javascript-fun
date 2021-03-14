@@ -1,6 +1,13 @@
 import Typed from 'typed.js';
 import { sidebarType, sidebarHeader } from './style';
-import { leftNavTextColors, leftNavText } from '../../config';
+import { leftNavText } from '../../config';
+
+const leftNavTextColors = [
+  ['#7bd0ff', '#F38181'],
+  ['#e8ec8b', '#57cc9d'],
+  ['#EAFFD0', '#a7e5e4'],
+  ['#ffb077', '#b0cadb'],
+];
 
 const typeElems = document.getElementsByClassName(sidebarType);
 const headerElems = document.getElementsByClassName(sidebarHeader);

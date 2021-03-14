@@ -44,13 +44,6 @@ export const leftNavText = [
   'Fun!',
 ];
 
-export const leftNavTextColors = [
-  ['#7bd0ff', '#F38181'],
-  ['#e8ec8b', '#57cc9d'],
-  ['#EAFFD0', '#a7e5e4'],
-  ['#ffb077', '#b0cadb'],
-];
-
 export const topNavConfig = [
   {
     to: '/',
@@ -98,9 +91,3 @@ export const viewModelPath = {
   git: 'dist/github.json',
   site: 'dist/site.json',
 };
-
-// crawler config
-export const crawlerTimeout = 5 * 1000;
-export const abusePauseTimeout = 30 * 1000;
-export const crawlerStepDelay = 2000;
-export const crawlerStepNum = 5;
