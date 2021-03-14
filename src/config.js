@@ -2,7 +2,6 @@ const cdnTag = 'v1.5.4';
 const repoUrl = 'im6/javascript-fun';
 const assetDirectory = 'dist/public';
 
-export const enableCdn = false; // To enable CDN, it requires to commit dist folder into version control
 export const criticalAssetPath = {
   gitJs: `${assetDirectory}/main.js`,
   gitCss: `${assetDirectory}/main.css`,

@@ -6,7 +6,6 @@ import GitPage from '../pages/GitPage';
 import LinkPage from '../pages/LinkPage';
 
 import {
-  enableCdn,
   iconCdnUrl,
   githubUrl,
   defaultIcon,
@@ -17,6 +16,7 @@ import {
   nonLazyImg,
 } from '../config';
 
+const enableCdn = false; // To enable CDN, it requires to commit dist folder into version control
 const nowDate = `${new Date().toLocaleString()} EST`;
 
 const generateGitPage = (url) => {
