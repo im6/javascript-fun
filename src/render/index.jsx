@@ -37,7 +37,7 @@ const generateGitPage = (url) => {
     >
       <GitPage
         nonLazyImgIndex={nonLazyImg}
-        source={gitSource.filter((v) => v.page === topNavDict[url].link)}
+        source={gitSource.filter((v) => v.page === topNavDict[url].page)}
         githubUrl={githubUrl}
         iconCdnUrl={iconCdnUrl}
         defaultIcon={defaultIcon}

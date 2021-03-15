@@ -42,7 +42,7 @@ export const gitMd = (req, res) => {
     >
       <GitPage
         nonLazyImgIndex={nonLazyImg}
-        source={gitSource.filter((v) => v.page === topNavDict[req.url].link)}
+        source={gitSource.filter((v) => v.page === topNavDict[req.url].page)}
         githubUrl={githubUrl}
         iconCdnUrl={iconCdnUrl}
         defaultIcon={defaultIcon}

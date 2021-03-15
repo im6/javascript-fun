@@ -9,6 +9,11 @@ export const criticalAssetPath = {
   siteCss: `${assetDirectory}/site.css`,
 };
 
+export const viewModelPath = {
+  git: 'dist/github.json',
+  site: 'dist/site.json',
+};
+
 /* istanbul ignore next */
 export const staticFolder =
   process.env.NODE_ENV === 'development' ? 'local' : 'dist';
@@ -50,6 +55,7 @@ export const topNavConfig = [
     title: 'Front End',
     alt: 'framework',
     asset: 'main',
+    page: 1,
   },
   {
     to: '/node/',
@@ -57,6 +63,7 @@ export const topNavConfig = [
     title: 'Node.js',
     alt: 'node',
     asset: 'main',
+    page: 2,
   },
   {
     to: '/library/',
@@ -64,6 +71,7 @@ export const topNavConfig = [
     title: 'Miscellaneous',
     alt: 'library',
     asset: 'main',
+    page: 3,
   },
   {
     to: '/site/',
@@ -80,13 +88,7 @@ export const topNavConfig = [
   },
 ];
 
-export const topNavDict = topNavConfig.reduce((acc, cur, k) => {
+export const topNavDict = topNavConfig.reduce((acc, cur) => {
   acc[cur.to] = cur;
-  acc[cur.to].link = k + 1;
   return acc;
 }, {});
-
-export const viewModelPath = {
-  git: 'dist/github.json',
-  site: 'dist/site.json',
-};
