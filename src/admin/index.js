@@ -61,7 +61,7 @@ async.parallel(
             },
             {
               type: 'confirm',
-              name: 'groupId',
+              name: 'confirm',
               message: (prev) =>
                 `Can you confirm group Id: ${
                   cateMap[prev.toLowerCase()]
@@ -79,7 +79,8 @@ async.parallel(
               message: 'Do you have optinal icon file?',
             },
           ]).then((a) => {
-            if (!a.confirm) {
+            const grpId = cateMap[a.group.toLowerCase()];
+            if (!a.confirm || !grpId) {
               console.log('canceled'); // eslint-disable-line no-console
               return;
             }
@@ -87,7 +88,7 @@ async.parallel(
             const name = a.name ? `"${a.name}"` : 'NULL';
             const query = `INSERT INTO git (github, grp, name, img) VALUES ("${
               a.github
-            }", ${cateMap[a.group.toLowerCase()]}, ${name}, ${img});`;
+            }", ${grpId}, ${name}, ${img});`;
             console.log(query); // eslint-disable-line no-console
             sqlExecOne(query, (err1) => {
               if (err1) {
@@ -134,13 +135,14 @@ async.parallel(
               message: 'What is website name?',
             },
           ]).then((a) => {
-            if (!a.confirm) {
+            const grpId = cateMap[a.group.toLowerCase()]
+            if (!a.confirm || !grpId) {
               console.log('canceled'); // eslint-disable-line no-console
               return;
             }
             const query = `INSERT INTO site (url, grp, name) VALUES ("${
               a.url
-            }", ${cateMap[a.group.toLowerCase()]}, "${a.name}");`;
+            }", ${grpId}, "${a.name}");`;
             console.log(query); // eslint-disable-line no-console
             sqlExecOne(query, (err1) => {
               if (err1) {
