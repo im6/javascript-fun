@@ -2,6 +2,8 @@ import async from 'async';
 import prompts from 'prompts';
 import sqlExecOne from '../db';
 
+const githubUrlFormat = /^[a-zA-Z0-9-]+\/[a-zA-Z0-9-]+$/;
+
 async.parallel(
   [
     (cb) => {
@@ -44,8 +46,7 @@ async.parallel(
               message: 'What is the Github subUrl?',
               validate: (value) => {
                 if (value.toLowerCase() in gitMap) return 'Url exist';
-                if (!/^[a-zA-Z0-9]+\/[a-zA-Z0-9]+$/.test(value))
-                  return 'incorrect format';
+                if (!githubUrlFormat.test(value)) return 'incorrect format';
                 return true;
               },
             },
@@ -86,9 +87,7 @@ async.parallel(
             }
             const img = a.img ? `"${a.img}"` : 'NULL';
             const name = a.name ? `"${a.name}"` : 'NULL';
-            const query = `INSERT INTO git (github, grp, name, img) VALUES ("${
-              a.github
-            }", ${grpId}, ${name}, ${img});`;
+            const query = `INSERT INTO git (github, grp, name, img) VALUES ("${a.github}", ${grpId}, ${name}, ${img});`;
             console.log(query); // eslint-disable-line no-console
             sqlExecOne(query, (err1) => {
               if (err1) {
@@ -135,14 +134,12 @@ async.parallel(
               message: 'What is website name?',
             },
           ]).then((a) => {
-            const grpId = cateMap[a.group.toLowerCase()]
+            const grpId = cateMap[a.group.toLowerCase()];
             if (!a.confirm || !grpId) {
               console.log('canceled'); // eslint-disable-line no-console
               return;
             }
-            const query = `INSERT INTO site (url, grp, name) VALUES ("${
-              a.url
-            }", ${grpId}, "${a.name}");`;
+            const query = `INSERT INTO site (url, grp, name) VALUES ("${a.url}", ${grpId}, "${a.name}");`;
             console.log(query); // eslint-disable-line no-console
             sqlExecOne(query, (err1) => {
               if (err1) {
