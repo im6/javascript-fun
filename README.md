@@ -1,4 +1,4 @@
-# JavaScript.Fun ![cicd](https://github.com/im6/javascript-fun/workflows/build/badge.svg)
+# JavaScript.Fun ![cicd](https://github.com/im6/javascript-fun/actions/workflows/ci.yml/badge.svg)
 
 Source code to generate [www.javascript.fun](https://www.javascript.fun/)
 
