@@ -13,9 +13,6 @@
   & > path {
     &:nth-child(1) {
       fill: @side-bar-bg-color;
-      .link:hover & {
-        fill: @git-corner-hover-color;
-      }
     }
     &:nth-child(2),
     &:nth-child(3) {
@@ -27,7 +24,7 @@
 .octoArm {
   -webkit-transform-origin: 130px 106px;
   transform-origin: 130px 106px;
-  .link:hover & {
+  .container > a:hover & {
     animation: octocat-wave 560ms ease-in-out;
   }
 }
