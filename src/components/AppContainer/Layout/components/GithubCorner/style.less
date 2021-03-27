@@ -1,9 +1,15 @@
 @import '../../../../../constant.less';
 
-.corner {
-  position: absolute;
-  top: 0;
-  right: 0;
+.container {
+  position: relative; // limits the scope of absolutely positioned child elements
+  & > a {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.svgDom {
   & > path {
     &:nth-child(1) {
       fill: @side-bar-bg-color;
@@ -41,7 +47,7 @@
   }
 }
 @media (max-width: 768px) {
-  .link {
+  .container {
     display: none;
   }
 }
