@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import Footer from './components/Footer';
 import TopNav from './components/TopNav';
+import Slogan from './components/Slogan';
 import SideBar from './components/Sidebar';
 import BackToTop from './components/BackToTop';
 import GithubCorner from './components/GithubCorner';
@@ -24,6 +25,7 @@ const Layout = ({
       <SideBar defaultType={leftNavInitText} />
     </div>
     <div className={`pure-u-1 pure-u-md-5-6 pure-u-lg-4-5 ${style.right}`}>
+      <Slogan text="stop asian hate" />
       {!hideGithubCorner && <GithubCorner url={gitRepo} />}
       <TopNav
         url={url}

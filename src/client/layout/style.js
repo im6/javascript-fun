@@ -1,4 +1,5 @@
 import './font.less';
+import '../../components/AppContainer/Layout/components/Slogan/style.less';
 import '../../components/AppContainer/Layout/components/TopNav/style.less';
 import '../../components/AppContainer/Layout/components/Footer/style.less';
 import '../../components/AppContainer/Layout/components/GithubCorner/style.less';
