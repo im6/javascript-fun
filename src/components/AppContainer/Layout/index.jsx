@@ -25,7 +25,7 @@ const Layout = ({
       <SideBar defaultType={leftNavInitText} />
     </div>
     <div className={`pure-u-1 pure-u-md-5-6 pure-u-lg-4-5 ${style.right}`}>
-      <Slogan text="stop asian hate" />
+      <Slogan text="" />
       {!hideGithubCorner && <GithubCorner url={gitRepo} />}
       <TopNav
         url={url}
