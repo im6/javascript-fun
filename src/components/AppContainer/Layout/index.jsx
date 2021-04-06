@@ -10,6 +10,8 @@ import style from './style.less';
 
 const Layout = ({
   url,
+  year,
+  domain,
   children,
   leftNavInitText,
   author,
@@ -18,7 +20,6 @@ const Layout = ({
   topNavConfig,
   hideGithubCorner,
   gitRepo,
-  year,
 }) => (
   <div className="pure-g">
     <div className={`pure-u-1 pure-u-md-1-6 pure-u-lg-1-5 ${style.left}`}>
@@ -41,9 +42,10 @@ const Layout = ({
         iconCdnUrl={iconCdnUrl}
       />
       <Footer
-        hideAuthor={hideGithubCorner}
-        author={author}
         year={year}
+        domain={domain}
+        author={author}
+        hideAuthor={hideGithubCorner}
         pageSpeedUrl={pageSpeedUrl}
       />
       <BackToTop iconCdnUrl={iconCdnUrl} />
@@ -54,6 +56,7 @@ const Layout = ({
 Layout.propTypes = {
   url: PropTypes.string.isRequired,
   iconCdnUrl: PropTypes.string.isRequired,
+  domain: PropTypes.string,
   author: PropTypes.string.isRequired,
   pageSpeedUrl: PropTypes.string.isRequired,
   hideGithubCorner: PropTypes.bool,

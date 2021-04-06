@@ -5,8 +5,7 @@ import GoogleFont from '../GoogleFont';
 
 const Html = ({
   title,
-  favIconPngUrl,
-  favIconSvgUrl,
+  domain,
   year,
   author,
   style,
@@ -15,10 +14,12 @@ const Html = ({
   criticalCss,
   criticalScript,
   lastBuildDate,
+  favIconPngUrl,
+  favIconSvgUrl,
 }) => (
   <html lang="en">
     <head>
-      <MetaInfo author={author} year={year} />
+      <MetaInfo author={author} year={year} domain={domain} />
       <title>{title} | JavaScript Fun | 前端工坊 </title>
 
       <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -31,7 +32,7 @@ const Html = ({
 
       <script
         dangerouslySetInnerHTML={{
-          __html: `if(window.location.hostname.indexOf('javascript.fun') > -1){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KQ9MZHN');console.log('last build: ${lastBuildDate}');}`,
+          __html: `if(window.location.hostname.indexOf('${domain}') > -1){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KQ9MZHN');console.log('last build: ${lastBuildDate}');}`,
         }}
       />
     </head>
@@ -51,8 +52,9 @@ const Html = ({
 );
 
 Html.propTypes = {
-  title: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  domain: PropTypes.string.isRequired,
   favIconPngUrl: PropTypes.string.isRequired,
   favIconSvgUrl: PropTypes.string.isRequired,
   lastBuildDate: PropTypes.string.isRequired,

@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-const SEO = ({ year }) => (
+const SEO = ({ year, domain }) => (
   <Fragment>
     <meta
       name="description"
@@ -9,7 +9,7 @@ const SEO = ({ year }) => (
     />
     <meta
       name="keywords"
-      content="javascript.fun,front end,web develop,react,vue,angular"
+      content={`${domain},front end,web develop,react,vue,angular`}
     />
     <meta name="google" content="notranslate" />
     <meta name="robots" content="index,follow" />
@@ -18,6 +18,7 @@ const SEO = ({ year }) => (
 
 SEO.propTypes = {
   year: PropTypes.string.isRequired,
+  domain: PropTypes.string.isRequired,
 };
 
 export default SEO;

@@ -9,6 +9,7 @@ export const criticalAssetPath = {
   siteCss: `${assetDirectory}/site.css`,
 };
 
+export const domain = 'javascript.fun';
 export const viewModelPath = {
   git: 'dist/github.json',
   site: 'dist/site.json',
@@ -28,8 +29,7 @@ export const nonLazyImg = 0;
 export const favIconSvgUrl = `${iconCdnUrl}/deno.svg`; // [fav.ico, deno-fav.png]
 export const favIconPngUrl = `${iconCdnUrl}/deno-fav.png`;
 export const author = 'Zijian Guo';
-export const pageSpeedUrl =
-  'https://developers.google.com/speed/pagespeed/insights/?url=www.javascript.fun&tab=desktop';
+export const pageSpeedUrl = `https://developers.google.com/speed/pagespeed/insights/?url=www.${domain}&tab=desktop`;
 export const hideGithubCorner = false;
 export const githubUrl = 'https://github.com';
 export const gitRepo = `${githubUrl}/${repoUrl}`;

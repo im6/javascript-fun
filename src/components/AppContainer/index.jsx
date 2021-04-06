@@ -5,6 +5,7 @@ import Layout from './Layout';
 
 import {
   author,
+  domain,
   pageSpeedUrl,
   hideGithubCorner,
   gitRepo,
@@ -26,6 +27,7 @@ const AppContainer = ({
   lastBuildDate,
 }) => (
   <Html
+    domain={domain}
     title={topNavDict[url].title}
     year={primaryYear}
     favIconPngUrl={favIconPngUrl}
@@ -39,6 +41,7 @@ const AppContainer = ({
   >
     <Layout
       url={url}
+      domain={domain}
       year={primaryYear}
       iconCdnUrl={iconCdnUrl}
       topNavConfig={topNavConfig}

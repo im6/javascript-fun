@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SEO from './SEO';
 import OpenGraph from './OpenGraph';
 
-const MetaInfo = ({ author, year }) => (
+const MetaInfo = ({ year, author, domain }) => (
   <Fragment>
     <meta charSet="utf-8" />
     <meta name="author" content={author} />
@@ -12,13 +12,14 @@ const MetaInfo = ({ author, year }) => (
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=5"
     />
-    <SEO year={year} />
-    <OpenGraph />
+    <SEO year={year} domain={domain} />
+    <OpenGraph domain={domain} />
   </Fragment>
 );
 
 MetaInfo.propTypes = {
-  author: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  domain: PropTypes.string.isRequired,
 };
 export default MetaInfo;

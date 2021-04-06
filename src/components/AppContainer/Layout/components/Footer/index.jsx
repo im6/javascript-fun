@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import style from './style.less';
 
-const Footer = ({ hideAuthor, author, year, pageSpeedUrl }) => (
+const Footer = ({ domain, hideAuthor, author, year, pageSpeedUrl }) => (
   <footer className={style.footer}>
     <div>
       Full score &#9989; by &nbsp;
@@ -17,7 +17,7 @@ const Footer = ({ hideAuthor, author, year, pageSpeedUrl }) => (
     <div>
       &copy; Copyright {year}&nbsp;
       {hideAuthor ? (
-        'Javascript.Fun'
+        domain
       ) : (
         <a href="/about/">
           <b>{author}</b>
@@ -29,6 +29,7 @@ const Footer = ({ hideAuthor, author, year, pageSpeedUrl }) => (
 );
 
 Footer.propTypes = {
+  domain: PropTypes.string,
   author: PropTypes.string.isRequired,
   pageSpeedUrl: PropTypes.string.isRequired,
   hideAuthor: PropTypes.bool,
