@@ -14,7 +14,7 @@ class ServerStartPlugin {
   }
 
   apply(compiler) {
-    compiler.hooks.done.tapAsync('ServerStartHook', (cp, callback) => {
+    compiler.hooks.done.tapAsync('ServerStartHook', (_, callback) => {
       if (this.child) {
         this.child.kill('SIGTERM');
       }
