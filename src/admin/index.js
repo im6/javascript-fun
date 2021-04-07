@@ -34,7 +34,7 @@ async.parallel(
       choices: [
         { title: 'git', description: 'GitHub', value: 'git' },
         { title: 'site', description: 'Site', value: 'site' },
-        { title: 'category', description: 'Category', value: 'category' },
+        // { title: 'category', description: 'Category', value: 'category' },
       ],
     }).then(({ table }) => {
       switch (table) {
