@@ -2,7 +2,7 @@ import async from 'async';
 import prompts from 'prompts';
 import sqlExecOne from '../db';
 
-const githubUrlFormat = /^[a-zA-Z0-9-]+\/[a-zA-Z0-9-]+$/;
+const githubUrlFormat = /^[a-zA-Z0-9-]+\/[a-zA-Z0-9-.]+$/;
 
 async.parallel(
   [
