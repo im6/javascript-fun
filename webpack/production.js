@@ -1,7 +1,7 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const TerserPlugin = require('terser-webpack-plugin'); // eslint-disable-line import/no-extraneous-dependencies
 
@@ -79,7 +79,7 @@ const client = Object.assign(clientBaseConfig, prodBase, {
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
-    new OptimizeCssAssetsPlugin(),
+    new CssMinimizerPlugin(),
   ],
 });
 
