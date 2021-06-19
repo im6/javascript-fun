@@ -10,10 +10,6 @@ export const criticalAssetPath = {
 };
 
 export const domain = 'javascript.fun';
-export const viewModelPath = {
-  git: 'dist/github.json',
-  site: 'dist/site.json',
-};
 
 /* istanbul ignore next */
 export const staticFolder =

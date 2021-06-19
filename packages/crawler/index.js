@@ -1,8 +1,8 @@
-import fs from 'fs';
-import async from 'async';
-import collectGit from './task/git';
-import collectSite from './task/site';
-import { viewModelPath } from '../config';
+const fs = require("fs");
+const async = require("async");
+const collectGit = require("./task/git");
+const collectSite = require("./task/site");
+const { viewModelPath } = require("app-globals");
 
 async.parallel(
   [
@@ -27,10 +27,10 @@ async.parallel(
   ],
   (err) => {
     if (err) {
-      console.error('\nJob failed.', err); // eslint-disable-line no-console
+      console.error("\nJob failed.", err); // eslint-disable-line no-console
       process.exit(1);
     } else {
-      console.log('\nJob success!'); // eslint-disable-line no-console
+      console.log("\nJob success!"); // eslint-disable-line no-console
       process.exit();
     }
   }

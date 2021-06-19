@@ -1,4 +1,4 @@
-import mysql from 'mysql';
+const mysql = require("mysql");
 
 /* istanbul ignore next */
 if (
@@ -6,7 +6,7 @@ if (
   !process.env.SQL_USERNAME ||
   !process.env.SQL_PASSWORD
 ) {
-  console.error('DB connection info missing.'); // eslint-disable-line no-console
+  console.error("DB connection info missing."); // eslint-disable-line no-console
   process.exit(1);
 }
 
@@ -19,7 +19,7 @@ const getConn = () =>
     database: process.env.SQL_DATABASE,
   });
 
-export default (qr, cb) => {
+module.exports = (qr, cb) => {
   const conn = getConn();
   conn.query(qr, (err, rows) => {
     cb(err, rows);

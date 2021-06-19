@@ -1,0 +1,119 @@
+{
+  "name": "javascript-fun",
+  "version": "1.7.0",
+  "description": "source code generator for javascript.fun",
+  "engines": {
+    "node": ">=12.14.1"
+  },
+  "repository": "git+https://github.com/im6/javascript-fun.git",
+  "author": "im6",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/im6/javascript-fun/issues"
+  },
+  "homepage": "https://github.com/im6/javascript-fun#readme",
+  "scripts": {
+    "start": "webpack --config ./webpack/develop.js"
+  },
+  "dependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-react": "^7.13.13",
+    "@testing-library/react": "^11.2.7",
+    "autoprefixer": "^10.2.5",
+    "babel-loader": "^8.2.2",
+    "classnames": "^2.3.1",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "css-loader": "^5.2.6",
+    "css-minimizer-webpack-plugin": "^3.0.0",
+    "eslint": "^7.27.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.3",
+    "eslint-plugin-jest": "^24.3.6",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.23.2",
+    "express": "^4.17.1",
+    "jest": "^27.0.1",
+    "less": "^4.1.1",
+    "less-loader": "^9.0.0",
+    "lodash.groupby": "^4.6.0",
+    "lodash.orderby": "^4.6.0",
+    "mini-css-extract-plugin": "^1.6.0",
+    "numeral": "^2.0.6",
+    "postcss": "^8.3.0",
+    "postcss-loader": "^5.3.0",
+    "prettier": "^2.3.0",
+    "prompts": "^2.4.1",
+    "purecss": "^2.0.6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typed.js": "^2.0.12",
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "browserslist": [
+    "defaults",
+    "cover 99.5%"
+  ],
+  "prettier": {
+    "endOfLine": "auto",
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true
+  },
+  "eslintConfig": {
+    "extends": [
+      "airbnb",
+      "prettier"
+    ],
+    "plugins": [
+      "react",
+      "jsx-a11y",
+      "import",
+      "prettier",
+      "jest"
+    ],
+    "env": {
+      "browser": true,
+      "jest/globals": true
+    }
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      [
+        "@babel/preset-react",
+        {
+          "runtime": "automatic"
+        }
+      ]
+    ]
+  },
+  "jest": {
+    "verbose": false,
+    "testEnvironment": "jsdom",
+    "clearMocks": true,
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "setupFiles": [
+      "<rootDir>/src/testing/setEnvVars.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less)$": "<rootDir>/src/testing/styleMock.js"
+    },
+    "coverageDirectory": "coverage",
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": -10
+      }
+    }
+  }
+}

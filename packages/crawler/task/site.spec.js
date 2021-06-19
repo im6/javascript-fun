@@ -1,16 +1,16 @@
-import runSite from './site';
-import sqlExecOne from '../../db';
+const runSite = require("./site");
+const sqlExecOne = require("mysql-client");
 
-jest.mock('../../db');
+jest.mock("mysql-client");
 
-describe('Testing site query functionality', () => {
-  test('make success sql query', () => {
+describe("Testing site query functionality", () => {
+  test("make success sql query", () => {
     sqlExecOne.mockImplementation((query, cb) => {
       if (/SELECT \* FROM category/.test(query)) {
         cb(null, [
           {
             id: 1,
-            name: 'famous web',
+            name: "famous web",
             page: 4,
             sort: 1,
           },
@@ -19,9 +19,9 @@ describe('Testing site query functionality', () => {
         cb(null, [
           {
             id: 1,
-            name: 'cnn',
-            desc: 'cnn news',
-            url: 'www.cnn.com',
+            name: "cnn",
+            desc: "cnn news",
+            url: "www.cnn.com",
             grp: 1,
           },
         ]);
@@ -31,7 +31,7 @@ describe('Testing site query functionality', () => {
       expect(err).toBe(null);
     });
   });
-  test('make failure sql query', () => {
+  test("make failure sql query", () => {
     sqlExecOne.mockImplementation((qry, cb) => {
       cb(true);
     });

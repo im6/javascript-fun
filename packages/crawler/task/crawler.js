@@ -1,10 +1,9 @@
-import async from 'async';
-import cheerio from 'cheerio';
-import fetch from 'node-fetch';
-import ProgressBar from 'progress';
-
-import sqlExecOne from '../../db';
-import { githubUrl } from '../../config';
+const async = require("async");
+const cheerio = require("cheerio");
+const fetch = require("node-fetch");
+const ProgressBar = require("progress");
+const sqlExecOne = require("mysql-client");
+const { githubUrl } = require("app-globals");
 
 const timeout = 5 * 1000;
 const abusePauseTimeout = 30 * 1000;
@@ -17,9 +16,9 @@ const httpOptions = {
   timeout,
   headers: {
     Cookie,
-    'User-Agent':
-      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36',
-    Host: 'github.com',
+    "User-Agent":
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36",
+    Host: "github.com",
   },
 };
 
@@ -29,18 +28,18 @@ const fetchStarNum = (obj0, cb) => {
     .then((res) => res.text())
     .then((body) => cheerio.load(body))
     .then(($) => {
-      const elems = $('a.social-count.js-social-count');
+      const elems = $("a.social-count.js-social-count");
       if (elems.length === 0) {
         console.error(` ${githubUrl}/${obj.github} url not found.`); // eslint-disable-line no-console
         obj.star = -1;
       } else {
         const starElem = elems[0];
-        const numLabel = starElem.attribs['aria-label'];
-        const numStr = numLabel.split(' ')[0];
+        const numLabel = starElem.attribs["aria-label"];
+        const numStr = numLabel.split(" ")[0];
         obj.star = parseInt(numStr, 10);
       }
       if (!obj.name) {
-        [, obj.name] = obj.github.split('/');
+        [, obj.name] = obj.github.split("/");
       }
 
       cb(null, obj);
@@ -52,7 +51,7 @@ const fetchStarNum = (obj0, cb) => {
 
 const oneLoop = (taskList, cb0) => {
   let abuseFlag = false;
-  const bar = new ProgressBar('downloading :current of :total: :gtnm', {
+  const bar = new ProgressBar("downloading :current of :total: :gtnm", {
     total: taskList.length,
   });
   async.mapSeries(
@@ -64,7 +63,7 @@ const oneLoop = (taskList, cb0) => {
         bar.tick({ gtnm: v.name || v.github });
         fetchStarNum(v, (err, data) => {
           if (err && err.statusCode === 429) {
-            console.error('\n Abuse detection mechanism triggered'); // eslint-disable-line no-console
+            console.error("\n Abuse detection mechanism triggered"); // eslint-disable-line no-console
             abuseFlag = true;
             cb1(null, v);
           } else {
@@ -113,4 +112,4 @@ const collectStarNum = (db, cb0) => {
   );
 };
 
-export default async.seq(sqlExecOne, collectStarNum);
+module.exports = async.seq(sqlExecOne, collectStarNum);

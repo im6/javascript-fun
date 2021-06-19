@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { renderToStaticMarkup } from 'react-dom/server';
+import { viewModelPath, githubUrl } from 'app-globals';
 
 import AppContainer from '../components/AppContainer';
 import GitPage from '../pages/GitPage';
@@ -9,11 +10,9 @@ import LinkPage from '../pages/LinkPage';
 import {
   nonLazyImg,
   iconCdnUrl,
-  githubUrl,
   defaultIcon,
   topNavDict,
   renderOutputFolder,
-  viewModelPath,
 } from '../config';
 
 export const linkMd = (req, res) => {

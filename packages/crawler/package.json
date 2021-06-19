@@ -1,0 +1,16 @@
+{
+  "name": "crawler",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node -r dotenv/config index.js dotenv_config_path=../../../javascript-fun.env"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "lodash.groupby": "^4.6.0",
+    "lodash.orderby": "^4.6.0",
+    "node-fetch": "^2.6.1",
+    "progress": "^2.0.3"
+  }
+}
