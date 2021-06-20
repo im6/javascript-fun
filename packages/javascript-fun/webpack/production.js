@@ -12,6 +12,7 @@ const {
   include,
 } = require('./base');
 
+const outputDirectory = '../../../dist';
 const prodBase = {
   mode: 'production',
   optimization: {
@@ -26,7 +27,7 @@ const prodBase = {
 
 const client = Object.assign(clientBaseConfig, prodBase, {
   output: {
-    path: path.join(__dirname, '../dist/public'),
+    path: path.join(__dirname, outputDirectory, 'public'),
     filename: '[name].js',
   },
   module: {
@@ -89,7 +90,7 @@ const server = Object.assign(serverBaseConfig, prodBase, {
     render: path.join(__dirname, '../src/render'),
   },
   output: {
-    path: path.join(__dirname, '../dist/node'),
+    path: path.join(__dirname, outputDirectory, 'node'),
     filename: '[name].js',
   },
   module: {

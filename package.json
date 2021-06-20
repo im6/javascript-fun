@@ -40,5 +40,10 @@
     "rules": {
       "import/no-extraneous-dependencies": "off"
     }
+  },
+  "config": {
+    "githubUrl": "https://github.com",
+    "gitJsonPath": "../../dist/github.json",
+    "siteJsonPath": "../../dist/site.json"
   }
 }

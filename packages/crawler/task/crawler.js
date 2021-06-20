@@ -3,7 +3,8 @@ const cheerio = require("cheerio");
 const fetch = require("node-fetch");
 const ProgressBar = require("progress");
 const sqlExecOne = require("mysql-client");
-const { githubUrl } = require("app-globals");
+
+const { npm_package_config_githubUrl: githubUrl } = process.env;
 
 const timeout = 5 * 1000;
 const abusePauseTimeout = 30 * 1000;

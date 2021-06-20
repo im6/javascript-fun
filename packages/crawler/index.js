@@ -1,9 +1,11 @@
 const fs = require("fs");
 const async = require("async");
-const { viewModelPath } = require("app-globals");
 
 const collectGit = require("./task/git");
 const collectSite = require("./task/site");
+
+const { npm_package_config_gitJsonPath, npm_package_config_siteJsonPath } =
+  process.env;
 
 async.parallel(
   [
@@ -13,17 +15,25 @@ async.parallel(
           // mysql connection error will be caught here
           cb(err0);
         } else {
-          fs.writeFile(viewModelPath.site, JSON.stringify(data), (err1) => {
-            cb(err1);
-          });
+          fs.writeFile(
+            npm_package_config_siteJsonPath,
+            JSON.stringify(data),
+            (err1) => {
+              cb(err1);
+            }
+          );
         }
       });
     },
     (cb) =>
       collectGit((err0, data) => {
-        fs.writeFile(viewModelPath.git, JSON.stringify(data), (err1) => {
-          cb(err0 || err1);
-        });
+        fs.writeFile(
+          npm_package_config_gitJsonPath,
+          JSON.stringify(data),
+          (err1) => {
+            cb(err0 || err1);
+          }
+        );
       }),
   ],
   (err) => {
