@@ -1,3 +1,5 @@
+import { githubUrl } from 'app-constant';
+
 const cdnTag = 'v1.5.4';
 const repoUrl = 'im6/javascript-fun';
 const assetDirectory = 'dist/public';
@@ -27,7 +29,6 @@ export const favIconPngUrl = `${iconCdnUrl}/deno-fav.png`;
 export const author = 'Zijian Guo';
 export const pageSpeedUrl = `https://developers.google.com/speed/pagespeed/insights/?url=www.${domain}&tab=desktop`;
 export const hideGithubCorner = false;
-export const githubUrl = 'https://github.com';
 export const gitRepo = `${githubUrl}/${repoUrl}`;
 export const defaultIcon = ['github0.png', 'github1.svg', 'github2.svg'][2];
 

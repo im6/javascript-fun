@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { renderToStaticMarkup } from 'react-dom/server';
+import { githubUrl, gitJsonPath, siteJsonPath } from 'app-constant';
 
 import AppContainer from '../components/AppContainer';
 import GitPage from '../pages/GitPage';
@@ -14,14 +15,8 @@ import {
   renderOutputFolder,
 } from '../config';
 
-const {
-  npm_package_config_githubUrl,
-  npm_package_config_gitJsonPath,
-  npm_package_config_siteJsonPath,
-} = process.env;
-
 export const linkMd = (req, res) => {
-  const rawdata = fs.readFileSync(npm_package_config_siteJsonPath);
+  const rawdata = fs.readFileSync(siteJsonPath);
   const siteSource = JSON.parse(rawdata);
   const htmlDOM = (
     <AppContainer
@@ -37,7 +32,7 @@ export const linkMd = (req, res) => {
 };
 
 export const gitMd = (req, res) => {
-  const rawdata = fs.readFileSync(npm_package_config_gitJsonPath);
+  const rawdata = fs.readFileSync(gitJsonPath);
   const gitSource = JSON.parse(rawdata);
   const htmlDOM = (
     <AppContainer
@@ -47,7 +42,7 @@ export const gitMd = (req, res) => {
       <GitPage
         nonLazyImgIndex={nonLazyImg}
         source={gitSource.filter((v) => v.page === topNavDict[req.url].page)}
-        githubUrl={npm_package_config_githubUrl}
+        githubUrl={githubUrl}
         iconCdnUrl={iconCdnUrl}
         defaultIcon={defaultIcon}
       />
