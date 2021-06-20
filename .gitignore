@@ -1,9 +1,9 @@
 .DS_Store
-.idea/
-.vscode/
-node_modules/
+.vscode
+node_modules
 npm-debug.log
 yarn-error.log
-coverage/
-local/
-dist/
+coverage
+local
+dist
+data-source

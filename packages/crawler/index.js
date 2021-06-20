@@ -1,9 +1,13 @@
 const fs = require('fs');
 const async = require('async');
-const { gitJsonPath, siteJsonPath } = require('app-constant');
+const { gitJsonPath, siteJsonPath, dataSourceDir } = require('app-constant');
 
 const collectGit = require('./task/git');
 const collectSite = require('./task/site');
+
+if (!fs.existsSync(dataSourceDir)) {
+  fs.mkdirSync(dataSourceDir);
+}
 
 async.parallel(
   [
