@@ -4,8 +4,7 @@ on:
   push:
     paths:
       - '.github/**'
-      - 'src/**'
-      - 'webpack/**'
+      - 'packages/**'
       - 'package.json'
     branches:
       - master
@@ -30,10 +29,11 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - name: yarn install, test and build
-        run: |
-          yarn install
-          yarn lint
-          yarn test
+      - name: install dependency
+        run: yarn install
+      - name: lint
+        run: yarn lint
+      - name: test
+        run: yarn test
         env:
           CI: true
