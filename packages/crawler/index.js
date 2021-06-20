@@ -1,8 +1,9 @@
 const fs = require("fs");
 const async = require("async");
+const { viewModelPath } = require("app-globals");
+
 const collectGit = require("./task/git");
 const collectSite = require("./task/site");
-const { viewModelPath } = require("app-globals");
 
 async.parallel(
   [

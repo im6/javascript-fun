@@ -1,8 +1,9 @@
 const async = require("async");
 const groupBy = require("lodash.groupby");
 const orderBy = require("lodash.orderby");
-const getPackageList = require("./crawler");
 const sqlExecOne = require("mysql-client");
+
+const getPackageList = require("./crawler");
 
 const convertGroupIcon = (data) =>
   data.reduce((accumulator, currentValue) => {

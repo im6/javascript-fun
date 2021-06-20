@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { renderToStaticMarkup } from 'react-dom/server';
+const { viewModelPath } = require('app-globals');
 
 import AppContainer from '../components/AppContainer';
 import GitPage from '../pages/GitPage';
@@ -11,7 +12,6 @@ import {
   defaultIcon,
   topNavDict,
   renderOutputFolder,
-  viewModelPath,
   criticalAssetPath,
   nonLazyImg,
 } from '../config';

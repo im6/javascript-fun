@@ -4,20 +4,41 @@
     "packages/*"
   ],
   "scripts": {
-    "daily": "yarn collect && yarn render && yarn cp",
-    "lint": "eslint ./webpack ./src",
-    "test": "jest --coverage",
+    "lint": "eslint ./packages",
+    "test": "yarn workspace javascript-fun run test",
     "dev": "yarn workspace javascript-fun run start",
-    "build": "webpack --config ./webpack/production.js",
-    "build-misc": "webpack --config ./webpack/miscellaneous.js",
+    "build": "yarn workspace javascript-fun run build",
     "web": "node ./dist/node/server.js",
     "render": "node ./dist/node/render.js",
     "admin": "yarn workspace admin run start",
-    "collect": "yarn workspace crawler run start",
-    "cp": ". ./cp.sh"
+    "collect": "yarn workspace crawler run start"
   },
   "dependencies": {
     "async": "^3.2.0",
     "dotenv": "^10.0.0"
+  },
+  "eslintConfig": {
+    "ignorePatterns": [
+      "dist"
+    ],
+    "extends": [
+      "airbnb",
+      "prettier"
+    ],
+    "plugins": [
+      "react",
+      "jsx-a11y",
+      "import",
+      "prettier",
+      "jest"
+    ],
+    "env": {
+      "browser": true,
+      "jest/globals": true,
+      "node": true
+    },
+    "rules": {
+      "import/no-extraneous-dependencies": "off"
+    }
   }
 }

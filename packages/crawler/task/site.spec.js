@@ -1,5 +1,5 @@
-const runSite = require("./site");
 const sqlExecOne = require("mysql-client");
+const runSite = require("./site");
 
 jest.mock("mysql-client");
 
