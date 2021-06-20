@@ -17,30 +17,6 @@
     "async": "^3.2.0",
     "dotenv": "^10.0.0"
   },
-  "eslintConfig": {
-    "ignorePatterns": [
-      "dist"
-    ],
-    "extends": [
-      "airbnb",
-      "prettier"
-    ],
-    "plugins": [
-      "react",
-      "jsx-a11y",
-      "import",
-      "prettier",
-      "jest"
-    ],
-    "env": {
-      "browser": true,
-      "jest/globals": true,
-      "node": true
-    },
-    "rules": {
-      "import/no-extraneous-dependencies": "off"
-    }
-  },
   "config": {
     "githubUrl": "https://github.com",
     "gitJsonPath": "../../dist/github.json",
