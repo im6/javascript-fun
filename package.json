@@ -4,14 +4,14 @@
     "packages/*"
   ],
   "scripts": {
-    "lint": "eslint ./packages",
-    "test": "yarn workspace javascript-fun run test",
     "dev": "yarn workspace javascript-fun run start",
+    "test": "yarn workspace javascript-fun run test",
     "build": "yarn workspace javascript-fun run build",
+    "admin": "yarn workspace admin run start",
+    "collect": "yarn workspace crawler run start",
     "web": "node ./dist/node/server.js",
     "render": "node ./dist/node/render.js",
-    "admin": "yarn workspace admin run start",
-    "collect": "yarn workspace crawler run start"
+    "lint": "eslint ./packages"
   },
   "dependencies": {
     "async": "^3.2.0",

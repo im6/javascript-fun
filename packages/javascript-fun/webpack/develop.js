@@ -17,6 +17,9 @@ const devBase = {
   watchOptions: {
     ignored: /node_modules/,
   },
+  stats: {
+    errorDetails: true,
+  },
 };
 
 const client = Object.assign(clientBaseConfig, devBase, {
