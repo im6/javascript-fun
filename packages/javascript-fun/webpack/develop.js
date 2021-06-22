@@ -10,6 +10,7 @@ const {
   localIdentName,
 } = require('./base');
 
+const outputDirectory = '../../../local';
 const devBase = {
   watch: true,
   mode: 'development',
@@ -24,7 +25,7 @@ const devBase = {
 
 const client = Object.assign(clientBaseConfig, devBase, {
   output: {
-    path: path.join(__dirname, '../local/public'),
+    path: path.join(__dirname, outputDirectory, 'public'),
     filename: '[name].js',
   },
   module: {
@@ -75,7 +76,7 @@ const client = Object.assign(clientBaseConfig, devBase, {
 const server = Object.assign(serverBaseConfig, devBase, {
   entry: path.join(__dirname, '../src/server'),
   output: {
-    path: path.join(__dirname, '../local/server'),
+    path: path.join(__dirname, outputDirectory, 'server'),
     filename: 'index.js',
   },
   module: {
@@ -103,7 +104,10 @@ const server = Object.assign(serverBaseConfig, devBase, {
       },
     ],
   },
-  plugins: [new CleanWebpackPlugin(), new ServerStartPlugin('./local/server')],
+  plugins: [
+    new CleanWebpackPlugin(),
+    new ServerStartPlugin(path.join(__dirname, outputDirectory, 'server')),
+  ],
 });
 
 module.exports = [client, server];
