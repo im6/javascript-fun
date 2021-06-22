@@ -12,7 +12,7 @@ const {
   include,
 } = require('./base');
 
-const outputDirectory = '../../../dist';
+const outputDirectory = '../dist';
 const prodBase = {
   mode: 'production',
   optimization: {

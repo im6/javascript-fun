@@ -10,7 +10,7 @@ const {
   localIdentName,
 } = require('./base');
 
-const outputDirectory = '../../../local';
+const outputDirectory = '../local';
 const devBase = {
   watch: true,
   mode: 'development',

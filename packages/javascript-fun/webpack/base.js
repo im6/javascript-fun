@@ -16,7 +16,11 @@ exports.clientBaseConfig = {
 exports.serverBaseConfig = {
   target: 'node',
   resolve,
-  externals: [nodeExternals()],
+  externals: [
+    nodeExternals({
+      modulesFromFile: true,
+    }),
+  ],
 };
 
 exports.localIdentName = '[hash:base64:5]';
