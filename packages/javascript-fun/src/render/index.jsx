@@ -22,7 +22,9 @@ const nowDate = `${new Date().toLocaleString()} EST`;
 const generateGitPage = (url) => {
   const appJs = fs.readFileSync(criticalAssetPath.gitJs);
   const appCss = fs.readFileSync(criticalAssetPath.gitCss);
-  const rawdata = fs.readFileSync(resolve(__dirname, gitJsonPath));
+  const rawdata = fs.readFileSync(
+    resolve(process.cwd(), '../../', gitJsonPath)
+  );
   const gitSource = JSON.parse(rawdata);
   const htmlDOM = (
     <AppContainer
@@ -53,7 +55,9 @@ const generateGitPage = (url) => {
 const generateSitePage = (url) => {
   const appJs = fs.readFileSync(criticalAssetPath.siteJs);
   const appCss = fs.readFileSync(criticalAssetPath.siteCss);
-  const rawdata = fs.readFileSync(resolve(__dirname, siteJsonPath));
+  const rawdata = fs.readFileSync(
+    resolve(process.cwd(), '../../', siteJsonPath)
+  );
   const siteSource = JSON.parse(rawdata);
   const htmlDOM = (
     <AppContainer

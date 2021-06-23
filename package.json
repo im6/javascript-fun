@@ -4,13 +4,13 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "yarn workspace javascript-fun run start",
-    "test": "yarn workspace javascript-fun run test",
-    "build": "yarn workspace javascript-fun run build",
-    "admin": "yarn workspace admin run start",
-    "collect": "yarn workspace crawler run start",
-    "web": "node ./dist/node/server.js",
-    "render": "node ./dist/node/render.js",
+    "test": "cd packages/javascript-fun && jest --coverage",
+    "dev": "cd packages/javascript-fun && webpack --config ./webpack/develop.js",
+    "build": "cd packages/javascript-fun && webpack --config ./webpack/production.js",
+    "web": "cd packages/javascript-fun && node ./dist/node/server.js",
+    "render": "cd packages/javascript-fun && node ./dist/node/render.js",
+    "admin": "cd packages/admin && node -r dotenv/config index.js dotenv_config_path=../../../javascript-fun.env",
+    "collect": "cd packages/crawler && node -r dotenv/config index.js dotenv_config_path=../../../javascript-fun.env",
     "lint": "eslint ./packages"
   },
   "dependencies": {

@@ -12,11 +12,6 @@
     "url": "https://github.com/im6/javascript-fun/issues"
   },
   "homepage": "https://github.com/im6/javascript-fun#readme",
-  "scripts": {
-    "start": "webpack --config ./webpack/develop.js",
-    "build": "webpack --config ./webpack/production.js",
-    "test": "jest --coverage"
-  },
   "dependencies": {
     "@babel/core": "^7.14.3",
     "@babel/preset-env": "^7.14.2",

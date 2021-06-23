@@ -1,4 +1,4 @@
-const dataSourceDir = '../../data-source';
+const dataSourceDir = 'data-source';
 const gitJsonName = 'git.json';
 const siteJsonName = 'site.json';
 

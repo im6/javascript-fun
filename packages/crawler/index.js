@@ -1,12 +1,15 @@
 const fs = require('fs');
+const { resolve } = require('path');
 const async = require('async');
 const { gitJsonPath, siteJsonPath, dataSourceDir } = require('app-constant');
 
 const collectGit = require('./task/git');
 const collectSite = require('./task/site');
 
-if (!fs.existsSync(dataSourceDir)) {
-  fs.mkdirSync(dataSourceDir);
+const fullDataSourceDir = resolve(process.cwd(), '../../', dataSourceDir);
+
+if (!fs.existsSync(fullDataSourceDir)) {
+  fs.mkdirSync(fullDataSourceDir);
 }
 
 async.parallel(
@@ -17,17 +20,25 @@ async.parallel(
           // mysql connection error will be caught here
           cb(err0);
         } else {
-          fs.writeFile(siteJsonPath, JSON.stringify(data), (err1) => {
-            cb(err1);
-          });
+          fs.writeFile(
+            resolve(process.cwd(), '../../', siteJsonPath),
+            JSON.stringify(data),
+            (err1) => {
+              cb(err1);
+            }
+          );
         }
       });
     },
     (cb) =>
       collectGit((err0, data) => {
-        fs.writeFile(gitJsonPath, JSON.stringify(data), (err1) => {
-          cb(err0 || err1);
-        });
+        fs.writeFile(
+          resolve(process.cwd(), '../../', gitJsonPath),
+          JSON.stringify(data),
+          (err1) => {
+            cb(err0 || err1);
+          }
+        );
       }),
   ],
   (err) => {

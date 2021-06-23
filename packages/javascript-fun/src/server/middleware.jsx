@@ -16,7 +16,9 @@ import {
 } from '../config';
 
 export const linkMd = (req, res) => {
-  const rawdata = fs.readFileSync(siteJsonPath);
+  const rawdata = fs.readFileSync(
+    path.resolve(process.cwd(), '../../', siteJsonPath)
+  );
   const siteSource = JSON.parse(rawdata);
   const htmlDOM = (
     <AppContainer
@@ -32,7 +34,9 @@ export const linkMd = (req, res) => {
 };
 
 export const gitMd = (req, res) => {
-  const rawdata = fs.readFileSync(gitJsonPath);
+  const rawdata = fs.readFileSync(
+    path.resolve(process.cwd(), '../../', gitJsonPath)
+  );
   const gitSource = JSON.parse(rawdata);
   const htmlDOM = (
     <AppContainer
