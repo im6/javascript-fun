@@ -1,5 +1,5 @@
-import mysql from 'mysql';
-import sqlExecOne from './index';
+const mysql = require('mysql');
+const sqlExecOne = require('./index');
 
 jest.mock('mysql');
 

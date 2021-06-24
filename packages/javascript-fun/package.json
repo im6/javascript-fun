@@ -24,23 +24,13 @@
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "css-loader": "^5.2.6",
     "css-minimizer-webpack-plugin": "^3.0.0",
-    "eslint": "^7.27.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.23.3",
-    "eslint-plugin-jest": "^24.3.6",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "^7.23.2",
     "express": "^4.17.1",
-    "jest": "^27.0.1",
     "less": "^4.1.1",
     "less-loader": "^9.0.0",
     "mini-css-extract-plugin": "^1.6.0",
     "numeral": "^2.0.6",
     "postcss": "^8.3.0",
     "postcss-loader": "^5.3.0",
-    "prettier": "^2.3.0",
     "purecss": "^2.0.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -70,9 +60,6 @@
     "clearMocks": true,
     "moduleDirectories": [
       "node_modules"
-    ],
-    "setupFiles": [
-      "<rootDir>/src/testing/setEnvVars.js"
     ],
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/src/testing/styleMock.js"
