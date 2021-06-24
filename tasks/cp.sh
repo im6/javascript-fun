@@ -11,14 +11,14 @@ git pull
 cd ../javascript-fun
 
 # copy
-# cp dist/public/main.js "$im6_dir/assets/"
-# cp dist/public/site.js "$im6_dir/assets/"
+# cp packages/javascript-fun/dist/public/main.js "$im6_dir/assets/"
+# cp packages/javascript-fun/dist/public/site.js "$im6_dir/assets/"
 
 cp assets/CNAME $im6_dir
 cp assets/robots.txt $im6_dir
 cp assets/sitemap.xml $im6_dir
 
-cp -a dist/views/. $im6_dir
+cp -a packages/javascript-fun/dist/views/. $im6_dir
 
 # push
 cd $im6_dir

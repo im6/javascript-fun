@@ -1,10 +1,9 @@
-import async from 'async';
-import cheerio from 'cheerio';
-import fetch from 'node-fetch';
-import ProgressBar from 'progress';
-
-import sqlExecOne from '../../db';
-import { githubUrl } from '../../config';
+const async = require('async');
+const cheerio = require('cheerio');
+const fetch = require('node-fetch');
+const ProgressBar = require('progress');
+const sqlExecOne = require('mysql-client');
+const { githubUrl } = require('app-constant');
 
 const timeout = 5 * 1000;
 const abusePauseTimeout = 30 * 1000;
@@ -113,4 +112,4 @@ const collectStarNum = (db, cb0) => {
   );
 };
 
-export default async.seq(sqlExecOne, collectStarNum);
+module.exports = async.seq(sqlExecOne, collectStarNum);

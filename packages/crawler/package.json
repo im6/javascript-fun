@@ -1,0 +1,15 @@
+{
+  "name": "crawler",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "app-constant": "1.0.0",
+    "cheerio": "^1.0.0-rc.10",
+    "lodash.groupby": "^4.6.0",
+    "lodash.orderby": "^4.6.0",
+    "mysql-client": "1.0.0",
+    "node-fetch": "^2.6.1",
+    "progress": "^2.0.3"
+  }
+}

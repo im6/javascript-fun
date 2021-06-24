@@ -1,8 +1,9 @@
-import async from 'async';
-import groupBy from 'lodash.groupby';
-import orderBy from 'lodash.orderby';
-import getPackageList from './crawler';
-import sqlExecOne from '../../db';
+const async = require('async');
+const groupBy = require('lodash.groupby');
+const orderBy = require('lodash.orderby');
+const sqlExecOne = require('mysql-client');
+
+const getPackageList = require('./crawler');
 
 const convertGroupIcon = (data) =>
   data.reduce((accumulator, currentValue) => {
@@ -31,7 +32,7 @@ const group = (data, iconMap) => {
   return orderBy(result, ['page', 'sort']);
 };
 
-export default (cb0) => {
+module.exports = (cb0) => {
   async.parallel(
     [
       (cb) => {

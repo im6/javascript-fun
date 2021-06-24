@@ -1,5 +1,7 @@
 import fs from 'fs';
+import { resolve } from 'path';
 import { renderToStaticMarkup } from 'react-dom/server';
+import { githubUrl, gitJsonPath, siteJsonPath } from 'app-constant';
 
 import AppContainer from '../components/AppContainer';
 import GitPage from '../pages/GitPage';
@@ -7,11 +9,9 @@ import LinkPage from '../pages/LinkPage';
 
 import {
   iconCdnUrl,
-  githubUrl,
   defaultIcon,
   topNavDict,
   renderOutputFolder,
-  viewModelPath,
   criticalAssetPath,
   nonLazyImg,
 } from '../config';
@@ -22,7 +22,9 @@ const nowDate = `${new Date().toLocaleString()} EST`;
 const generateGitPage = (url) => {
   const appJs = fs.readFileSync(criticalAssetPath.gitJs);
   const appCss = fs.readFileSync(criticalAssetPath.gitCss);
-  const rawdata = fs.readFileSync(viewModelPath.git);
+  const rawdata = fs.readFileSync(
+    resolve(process.cwd(), '../../', gitJsonPath)
+  );
   const gitSource = JSON.parse(rawdata);
   const htmlDOM = (
     <AppContainer
@@ -53,7 +55,9 @@ const generateGitPage = (url) => {
 const generateSitePage = (url) => {
   const appJs = fs.readFileSync(criticalAssetPath.siteJs);
   const appCss = fs.readFileSync(criticalAssetPath.siteCss);
-  const rawdata = fs.readFileSync(viewModelPath.site);
+  const rawdata = fs.readFileSync(
+    resolve(process.cwd(), '../../', siteJsonPath)
+  );
   const siteSource = JSON.parse(rawdata);
   const htmlDOM = (
     <AppContainer

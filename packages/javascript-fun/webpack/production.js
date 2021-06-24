@@ -1,27 +1,33 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ServerStartPlugin = require('./plugins/ServerStartPlugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const TerserPlugin = require('terser-webpack-plugin'); // eslint-disable-line import/no-extraneous-dependencies
 
 const {
-  include,
   clientBaseConfig,
   serverBaseConfig,
   localIdentName,
+  include,
 } = require('./base');
 
-const devBase = {
-  watch: true,
-  mode: 'development',
-  devtool: 'inline-source-map',
-  watchOptions: {
-    ignored: /node_modules/,
+const outputDirectory = '../dist';
+const prodBase = {
+  mode: 'production',
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false,
+      }),
+    ],
   },
 };
 
-const client = Object.assign(clientBaseConfig, devBase, {
+const client = Object.assign(clientBaseConfig, prodBase, {
   output: {
-    path: path.join(__dirname, '../local/public'),
+    path: path.join(__dirname, outputDirectory, 'public'),
     filename: '[name].js',
   },
   module: {
@@ -56,6 +62,14 @@ const client = Object.assign(clientBaseConfig, devBase, {
               },
             },
           },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [autoprefixer()],
+              },
+            },
+          },
           'less-loader',
         ],
       },
@@ -66,14 +80,18 @@ const client = Object.assign(clientBaseConfig, devBase, {
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
+    new CssMinimizerPlugin(),
   ],
 });
 
-const server = Object.assign(serverBaseConfig, devBase, {
-  entry: path.join(__dirname, '../src/server'),
+const server = Object.assign(serverBaseConfig, prodBase, {
+  entry: {
+    server: path.join(__dirname, '../src/server'),
+    render: path.join(__dirname, '../src/render'),
+  },
   output: {
-    path: path.join(__dirname, '../local/server'),
-    filename: 'index.js',
+    path: path.join(__dirname, outputDirectory, 'node'),
+    filename: '[name].js',
   },
   module: {
     rules: [
@@ -100,7 +118,7 @@ const server = Object.assign(serverBaseConfig, devBase, {
       },
     ],
   },
-  plugins: [new CleanWebpackPlugin(), new ServerStartPlugin('./local/server')],
+  // plugins: [new CleanWebpackPlugin()],
 });
 
 module.exports = [client, server];

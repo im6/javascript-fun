@@ -1,16 +1,16 @@
-import async from 'async';
-import prompts from 'prompts';
-import sqlExecOne from '../db';
+const async = require("async");
+const prompts = require("prompts");
+const sqlExecOne = require("mysql-client");
 
 const githubUrlFormat = /^[a-zA-Z0-9-]+\/[a-zA-Z0-9-.]+$/;
 
 async.parallel(
   [
     (cb) => {
-      sqlExecOne('SELECT * FROM git', cb);
+      sqlExecOne("SELECT * FROM git", cb);
     },
     (cb) => {
-      sqlExecOne('SELECT * FROM category', cb);
+      sqlExecOne("SELECT * FROM category", cb);
     },
   ],
   (err, [git, cate]) => {
@@ -28,41 +28,41 @@ async.parallel(
     }, {});
 
     prompts({
-      type: 'select',
-      name: 'table',
-      message: 'Which table to add?',
+      type: "select",
+      name: "table",
+      message: "Which table to add?",
       choices: [
-        { title: 'git', description: 'GitHub', value: 'git' },
-        { title: 'site', description: 'Site', value: 'site' },
+        { title: "git", description: "GitHub", value: "git" },
+        { title: "site", description: "Site", value: "site" },
         // { title: 'category', description: 'Category', value: 'category' },
       ],
     }).then(({ table }) => {
       switch (table) {
-        case 'git':
+        case "git":
           prompts([
             {
-              type: 'text',
-              name: 'github',
-              message: 'What is the Github subUrl?',
+              type: "text",
+              name: "github",
+              message: "What is the Github subUrl?",
               validate: (value) => {
-                if (value.toLowerCase() in gitMap) return 'Url exist';
-                if (!githubUrlFormat.test(value)) return 'incorrect format';
+                if (value.toLowerCase() in gitMap) return "Url exist";
+                if (!githubUrlFormat.test(value)) return "incorrect format";
                 return true;
               },
             },
             {
-              type: 'text',
-              name: 'group',
-              message: 'What is the group name?',
+              type: "text",
+              name: "group",
+              message: "What is the group name?",
               validate: (value) => {
                 if (value.toLowerCase() in cateMap === false)
-                  return 'Group name not exist';
+                  return "Group name not exist";
                 return true;
               },
             },
             {
-              type: 'confirm',
-              name: 'confirm',
+              type: "confirm",
+              name: "confirm",
               message: (prev) =>
                 `Can you confirm group Id: ${
                   cateMap[prev.toLowerCase()]
@@ -70,23 +70,23 @@ async.parallel(
               initial: true,
             },
             {
-              type: 'text',
-              name: 'name',
-              message: 'Do you have optinal name?',
+              type: "text",
+              name: "name",
+              message: "Do you have optinal name?",
             },
             {
-              type: 'text',
-              name: 'img',
-              message: 'Do you have optinal icon file?',
+              type: "text",
+              name: "img",
+              message: "Do you have optinal icon file?",
             },
           ]).then((a) => {
             const grpId = cateMap[a.group.toLowerCase()];
             if (!a.confirm || !grpId) {
-              console.log('canceled'); // eslint-disable-line no-console
+              console.log("canceled"); // eslint-disable-line no-console
               return;
             }
-            const img = a.img ? `"${a.img}"` : 'NULL';
-            const name = a.name ? `"${a.name}"` : 'NULL';
+            const img = a.img ? `"${a.img}"` : "NULL";
+            const name = a.name ? `"${a.name}"` : "NULL";
             const query = `INSERT INTO git (github, grp, name, img) VALUES ("${a.github}", ${grpId}, ${name}, ${img});`;
             console.log(query); // eslint-disable-line no-console
             sqlExecOne(query, (err1) => {
@@ -94,30 +94,30 @@ async.parallel(
                 console.error(err1); // eslint-disable-line no-console
                 return;
               }
-              console.log('Add to git table successfully.'); // eslint-disable-line no-console
+              console.log("Add to git table successfully."); // eslint-disable-line no-console
             });
           });
           break;
-        case 'site':
+        case "site":
           prompts([
             {
-              type: 'text',
-              name: 'url',
-              message: 'What is the web link?',
+              type: "text",
+              name: "url",
+              message: "What is the web link?",
             },
             {
-              type: 'text',
-              name: 'group',
-              message: 'What is the group name?',
+              type: "text",
+              name: "group",
+              message: "What is the group name?",
               validate: (value) => {
                 if (value.toLowerCase() in cateMap === false)
-                  return 'Group name not exist';
+                  return "Group name not exist";
                 return true;
               },
             },
             {
-              type: 'confirm',
-              name: 'confirm',
+              type: "confirm",
+              name: "confirm",
               message: (prev) =>
                 `Can you confirm group Id: ${
                   cateMap[prev.toLowerCase()]
@@ -125,18 +125,18 @@ async.parallel(
               initial: true,
             },
             {
-              type: 'text',
-              name: 'name',
+              type: "text",
+              name: "name",
               validate: (value) => {
-                if (!value) return 'You have to set a name';
+                if (!value) return "You have to set a name";
                 return true;
               },
-              message: 'What is website name?',
+              message: "What is website name?",
             },
           ]).then((a) => {
             const grpId = cateMap[a.group.toLowerCase()];
             if (!a.confirm || !grpId) {
-              console.log('canceled'); // eslint-disable-line no-console
+              console.log("canceled"); // eslint-disable-line no-console
               return;
             }
             const query = `INSERT INTO site (url, grp, name) VALUES ("${a.url}", ${grpId}, "${a.name}");`;
@@ -146,7 +146,7 @@ async.parallel(
                 console.error(err1); // eslint-disable-line no-console
                 return;
               }
-              console.log('Add to site table successfully.'); // eslint-disable-line no-console
+              console.log("Add to site table successfully."); // eslint-disable-line no-console
             });
           });
           break;
