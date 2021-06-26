@@ -28,6 +28,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "jest": "^27.0.1",
-    "prettier": "^2.3.0"
+    "prettier": "^2.3.0",
+    "rxjs": "^7.1.0"
   }
 }
