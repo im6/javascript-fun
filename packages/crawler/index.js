@@ -22,7 +22,7 @@ sqlGithub$.subscribe({
       JSON.stringify(data),
       (err) => {
         if (err) {
-          console.error(err);
+          console.error(err); // eslint-disable-line no-console
         }
       }
     );
@@ -41,7 +41,7 @@ sqlSite$.subscribe({
       JSON.stringify(siteList),
       (err) => {
         if (err) {
-          console.error(err);
+          console.error(err); // eslint-disable-line no-console
         }
       }
     );

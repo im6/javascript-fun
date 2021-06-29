@@ -20,8 +20,8 @@ const getConn = () =>
     database: process.env.SQL_DATABASE,
   });
 
-module.exports = (qr) => {
-  return new Observable((subscriber) => {
+module.exports = (qr) =>
+  new Observable((subscriber) => {
     const conn = getConn();
     conn.query(qr, (err, rows) => {
       if (err) {
@@ -32,4 +32,3 @@ module.exports = (qr) => {
     });
     conn.end();
   });
-};

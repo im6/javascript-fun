@@ -3,6 +3,7 @@ const fetch = require('node-fetch');
 const ProgressBar = require('progress');
 const mysqlObservable = require('mysql-observable');
 const { from, forkJoin } = require('rxjs');
+const { githubUrl } = require('app-constant');
 const { delay, switchMap, concatMap, toArray, tap } = require('rxjs/operators');
 
 const timeout = 5 * 1000;
@@ -20,7 +21,7 @@ const getGithubStar$ = (obj) => {
     },
   };
   return from(
-    fetch(`https://github.com/${obj.github}`, httpOptions)
+    fetch(`${githubUrl}/${obj.github}`, httpOptions)
       .then((res) => res.text())
       .then((body) => cheerio.load(body))
       .then(($) => {
@@ -35,11 +36,10 @@ const getGithubStar$ = (obj) => {
           const numStr = numLabel.split(' ')[0];
           star = parseInt(numStr, 10);
         }
-        if (!obj.name) {
-          [, obj.name] = obj.github.split('/');
-        }
+        const name = obj.name || obj.github.split('/')[1];
         return {
           ...obj,
+          name,
           star,
         };
       })
@@ -68,8 +68,8 @@ const getGithubData$ = () => {
         from(x).pipe(
           concatMap((v) =>
             getGithubStar$(v).pipe(
-              tap((v) => {
-                bar.tick({ gtnm: v.name || v.github });
+              tap((pkg) => {
+                bar.tick({ gtnm: pkg.name || pkg.github });
               }),
               delay(crawlerStepDelay)
             )

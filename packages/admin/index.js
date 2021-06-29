@@ -81,11 +81,7 @@ const generatePrompts = ([git, cate]) => {
           const name = a.name ? `"${a.name}"` : 'NULL';
           const query = `INSERT INTO git (github, grp, name, img) VALUES ("${a.github}", ${grpId}, ${name}, ${img});`;
           console.log(query); // eslint-disable-line no-console
-          sqlExecOne(query, (err1) => {
-            if (err1) {
-              console.error(err1); // eslint-disable-line no-console
-              return;
-            }
+          mysqlObservable(query).subscribe(() => {
             console.log('Add to git table successfully.'); // eslint-disable-line no-console
           });
         });
@@ -133,11 +129,7 @@ const generatePrompts = ([git, cate]) => {
           }
           const query = `INSERT INTO site (url, grp, name) VALUES ("${a.url}", ${grpId}, "${a.name}");`;
           console.log(query); // eslint-disable-line no-console
-          sqlExecOne(query, (err1) => {
-            if (err1) {
-              console.error(err1); // eslint-disable-line no-console
-              return;
-            }
+          mysqlObservable(query).subscribe(() => {
             console.log('Add to site table successfully.'); // eslint-disable-line no-console
           });
         });
@@ -153,6 +145,6 @@ sqlRes.subscribe({
     generatePrompts(twoTableRows);
   },
   error: (err) => {
-    console.error(err);
+    console.error(err); // eslint-disable-line no-console
   },
 });
