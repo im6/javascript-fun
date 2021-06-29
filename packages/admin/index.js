@@ -1,13 +1,13 @@
-const { zip } = require('rxjs');
+const { forkJoin } = require('rxjs');
 const prompts = require('prompts');
 const mysqlObservable = require('mysql-observable');
 
 const githubUrlFormat = /^[a-zA-Z0-9-]+\/[a-zA-Z0-9-.]+$/;
 
-const sqlRes = zip(
+const sqlRes = forkJoin([
   mysqlObservable('SELECT * FROM git'),
-  mysqlObservable('SELECT * FROM category')
-);
+  mysqlObservable('SELECT * FROM category'),
+]);
 
 const generatePrompts = ([git, cate]) => {
   const gitMap = git.reduce((acc, cur) => {
