@@ -1,14 +1,15 @@
 const cheerio = require('cheerio');
 const fetch = require('node-fetch');
+const ProgressBar = require('progress');
 const mysqlObservable = require('mysql-observable');
 const { from, forkJoin } = require('rxjs');
-const { delay, switchMap, concatMap, toArray } = require('rxjs/operators');
+const { delay, switchMap, concatMap, toArray, tap } = require('rxjs/operators');
 
 const timeout = 5 * 1000;
+const crawlerStepDelay = 1000;
 const { MY_COOKIE: Cookie } = process.env;
 
-const getGithubStarObservable = (obj) => {
-  console.log('calling', obj.github);
+const getGithubStar$ = (obj) => {
   const httpOptions = {
     timeout,
     headers: {
@@ -23,7 +24,6 @@ const getGithubStarObservable = (obj) => {
       .then((res) => res.text())
       .then((body) => cheerio.load(body))
       .then(($) => {
-        console.log('response on', obj.github);
         let star = null;
         const elems = $('a.social-count.js-social-count');
         if (elems.length === 0) {
@@ -46,28 +46,42 @@ const getGithubStarObservable = (obj) => {
   );
 };
 
-const getSiteDataObservable = () =>
+const getSiteData$ = () =>
   forkJoin([
     mysqlObservable('SELECT * FROM category'),
     mysqlObservable('SELECT * FROM site where grp is NOT NULL'),
   ]);
 
-const getGithubDataObservable = () =>
-  forkJoin([
+const getGithubData$ = () => {
+  let bar = null;
+  return forkJoin([
     mysqlObservable('SELECT * FROM category'),
     mysqlObservable(
-      'SELECT *, NULL as star FROM git WHERE `grp` IS NOT NULL AND id < 20' // " AND id < 20"
+      'SELECT *, NULL as star FROM git WHERE `grp` IS NOT NULL' // " AND id < 20"
     ).pipe(
+      tap((taskList) => {
+        bar = new ProgressBar('downloading :current of :total: :gtnm', {
+          total: taskList.length,
+        });
+      }),
       switchMap((x) =>
         from(x).pipe(
-          concatMap((v) => getGithubStarObservable(v).pipe(delay(800))),
+          concatMap((v) =>
+            getGithubStar$(v).pipe(
+              tap((v) => {
+                bar.tick({ gtnm: v.name || v.github });
+              }),
+              delay(crawlerStepDelay)
+            )
+          ),
           toArray()
         )
       )
     ),
   ]);
+};
 
 module.exports = {
-  getSiteDataObservable,
-  getGithubDataObservable,
+  getSiteData$,
+  getGithubData$,
 };

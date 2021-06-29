@@ -1,16 +1,17 @@
 const fs = require('fs');
 const { resolve } = require('path');
-
+const { gitJsonPath, siteJsonPath, dataSourceDir } = require('app-constant');
+const { getSiteData$, getGithubData$ } = require('./observables');
 const { groupSite, groupGithub, convertGroupIcon } = require('./helper');
 
-const { gitJsonPath, siteJsonPath, dataSourceDir } = require('app-constant');
-const {
-  getSiteDataObservable,
-  getGithubDataObservable,
-} = require('./observables');
+const fullDataSourceDir = resolve(process.cwd(), '../../', dataSourceDir);
 
-const sqlSite$ = getSiteDataObservable();
-const sqlGithub$ = getGithubDataObservable();
+if (!fs.existsSync(fullDataSourceDir)) {
+  fs.mkdirSync(fullDataSourceDir);
+}
+
+const sqlSite$ = getSiteData$();
+const sqlGithub$ = getGithubData$();
 
 sqlGithub$.subscribe({
   next: ([d0, d1]) => {
@@ -25,9 +26,10 @@ sqlGithub$.subscribe({
         }
       }
     );
+    console.log('\n Github Job success!'); // eslint-disable-line no-console
   },
   error: (err) => {
-    console.error(err);
+    console.error('\n Github Job failed.', err); // eslint-disable-line no-console
   },
 });
 
@@ -43,8 +45,9 @@ sqlSite$.subscribe({
         }
       }
     );
+    console.log('\n Site Job success!'); // eslint-disable-line no-console
   },
   error: (err) => {
-    console.error(err);
+    console.error('\n Site Job failed.', err); // eslint-disable-line no-console
   },
 });
