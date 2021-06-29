@@ -1,5 +1,5 @@
 {
-  "name": "mysql-client",
+  "name": "mysql-observable",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

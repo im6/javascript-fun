@@ -1,10 +1,8 @@
 const fs = require('fs');
 const { resolve } = require('path');
-const async = require('async');
 const { gitJsonPath, siteJsonPath, dataSourceDir } = require('app-constant');
-
-const collectGit = require('./task/git');
-const collectSite = require('./task/site');
+const { getSiteData$, getGithubData$ } = require('./observables');
+const { groupSite, groupGithub, convertGroupIcon } = require('./helper');
 
 const fullDataSourceDir = resolve(process.cwd(), '../../', dataSourceDir);
 
@@ -12,42 +10,44 @@ if (!fs.existsSync(fullDataSourceDir)) {
   fs.mkdirSync(fullDataSourceDir);
 }
 
-async.parallel(
-  [
-    (cb) => {
-      collectSite((err0, data) => {
-        if (err0) {
-          // mysql connection error will be caught here
-          cb(err0);
-        } else {
-          fs.writeFile(
-            resolve(process.cwd(), '../../', siteJsonPath),
-            JSON.stringify(data),
-            (err1) => {
-              cb(err1);
-            }
-          );
+const sqlSite$ = getSiteData$();
+const sqlGithub$ = getGithubData$();
+
+sqlGithub$.subscribe({
+  next: ([d0, d1]) => {
+    const iconMap = convertGroupIcon(d0);
+    const data = groupGithub(d1, iconMap);
+    fs.writeFile(
+      resolve(process.cwd(), '../../', gitJsonPath),
+      JSON.stringify(data),
+      (err) => {
+        if (err) {
+          console.error(err);
         }
-      });
-    },
-    (cb) =>
-      collectGit((err0, data) => {
-        fs.writeFile(
-          resolve(process.cwd(), '../../', gitJsonPath),
-          JSON.stringify(data),
-          (err1) => {
-            cb(err0 || err1);
-          }
-        );
-      }),
-  ],
-  (err) => {
-    if (err) {
-      console.error('\nJob failed.', err); // eslint-disable-line no-console
-      process.exit(1);
-    } else {
-      console.log('\nJob success!'); // eslint-disable-line no-console
-      process.exit();
-    }
-  }
-);
+      }
+    );
+    console.log('\n Github Job success!'); // eslint-disable-line no-console
+  },
+  error: (err) => {
+    console.error('\n Github Job failed.', err); // eslint-disable-line no-console
+  },
+});
+
+sqlSite$.subscribe({
+  next: ([grps, sites]) => {
+    const siteList = groupSite(sites, grps);
+    fs.writeFile(
+      resolve(process.cwd(), '../../', siteJsonPath),
+      JSON.stringify(siteList),
+      (err) => {
+        if (err) {
+          console.error(err);
+        }
+      }
+    );
+    console.log('\n Site Job success!'); // eslint-disable-line no-console
+  },
+  error: (err) => {
+    console.error('\n Site Job failed.', err); // eslint-disable-line no-console
+  },
+});
