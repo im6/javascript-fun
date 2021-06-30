@@ -26,6 +26,7 @@ const getGithubStar$ = (obj) => {
       .then((body) => cheerio.load(body))
       .then(($) => {
         let star = null;
+        const name = obj.name || obj.github.split('/')[1];
         const elems = $('a.social-count.js-social-count');
         if (elems.length === 0) {
           console.error(` ${githubUrl}/${obj.github} url not found.`); // eslint-disable-line no-console
@@ -36,7 +37,6 @@ const getGithubStar$ = (obj) => {
           const numStr = numLabel.split(' ')[0];
           star = parseInt(numStr, 10);
         }
-        const name = obj.name || obj.github.split('/')[1];
         return {
           ...obj,
           name,

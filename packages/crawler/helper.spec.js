@@ -1,7 +1,12 @@
-const { groupSite, groupGithub } = require('./helper');
+const { groupSite, groupGithub, convertGroupIcon } = require('./helper');
 const { cateMock, siteMock, githubMock } = require('../../testing/mockData');
 
 describe('test packages/crawler helper', () => {
+  test('convertGroupIcon', () => {
+    const res = convertGroupIcon(cateMock);
+    expect(Object.keys(res)).toHaveLength(2);
+  });
+
   test('groupSite func', () => {
     const res = groupSite(siteMock, cateMock);
     expect(res[0].list).toHaveLength(
