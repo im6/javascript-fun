@@ -4,7 +4,7 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "npm run test:web",
+    "test": "npm run test:other && npm run test:web",
     "test:other": "jest",
     "test:web": "cd packages/javascript-fun && jest --coverage",
     "dev": "cd packages/javascript-fun && webpack --config ./webpack/develop.js",
