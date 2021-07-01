@@ -4,7 +4,7 @@ const { cateMock, siteMock, githubMock } = require('../../testing/mockData');
 describe('test packages/crawler helper', () => {
   test('convertGroupIcon', () => {
     const res = convertGroupIcon(cateMock);
-    expect(Object.keys(res)).toHaveLength(2);
+    expect(Object.keys(res)).toHaveLength(3);
   });
 
   test('groupSite func', () => {
@@ -15,7 +15,7 @@ describe('test packages/crawler helper', () => {
   });
 
   test('groupGithub func', () => {
-    const res = groupGithub(githubMock, { k2: cateMock[1] });
+    const res = groupGithub(githubMock, convertGroupIcon(cateMock));
     expect(res[0].icon).toBe('jquery.svg');
     expect(res[0].list).toHaveLength(
       githubMock.filter((v) => v.grp === 2).length

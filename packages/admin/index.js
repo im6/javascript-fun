@@ -4,11 +4,6 @@ const mysqlObservable = require('mysql-observable');
 
 const githubUrlFormat = /^[a-zA-Z0-9-]+\/[a-zA-Z0-9-.]+$/;
 
-const sqlRes = forkJoin([
-  mysqlObservable('SELECT * FROM git'),
-  mysqlObservable('SELECT * FROM category'),
-]);
-
 const generatePrompts = ([git, cate]) => {
   const gitMap = git.reduce((acc, cur) => {
     acc[cur.github.toLowerCase()] = true;
@@ -72,11 +67,11 @@ const generatePrompts = ([git, cate]) => {
             message: 'Do you have optinal icon file?',
           },
         ]).then((a) => {
-          const grpId = cateMap[a.group.toLowerCase()];
-          if (!a.confirm || !grpId) {
+          if (!a.confirm || !a.group) {
             console.log('canceled'); // eslint-disable-line no-console
             return;
           }
+          const grpId = cateMap[a.group.toLowerCase()];
           const img = a.img ? `"${a.img}"` : 'NULL';
           const name = a.name ? `"${a.name}"` : 'NULL';
           const query = `INSERT INTO git (github, grp, name, img) VALUES ("${a.github}", ${grpId}, ${name}, ${img});`;
@@ -140,7 +135,12 @@ const generatePrompts = ([git, cate]) => {
   });
 };
 
-sqlRes.subscribe({
+const sqlRes$ = forkJoin([
+  mysqlObservable('SELECT * FROM git'),
+  mysqlObservable('SELECT * FROM category'),
+]);
+
+sqlRes$.subscribe({
   next: (twoTableRows) => {
     generatePrompts(twoTableRows);
   },

@@ -7,10 +7,16 @@ const cateMock = [
   },
   {
     id: 2,
-    name: 'js library',
+    name: 'library',
     page: 1,
     sort: 1,
     icon: 'jquery.svg',
+  },
+  {
+    id: 3,
+    name: 'framework',
+    page: 1,
+    sort: 1,
   },
 ];
 const siteMock = [
@@ -36,6 +42,15 @@ const githubMock = [
     desc: 'lodash desc',
     github: 'lodash/lodash',
     grp: 2,
+    img: 'lodash.svg',
+  },
+  {
+    id: 3,
+    name: 'rxjs',
+    desc: 'rxjs desc',
+    github: 'rxjs/rxjs',
+    grp: 3,
+    img: 'rxjs.svg',
   },
 ];
 
