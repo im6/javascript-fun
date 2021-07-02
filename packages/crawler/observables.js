@@ -2,13 +2,22 @@ const cheerio = require('cheerio');
 const fetch = require('node-fetch');
 const ProgressBar = require('progress');
 const mysqlObservable = require('mysql-observable');
-const { from, forkJoin } = require('rxjs');
+const { from, forkJoin, Subject } = require('rxjs');
 const { githubUrl } = require('app-constant');
 const { delay, switchMap, concatMap, toArray, tap } = require('rxjs/operators');
 
 const timeout = 5 * 1000;
 const crawlerStepDelay = 1000;
 const { MY_COOKIE: Cookie } = process.env;
+
+const category$ = new Subject();
+mysqlObservable('SELECT * FROM category').subscribe(category$);
+
+const getSiteData$ = () =>
+  forkJoin([
+    category$,
+    mysqlObservable('SELECT * FROM site where grp is NOT NULL'),
+  ]);
 
 const getGithubStar$ = (obj) => {
   const httpOptions = {
@@ -46,16 +55,10 @@ const getGithubStar$ = (obj) => {
   );
 };
 
-const getSiteData$ = () =>
-  forkJoin([
-    mysqlObservable('SELECT * FROM category'),
-    mysqlObservable('SELECT * FROM site where grp is NOT NULL'),
-  ]);
-
 const getGithubData$ = () => {
   let bar = null;
   return forkJoin([
-    mysqlObservable('SELECT * FROM category'),
+    category$,
     mysqlObservable(
       'SELECT *, NULL as star FROM git WHERE `grp` IS NOT NULL' // " AND id < 20"
     ).pipe(
