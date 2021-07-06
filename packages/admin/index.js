@@ -1,6 +1,7 @@
-const { forkJoin } = require('rxjs');
 const prompts = require('prompts');
 const mysqlObservable = require('mysql-observable');
+
+const { sqlRes$ } = require('./observables');
 
 const githubUrlFormat = /^[a-zA-Z0-9-]+\/[a-zA-Z0-9-.]+$/;
 
@@ -134,11 +135,6 @@ const generatePrompts = ([git, cate]) => {
     }
   });
 };
-
-const sqlRes$ = forkJoin([
-  mysqlObservable('SELECT * FROM git'),
-  mysqlObservable('SELECT * FROM category'),
-]);
 
 sqlRes$.subscribe({
   next: (twoTableRows) => {
