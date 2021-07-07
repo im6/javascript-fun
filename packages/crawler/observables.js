@@ -1,9 +1,9 @@
 const cheerio = require('cheerio');
 const fetch = require('node-fetch');
 const ProgressBar = require('progress');
+const { githubUrl } = require('app-constant');
 const mysqlObservable = require('mysql-observable');
 const { from, forkJoin, Subject } = require('rxjs');
-const { githubUrl } = require('app-constant');
 const { delay, switchMap, concatMap, toArray, tap } = require('rxjs/operators');
 
 const timeout = 5 * 1000;
