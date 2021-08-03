@@ -15,7 +15,7 @@ const {
 const { parseStarNum } = require('./helper');
 
 const timeout = 5 * 1000;
-const crawlerStepDelay = 1000;
+const crawlerStepDelay = 800;
 const { MY_COOKIE: Cookie } = process.env;
 
 const category$ = new Subject();
@@ -60,14 +60,11 @@ const getGithubData$ = () => {
         from(x).pipe(
           concatMap((v) =>
             getGithubStar$(v.github).pipe(
-              map((star) => {
-                const name = v.name || v.github.split('/')[1];
-                return {
-                  ...v,
-                  name,
-                  star,
-                };
-              }),
+              map((star) => ({
+                ...v,
+                star,
+                name: v.name || v.github.split('/')[1],
+              })),
               tap(({ github, star }) => {
                 bar.tick({ gtnm: github });
                 if (!star) {
