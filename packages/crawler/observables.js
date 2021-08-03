@@ -1,10 +1,18 @@
-const cheerio = require('cheerio');
 const fetch = require('node-fetch');
 const ProgressBar = require('progress');
 const { githubUrl } = require('app-constant');
 const mysqlObservable = require('mysql-observable');
 const { from, forkJoin, Subject } = require('rxjs');
-const { delay, switchMap, concatMap, toArray, tap } = require('rxjs/operators');
+const {
+  delay,
+  switchMap,
+  concatMap,
+  toArray,
+  tap,
+  map,
+} = require('rxjs/operators');
+
+const { parseStarNum } = require('./helper');
 
 const timeout = 5 * 1000;
 const crawlerStepDelay = 1000;
@@ -19,7 +27,7 @@ const getSiteData$ = () =>
     mysqlObservable('SELECT * FROM site where grp is NOT NULL'),
   ]);
 
-const getGithubStar$ = (obj) => {
+const getGithubStar$ = (subUrl) => {
   const httpOptions = {
     timeout,
     headers: {
@@ -30,28 +38,9 @@ const getGithubStar$ = (obj) => {
     },
   };
   return from(
-    fetch(`${githubUrl}/${obj.github}`, httpOptions)
+    fetch(`${githubUrl}/${subUrl}`, httpOptions)
       .then((res) => res.text())
-      .then((body) => cheerio.load(body))
-      .then(($) => {
-        let star = null;
-        const name = obj.name || obj.github.split('/')[1];
-        const elems = $('a.social-count.js-social-count');
-        if (elems.length === 0) {
-          console.error(` ${githubUrl}/${obj.github} url not found.`); // eslint-disable-line no-console
-          star = -1;
-        } else {
-          const starElem = elems[0];
-          const numLabel = starElem.attribs['aria-label'];
-          const numStr = numLabel.split(' ')[0];
-          star = parseInt(numStr, 10);
-        }
-        return {
-          ...obj,
-          name,
-          star,
-        };
-      })
+      .then((body) => parseStarNum(body))
   );
 };
 
@@ -70,9 +59,23 @@ const getGithubData$ = () => {
       switchMap((x) =>
         from(x).pipe(
           concatMap((v) =>
-            getGithubStar$(v).pipe(
-              tap((pkg) => {
-                bar.tick({ gtnm: pkg.name || pkg.github });
+            getGithubStar$(v.github).pipe(
+              map((star) => {
+                const name = v.name || v.github.split('/')[1];
+                return {
+                  ...v,
+                  name,
+                  star,
+                };
+              }),
+              tap(({ github, star }) => {
+                bar.tick({ gtnm: github });
+                if (!star) {
+                  // eslint-disable-next-line no-console
+                  console.error(
+                    `\n star number not found: ${githubUrl}/${github}`
+                  );
+                }
               }),
               delay(crawlerStepDelay)
             )

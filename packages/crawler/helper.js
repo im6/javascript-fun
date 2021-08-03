@@ -1,3 +1,4 @@
+const cheerio = require('cheerio');
 const groupBy = require('lodash.groupby');
 const orderBy = require('lodash.orderby');
 
@@ -43,8 +44,21 @@ const convertGroupIcon = (data) =>
     return accumulator;
   }, {});
 
+const parseStarNum = (body) => {
+  const $ = cheerio.load(body);
+  const elems = $('a.social-count.js-social-count');
+  if (elems.length === 0) {
+    return null;
+  }
+  const starElem = elems[0];
+  const numLabel = starElem.attribs['aria-label'];
+  const numStr = numLabel.split(' ')[0];
+  return parseInt(numStr, 10);
+};
+
 module.exports = {
   groupSite,
   groupGithub,
   convertGroupIcon,
+  parseStarNum,
 };
