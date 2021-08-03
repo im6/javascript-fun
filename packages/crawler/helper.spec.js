@@ -1,4 +1,9 @@
-const { groupSite, groupGithub, convertGroupIcon } = require('./helper');
+const {
+  groupSite,
+  groupGithub,
+  convertGroupIcon,
+  parseStarNum,
+} = require('./helper');
 const { cateMock, siteMock, githubMock } = require('../../testing/mockData');
 
 describe('test packages/crawler helper', () => {
@@ -20,5 +25,18 @@ describe('test packages/crawler helper', () => {
     expect(res[0].list).toHaveLength(
       githubMock.filter((v) => v.grp === 2).length
     );
+  });
+  test('parseStarNum func', () => {
+    const num = 75422;
+    expect(
+      parseStarNum(
+        `<div><a class="social-count js-social-count" href="/angular/angular/stargazers" aria-label="${num} users starred this repository">75.4k</a></div>`
+      )
+    ).toBe(num);
+    expect(
+      parseStarNum(
+        `<div><a href="/angular/angular/stargazers" aria-label="${num} users starred this repository">75.4k</a></div>`
+      )
+    ).toBeNull();
   });
 });
