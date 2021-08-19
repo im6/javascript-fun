@@ -29,6 +29,7 @@ export const favIconPngUrl = `${iconCdnUrl}/deno-fav.png`;
 export const author = 'Zijian Guo';
 export const pageSpeedUrl = `https://developers.google.com/speed/pagespeed/insights/?url=www.${domain}&tab=desktop`;
 export const hideGithubCorner = false;
+export const showDisqus = true;
 export const gitRepo = `${githubUrl}/${repoUrl}`;
 export const defaultIcon = ['github0.png', 'github1.svg', 'github2.svg'][2];
 
@@ -51,6 +52,7 @@ export const topNavConfig = [
     img: 'vue.svg',
     title: 'Front End',
     alt: 'framework',
+    disqusId: 'jsfun-000',
     asset: 'main',
     page: 1,
   },
@@ -59,6 +61,7 @@ export const topNavConfig = [
     img: 'deno.svg',
     title: 'Node.js',
     alt: 'node',
+    disqusId: 'jsfun-001',
     asset: 'main',
     page: 2,
   },
@@ -67,6 +70,7 @@ export const topNavConfig = [
     img: 'vscode.svg',
     title: 'Miscellaneous',
     alt: 'library',
+    disqusId: 'jsfun-002',
     asset: 'main',
     page: 3,
   },
@@ -75,6 +79,7 @@ export const topNavConfig = [
     img: 'javascript.svg',
     title: 'Website',
     alt: 'site',
+    disqusId: 'jsfun-003',
     asset: 'site',
   },
   {

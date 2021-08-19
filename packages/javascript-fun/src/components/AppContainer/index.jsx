@@ -9,6 +9,7 @@ import {
   pageSpeedUrl,
   hideGithubCorner,
   gitRepo,
+  showDisqus,
   publicPath,
   primaryYear,
   leftNavText,
@@ -49,6 +50,7 @@ const AppContainer = ({
       author={author}
       pageSpeedUrl={pageSpeedUrl}
       gitRepo={gitRepo}
+      showDisqus={showDisqus}
       hideGithubCorner={hideGithubCorner}
     >
       {children}
