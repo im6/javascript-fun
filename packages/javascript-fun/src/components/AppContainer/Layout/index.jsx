@@ -38,13 +38,6 @@ const Layout = ({
           iconCdnUrl={iconCdnUrl}
         />
         {children}
-        {showDisqus && (
-          <Disqus
-            title={`${domain}-${selectedNavConfig.title}`}
-            identifier={selectedNavConfig.disqusId}
-            canonicalUrl={`https://www.${domain}${url}`}
-          />
-        )}
         <TopNav
           url={url}
           topNavConfig={topNavConfig.filter(
@@ -52,6 +45,13 @@ const Layout = ({
           )}
           iconCdnUrl={iconCdnUrl}
         />
+        {showDisqus && (
+          <Disqus
+            title={`${domain}-${selectedNavConfig.title}`}
+            identifier={selectedNavConfig.disqusId}
+            canonicalUrl={`https://www.${domain}${url}`}
+          />
+        )}
         <Footer
           year={year}
           domain={domain}

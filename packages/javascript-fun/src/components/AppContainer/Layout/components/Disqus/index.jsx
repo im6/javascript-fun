@@ -3,10 +3,18 @@ import style from './style.less';
 
 const Disqus = ({ title, canonicalUrl, identifier }) => (
   <div className={style.commentBox}>
+    <div className={style.btnWrapper}>
+      <button
+        type="button"
+        className={`pure-button pure-button-primary ${style.commentToggleBtn}`}
+      >
+        Display Comments
+      </button>
+    </div>
     <div id="disqus_thread" />
     <script
       dangerouslySetInnerHTML={{
-        __html: `var disqus_config=function(){this.page.url='${canonicalUrl}';this.page.identifier='${identifier}';this.page.title='${title}';};(function(){var d=document,s=d.createElement('script');s.src='https://nyjs.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();`,
+        __html: `var disqus_config=function(){this.page.url='${canonicalUrl}';this.page.identifier='${identifier}';this.page.title='${title}';};`,
       }}
     />
     <noscript>
