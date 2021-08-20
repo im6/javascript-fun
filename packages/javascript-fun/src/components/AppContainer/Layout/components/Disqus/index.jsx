@@ -3,14 +3,12 @@ import style from './style.less';
 
 const Disqus = ({ title, canonicalUrl, identifier }) => (
   <div className={style.commentBox}>
-    <div className={style.btnWrapper}>
-      <button
-        type="button"
-        className={`pure-button pure-button-primary ${style.commentToggleBtn}`}
-      >
-        Display Comments
-      </button>
-    </div>
+    <button
+      type="button"
+      className={`pure-button pure-button-primary ${style.commentToggleBtn}`}
+    >
+      &#128172; &nbsp; Display Comments
+    </button>
     <div id="disqus_thread" />
     <script
       dangerouslySetInnerHTML={{
