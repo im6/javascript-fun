@@ -8,6 +8,7 @@ describe('render properly', () => {
     const { getByRole, rerender } = render(
       <TopNav
         url={url}
+        showDarkSwitch
         topNavConfig={topNavConfig.filter((v) => v.alt !== 'add')}
         iconCdnUrl="www.cdn.com"
       />

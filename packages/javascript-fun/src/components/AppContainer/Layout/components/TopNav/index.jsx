@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import style from './style.less';
 
-const TopNav = ({ url, topNavConfig, iconCdnUrl }) => (
+const TopNav = ({ url, topNavConfig, iconCdnUrl, showDarkSwitch }) => (
   <div className={`pure-button-group ${style.menubar}`} role="group">
     {topNavConfig.map((v) => {
       const isAddBtn = v.alt === 'add';
@@ -23,6 +23,9 @@ const TopNav = ({ url, topNavConfig, iconCdnUrl }) => (
         </a>
       );
     })}
+    {showDarkSwitch && (
+      <a href="#" title="Switch Dark Mode" className={style.darkSwitchBtn} />
+    )}
   </div>
 );
 
@@ -30,6 +33,7 @@ TopNav.prototype = {
   url: PropTypes.string.isRequired,
   iconCdnUrl: PropTypes.string.isRequired,
   topNavConfig: PropTypes.array.isRequired,
+  showDarkSwitch: PropTypes.bool.isRequired,
 };
 
 export default TopNav;

@@ -34,12 +34,14 @@ const Layout = ({
         {!hideGithubCorner && <GithubCorner url={gitRepo} />}
         <TopNav
           url={url}
-          topNavConfig={topNavConfig.filter((v) => v.alt !== 'add')}
+          showDarkSwitch
           iconCdnUrl={iconCdnUrl}
+          topNavConfig={topNavConfig.filter((v) => v.alt !== 'add')}
         />
         {children}
         <TopNav
           url={url}
+          showDarkSwitch={false}
           topNavConfig={topNavConfig.filter(
             (v) => !(v.alt === 'add' && hideGithubCorner)
           )}
