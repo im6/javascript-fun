@@ -1,7 +1,7 @@
 @import '../../constant.less';
 
 .box {
-  border-top: 1px solid @grp-border-color;
+  border-top: 1px solid var(--grp-border-color);
   padding: 6px 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -18,7 +18,7 @@
     overflow: hidden;
     h3 {
       margin: 0 0 3px 0;
-      color: @git-name-color;
+      color: var(--git-name-color);
 
       white-space: nowrap;
       overflow: hidden;
@@ -26,14 +26,14 @@
     }
     a {
       text-decoration: none;
-      color: @star-text-color;
+      color: var(--star-text-color);
     }
   }
 }
 
 @media (hover: hover) {
   .box .rightText a:hover {
-    color: @star-text-hover-color;
+    color: var(--star-text-hover-color);
   }
 }
 

@@ -36,7 +36,7 @@ const Html = ({
         }}
       />
     </head>
-    <body>
+    <body data-color-code="light">
       <noscript>
         <iframe
           src="https://www.googletagmanager.com/ns.html?id=GTM-KQ9MZHN"
