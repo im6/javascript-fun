@@ -29,7 +29,7 @@ export const favIconPngUrl = `${iconCdnUrl}/deno-fav.png`;
 export const author = 'Zijian Guo';
 export const pageSpeedUrl = `https://developers.google.com/speed/pagespeed/insights/?url=www.${domain}&tab=desktop`;
 export const hideGithubCorner = false;
-export const showDisqus = true;
+export const showDisqus = false;
 export const gitRepo = `${githubUrl}/${repoUrl}`;
 export const defaultIcon = ['github0.png', 'github1.svg', 'github2.svg'][2];
 

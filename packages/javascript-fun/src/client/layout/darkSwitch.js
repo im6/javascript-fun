@@ -28,8 +28,12 @@ const toggleOverwritePureBtn = (toAdd) => {
   }
 };
 
-const initColorMode = localStorage.getItem(storageKey);
-if (initColorMode === 'dark') {
+const savedColorMode = localStorage.getItem(storageKey);
+const isSystemDarkMode = window.matchMedia(
+  '(prefers-color-scheme: dark)'
+).matches;
+
+if (isSystemDarkMode || savedColorMode === 'dark') {
   dataset.colorMode = 'dark';
   toggleOverwritePureBtn(true);
 }

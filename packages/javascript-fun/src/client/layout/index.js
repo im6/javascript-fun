@@ -1,4 +1,4 @@
 import './typed';
 import './scrollTop';
-import './disqus';
+// import './disqus';
 import './darkSwitch';
