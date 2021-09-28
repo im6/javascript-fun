@@ -9,7 +9,7 @@
     "lodash.groupby": "^4.6.0",
     "lodash.orderby": "^4.6.0",
     "mysql-observable": "1.0.0",
-    "node-fetch": "^3.0.0",
+    "node-fetch": "2.6.2",
     "progress": "^2.0.3"
   }
 }
