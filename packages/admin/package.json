@@ -5,6 +5,6 @@
   "license": "MIT",
   "dependencies": {
     "mysql-observable": "1.0.0",
-    "prompts": "^2.4.1"
+    "prompts": "^2.4.2"
   }
 }
