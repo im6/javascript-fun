@@ -31,7 +31,12 @@ export const pageSpeedUrl = `https://developers.google.com/speed/pagespeed/insig
 export const hideGithubCorner = false;
 export const showDisqus = false;
 export const gitRepo = `${githubUrl}/${repoUrl}`;
-export const defaultIcon = ['github0.png', 'github1.svg', 'github2.svg'][2];
+export const defaultIcon = [
+  'default-github-0.svg',
+  'default-xmas.svg',
+  'default-irish.svg',
+  'default-halloween.svg',
+][0];
 
 /* istanbul ignore next */
 export const primaryYear = (
