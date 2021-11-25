@@ -14,7 +14,7 @@ describe('render properly', () => {
       />
     );
     rerender(
-      <TopNav url={url} topNavConfig={topNavConfig} iconCdnUrl="www.cdn.com" />
+      <TopNav url="/" topNavConfig={topNavConfig} iconCdnUrl="www.cdn.com" />
     );
     expect(getByRole('group')).toBeTruthy();
   });
