@@ -46,7 +46,7 @@ const convertGroupIcon = (data) =>
 
 const parseStarNum = (body) => {
   const $ = cheerio.load(body);
-  const elems = $('a.social-count.js-social-count');
+  const elems = $('span.Counter.js-social-count');
   if (elems.length === 0) {
     return null;
   }
