@@ -30,7 +30,7 @@ describe('test packages/crawler helper', () => {
     const num = 75422;
     expect(
       parseStarNum(
-        `<div><a class="social-count js-social-count" href="/angular/angular/stargazers" aria-label="${num} users starred this repository">75.4k</a></div>`
+        `<div><span class="Counter social-count js-social-count" href="/angular/angular/stargazers" aria-label="${num} users starred this repository">75.4k</a></div>`
       )
     ).toBe(num);
     expect(
