@@ -31,12 +31,22 @@ export const pageSpeedUrl = `https://developers.google.com/speed/pagespeed/insig
 export const hideGithubCorner = false;
 export const showDisqus = false;
 export const gitRepo = `${githubUrl}/${repoUrl}`;
-export const defaultIcon = [
-  'default-github-0.svg',
-  'default-xmas.svg',
-  'default-irish.svg',
-  'default-halloween.svg',
-][0];
+/* istanbul ignore next */
+export const defaultIcon = (function getIconFromDate() {
+  const now = new Date();
+  const month = now.getMonth();
+  const day = now.getDate();
+  if (month === 2 && day > 14 && day < 18) {
+    return 'default-irish.svg';
+  }
+  if (month === 9 && day > 27) {
+    return 'default-halloween.svg';
+  }
+  if (month === 11 && day > 10) {
+    return 'default-xmas.svg';
+  }
+  return 'default-github-0.svg';
+})();
 
 /* istanbul ignore next */
 export const primaryYear = (
