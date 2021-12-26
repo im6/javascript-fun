@@ -29,7 +29,7 @@ export const favIconPngUrl = `${iconCdnUrl}/deno-fav.png`;
 export const author = 'Zijian Guo';
 export const pageSpeedUrl = `https://developers.google.com/speed/pagespeed/insights/?url=www.${domain}&tab=desktop`;
 export const hideGithubCorner = false;
-export const showDisqus = false;
+export const showDisqus = false; // also uncomment import in /src/client/layout/index.js
 export const gitRepo = `${githubUrl}/${repoUrl}`;
 /* istanbul ignore next */
 export const defaultIcon = (function getIconFromDate() {
