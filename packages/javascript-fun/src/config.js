@@ -27,7 +27,7 @@ export const nonLazyImg = 0;
 export const favIconSvgUrl = `${iconCdnUrl}/deno.svg`; // [fav.ico, deno-fav.png]
 export const favIconPngUrl = `${iconCdnUrl}/deno-fav.png`;
 export const author = 'Zijian Guo';
-export const pageSpeedUrl = `https://developers.google.com/speed/pagespeed/insights/?url=www.${domain}&tab=desktop`;
+export const pageSpeedUrl = `https://pagespeed.web.dev/report?url=https%3A%2F%2Fwww.${domain}%2F`;
 export const hideGithubCorner = false;
 export const showDisqus = false; // also uncomment import in /src/client/layout/index.js
 export const gitRepo = `${githubUrl}/${repoUrl}`;
