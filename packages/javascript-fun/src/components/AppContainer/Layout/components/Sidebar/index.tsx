@@ -1,9 +1,13 @@
-import PropTypes from 'prop-types';
+import { FC } from 'react';
 import style from './style.less';
+
+interface SidebarProps {
+  defaultType: string;
+}
 
 const color = '#adf7ff'; // typed.js skeleton
 
-const Sidebar = ({ defaultType }) => (
+const Sidebar: FC<SidebarProps> = ({ defaultType }) => (
   <header className={style.header}>
     <h1>JavaScript</h1>
     <h1>for</h1>
@@ -12,9 +16,5 @@ const Sidebar = ({ defaultType }) => (
     </div>
   </header>
 );
-
-Sidebar.propTypes = {
-  defaultType: PropTypes.string,
-};
 
 export default Sidebar;

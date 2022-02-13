@@ -1,7 +1,13 @@
-import PropTypes from 'prop-types';
+import { FC } from 'react';
 import style from './style.less';
 
-const Disqus = ({ title, canonicalUrl, identifier }) => (
+interface DisqusProps {
+  title: string;
+  identifier: string;
+  canonicalUrl: string;
+}
+
+const Disqus: FC<DisqusProps> = ({ title, canonicalUrl, identifier }) => (
   <div className={style.commentBox}>
     <button
       type="button"
@@ -21,11 +27,5 @@ const Disqus = ({ title, canonicalUrl, identifier }) => (
     </noscript>
   </div>
 );
-
-Disqus.propTypes = {
-  title: PropTypes.string.isRequired,
-  identifier: PropTypes.string.isRequired,
-  canonicalUrl: PropTypes.string.isRequired,
-};
 
 export default Disqus;

@@ -1,9 +1,14 @@
-import { Fragment } from 'react';
-import PropTypes from 'prop-types';
+import { FC, Fragment } from 'react';
 import SEO from './SEO';
 import OpenGraph from './OpenGraph';
 
-const MetaInfo = ({ year, author, domain }) => (
+interface MetaInfoProps {
+  year: string;
+  author: string;
+  domain: string;
+}
+
+const MetaInfo: FC<MetaInfoProps> = ({ year, author, domain }) => (
   <Fragment>
     <meta charSet="utf-8" />
     <meta name="author" content={author} />
@@ -17,9 +22,4 @@ const MetaInfo = ({ year, author, domain }) => (
   </Fragment>
 );
 
-MetaInfo.propTypes = {
-  year: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  domain: PropTypes.string.isRequired,
-};
 export default MetaInfo;

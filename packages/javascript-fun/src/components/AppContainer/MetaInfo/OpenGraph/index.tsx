@@ -1,5 +1,8 @@
-import { Fragment } from 'react';
-import PropTypes from 'prop-types';
+import { FC, Fragment } from 'react';
+
+interface OpenGraphProps {
+  domain: string;
+}
 
 const ogTitle = 'JavaScript Fun | 前端工坊';
 const ogDescription =
@@ -9,7 +12,7 @@ const ogImgWidth = 1280;
 const ogImage =
   'https://repository-images.githubusercontent.com/87495174/70247f80-86ee-11ea-896f-b37b160f5a9b';
 
-const OpenGraph = ({ domain }) => (
+const OpenGraph: FC<OpenGraphProps> = ({ domain }) => (
   <Fragment>
     <meta property="og:title" content={ogTitle} />
     <meta property="og:type" content="website" />
@@ -19,8 +22,8 @@ const OpenGraph = ({ domain }) => (
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:secure_url" content={ogImage} />
     <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content={ogImgWidth} />
-    <meta property="og:image:height" content={ogImgHeight} />
+    <meta property="og:image:width" content={ogImgWidth.toString()} />
+    <meta property="og:image:height" content={ogImgHeight.toString()} />
     <meta property="og:image:alt" content={domain} />
 
     <meta name="twitter:card" content="summary_large_image" />
@@ -29,14 +32,10 @@ const OpenGraph = ({ domain }) => (
     <meta name="twitter:title" content={ogTitle} />
     <meta name="twitter:description" content={ogDescription} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:width" content={ogImgWidth} />
-    <meta name="twitter:image:height" content={ogImgHeight} />
+    <meta name="twitter:image:width" content={ogImgWidth.toString()} />
+    <meta name="twitter:image:height" content={ogImgHeight.toString()} />
     <meta name="twitter:image:alt" content={domain} />
   </Fragment>
 );
-
-OpenGraph.propTypes = {
-  domain: PropTypes.string.isRequired,
-};
 
 export default OpenGraph;

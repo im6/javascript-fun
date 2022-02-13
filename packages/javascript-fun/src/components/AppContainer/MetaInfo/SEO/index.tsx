@@ -1,7 +1,11 @@
-import { Fragment } from 'react';
-import PropTypes from 'prop-types';
+import { FC, Fragment } from 'react';
 
-const SEO = ({ year, domain }) => (
+interface SeoProps {
+  year: string;
+  domain: string;
+}
+
+const SEO: FC<SeoProps> = ({ year, domain }) => (
   <Fragment>
     <meta
       name="description"
@@ -15,10 +19,5 @@ const SEO = ({ year, domain }) => (
     <meta name="robots" content="index,follow" />
   </Fragment>
 );
-
-SEO.propTypes = {
-  year: PropTypes.string.isRequired,
-  domain: PropTypes.string.isRequired,
-};
 
 export default SEO;

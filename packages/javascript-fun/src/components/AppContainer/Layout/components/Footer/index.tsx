@@ -1,7 +1,21 @@
-import PropTypes from 'prop-types';
+import { FC } from 'react';
 import style from './style.less';
 
-const Footer = ({ domain, hideAuthor, author, year, pageSpeedUrl }) => (
+interface FooterProps {
+  domain: string;
+  author: string;
+  pageSpeedUrl: string;
+  hideAuthor: boolean;
+  year: string;
+}
+
+const Footer: FC<FooterProps> = ({
+  domain,
+  hideAuthor,
+  author,
+  year,
+  pageSpeedUrl,
+}) => (
   <footer className={style.footer}>
     <div>
       Full score &#9989; by &nbsp;
@@ -27,13 +41,5 @@ const Footer = ({ domain, hideAuthor, author, year, pageSpeedUrl }) => (
     <div>All rights reserved.</div>
   </footer>
 );
-
-Footer.propTypes = {
-  domain: PropTypes.string,
-  author: PropTypes.string.isRequired,
-  pageSpeedUrl: PropTypes.string.isRequired,
-  hideAuthor: PropTypes.bool,
-  year: PropTypes.string.isRequired,
-};
 
 export default Footer;

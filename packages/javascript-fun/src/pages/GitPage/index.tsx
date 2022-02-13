@@ -1,5 +1,4 @@
-import { Fragment } from 'react';
-import PropTypes from 'prop-types';
+import { FC, Fragment } from 'react';
 
 import GitBox from '../../components/GitBox';
 import BoxGroup from '../../components/BoxGroup';
@@ -7,7 +6,17 @@ import BoxGroup from '../../components/BoxGroup';
 import style from './style.less';
 import sharedStyle from '../style.less';
 
-const GitPage = ({
+import { GitGroupSchema } from '../../typings/interface';
+
+interface GitPageProps {
+  source: GitGroupSchema[];
+  githubUrl: string;
+  iconCdnUrl: string;
+  defaultIcon: string;
+  nonLazyImgIndex: number;
+}
+
+const GitPage: FC<GitPageProps> = ({
   source,
   githubUrl,
   iconCdnUrl,
@@ -22,6 +31,7 @@ const GitPage = ({
           <BoxGroup
             key={v.id}
             title={v.name}
+            isWebsite={false}
             anchorId={v.anchorId}
             linkIconUrl={`${iconCdnUrl}/fa-link.svg`}
           >
@@ -43,13 +53,5 @@ const GitPage = ({
     <h3 className={style.updateTime} />
   </Fragment>
 );
-
-GitPage.propTypes = {
-  source: PropTypes.array.isRequired,
-  githubUrl: PropTypes.string.isRequired,
-  iconCdnUrl: PropTypes.string.isRequired,
-  defaultIcon: PropTypes.string.isRequired,
-  nonLazyImgIndex: PropTypes.number.isRequired,
-};
 
 export default GitPage;

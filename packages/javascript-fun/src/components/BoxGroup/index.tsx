@@ -1,9 +1,22 @@
-import { Fragment } from 'react';
-import PropTypes from 'prop-types';
+import { FC, Fragment } from 'react';
 import classNames from 'classnames';
 import style from './style.less';
 
-const BoxGroup = ({ title, linkIconUrl, anchorId, children, isWebsite }) => {
+interface BoxGroupProps {
+  isWebsite: boolean;
+  title: string;
+  anchorId: string;
+  linkIconUrl: string;
+  children: JSX.Element[];
+}
+
+const BoxGroup: FC<BoxGroupProps> = ({
+  title,
+  linkIconUrl,
+  anchorId,
+  children,
+  isWebsite,
+}) => {
   const titleClasses = classNames({
     [style.title]: true,
     [style.webColor]: isWebsite,
@@ -20,14 +33,6 @@ const BoxGroup = ({ title, linkIconUrl, anchorId, children, isWebsite }) => {
       <div className="pure-g">{children}</div>
     </Fragment>
   );
-};
-
-BoxGroup.propTypes = {
-  isWebsite: PropTypes.bool,
-  title: PropTypes.string.isRequired,
-  anchorId: PropTypes.string.isRequired,
-  linkIconUrl: PropTypes.string.isRequired,
-  children: PropTypes.array.isRequired,
 };
 
 export default BoxGroup;

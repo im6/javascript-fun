@@ -2,7 +2,7 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
 const resolve = {
-  extensions: ['.js', '.jsx'],
+  extensions: ['.js', '.jsx', '.ts', '.tsx'],
 };
 
 exports.clientBaseConfig = {

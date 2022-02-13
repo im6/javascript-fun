@@ -1,9 +1,24 @@
-import PropTypes from 'prop-types';
+import { FC } from 'react';
 import PureCss from '../PureCss';
 import MetaInfo from '../MetaInfo';
 import GoogleFont from '../GoogleFont';
 
-const Html = ({
+interface HtmlProps {
+  year: string;
+  title: string;
+  domain: string;
+  style: string;
+  favIconPngUrl: string;
+  favIconSvgUrl: string;
+  lastBuildDate: string;
+  script: string;
+  author: string;
+  children: JSX.Element;
+  criticalCss: FC;
+  criticalScript: FC;
+}
+
+const Html: FC<HtmlProps> = ({
   title,
   domain,
   year,
@@ -50,19 +65,5 @@ const Html = ({
     </body>
   </html>
 );
-
-Html.propTypes = {
-  year: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  domain: PropTypes.string.isRequired,
-  favIconPngUrl: PropTypes.string.isRequired,
-  favIconSvgUrl: PropTypes.string.isRequired,
-  lastBuildDate: PropTypes.string.isRequired,
-  script: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
-  criticalCss: PropTypes.element,
-  criticalScript: PropTypes.element,
-};
 
 export default Html;

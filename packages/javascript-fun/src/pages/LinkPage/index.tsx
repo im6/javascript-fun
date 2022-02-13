@@ -1,11 +1,18 @@
-import PropTypes from 'prop-types';
+import { FC } from 'react';
 
 import LinkBox from '../../components/LinkBox';
 import BoxGroup from '../../components/BoxGroup';
 
 import shareStyle from '../style.less';
 
-const LinkPage = ({ source, iconCdnUrl }) => (
+import { LinkGroupSchema } from '../../typings/interface';
+
+interface LinkPageProps {
+  source: LinkGroupSchema[];
+  iconCdnUrl: string;
+}
+
+const LinkPage: FC<LinkPageProps> = ({ source, iconCdnUrl }) => (
   <div className={shareStyle.main}>
     {source.map((v) => (
       <BoxGroup
@@ -22,10 +29,5 @@ const LinkPage = ({ source, iconCdnUrl }) => (
     ))}
   </div>
 );
-
-LinkPage.propTypes = {
-  source: PropTypes.array.isRequired,
-  iconCdnUrl: PropTypes.string.isRequired,
-};
 
 export default LinkPage;

@@ -1,6 +1,10 @@
-import PropTypes from 'prop-types';
+import { FC } from 'react';
 
-const GoogleFont = ({ useLink }) =>
+interface GoogleFontProps {
+  useLink: boolean;
+}
+
+const GoogleFont: FC<GoogleFontProps> = ({ useLink }) =>
   useLink ? (
     <link
       href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap"
@@ -14,7 +18,4 @@ const GoogleFont = ({ useLink }) =>
     />
   );
 
-GoogleFont.propTypes = {
-  useLink: PropTypes.bool,
-};
 export default GoogleFont;

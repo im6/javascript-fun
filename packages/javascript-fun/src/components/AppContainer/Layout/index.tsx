@@ -1,4 +1,5 @@
-import PropTypes from 'prop-types';
+import { FC } from 'react';
+
 import Footer from './components/Footer';
 import TopNav from './components/TopNav';
 import Slogan from './components/Slogan';
@@ -7,9 +8,26 @@ import SideBar from './components/Sidebar';
 import BackToTop from './components/BackToTop';
 import GithubCorner from './components/GithubCorner';
 
+import { TopNavConfigSchema } from '../../../typings/interface';
+
 import style from './style.less';
 
-const Layout = ({
+interface LayoutProps {
+  url: string;
+  iconCdnUrl: string;
+  domain: string;
+  author: string;
+  pageSpeedUrl: string;
+  hideGithubCorner: boolean;
+  gitRepo: string;
+  showDisqus: boolean;
+  year: string;
+  children: JSX.Element;
+  topNavConfig: TopNavConfigSchema[];
+  leftNavInitText: string;
+}
+
+const Layout: FC<LayoutProps> = ({
   url,
   year,
   domain,
@@ -65,22 +83,6 @@ const Layout = ({
       </div>
     </div>
   );
-};
-
-Layout.propTypes = {
-  url: PropTypes.string.isRequired,
-  iconCdnUrl: PropTypes.string.isRequired,
-  domain: PropTypes.string,
-  author: PropTypes.string.isRequired,
-  pageSpeedUrl: PropTypes.string.isRequired,
-  hideGithubCorner: PropTypes.bool,
-  gitRepo: PropTypes.string.isRequired,
-  showDisqus: PropTypes.bool.isRequired,
-  year: PropTypes.string.isRequired,
-  children: PropTypes.oneOfType([PropTypes.array, PropTypes.element])
-    .isRequired,
-  topNavConfig: PropTypes.array.isRequired,
-  leftNavInitText: PropTypes.string.isRequired,
 };
 
 export default Layout;

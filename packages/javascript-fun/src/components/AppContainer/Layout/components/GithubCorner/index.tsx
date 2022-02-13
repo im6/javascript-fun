@@ -1,10 +1,13 @@
 // https://github.com/tholman/github-corners
-import PropTypes from 'prop-types';
+import { FC } from 'react';
 import style from './style.less';
 
 const title = 'View source code';
+interface GithubCornerProps {
+  url: string;
+}
 
-const GithubCorner = ({ url }) => (
+const GithubCorner: FC<GithubCornerProps> = ({ url }) => (
   <div className={style.container}>
     <a href={url} aria-label={title} title={title}>
       <svg
@@ -25,9 +28,5 @@ const GithubCorner = ({ url }) => (
     </a>
   </div>
 );
-
-GithubCorner.prototype = {
-  url: PropTypes.string.isRequired,
-};
 
 export default GithubCorner;

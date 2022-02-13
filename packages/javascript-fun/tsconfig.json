@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "target": "es6",
+    "jsx": "react-jsx",
+    "resolveJsonModule": true,
+    "strict": true,
+    "sourceMap": true,
+    "moduleResolution": "node"
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules"]
+}

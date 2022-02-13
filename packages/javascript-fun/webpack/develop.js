@@ -31,6 +31,11 @@ const client = Object.assign(clientBaseConfig, devBase, {
   module: {
     rules: [
       {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
         test: /\.jsx?$/,
         include,
         use: [
@@ -81,6 +86,11 @@ const server = Object.assign(serverBaseConfig, devBase, {
   },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
       {
         test: /\.jsx?$/,
         include,

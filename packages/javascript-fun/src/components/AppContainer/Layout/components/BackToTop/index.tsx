@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types';
+import { FC } from 'react';
 import style from './style.less';
 
-const BackToTop = ({ iconCdnUrl }) => (
+interface DisqusProps {
+  iconCdnUrl: string;
+}
+
+const BackToTop: FC<DisqusProps> = ({ iconCdnUrl }) => (
   <div className={style.scrollBtn}>
     <img src={`${iconCdnUrl}/fa-chevron-up.svg`} alt="back to top" />
   </div>
 );
-
-BackToTop.propTypes = {
-  iconCdnUrl: PropTypes.string.isRequired,
-};
 
 export default BackToTop;

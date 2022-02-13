@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import { FC } from 'react';
 
 import Html from './Html';
 import Layout from './Layout';
@@ -18,9 +18,18 @@ import {
   topNavDict,
   favIconPngUrl,
   favIconSvgUrl,
-} from '../../config';
+  // @ts-ignore
+} from '../../config.js';
 
-const AppContainer = ({
+interface AppContainerProps {
+  url: string;
+  lastBuildDate: string;
+  criticalCss: FC;
+  criticalScript: FC;
+  children: JSX.Element;
+}
+
+const AppContainer: FC<AppContainerProps> = ({
   url,
   children,
   criticalCss,
@@ -57,14 +66,5 @@ const AppContainer = ({
     </Layout>
   </Html>
 );
-
-AppContainer.propTypes = {
-  url: PropTypes.string.isRequired,
-  lastBuildDate: PropTypes.string.isRequired,
-  criticalCss: PropTypes.element,
-  criticalScript: PropTypes.element,
-  children: PropTypes.oneOfType([PropTypes.array, PropTypes.element])
-    .isRequired,
-};
 
 export default AppContainer;
