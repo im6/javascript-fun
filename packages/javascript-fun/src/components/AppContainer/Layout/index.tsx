@@ -68,7 +68,7 @@ const Layout: FC<LayoutProps> = ({
         {showDisqus && (
           <Disqus
             title={`${domain}-${selectedNavConfig.title}`}
-            identifier={selectedNavConfig.disqusId}
+            identifier={selectedNavConfig.disqusId!}
             canonicalUrl={`https://www.${domain}${url}`}
           />
         )}

@@ -4,9 +4,9 @@ export interface TopNavConfigSchema {
   img: string;
   title: string;
   alt: string;
-  disqusId: string;
-  asset: string;
-  page: number;
+  disqusId: string | null;
+  asset: string | null;
+  page: number | null;
 }
 
 export interface GitGroupSchema extends GroupBaseSchema {

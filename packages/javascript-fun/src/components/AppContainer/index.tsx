@@ -18,7 +18,7 @@ const {
   topNavDict,
   favIconPngUrl,
   favIconSvgUrl,
-} = require('../../config.js');
+} = require('../../config');
 
 interface AppContainerProps {
   url: string;

@@ -1,4 +1,5 @@
 import { githubUrl } from 'app-constant';
+import { TopNavConfigSchema } from './typings/interface';
 
 const cdnTag = 'v1.5.4';
 const repoUrl = 'im6/javascript-fun';
@@ -96,16 +97,23 @@ export const topNavConfig = [
     alt: 'site',
     disqusId: 'jsfun-003',
     asset: 'site',
+    page: null,
   },
   {
     to: `${gitRepo}/discussions/7`,
     img: 'fa-plus-wht.svg',
     title: 'Submit Github Link',
     alt: 'add',
+    disqusId: null,
+    asset: null,
+    page: null,
   },
 ];
 
-export const topNavDict = topNavConfig.reduce((acc, cur) => {
-  acc[cur.to] = cur;
-  return acc;
-}, {});
+export const topNavDict = topNavConfig.reduce(
+  (acc: Record<string, TopNavConfigSchema>, cur) => {
+    acc[cur.to] = cur;
+    return acc;
+  },
+  {}
+);
