@@ -16,8 +16,10 @@
     "@babel/core": "^7.15.8",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.13.13",
+    "@babel/preset-typescript": "^7.16.7",
     "@testing-library/react": "^12.1.2",
     "@types/express": "^4.17.13",
+    "@types/jest": "^27.4.0",
     "@types/node": "^17.0.17",
     "@types/numeral": "^2.0.2",
     "@types/react": "^17.0.39",
@@ -53,6 +55,7 @@
   "babel": {
     "presets": [
       "@babel/preset-env",
+      "@babel/preset-typescript",
       [
         "@babel/preset-react",
         {

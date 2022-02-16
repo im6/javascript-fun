@@ -1,5 +1,5 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import fs from 'fs';
+import path from 'path';
 import { Request, Response } from 'express';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { githubUrl, gitJsonPath, siteJsonPath } from 'app-constant';

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import * as numeral from 'numeral';
+import numeral from 'numeral';
 import style from './style.less';
 
 interface GitBoxProps {

@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import fs from 'fs';
 import { resolve } from 'path';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { githubUrl, gitJsonPath, siteJsonPath } from 'app-constant';
