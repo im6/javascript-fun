@@ -23,7 +23,7 @@ const {
 interface AppContainerProps {
   url: string;
   lastBuildDate: string;
-  criticalCss: JSX.Element;
+  criticalCss?: JSX.Element;
   criticalScript?: JSX.Element;
   children: JSX.Element;
 }

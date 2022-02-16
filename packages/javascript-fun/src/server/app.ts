@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import { gitMd, linkMd, staticHtml } from './middleware';
 import { staticFolder, publicPath } from '../config';
 

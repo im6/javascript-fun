@@ -92,11 +92,6 @@ const server = Object.assign(serverBaseConfig, devBase, {
         exclude: /node_modules/,
       },
       {
-        test: /\.jsx?$/,
-        include,
-        use: ['babel-loader'],
-      },
-      {
         test: /\.less$/,
         include,
         use: [

@@ -1,11 +1,13 @@
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
+import { Request, Response } from 'express';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { githubUrl, gitJsonPath, siteJsonPath } from 'app-constant';
 
 import AppContainer from '../components/AppContainer';
 import GitPage from '../pages/GitPage';
 import LinkPage from '../pages/LinkPage';
+import { GitGroupSchema, LinkGroupSchema } from '../typings/interface';
 
 import {
   nonLazyImg,
@@ -15,11 +17,11 @@ import {
   renderOutputFolder,
 } from '../config';
 
-export const linkMd = (req, res) => {
+export const linkMd = (req: Request, res: Response) => {
   const rawdata = fs.readFileSync(
     path.resolve(process.cwd(), '../../', siteJsonPath)
   );
-  const siteSource = JSON.parse(rawdata);
+  const siteSource = JSON.parse(rawdata.toString()) as LinkGroupSchema[];
   const htmlDOM = (
     <AppContainer
       url={req.url}
@@ -33,11 +35,11 @@ export const linkMd = (req, res) => {
   res.send(`<!DOCTYPE html>${html}`);
 };
 
-export const gitMd = (req, res) => {
+export const gitMd = (req: Request, res: Response) => {
   const rawdata = fs.readFileSync(
     path.resolve(process.cwd(), '../../', gitJsonPath)
   );
-  const gitSource = JSON.parse(rawdata);
+  const gitSource = JSON.parse(rawdata.toString()) as GitGroupSchema[];
   const htmlDOM = (
     <AppContainer
       url={req.url}
@@ -57,7 +59,7 @@ export const gitMd = (req, res) => {
   res.send(`<!DOCTYPE html>${html}`);
 };
 
-export const staticHtml = (req, res) => {
+export const staticHtml = (req: Request, res: Response) => {
   const fullPath = path.join(
     process.cwd(),
     renderOutputFolder,

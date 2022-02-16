@@ -14,7 +14,7 @@ interface HtmlProps {
   script: string;
   author: string;
   children: JSX.Element;
-  criticalCss: JSX.Element;
+  criticalCss?: JSX.Element;
   criticalScript?: JSX.Element;
 }
 
