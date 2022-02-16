@@ -3,7 +3,7 @@ import { FC } from 'react';
 import Html from './Html';
 import Layout from './Layout';
 
-import {
+const {
   author,
   domain,
   pageSpeedUrl,
@@ -18,14 +18,13 @@ import {
   topNavDict,
   favIconPngUrl,
   favIconSvgUrl,
-  // @ts-ignore
-} from '../../config.js';
+} = require('../../config.js');
 
 interface AppContainerProps {
   url: string;
   lastBuildDate: string;
-  criticalCss: FC;
-  criticalScript: FC;
+  criticalCss: JSX.Element;
+  criticalScript?: JSX.Element;
   children: JSX.Element;
 }
 

@@ -1,6 +1,7 @@
 {
   "name": "app-constant",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index",
+  "types": "index",
   "license": "MIT"
 }

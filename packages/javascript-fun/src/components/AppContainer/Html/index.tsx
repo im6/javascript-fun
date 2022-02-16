@@ -14,8 +14,8 @@ interface HtmlProps {
   script: string;
   author: string;
   children: JSX.Element;
-  criticalCss: FC;
-  criticalScript: FC;
+  criticalCss: JSX.Element;
+  criticalScript?: JSX.Element;
 }
 
 const Html: FC<HtmlProps> = ({

@@ -1,3 +1,4 @@
+/** Top Navigation Button Config */
 export interface TopNavConfigSchema {
   to: string;
   img: string;
