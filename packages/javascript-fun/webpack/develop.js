@@ -36,18 +36,6 @@ const client = Object.assign(clientBaseConfig, devBase, {
         exclude: /node_modules/,
       },
       {
-        test: /\.jsx?$/,
-        include,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-            },
-          },
-        ],
-      },
-      {
         test: /\.less$/,
         include,
         use: [

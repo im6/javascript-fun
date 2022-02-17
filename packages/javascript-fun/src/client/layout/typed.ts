@@ -1,7 +1,8 @@
 import Typed from 'typed.js';
-import { sidebarType, sidebarHeader } from './style';
+import styleVars from './style';
 import { leftNavText } from '../../config';
 
+const { sidebarType, sidebarHeader } = styleVars;
 const leftNavTextColors = [
   ['#7bd0ff', '#F38181'],
   ['#e8ec8b', '#57cc9d'],
@@ -9,12 +10,16 @@ const leftNavTextColors = [
   ['#ffb077', '#b0cadb'],
 ];
 
-const typeElems = document.getElementsByClassName(sidebarType);
+const typeElems = document.getElementsByClassName(
+  sidebarType
+) as HTMLCollectionOf<HTMLElement>;
 const headerElems = document.getElementsByClassName(sidebarHeader);
 
 if (typeElems.length && headerElems.length) {
   const [typeElem] = typeElems;
-  const funTxtElem = headerElems[0].children[1];
+  const funTxtElem = (
+    headerElems[0].children as HTMLCollectionOf<HTMLElement>
+  )[1];
   const colorNum = leftNavTextColors.length;
   typeElem.innerText = '';
 
@@ -28,7 +33,9 @@ if (typeElems.length && headerElems.length) {
     autoInsertCss: true,
     preStringTyped: (index) => {
       const selectedColor = leftNavTextColors[index % colorNum];
-      const [typeCurosr] = document.getElementsByClassName('typed-cursor');
+      const [typeCurosr] = document.getElementsByClassName(
+        'typed-cursor'
+      ) as HTMLCollectionOf<HTMLElement>;
       [typeElem.style.color] = selectedColor;
       [typeCurosr.style.color] = selectedColor;
       [, funTxtElem.style.color] = selectedColor;

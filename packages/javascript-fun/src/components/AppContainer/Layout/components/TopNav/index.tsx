@@ -7,7 +7,7 @@ interface TopNavProps {
   url: string;
   iconCdnUrl: string;
   topNavConfig: TopNavConfigSchema[];
-  showDarkSwitch: boolean;
+  showDarkSwitch?: boolean;
 }
 
 const TopNav: FC<TopNavProps> = ({

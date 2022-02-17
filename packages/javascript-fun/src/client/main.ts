@@ -1,11 +1,15 @@
 import './layout';
 import '../components/GitBox/style.less';
-import { updateTime } from '../pages/GitPage/style.less';
+import gitPageStyle from '../pages/GitPage/style.less';
 import { debounce, getNow } from './util';
 import { defaultIcon } from '../config';
 
+const { updateTime } = gitPageStyle;
+
 const setTime = () => {
-  const timeElem = document.getElementsByClassName(updateTime)[0];
+  const timeElem = (
+    document.getElementsByClassName(updateTime) as HTMLCollectionOf<HTMLElement>
+  )[0];
   timeElem.innerText = `Last Update on ${getNow()}`;
 };
 

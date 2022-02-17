@@ -1,9 +1,11 @@
-import { commentToggleBtn } from '../../components/AppContainer/Layout/components/Disqus/style.less';
+import styles from '../../components/AppContainer/Layout/components/Disqus/style.less';
 
+const { commentToggleBtn } = styles;
 const loadDisqus = () => {
   const d = document;
   const s = d.createElement('script');
   s.src = 'https://nyjs.disqus.com/embed.js';
+  // @ts-ignore
   s.setAttribute('data-timestamp', +new Date());
   (d.head || d.body).appendChild(s);
 };

@@ -6,9 +6,11 @@ import '../../components/AppContainer/Layout/components/GithubCorner/style.less'
 import '../../components/AppContainer/Layout/style.less';
 import '../../components/BoxGroup/style.less';
 import '../../pages/style.less'; // shared page style
+import sidebarStyles from '../../components/AppContainer/Layout/components/Sidebar/style.less';
+import backToTopStyles from '../../components/AppContainer/Layout/components/BackToTop/style.less';
 
-export { scrollBtn } from '../../components/AppContainer/Layout/components/BackToTop/style.less';
-export {
-  type as sidebarType,
-  header as sidebarHeader,
-} from '../../components/AppContainer/Layout/components/Sidebar/style.less';
+export default {
+  scrollBtn: backToTopStyles.scrollBtn,
+  sidebarType: sidebarStyles.type,
+  sidebarHeader: sidebarStyles.header,
+};
