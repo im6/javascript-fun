@@ -54,15 +54,15 @@ const Layout: FC<LayoutProps> = ({
           url={url}
           showDarkSwitch
           iconCdnUrl={iconCdnUrl}
-          topNavConfig={topNavConfig.filter((v) => v.alt !== 'add')}
+          topNavConfig={topNavConfig}
+          showGithubDiscuss={false}
         />
         {children}
         <TopNav
           url={url}
           showDarkSwitch={false}
-          topNavConfig={topNavConfig.filter(
-            (v) => !(v.alt === 'add' && hideGithubCorner)
-          )}
+          topNavConfig={topNavConfig}
+          showGithubDiscuss={!hideGithubCorner}
           iconCdnUrl={iconCdnUrl}
         />
         {showDisqus && (

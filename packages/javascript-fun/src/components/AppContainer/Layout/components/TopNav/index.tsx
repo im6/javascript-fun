@@ -8,6 +8,7 @@ interface TopNavProps {
   iconCdnUrl: string;
   topNavConfig: TopNavConfigSchema[];
   showDarkSwitch?: boolean;
+  showGithubDiscuss: boolean;
 }
 
 const TopNav: FC<TopNavProps> = ({
@@ -15,6 +16,7 @@ const TopNav: FC<TopNavProps> = ({
   topNavConfig,
   iconCdnUrl,
   showDarkSwitch,
+  showGithubDiscuss,
 }) => (
   <div className={`pure-button-group ${style.menubar}`} role="group">
     {topNavConfig.map((v: TopNavConfigSchema) => {
@@ -37,6 +39,17 @@ const TopNav: FC<TopNavProps> = ({
         </a>
       );
     })}
+    {showGithubDiscuss && (
+      <a
+        className={`pure-button ${style.success}`}
+        title="Submit Github Link"
+        href="https://github.com/im6/javascript-fun/discussions/7"
+        aria-label="Submit Github Link"
+        target="_blank"
+      >
+        <img src={`${iconCdnUrl}/fa-plus-wht.svg`} alt="addw" />
+      </a>
+    )}
     {showDarkSwitch && (
       <a href="#" title="Switch Dark Mode" className={style.darkSwitchBtn} />
     )}

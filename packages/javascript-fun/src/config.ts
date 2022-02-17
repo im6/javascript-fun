@@ -97,16 +97,7 @@ export const topNavConfig = [
     alt: 'site',
     disqusId: 'jsfun-003',
     asset: 'site',
-    page: null,
-  },
-  {
-    to: `${gitRepo}/discussions/7`,
-    img: 'fa-plus-wht.svg',
-    title: 'Submit Github Link',
-    alt: 'add',
-    disqusId: null,
-    asset: null,
-    page: null,
+    page: 100, // doesn't matter
   },
 ];
 
