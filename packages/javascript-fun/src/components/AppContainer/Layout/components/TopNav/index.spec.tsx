@@ -16,6 +16,14 @@ describe('render properly', () => {
     rerender(
       <TopNav url="/" topNavConfig={topNavConfig} iconCdnUrl="www.cdn.com" />
     );
+    rerender(
+      <TopNav
+        url="/"
+        topNavConfig={topNavConfig}
+        iconCdnUrl="www.cdn.com"
+        showGithubDiscuss
+      />
+    );
     expect(getByRole('group')).toBeTruthy();
   });
 });

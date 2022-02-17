@@ -20,7 +20,6 @@ const TopNav: FC<TopNavProps> = ({
 }) => (
   <div className={`pure-button-group ${style.menubar}`} role="group">
     {topNavConfig.map((v: TopNavConfigSchema) => {
-      const isAddBtn = v.alt === 'add';
       const isActivated = v.to === url;
       return (
         <a
@@ -28,12 +27,10 @@ const TopNav: FC<TopNavProps> = ({
           className={classNames({
             'pure-button': true,
             'pure-button-active': isActivated,
-            [style.success]: isAddBtn,
           })}
           title={v.title}
           href={isActivated ? undefined : v.to}
           aria-label={v.title}
-          target={isAddBtn ? '_blank' : '_self'}
         >
           <img src={`${iconCdnUrl}/${v.img}`} alt={v.alt} />
         </a>
