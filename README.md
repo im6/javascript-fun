@@ -4,6 +4,6 @@ Source code to generate [www.javascript.fun](https://www.javascript.fun/)
 
 ## Highlight
 
-- Highly tailored project to render static webpage
-- Crawler to collect latest library information
+- Highly tailored and customized project to render static webpage
+- Crawler to collect dynamic online data
 - Admin capability with `cli` interface

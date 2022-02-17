@@ -2,14 +2,14 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
 const resolve = {
-  extensions: ['.js', '.jsx'],
+  extensions: ['.ts', '.tsx'],
 };
 
 exports.clientBaseConfig = {
   resolve,
   entry: {
-    main: path.join(__dirname, '../src/client/main.js'),
-    site: path.join(__dirname, '../src/client/site.js'),
+    main: path.join(__dirname, '../src/client/main'),
+    site: path.join(__dirname, '../src/client/site'),
   },
 };
 

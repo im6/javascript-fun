@@ -31,16 +31,9 @@ const client = Object.assign(clientBaseConfig, devBase, {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        include,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-            },
-          },
-        ],
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.less$/,
@@ -82,9 +75,9 @@ const server = Object.assign(serverBaseConfig, devBase, {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        include,
-        use: ['babel-loader'],
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.less$/,
