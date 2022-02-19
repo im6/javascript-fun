@@ -18,7 +18,7 @@ const Footer: FC<FooterProps> = ({
 }) => (
   <footer className={style.footer}>
     <div>
-      Full score &#9989; by &nbsp;
+      Full score &#9989;&nbsp;&nbsp;by&nbsp;
       <a
         href={pageSpeedUrl}
         className={style.blue}
