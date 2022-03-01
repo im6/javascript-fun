@@ -26,6 +26,7 @@ module.exports = (qr) =>
     conn.query(qr, (err, rows) => {
       if (err) {
         subscriber.error(err);
+        return;
       }
       subscriber.next(rows);
       subscriber.complete();
