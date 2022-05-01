@@ -4,12 +4,13 @@ const orderBy = require('lodash.orderby');
 
 const groupSite = (data, grp) => {
   const grpRef = grp.reduce((acc, cur) => {
-    acc[`k${cur.id}`] = cur;
+    const grpJson = JSON.parse(JSON.stringify(cur));
+    acc.set(cur.id, grpJson);
     return acc;
-  }, {});
+  }, new Map());
   const result = groupBy(data, 'grp');
   const result2 = Object.keys(result).map((i) => {
-    const obj = grpRef[`k${i}`];
+    const obj = grpRef.get(parseInt(i));
     obj.list = result[i];
     obj.anchorId = obj.name.replace(/\W+/g, '-');
     return obj;
@@ -23,7 +24,7 @@ const groupGithub = (data, iconMap) => {
   const data3 = Object.keys(data2);
   const result = data3.map((k) => {
     const v = data2[k];
-    const newItem = iconMap[`k${k}`];
+    const newItem = iconMap.get(parseInt(k));
     newItem.list = v;
     newItem.anchorId = newItem.name.replace(/\W+/g, '-');
     if (newItem.icon) {
@@ -40,9 +41,9 @@ const groupGithub = (data, iconMap) => {
 
 const convertGroupIcon = (data) =>
   data.reduce((accumulator, currentValue) => {
-    accumulator[`k${currentValue.id}`] = currentValue;
+    accumulator.set(currentValue.id, currentValue);
     return accumulator;
-  }, {});
+  }, new Map());
 
 const parseStarNum = (body) => {
   const $ = cheerio.load(body);
