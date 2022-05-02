@@ -10,7 +10,7 @@ const groupSite = (data, grp) => {
   }, new Map());
   const result = groupBy(data, 'grp');
   const result2 = Object.keys(result).map((i) => {
-    const obj = grpRef.get(parseInt(i));
+    const obj = grpRef.get(parseInt(i, 10));
     obj.list = result[i];
     obj.anchorId = obj.name.replace(/\W+/g, '-');
     return obj;
@@ -24,7 +24,7 @@ const groupGithub = (data, iconMap) => {
   const data3 = Object.keys(data2);
   const result = data3.map((k) => {
     const v = data2[k];
-    const newItem = iconMap.get(parseInt(k));
+    const newItem = iconMap.get(parseInt(k, 10));
     newItem.list = v;
     newItem.anchorId = newItem.name.replace(/\W+/g, '-');
     if (newItem.icon) {

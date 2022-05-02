@@ -9,7 +9,7 @@ const { cateMock, siteMock, githubMock } = require('../../testing/mockData');
 describe('test packages/crawler helper', () => {
   test('convertGroupIcon', () => {
     const res = convertGroupIcon(cateMock);
-    expect(Object.keys(res)).toHaveLength(3);
+    expect(res.size).toEqual(3);
   });
 
   test('groupSite func', () => {
