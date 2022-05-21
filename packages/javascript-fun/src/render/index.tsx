@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { resolve } from 'path';
-import { renderToStaticMarkup } from 'react-dom/server';
+import { renderToStaticNodeStream } from 'react-dom/server';
 import { githubUrl, gitJsonPath, siteJsonPath } from 'app-constant';
 
 import AppContainer from '../components/AppContainer';
@@ -50,10 +50,18 @@ const generateGitPage = (url: string) => {
       />
     </AppContainer>
   );
-  const html = `<!DOCTYPE html>${renderToStaticMarkup(htmlDOM)}`;
+
   const jsonOutputUrl = `${renderOutputFolder}${url}index.html`;
-  fs.writeFileSync(jsonOutputUrl, html);
-  console.log(`output ${url} success`);
+
+  const contentStream = renderToStaticNodeStream(htmlDOM);
+
+  const writableStream = fs.createWriteStream(jsonOutputUrl);
+  writableStream.write('<!DOCTYPE html>');
+
+  const stream = contentStream.pipe(writableStream);
+  stream.on('finish', () => {
+    console.log(`output ${url} success`);
+  });
 };
 
 const generateSitePage = (url: string) => {
@@ -79,10 +87,18 @@ const generateSitePage = (url: string) => {
       <LinkPage source={siteSource} iconCdnUrl={iconCdnUrl} />
     </AppContainer>
   );
-  const html = `<!DOCTYPE html>${renderToStaticMarkup(htmlDOM)}`;
+
   const jsonOutputUrl = `${renderOutputFolder}${url}index.html`;
-  fs.writeFileSync(jsonOutputUrl, html);
-  console.log(`output ${url} success`);
+
+  const contentStream = renderToStaticNodeStream(htmlDOM);
+
+  const writableStream = fs.createWriteStream(jsonOutputUrl);
+  writableStream.write('<!DOCTYPE html>');
+
+  const stream = contentStream.pipe(writableStream);
+  stream.on('finish', () => {
+    console.log(`output ${url} success`);
+  });
 };
 
 if (!fs.existsSync(renderOutputFolder)) {
