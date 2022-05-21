@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { Request, Response } from 'express';
-import { renderToStaticMarkup } from 'react-dom/server';
+import { renderToStaticNodeStream } from 'react-dom/server';
 import { githubUrl, gitJsonPath, siteJsonPath } from 'app-constant';
 
 import AppContainer from '../components/AppContainer';
@@ -30,9 +30,9 @@ export const linkMd = (req: Request, res: Response) => {
       <LinkPage source={siteSource} iconCdnUrl={iconCdnUrl} />
     </AppContainer>
   );
-  const html = renderToStaticMarkup(htmlDOM);
-  res.status(200);
-  res.send(`<!DOCTYPE html>${html}`);
+  const stream = renderToStaticNodeStream(htmlDOM);
+  res.write('<!DOCTYPE html>');
+  stream.pipe(res);
 };
 
 export const gitMd = (req: Request, res: Response) => {
@@ -54,9 +54,9 @@ export const gitMd = (req: Request, res: Response) => {
       />
     </AppContainer>
   );
-  const html = renderToStaticMarkup(htmlDOM);
-  res.status(200);
-  res.send(`<!DOCTYPE html>${html}`);
+  const stream = renderToStaticNodeStream(htmlDOM);
+  res.write('<!DOCTYPE html>');
+  stream.pipe(res);
 };
 
 export const staticHtml = (req: Request, res: Response) => {
