@@ -13,6 +13,7 @@
     "render": "cd packages/javascript-fun && node ./dist/node/render.js",
     "admin": "cd packages/admin && node -r dotenv/config index.js dotenv_config_path=../../../javascript-fun.env",
     "collect": "cd packages/crawler && node -r dotenv/config index.js dotenv_config_path=../../../javascript-fun.env",
+    "sync": "cd packages/dynamodb-sync && node -r dotenv/config index.js dotenv_config_path=../../../javascript-fun.env",
     "lint": "eslint ./packages",
     "cp": ". ./tasks/cp.sh"
   },
