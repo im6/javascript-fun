@@ -4,12 +4,12 @@ const { githubUrl } = require('app-constant');
 const mysqlObservable = require('mysql-observable');
 const { from, forkJoin, Subject } = require('rxjs');
 const {
-  delay,
-  switchMap,
-  concatMap,
-  toArray,
   tap,
   map,
+  delay,
+  toArray,
+  switchMap,
+  concatMap,
 } = require('rxjs/operators');
 
 const { parseStarNum } = require('./helper');
@@ -56,30 +56,25 @@ const getGithubData$ = () => {
           total: taskList.length,
         });
       }),
-      switchMap((x) =>
-        from(x).pipe(
-          concatMap((v) =>
-            getGithubStar$(v.github).pipe(
-              map((star) => ({
-                ...v,
-                star,
-                name: v.name || v.github.split('/')[1],
-              })),
-              tap(({ github, star }) => {
-                bar.tick({ gtnm: github });
-                if (!star) {
-                  // eslint-disable-next-line no-console
-                  console.error(
-                    `\n star number not found: ${githubUrl}/${github}`
-                  );
-                }
-              }),
-              delay(crawlerStepDelay)
-            )
-          ),
-          toArray()
+      switchMap((x) => from(x)),
+      concatMap((v) =>
+        getGithubStar$(v.github).pipe(
+          map((star) => ({
+            ...v,
+            star,
+            name: v.name || v.github.split('/')[1],
+          })),
+          tap(({ github, star }) => {
+            bar.tick({ gtnm: github });
+            if (!star) {
+              // eslint-disable-next-line no-console
+              console.error(`\n star number not found: ${githubUrl}/${github}`);
+            }
+          }),
+          delay(crawlerStepDelay)
         )
-      )
+      ),
+      toArray()
     ),
   ]);
 };
