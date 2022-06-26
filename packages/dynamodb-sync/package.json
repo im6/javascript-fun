@@ -1,8 +1,0 @@
-{
-  "name": "dynamodb-sync",
-  "version": "1.0.0",
-  "license": "MIT",
-  "dependencies": {
-    "mysql-observable": "1.0.0"
-  }
-}
