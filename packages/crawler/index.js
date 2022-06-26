@@ -10,10 +10,10 @@ if (!fs.existsSync(fullDataSourceDir)) {
   fs.mkdirSync(fullDataSourceDir);
 }
 
-const sqlSite$ = getSiteData$();
-const sqlGithub$ = getGithubData$();
+const siteData$ = getSiteData$();
+const githubData$ = getGithubData$();
 
-sqlGithub$.subscribe({
+githubData$.subscribe({
   next: ([d0, d1]) => {
     const iconMap = convertGroupIcon(d0);
     const data = groupGithub(d1, iconMap);
@@ -33,7 +33,7 @@ sqlGithub$.subscribe({
   },
 });
 
-sqlSite$.subscribe({
+siteData$.subscribe({
   next: ([grps, sites]) => {
     const siteList = groupSite(sites, grps);
     fs.writeFile(
