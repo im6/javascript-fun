@@ -25,7 +25,7 @@ const siteMock = [
     name: 'cnn',
     desc: 'cnn news',
     url: 'www.cnn.com',
-    grp: 1,
+    category: 1,
   },
 ];
 const githubMock = [
@@ -34,14 +34,14 @@ const githubMock = [
     name: 'jquery',
     desc: 'jquery desc',
     github: 'jquery/jqeuery',
-    grp: 2,
+    category: 2,
   },
   {
     id: 2,
     name: 'lodash',
     desc: 'lodash desc',
     github: 'lodash/lodash',
-    grp: 2,
+    category: 2,
     img: 'lodash.svg',
   },
   {
@@ -49,7 +49,7 @@ const githubMock = [
     name: 'rxjs',
     desc: 'rxjs desc',
     github: 'rxjs/rxjs',
-    grp: 3,
+    category: 3,
     img: 'rxjs.svg',
   },
 ];

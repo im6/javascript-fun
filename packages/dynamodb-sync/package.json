@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.1160.0"
+    "mysql-observable": "1.0.0"
   }
 }

@@ -70,7 +70,7 @@ export const topNavConfig = [
     alt: 'framework',
     disqusId: 'jsfun-000',
     asset: 'main',
-    page: 1,
+    page: 0,
   },
   {
     to: '/node/',
@@ -79,7 +79,7 @@ export const topNavConfig = [
     alt: 'node',
     disqusId: 'jsfun-001',
     asset: 'main',
-    page: 2,
+    page: 1,
   },
   {
     to: '/library/',
@@ -88,7 +88,7 @@ export const topNavConfig = [
     alt: 'library',
     disqusId: 'jsfun-002',
     asset: 'main',
-    page: 3,
+    page: 2,
   },
   {
     to: '/site/',

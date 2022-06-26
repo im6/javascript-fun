@@ -18,6 +18,7 @@
     "cp": ". ./tasks/cp.sh"
   },
   "dependencies": {
+    "aws-sdk": "^2.1160.0",
     "dotenv": "^16.0.1",
     "eslint": "^8.16.0",
     "eslint-config-airbnb": "^19.0.4",

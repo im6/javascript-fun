@@ -1,8 +1,8 @@
+const AWS = require('aws-sdk');
 const fetch = require('node-fetch');
 const ProgressBar = require('progress');
 const { githubUrl } = require('app-constant');
-const mysqlObservable = require('mysql-observable');
-const { from, forkJoin, Subject } = require('rxjs');
+const { from, forkJoin, Observable, Subject } = require('rxjs');
 const {
   tap,
   map,
@@ -11,21 +11,34 @@ const {
   switchMap,
   concatMap,
 } = require('rxjs/operators');
-
 const { parseStarNum } = require('./helper');
+
+const dynamodb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
 
 const timeout = 5 * 1000;
 const crawlerStepDelay = 800;
 const { MY_COOKIE: Cookie } = process.env;
 
+const getDynamoScan$ = (params) =>
+  new Observable((subscriber) => {
+    dynamodb.scan(params, (err, raw) => {
+      if (err) {
+        subscriber.error(err);
+        return;
+      }
+      const data = raw.Items.map((v) => AWS.DynamoDB.Converter.unmarshall(v));
+      subscriber.next(data);
+      subscriber.complete();
+    });
+  });
+
 const category$ = new Subject();
-mysqlObservable('SELECT * FROM category').subscribe(category$);
+getDynamoScan$({
+  TableName: 'jsfun_category',
+}).subscribe(category$);
 
 const getSiteData$ = () =>
-  forkJoin([
-    category$,
-    mysqlObservable('SELECT * FROM site where grp is NOT NULL'),
-  ]);
+  forkJoin([category$, getDynamoScan$({ TableName: 'jsfun_site' })]);
 
 const getGithubStar$ = (subUrl) => {
   const httpOptions = {
@@ -44,13 +57,25 @@ const getGithubStar$ = (subUrl) => {
   );
 };
 
+const githubDataScan$ = getDynamoScan$({
+  TableName: 'jsfun_git',
+  // ScanFilter: {
+  //   category: {
+  //     ComparisonOperator: 'LE',
+  //     AttributeValueList: [
+  //       {
+  //         N: '1',
+  //       },
+  //     ],
+  //   },
+  // },
+});
+
 const getGithubData$ = () => {
   let bar = null;
   return forkJoin([
     category$,
-    mysqlObservable(
-      'SELECT *, NULL as star FROM git WHERE `grp` IS NOT NULL' // " AND id < 20"
-    ).pipe(
+    githubDataScan$.pipe(
       tap((taskList) => {
         bar = new ProgressBar('downloading :current of :total: :gtnm', {
           total: taskList.length,
