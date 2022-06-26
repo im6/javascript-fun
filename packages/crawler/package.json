@@ -8,7 +8,6 @@
     "cheerio": "^1.0.0-rc.11",
     "lodash.groupby": "^4.6.0",
     "lodash.orderby": "^4.6.0",
-    "mysql-observable": "1.0.0",
     "node-fetch": "2.6.x",
     "progress": "^2.0.3"
   }

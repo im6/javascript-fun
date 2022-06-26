@@ -1,7 +1,5 @@
 const prompts = require('prompts');
-const mysqlObservable = require('mysql-observable');
-
-const { sqlRes$ } = require('./observables');
+const { getDynamoPut$, dynamoScanGitAndCategory$ } = require('./observables');
 
 const githubUrlFormat = /^[a-zA-Z0-9-]+\/[a-zA-Z0-9-.]+$/;
 
@@ -72,13 +70,20 @@ const generatePrompts = ([git, cate]) => {
             console.log('canceled'); // eslint-disable-line no-console
             return;
           }
-          const grpId = cateMap[a.group.toLowerCase()];
-          const img = a.img ? `"${a.img}"` : 'NULL';
-          const name = a.name ? `"${a.name}"` : 'NULL';
-          const query = `INSERT INTO git (github, grp, name, img) VALUES ("${a.github}", ${grpId}, ${name}, ${img});`;
-          console.log(query); // eslint-disable-line no-console
-          mysqlObservable(query).subscribe(() => {
-            console.log('Add to git table successfully.'); // eslint-disable-line no-console
+          const category = cateMap[a.group.toLowerCase()];
+          const item = {
+            category,
+            github: a.github,
+          };
+          if (a.img) {
+            item.img = a.img;
+          }
+          if (a.name) {
+            item.name = a.name;
+          }
+          console.log(item); // eslint-disable-line no-console
+          getDynamoPut$('jsfun_git', item).subscribe((res) => {
+            console.log('Add to git table successfully.', res); // eslint-disable-line no-console
           });
         });
         break;
@@ -117,16 +122,28 @@ const generatePrompts = ([git, cate]) => {
             },
             message: 'What is website name?',
           },
+          {
+            type: 'text',
+            name: 'desc',
+            message: 'Do you have optinal description?',
+          },
         ]).then((a) => {
-          const grpId = cateMap[a.group.toLowerCase()];
-          if (!a.confirm || !grpId) {
+          const category = cateMap[a.group.toLowerCase()];
+          if (!a.confirm || !category) {
             console.log('canceled'); // eslint-disable-line no-console
             return;
           }
-          const query = `INSERT INTO site (url, grp, name) VALUES ("${a.url}", ${grpId}, "${a.name}");`;
-          console.log(query); // eslint-disable-line no-console
-          mysqlObservable(query).subscribe(() => {
-            console.log('Add to site table successfully.'); // eslint-disable-line no-console
+          const item = {
+            category,
+            url: a.url,
+            name: a.name,
+          };
+          if (a.desc) {
+            item.desc = a.desc;
+          }
+          console.log(item); // eslint-disable-line no-console
+          getDynamoPut$('jsfun_site', item).subscribe((res) => {
+            console.log('Add to site table successfully.', res); // eslint-disable-line no-console
           });
         });
         break;
@@ -136,7 +153,7 @@ const generatePrompts = ([git, cate]) => {
   });
 };
 
-sqlRes$.subscribe({
+dynamoScanGitAndCategory$.subscribe({
   next: (twoTableRows) => {
     generatePrompts(twoTableRows);
   },

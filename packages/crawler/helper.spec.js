@@ -15,7 +15,7 @@ describe('test packages/crawler helper', () => {
   test('groupSite func', () => {
     const res = groupSite(siteMock, cateMock);
     expect(res[0].list).toHaveLength(
-      siteMock.filter((v) => v.grp === 1).length
+      siteMock.filter((v) => v.category === 1).length
     );
   });
 
@@ -23,7 +23,7 @@ describe('test packages/crawler helper', () => {
     const res = groupGithub(githubMock, convertGroupIcon(cateMock));
     expect(res[0].icon).toBe('jquery.svg');
     expect(res[0].list).toHaveLength(
-      githubMock.filter((v) => v.grp === 2).length
+      githubMock.filter((v) => v.category === 2).length
     );
   });
   test('parseStarNum func', () => {

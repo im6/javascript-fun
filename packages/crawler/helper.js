@@ -8,7 +8,7 @@ const groupSite = (data, grp) => {
     acc.set(cur.id, grpJson);
     return acc;
   }, new Map());
-  const result = groupBy(data, 'grp');
+  const result = groupBy(data, 'category');
   const result2 = Object.keys(result).map((i) => {
     const obj = grpRef.get(parseInt(i, 10));
     obj.list = result[i];
@@ -20,7 +20,7 @@ const groupSite = (data, grp) => {
 
 const groupGithub = (data, iconMap) => {
   const data1 = orderBy(data, ['star'], ['desc']);
-  const data2 = groupBy(data1, 'grp');
+  const data2 = groupBy(data1, 'category');
   const data3 = Object.keys(data2);
   const result = data3.map((k) => {
     const v = data2[k];
