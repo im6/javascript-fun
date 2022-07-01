@@ -12,9 +12,10 @@ const LinkBox: FC<LinkBoxProps> = ({ url, name, desc }) => (
     className={`pure-u-xl-1-4 pure-u-lg-1-3 pure-u-md-1-2 pure-u-sm-1-2 pure-u-1-2 ${style.box}`}
   >
     <h3>
-      <a href={url}>{name}</a>
+      <a href={url} title={desc}>
+        {name}
+      </a>
     </h3>
-    <p>{desc}&nbsp;</p>
   </div>
 );
 
