@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "target": "es6",
+    "strict": true,
+    "sourceMap": true,
+    "moduleResolution": "node"
+  },
+  "exclude": ["node_modules"]
+}

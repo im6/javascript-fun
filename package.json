@@ -11,7 +11,7 @@
     "build": "cd packages/javascript-fun && webpack --config ./webpack/production.js",
     "web": "cd packages/javascript-fun && node ./dist/node/server.js",
     "render": "cd packages/javascript-fun && node ./dist/node/render.js",
-    "admin": "cd packages/admin && node -r dotenv/config index.js dotenv_config_path=../../../javascript-fun.env",
+    "admin": "cd packages/admin && ts-node index.ts",
     "collect": "cd packages/crawler && node -r dotenv/config index.js dotenv_config_path=../../../javascript-fun.env",
     "lint": "eslint ./packages",
     "cp": ". ./tasks/cp.sh"
@@ -29,6 +29,7 @@
     "eslint-plugin-react": "^7.30.0",
     "jest": "^28.1.0",
     "prettier": "^2.6.2",
-    "rxjs": "^7.5.5"
+    "rxjs": "^7.5.5",
+    "ts-node": "^10.9.1"
   }
 }

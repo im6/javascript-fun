@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-const { forkJoin, Observable } = require('rxjs');
+import { forkJoin, Observable } from 'rxjs';
 
 const dynamodb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
 
@@ -16,7 +16,7 @@ const getDynamoScan$ = (params) =>
     });
   });
 
-const getDynamoPut$ = (table, item) =>
+export const getDynamoPut$ = (table, item) =>
   new Observable((subscriber) => {
     const params = {
       TableName: table,
@@ -33,12 +33,7 @@ const getDynamoPut$ = (table, item) =>
     });
   });
 
-const dynamoScanGitAndCategory$ = forkJoin([
+export const dynamoScanGitAndCategory$ = forkJoin([
   getDynamoScan$({ TableName: 'jsfun_git' }),
   getDynamoScan$({ TableName: 'jsfun_category' }),
 ]);
-
-module.exports = {
-  getDynamoPut$,
-  dynamoScanGitAndCategory$,
-};
