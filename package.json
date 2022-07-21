@@ -12,7 +12,7 @@
     "web": "cd packages/javascript-fun && node ./dist/node/server.js",
     "render": "cd packages/javascript-fun && node ./dist/node/render.js",
     "admin": "cd packages/admin && ts-node index.ts",
-    "collect": "cd packages/crawler && node -r dotenv/config index.js dotenv_config_path=../../../javascript-fun.env",
+    "collect": "cd packages/crawler && ts-node index.ts",
     "lint": "eslint ./packages",
     "cp": ". ./tasks/cp.sh"
   },
@@ -30,6 +30,7 @@
     "jest": "^28.1.0",
     "prettier": "^2.6.2",
     "rxjs": "^7.5.5",
+    "ts-jest": "^28.0.7",
     "ts-node": "^10.9.1"
   }
 }

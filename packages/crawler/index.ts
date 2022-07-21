@@ -1,3 +1,5 @@
+require('dotenv').config({ path: '../../../javascript-fun.env' });
+
 const fs = require('fs');
 const { resolve } = require('path');
 const { gitJsonPath, siteJsonPath, dataSourceDir } = require('app-constant');

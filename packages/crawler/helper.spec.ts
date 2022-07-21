@@ -1,9 +1,10 @@
-const {
+import {
   groupSite,
   groupGithub,
   convertGroupIcon,
   parseStarNum,
-} = require('./helper');
+} from './helper';
+
 const { cateMock, siteMock, githubMock } = require('../../testing/mockData');
 
 describe('test packages/crawler helper', () => {
