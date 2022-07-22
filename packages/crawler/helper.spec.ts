@@ -5,7 +5,7 @@ import {
   parseStarNum,
 } from './helper';
 
-const { cateMock, siteMock, githubMock } = require('../../testing/mockData');
+import { cateMock, siteMock, githubMock } from './mockData';
 
 describe('test packages/crawler helper', () => {
   test('convertGroupIcon', () => {

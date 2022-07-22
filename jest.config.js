@@ -1,7 +1,8 @@
 'use strict';
-
-const config = {
-  verbose: true,
+/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
   modulePathIgnorePatterns: ['packages/javascript-fun'], // babel-based jest configuration
   coverageThreshold: {
     global: {
@@ -12,5 +13,3 @@ const config = {
     },
   },
 };
-
-module.exports = config;
