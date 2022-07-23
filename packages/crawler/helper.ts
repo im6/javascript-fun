@@ -18,13 +18,13 @@ export const groupSite = (data, grp) => {
   return result2;
 };
 
-export const groupGithub = (data, iconMap) => {
+export const groupGithub = (data, cateMap) => {
   const data1 = orderBy(data, ['star'], ['desc']);
   const data2 = groupBy(data1, 'category');
   const data3 = Object.keys(data2);
   const result = data3.map((k) => {
     const v = data2[k];
-    const newItem = iconMap.get(parseInt(k, 10));
+    const newItem = cateMap.get(parseInt(k, 10));
     newItem.list = v;
     newItem.anchorId = newItem.name.replace(/\W+/g, '-');
     if (newItem.icon) {
@@ -39,7 +39,7 @@ export const groupGithub = (data, iconMap) => {
   return orderBy(result, ['page', 'sort']);
 };
 
-export const convertGroupIcon = (data) =>
+export const generateCateMap = (data) =>
   data.reduce((accumulator, currentValue) => {
     accumulator.set(currentValue.id, currentValue);
     return accumulator;

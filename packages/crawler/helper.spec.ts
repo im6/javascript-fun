@@ -1,15 +1,15 @@
 import {
   groupSite,
   groupGithub,
-  convertGroupIcon,
+  generateCateMap,
   parseStarNum,
 } from './helper';
 
 import { cateMock, siteMock, githubMock } from './mockData';
 
 describe('test packages/crawler helper', () => {
-  test('convertGroupIcon', () => {
-    const res = convertGroupIcon(cateMock);
+  test('generateCateMap', () => {
+    const res = generateCateMap(cateMock);
     expect(res.size).toEqual(3);
   });
 
@@ -21,7 +21,7 @@ describe('test packages/crawler helper', () => {
   });
 
   test('groupGithub func', () => {
-    const res = groupGithub(githubMock, convertGroupIcon(cateMock));
+    const res = groupGithub(githubMock, generateCateMap(cateMock));
     expect(res[0].icon).toBe('jquery.svg');
     expect(res[0].list).toHaveLength(
       githubMock.filter((v) => v.category === 2).length
