@@ -27,16 +27,18 @@ interface GroupBaseSchema {
   anchorId: string;
 }
 
-export interface GitSchema extends LinkSchema {
+export interface GitSchema {
+  category: number;
   github: string;
-  img: string;
+  name: string;
   star: number;
+  lastUpdate: string;
+  img?: string;
 }
 
 export interface LinkSchema {
-  id: number;
-  name: string;
-  desc: string;
+  category: number;
   url: string;
-  grp: number;
+  name: string;
+  desc?: string;
 }

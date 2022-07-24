@@ -4,7 +4,7 @@ import style from './style.less';
 interface LinkBoxProps {
   url: string;
   name: string;
-  desc: string;
+  desc?: string;
 }
 
 const LinkBox: FC<LinkBoxProps> = ({ url, name, desc }) => (
