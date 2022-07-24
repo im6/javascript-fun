@@ -2,7 +2,7 @@ import {
   groupSite,
   groupGithub,
   generateCateMap,
-  parseStarNum,
+  parseExtractGithub,
 } from './helper';
 
 import { cateMock, siteMock, githubMock } from './mockData';
@@ -27,17 +27,25 @@ describe('test packages/crawler helper', () => {
       githubMock.filter((v) => v.category === 2).length
     );
   });
-  test('parseStarNum func', () => {
+  test('parseExtractGithub func', () => {
     const num = 75422;
+    const lastISO = '2022-07-24T14:25:13Z';
     expect(
-      parseStarNum(
-        `<div><span class="Counter social-count js-social-count" href="/angular/angular/stargazers" aria-label="${num} users starred this repository">75.4k</a></div>`
+      parseExtractGithub(
+        `<div><span class="Counter social-count js-social-count" href="/angular/angular/stargazers" aria-label="${num} users starred this repository">75.4k</span><relative-time datetime="${lastISO}">43 minutes ago</relative-time>
+        </div>`
       )
-    ).toBe(num);
+    ).toEqual({
+      star: num,
+      lastUpdate: lastISO,
+    });
     expect(
-      parseStarNum(
+      parseExtractGithub(
         `<div><a href="/angular/angular/stargazers" aria-label="${num} users starred this repository">75.4k</a></div>`
       )
-    ).toBeNull();
+    ).toEqual({
+      star: -1,
+      lastUpdate: null,
+    });
   });
 });

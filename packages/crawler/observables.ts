@@ -14,7 +14,7 @@ const {
   Observable,
   Subject,
 } = require('rxjs');
-const { parseStarNum } = require('./helper');
+const { parseExtractGithub } = require('./helper');
 
 const dynamodb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
 
@@ -43,7 +43,7 @@ getDynamoScan$({
 export const getSiteData$ = () =>
   forkJoin([category$, getDynamoScan$({ TableName: 'jsfun_site' })]);
 
-const getGithubStar$ = (subUrl) => {
+const getGithubMetrics$ = (subUrl) => {
   const httpOptions = {
     timeout,
     headers: {
@@ -56,7 +56,7 @@ const getGithubStar$ = (subUrl) => {
   return from(
     nodeFetch(`${githubUrl}/${subUrl}`, httpOptions)
       .then((res) => res.text())
-      .then((body) => parseStarNum(body))
+      .then((body) => parseExtractGithub(body))
   );
 };
 
@@ -86,10 +86,11 @@ export const getGithubData$ = () => {
       }),
       switchMap((x) => from(x)),
       concatMap((v) =>
-        getGithubStar$(v.github).pipe(
-          map((star) => ({
+        getGithubMetrics$(v.github).pipe(
+          map(({ star, lastUpdate }) => ({
             ...v,
             star,
+            lastUpdate,
             name: v.name || v.github.split('/')[1],
           })),
           tap(({ github, star }) => {

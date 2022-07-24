@@ -45,14 +45,28 @@ export const generateCateMap = (data) =>
     return accumulator;
   }, new Map());
 
-export const parseStarNum = (body): number | null => {
+export const parseExtractGithub = (body) => {
   const $ = cheerio.load(body);
-  const elems = $('span.Counter.js-social-count');
-  if (elems.length === 0) {
-    return null;
+  const res = {
+    star: -1,
+    lastUpdate: null,
+  };
+  const starElems = $('span.Counter.js-social-count');
+  if (starElems.length > 0) {
+    const starElem = starElems[0];
+    const numLabel = starElem.attribs['aria-label'];
+    const numStr = numLabel.split(' ')[0];
+    res.star = parseInt(numStr, 10);
+  } else {
+    console.error('star not found');
   }
-  const starElem = elems[0];
-  const numLabel = starElem.attribs['aria-label'];
-  const numStr = numLabel.split(' ')[0];
-  return parseInt(numStr, 10);
+
+  const lastUpdateElems = $('relative-time');
+  if (lastUpdateElems.length > 0) {
+    const { datetime } = lastUpdateElems[0].attribs;
+    res.lastUpdate = datetime;
+  } else {
+    console.error('last update not found');
+  }
+  return res;
 };
