@@ -11,12 +11,14 @@
     "build": "cd packages/javascript-fun && webpack --config ./webpack/production.js",
     "web": "cd packages/javascript-fun && node ./dist/node/server.js",
     "render": "cd packages/javascript-fun && node ./dist/node/render.js",
-    "admin": "cd packages/admin && node -r dotenv/config index.js dotenv_config_path=../../../javascript-fun.env",
-    "collect": "cd packages/crawler && node -r dotenv/config index.js dotenv_config_path=../../../javascript-fun.env",
+    "admin": "cd packages/admin && ts-node index.ts",
+    "collect": "cd packages/crawler && ts-node index.ts",
     "lint": "eslint ./packages",
     "cp": ". ./tasks/cp.sh"
   },
   "dependencies": {
+    "@types/jest": "^28.1.6",
+    "@types/node": "^18.0.6",
     "aws-sdk": "^2.1160.0",
     "dotenv": "^16.0.1",
     "eslint": "^8.16.0",
@@ -29,6 +31,9 @@
     "eslint-plugin-react": "^7.30.0",
     "jest": "^28.1.0",
     "prettier": "^2.6.2",
-    "rxjs": "^7.5.5"
+    "rxjs": "^7.5.5",
+    "ts-jest": "^28.0.7",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
   }
 }

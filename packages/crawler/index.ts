@@ -1,8 +1,10 @@
+require('dotenv').config({ path: '../../../javascript-fun.env' });
+
 const fs = require('fs');
 const { resolve } = require('path');
 const { gitJsonPath, siteJsonPath, dataSourceDir } = require('app-constant');
 const { getSiteData$, getGithubData$ } = require('./observables');
-const { groupSite, groupGithub, convertGroupIcon } = require('./helper');
+const { groupSite, groupGithub, generateCateMap } = require('./helper');
 
 const fullDataSourceDir = resolve(process.cwd(), '../../', dataSourceDir);
 
@@ -15,8 +17,8 @@ const githubData$ = getGithubData$();
 
 githubData$.subscribe({
   next: ([d0, d1]) => {
-    const iconMap = convertGroupIcon(d0);
-    const data = groupGithub(d1, iconMap);
+    const cateMap = generateCateMap(d0);
+    const data = groupGithub(d1, cateMap);
     fs.writeFile(
       resolve(process.cwd(), '../../', gitJsonPath),
       JSON.stringify(data),

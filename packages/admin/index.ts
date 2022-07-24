@@ -1,9 +1,14 @@
+require('dotenv').config({ path: '../../../javascript-fun.env' });
+
 const prompts = require('prompts');
-const { getDynamoPut$, dynamoScanGitAndCategory$ } = require('./observables');
+import { getDynamoPut$, dynamoScanGitAndCategory$ } from './observables';
+import { CategorySchema, GitSchema, SiteSchema } from './interface';
 
 const githubUrlFormat = /^[a-zA-Z0-9-]+\/[a-zA-Z0-9-.]+$/;
 
-const generatePrompts = ([git, cate]) => {
+const generatePrompts = (result) => {
+  const git: GitSchema[] = result[0];
+  const cate: CategorySchema[] = result[1];
   const gitMap = git.reduce((acc, cur) => {
     acc[cur.github.toLowerCase()] = true;
     return acc;
@@ -71,7 +76,7 @@ const generatePrompts = ([git, cate]) => {
             return;
           }
           const category = cateMap[a.group.toLowerCase()];
-          const item = {
+          const item: GitSchema = {
             category,
             github: a.github,
           };
@@ -133,7 +138,7 @@ const generatePrompts = ([git, cate]) => {
             console.log('canceled'); // eslint-disable-line no-console
             return;
           }
-          const item = {
+          const item: SiteSchema = {
             category,
             url: a.url,
             name: a.name,

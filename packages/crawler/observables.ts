@@ -1,16 +1,19 @@
 const AWS = require('aws-sdk');
-const fetch = require('node-fetch');
 const ProgressBar = require('progress');
+const nodeFetch = require('node-fetch');
 const { githubUrl } = require('app-constant');
-const { from, forkJoin, Observable, Subject } = require('rxjs');
 const {
+  from,
+  forkJoin,
   tap,
   map,
   delay,
   toArray,
   switchMap,
   concatMap,
-} = require('rxjs/operators');
+  Observable,
+  Subject,
+} = require('rxjs');
 const { parseStarNum } = require('./helper');
 
 const dynamodb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
@@ -37,7 +40,7 @@ getDynamoScan$({
   TableName: 'jsfun_category',
 }).subscribe(category$);
 
-const getSiteData$ = () =>
+export const getSiteData$ = () =>
   forkJoin([category$, getDynamoScan$({ TableName: 'jsfun_site' })]);
 
 const getGithubStar$ = (subUrl) => {
@@ -51,7 +54,7 @@ const getGithubStar$ = (subUrl) => {
     },
   };
   return from(
-    fetch(`${githubUrl}/${subUrl}`, httpOptions)
+    nodeFetch(`${githubUrl}/${subUrl}`, httpOptions)
       .then((res) => res.text())
       .then((body) => parseStarNum(body))
   );
@@ -71,8 +74,8 @@ const githubDataScan$ = getDynamoScan$({
   // },
 });
 
-const getGithubData$ = () => {
-  let bar = null;
+export const getGithubData$ = () => {
+  let bar: ProgressBar;
   return forkJoin([
     category$,
     githubDataScan$.pipe(
@@ -102,9 +105,4 @@ const getGithubData$ = () => {
       toArray()
     ),
   ]);
-};
-
-module.exports = {
-  getSiteData$,
-  getGithubData$,
 };

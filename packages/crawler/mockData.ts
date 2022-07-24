@@ -1,4 +1,4 @@
-const cateMock = [
+export const cateMock = [
   {
     id: 1,
     name: 'famous web',
@@ -19,7 +19,7 @@ const cateMock = [
     sort: 1,
   },
 ];
-const siteMock = [
+export const siteMock = [
   {
     id: 1,
     name: 'cnn',
@@ -28,7 +28,7 @@ const siteMock = [
     category: 1,
   },
 ];
-const githubMock = [
+export const githubMock = [
   {
     id: 1,
     name: 'jquery',
@@ -53,9 +53,3 @@ const githubMock = [
     img: 'rxjs.svg',
   },
 ];
-
-module.exports = {
-  cateMock,
-  siteMock,
-  githubMock,
-};
