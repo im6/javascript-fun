@@ -1,6 +1,6 @@
-const cheerio = require('cheerio');
-const groupBy = require('lodash.groupby');
-const orderBy = require('lodash.orderby');
+import * as cheerio from 'cheerio';
+import * as groupBy from 'lodash.groupby';
+import * as orderBy from 'lodash.orderby';
 
 export const groupSite = (data, grp) => {
   const grpRef = grp.reduce((acc, cur) => {
@@ -49,8 +49,9 @@ export const parseExtractGithub = (body) => {
   const $ = cheerio.load(body);
   const res = {
     star: -1,
-    lastUpdate: null,
+    lastUpdate: '',
   };
+
   const starElems = $('span.Counter.js-social-count');
   if (starElems.length > 0) {
     const starElem = starElems[0];
@@ -58,7 +59,8 @@ export const parseExtractGithub = (body) => {
     const numStr = numLabel.split(' ')[0];
     res.star = parseInt(numStr, 10);
   } else {
-    console.error('star not found');
+    // eslint-disable-next-line no-console
+    console.error(`\n star number not found`);
   }
 
   const lastUpdateElems = $('relative-time');
@@ -66,7 +68,8 @@ export const parseExtractGithub = (body) => {
     const { datetime } = lastUpdateElems[0].attribs;
     res.lastUpdate = datetime;
   } else {
-    console.error('last update not found');
+    // eslint-disable-next-line no-console
+    console.error('\n last update not found');
   }
   return res;
 };

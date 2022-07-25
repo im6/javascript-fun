@@ -45,7 +45,7 @@ describe('test packages/crawler helper', () => {
       )
     ).toEqual({
       star: -1,
-      lastUpdate: null,
+      lastUpdate: '',
     });
   });
 });

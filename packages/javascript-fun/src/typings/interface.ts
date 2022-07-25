@@ -32,7 +32,7 @@ export interface GitSchema {
   github: string;
   name: string;
   star: number;
-  lastUpdate: string;
+  inactiveDate: string;
   img?: string;
 }
 

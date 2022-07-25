@@ -14,7 +14,8 @@ const {
   Observable,
   Subject,
 } = require('rxjs');
-const { parseExtractGithub } = require('./helper');
+import { format, parseISO, differenceInMonths } from 'date-fns';
+import { parseExtractGithub } from './helper';
 
 const dynamodb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
 
@@ -87,18 +88,20 @@ export const getGithubData$ = () => {
       switchMap((x) => from(x)),
       concatMap((v) =>
         getGithubMetrics$(v.github).pipe(
-          map(({ star, lastUpdate }) => ({
-            ...v,
-            star,
-            lastUpdate,
-            name: v.name || v.github.split('/')[1],
-          })),
-          tap(({ github, star }) => {
+          map(({ star, lastUpdate }) => {
+            const parsedDate = parseISO(lastUpdate);
+            const diff = differenceInMonths(new Date(), parsedDate);
+            const inactiveDate =
+              diff > 6 ? format(parsedDate, 'MMM d, yyyy') : null;
+            return {
+              ...v,
+              star,
+              inactiveDate,
+              name: v.name || v.github.split('/')[1],
+            };
+          }),
+          tap(({ github }) => {
             bar.tick({ gtnm: github });
-            if (!star) {
-              // eslint-disable-next-line no-console
-              console.error(`\n star number not found: ${githubUrl}/${github}`);
-            }
           }),
           delay(crawlerStepDelay)
         )

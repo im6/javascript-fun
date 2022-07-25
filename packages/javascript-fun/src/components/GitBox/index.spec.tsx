@@ -11,6 +11,7 @@ describe('render properly', () => {
         img="news"
         imgSrc="news"
         star={123}
+        inactiveDate="Jun 22 2020"
       />
     );
     expect(getAllByText(name)).toHaveLength(1);

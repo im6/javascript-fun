@@ -44,6 +44,7 @@ const GitPage: FC<GitPageProps> = ({
                 star={v1.star}
                 url={`${githubUrl}/${v1.github}`}
                 lazyImg={lazyLoad ? v1.img : undefined}
+                inactiveDate={v1.inactiveDate}
               />
             ))}
           </BoxGroup>
