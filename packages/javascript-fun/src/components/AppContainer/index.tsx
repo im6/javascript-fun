@@ -6,6 +6,7 @@ import Layout from './Layout';
 const {
   author,
   domain,
+  showAd,
   pageSpeedUrl,
   hideGithubCorner,
   gitRepo,
@@ -37,6 +38,7 @@ const AppContainer: FC<AppContainerProps> = ({
 }) => (
   <Html
     domain={domain}
+    showAd={showAd}
     title={topNavDict[url].title}
     year={primaryYear}
     favIconPngUrl={favIconPngUrl}

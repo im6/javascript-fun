@@ -30,6 +30,7 @@ export const favIconPngUrl = `${iconCdnUrl}/deno-fav.png`;
 export const author = 'Zijian Guo';
 export const pageSpeedUrl = `https://pagespeed.web.dev/report?url=https%3A%2F%2Fwww.${domain}%2F`;
 export const hideGithubCorner = false;
+export const showAd = true;
 export const showDisqus = false; // also uncomment import in /src/client/layout/index.js
 export const gitRepo = `${githubUrl}/${repoUrl}`;
 /* istanbul ignore next */

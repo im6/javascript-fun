@@ -5,6 +5,7 @@ import GoogleFont from '../GoogleFont';
 
 interface HtmlProps {
   year: string;
+  showAd: boolean;
   title: string;
   domain: string;
   style: string;
@@ -21,6 +22,7 @@ interface HtmlProps {
 const Html: FC<HtmlProps> = ({
   title,
   domain,
+  showAd,
   year,
   author,
   style,
@@ -52,6 +54,13 @@ const Html: FC<HtmlProps> = ({
             __html: `if(window.location.hostname.indexOf('${domain}') > -1){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KQ9MZHN');console.log('last build: ${lastBuildDate}');}`,
           }}
         />
+        {showAd && (
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1613854411033042"
+            crossOrigin="anonymous"
+          />
+        )}
       </head>
       <body data-color-mode="">
         <noscript>
