@@ -2,3 +2,4 @@ dist
 local
 node_modules
 coverage
+data-source
