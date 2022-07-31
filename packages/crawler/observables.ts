@@ -2,7 +2,7 @@ const AWS = require('aws-sdk');
 const ProgressBar = require('progress');
 const nodeFetch = require('node-fetch');
 const { githubUrl } = require('app-constant');
-const {
+import {
   from,
   forkJoin,
   tap,
@@ -13,9 +13,10 @@ const {
   concatMap,
   Observable,
   Subject,
-} = require('rxjs');
+} from 'rxjs';
 import { format, parseISO, differenceInMonths } from 'date-fns';
 import { parseExtractGithub } from './helper';
+import { GitSchema, GitParseResult } from './interface';
 
 const dynamodb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
 
@@ -44,7 +45,7 @@ getDynamoScan$({
 export const getSiteData$ = () =>
   forkJoin([category$, getDynamoScan$({ TableName: 'jsfun_site' })]);
 
-const getGithubMetrics$ = (subUrl) => {
+const getGithubMetrics$ = (subUrl: string) => {
   const httpOptions = {
     timeout,
     headers: {
@@ -76,18 +77,19 @@ const githubDataScan$ = getDynamoScan$({
 });
 
 export const getGithubData$ = () => {
-  let bar: ProgressBar;
+  let bar;
   return forkJoin([
     category$,
     githubDataScan$.pipe(
-      tap((taskList) => {
+      tap((taskList: any) => {
         bar = new ProgressBar('downloading :current of :total: :gtnm', {
           total: taskList.length,
         });
       }),
-      switchMap((x) => from(x)),
+      switchMap((x) => from<Observable<GitSchema>>(x)),
       concatMap((v) =>
         getGithubMetrics$(v.github).pipe(
+          map((v) => v as GitParseResult),
           map(({ star, lastUpdate }) => {
             const parsedDate = parseISO(lastUpdate);
             const diff = differenceInMonths(new Date(), parsedDate);
