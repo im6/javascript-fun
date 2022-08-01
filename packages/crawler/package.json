@@ -11,6 +11,7 @@
     "lodash.groupby": "^4.6.0",
     "lodash.orderby": "^4.6.0",
     "node-fetch": "2.6.x",
-    "progress": "^2.0.3"
+    "progress": "^2.0.3",
+    "rxjs": "^7.5.6"
   }
 }
