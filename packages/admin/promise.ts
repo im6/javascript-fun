@@ -1,21 +1,21 @@
 const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
 
-export const validateGithubUrl = (url) => {
-  const params = {
-    TableName: 'jsfun_git',
-    ScanFilter: {
-      github: {
-        ComparisonOperator: 'EQ',
-        AttributeValueList: [
-          {
-            S: url,
-          },
-        ],
+export const validateGithubUrl = (url) =>
+  new Promise((resolve, reject) => {
+    const params = {
+      TableName: 'jsfun_git',
+      ScanFilter: {
+        github: {
+          ComparisonOperator: 'EQ',
+          AttributeValueList: [
+            {
+              S: url,
+            },
+          ],
+        },
       },
-    },
-  };
-  return new Promise((resolve, reject) => {
+    };
     dynamodb.scan(params, (err, raw) => {
       if (err) {
         reject(err);
@@ -26,23 +26,22 @@ export const validateGithubUrl = (url) => {
       resolve(existed);
     });
   });
-};
 
-export const validateWebUrl = (url) => {
-  const params = {
-    TableName: 'jsfun_site',
-    ScanFilter: {
-      url: {
-        ComparisonOperator: 'EQ',
-        AttributeValueList: [
-          {
-            S: url,
-          },
-        ],
+export const validateWebUrl = (url) =>
+  new Promise((resolve, reject) => {
+    const params = {
+      TableName: 'jsfun_site',
+      ScanFilter: {
+        url: {
+          ComparisonOperator: 'EQ',
+          AttributeValueList: [
+            {
+              S: url,
+            },
+          ],
+        },
       },
-    },
-  };
-  return new Promise((resolve, reject) => {
+    };
     dynamodb.scan(params, (err, raw) => {
       if (err) {
         reject(err);
@@ -53,23 +52,22 @@ export const validateWebUrl = (url) => {
       resolve(existed);
     });
   });
-};
 
-export const validateCategoryName = (name) => {
-  const params = {
-    TableName: 'jsfun_category',
-    ScanFilter: {
-      name: {
-        ComparisonOperator: 'EQ',
-        AttributeValueList: [
-          {
-            S: name,
-          },
-        ],
+export const validateCategoryName = (name) =>
+  new Promise((resolve, reject) => {
+    const params = {
+      TableName: 'jsfun_category',
+      ScanFilter: {
+        name: {
+          ComparisonOperator: 'EQ',
+          AttributeValueList: [
+            {
+              S: name,
+            },
+          ],
+        },
       },
-    },
-  };
-  return new Promise((resolve, reject) => {
+    };
     dynamodb.scan(params, (err, raw) => {
       if (err) {
         reject(err);
@@ -79,15 +77,14 @@ export const validateCategoryName = (name) => {
       resolve(data);
     });
   });
-};
 
-export const putNewEntry = (table, item) => {
-  const params = {
-    TableName: table,
-    Item: AWS.DynamoDB.Converter.marshall(item),
-    ReturnConsumedCapacity: 'TOTAL',
-  };
-  return new Promise((resolve, reject) => {
+export const putNewEntry = (table, item) =>
+  new Promise((resolve, reject) => {
+    const params = {
+      TableName: table,
+      Item: AWS.DynamoDB.Converter.marshall(item),
+      ReturnConsumedCapacity: 'TOTAL',
+    };
     dynamodb.putItem(params, (err, data) => {
       if (err) {
         reject(err);
@@ -96,4 +93,3 @@ export const putNewEntry = (table, item) => {
       resolve(data);
     });
   });
-};
