@@ -30,7 +30,6 @@ export const favIconPngUrl = `${iconCdnUrl}/deno-fav.png`;
 export const author = 'Zijian Guo';
 export const pageSpeedUrl = `https://pagespeed.web.dev/report?url=https%3A%2F%2Fwww.${domain}%2F`;
 export const hideGithubCorner = false;
-export const showAd = true;
 export const showDisqus = false; // also uncomment import in /src/client/layout/index.js
 export const gitRepo = `${githubUrl}/${repoUrl}`;
 /* istanbul ignore next */
@@ -72,6 +71,7 @@ export const topNavConfig = [
     disqusId: 'jsfun-000',
     asset: 'main',
     page: 0,
+    adPositions: [3, 6, 10, 13, 17],
   },
   {
     to: '/node/',
@@ -81,6 +81,7 @@ export const topNavConfig = [
     disqusId: 'jsfun-001',
     asset: 'main',
     page: 1,
+    adPositions: [2, 7, 11, 16, 20],
   },
   {
     to: '/library/',
@@ -90,6 +91,7 @@ export const topNavConfig = [
     disqusId: 'jsfun-002',
     asset: 'main',
     page: 2,
+    adPositions: [1, 2, 6, 10, 15, 20, 25],
   },
   {
     to: '/site/',
@@ -99,6 +101,7 @@ export const topNavConfig = [
     disqusId: 'jsfun-003',
     asset: 'site',
     page: 100, // doesn't matter
+    adPositions: [2, 6, 10],
   },
 ];
 
@@ -109,3 +112,14 @@ export const topNavDict = topNavConfig.reduce(
   },
   {}
 );
+
+export const adSenseClient = 'ca-pub-1613854411033042';
+export const adSenseUnits = [
+  '3545239903', // ad0
+  '7993952506', // ad1
+  '2607299420', // ad2
+  '8981136082', // ad3
+  '3385457802', // ad4
+  '9717016146', // ad5
+  '6836304575', // ad6
+];

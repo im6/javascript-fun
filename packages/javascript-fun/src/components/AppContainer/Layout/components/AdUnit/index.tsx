@@ -8,7 +8,6 @@ interface AdUnitProps {
 
 const AdUnit: FC<AdUnitProps> = ({ client, slot }) => (
   <div className={style.adContainer}>
-    {slot}
     <script
       async
       src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${client}`}
