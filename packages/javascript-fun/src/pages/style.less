@@ -1,10 +1,11 @@
 @import '../constant.less';
 .main {
-  padding: 0 0 30px @main-left-padding;
+  padding: 0 @main-padding-horizontal 30px @main-padding-horizontal;
 }
 
 @media (max-width: 767px) {
   .main {
-    padding: 0 0 5px @main-left-padding-mobile;
+    padding: 0 @main-padding-horizontal-mobile 5px
+      @main-padding-horizontal-mobile;
   }
 }
