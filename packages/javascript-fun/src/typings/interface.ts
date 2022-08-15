@@ -7,6 +7,7 @@ export interface TopNavConfigSchema {
   disqusId: string;
   asset: string;
   page: number;
+  adPositions: number[];
 }
 
 export interface GitGroupSchema extends GroupBaseSchema {

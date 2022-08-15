@@ -15,6 +15,8 @@ import {
   defaultIcon,
   topNavDict,
   renderOutputFolder,
+  adSenseUnits,
+  adSenseClient,
 } from '../config';
 
 export const linkMd = (req: Request, res: Response) => {
@@ -27,7 +29,13 @@ export const linkMd = (req: Request, res: Response) => {
       url={req.url}
       lastBuildDate={`${new Date().toLocaleString()} EST`}
     >
-      <LinkPage source={siteSource} iconCdnUrl={iconCdnUrl} />
+      <LinkPage
+        source={siteSource}
+        iconCdnUrl={iconCdnUrl}
+        adSenseUnits={adSenseUnits}
+        adSenseClient={adSenseClient}
+        adPositions={topNavDict['/site/'].adPositions}
+      />
     </AppContainer>
   );
   const stream = renderToStaticNodeStream(htmlDOM);
@@ -51,6 +59,9 @@ export const gitMd = (req: Request, res: Response) => {
         githubUrl={githubUrl}
         iconCdnUrl={iconCdnUrl}
         defaultIcon={defaultIcon}
+        adSenseUnits={adSenseUnits}
+        adSenseClient={adSenseClient}
+        adPositions={topNavDict[req.url].adPositions}
       />
     </AppContainer>
   );

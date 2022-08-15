@@ -26,6 +26,12 @@ describe('render properly', () => {
           },
         ],
       },
+      {
+        id: '2',
+        name: 'grp2',
+        anchorId: 'hello2',
+        list: [],
+      },
     ];
     const { getByText, rerender } = render(
       <GitPage
@@ -34,6 +40,9 @@ describe('render properly', () => {
         iconCdnUrl="aws.com"
         defaultIcon="default.img"
         source={src}
+        adSenseClient="abc"
+        adSenseUnits={['1', '2', '3']}
+        adPositions={[0]}
       />
     );
     rerender(
@@ -43,6 +52,9 @@ describe('render properly', () => {
         iconCdnUrl="aws.com"
         defaultIcon="default.img"
         source={src}
+        adSenseClient="abc"
+        adSenseUnits={['1', '2', '3']}
+        adPositions={[0]}
       />
     );
 

@@ -14,6 +14,8 @@ const {
   renderOutputFolder,
   criticalAssetPath,
   nonLazyImg,
+  adSenseUnits,
+  adSenseClient,
 } = require('../config');
 
 import { GitGroupSchema, LinkGroupSchema } from '../typings/interface';
@@ -47,6 +49,9 @@ const generateGitPage = (url: string) => {
         githubUrl={githubUrl}
         iconCdnUrl={iconCdnUrl}
         defaultIcon={defaultIcon}
+        adSenseUnits={adSenseUnits}
+        adSenseClient={adSenseClient}
+        adPositions={topNavDict[url].adPositions}
       />
     </AppContainer>
   );
@@ -84,7 +89,13 @@ const generateSitePage = (url: string) => {
         )
       }
     >
-      <LinkPage source={siteSource} iconCdnUrl={iconCdnUrl} />
+      <LinkPage
+        source={siteSource}
+        iconCdnUrl={iconCdnUrl}
+        adSenseUnits={adSenseUnits}
+        adSenseClient={adSenseClient}
+        adPositions={topNavDict['/site/'].adPositions}
+      />
     </AppContainer>
   );
 
