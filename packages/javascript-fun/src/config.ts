@@ -71,7 +71,7 @@ export const topNavConfig = [
     disqusId: 'jsfun-000',
     asset: 'main',
     page: 0,
-    adPositions: [3, 6, 10, 13, 17],
+    adPositions: [-1], // [3, 6, 10, 13, 17],
   },
   {
     to: '/node/',
@@ -81,7 +81,7 @@ export const topNavConfig = [
     disqusId: 'jsfun-001',
     asset: 'main',
     page: 1,
-    adPositions: [2, 7, 11, 16, 20],
+    adPositions: [-1], // [2, 7, 11, 16, 20],
   },
   {
     to: '/library/',
@@ -91,7 +91,7 @@ export const topNavConfig = [
     disqusId: 'jsfun-002',
     asset: 'main',
     page: 2,
-    adPositions: [1, 2, 6, 10, 15, 20, 25],
+    adPositions: [-1], // [1, 2, 6, 10, 15, 20, 25],
   },
   {
     to: '/site/',
@@ -101,7 +101,7 @@ export const topNavConfig = [
     disqusId: 'jsfun-003',
     asset: 'site',
     page: 100, // doesn't matter
-    adPositions: [2, 6, 10],
+    adPositions: [-1], // [2, 6, 10],
   },
 ];
 
