@@ -20,7 +20,6 @@ import { GitSchema, GitParseResult } from './interface';
 
 const dynamodb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
 
-const timeout = 5 * 1000;
 const crawlerStepDelay = 800;
 const { MY_COOKIE: Cookie } = process.env;
 
@@ -45,9 +44,9 @@ getDynamoScan$({
 export const getSiteData$ = () =>
   forkJoin([category$, getDynamoScan$({ TableName: 'jsfun_site' })]);
 
-const getGithubMetrics$ = (subUrl: string) => {
+const getGithubPage$ = (subUrl: string) => {
   const httpOptions = {
-    timeout,
+    timeout: 5 * 1000,
     headers: {
       Cookie,
       'User-Agent':
@@ -56,9 +55,7 @@ const getGithubMetrics$ = (subUrl: string) => {
     },
   };
   return from(
-    nodeFetch(`${githubUrl}/${subUrl}`, httpOptions)
-      .then((res) => res.text())
-      .then((body) => parseExtractGithub(body))
+    nodeFetch(`${githubUrl}/${subUrl}`, httpOptions).then((res) => res.text())
   );
 };
 
@@ -66,10 +63,10 @@ const githubDataScan$ = getDynamoScan$({
   TableName: 'jsfun_git',
   // ScanFilter: {
   //   category: {
-  //     ComparisonOperator: 'LE',
+  //     ComparisonOperator: 'EQ',
   //     AttributeValueList: [
   //       {
-  //         N: '1',
+  //         N: '22',
   //       },
   //     ],
   //   },
@@ -88,13 +85,14 @@ export const getGithubData$ = () => {
       }),
       switchMap((x) => from<Observable<GitSchema>>(x)),
       concatMap((v) =>
-        getGithubMetrics$(v.github).pipe(
-          map((v) => v as GitParseResult),
-          map(({ star, lastUpdate }) => {
+        getGithubPage$(v.github).pipe(
+          map((v) => parseExtractGithub(v as string)),
+          map((parseRes: GitParseResult): GitSchema => {
+            const { star, lastUpdate } = parseRes;
             const parsedDate = parseISO(lastUpdate);
             const diff = differenceInMonths(new Date(), parsedDate);
             const inactiveDate =
-              diff > 6 ? format(parsedDate, 'MMM d, yyyy') : null;
+              diff > 6 ? format(parsedDate, 'MMM d, yyyy') : '';
             return {
               ...v,
               star,

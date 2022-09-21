@@ -1,6 +1,7 @@
 import * as cheerio from 'cheerio';
 import * as groupBy from 'lodash.groupby';
 import * as orderBy from 'lodash.orderby';
+import { GitParseResult } from './interface';
 
 export const groupSite = (data, grp) => {
   const grpRef = grp.reduce((acc, cur) => {
@@ -45,7 +46,7 @@ export const generateCateMap = (data) =>
     return accumulator;
   }, new Map());
 
-export const parseExtractGithub = (body) => {
+export const parseExtractGithub = (body: string): GitParseResult => {
   const $ = cheerio.load(body);
   const res = {
     star: -1,
