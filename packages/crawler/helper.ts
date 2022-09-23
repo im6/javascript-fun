@@ -78,6 +78,7 @@ export const mergeResult = (
   const { star, lastUpdate } = parseResult;
   const parsedDate = parseISO(lastUpdate);
   const diff = differenceInMonths(new Date(), parsedDate);
+  /* istanbul ignore next */
   const inactiveDate = diff > 6 ? format(parsedDate, 'MMM d, yyyy') : '';
   return {
     ...v,

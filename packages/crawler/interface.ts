@@ -3,7 +3,7 @@ export interface GitSchema {
   github: string;
   name: string;
   star: number;
-  lastUpdate: string;
+  lastUpdate?: string;
   inactiveDate: string;
   img?: string;
 }

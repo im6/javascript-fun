@@ -3,6 +3,7 @@ import {
   groupGithub,
   generateCateMap,
   parseExtractGithub,
+  mergeResult,
 } from './helper';
 
 import { cateMock, siteMock, githubMock } from './mockData';
@@ -46,6 +47,28 @@ describe('test packages/crawler helper', () => {
     ).toEqual({
       star: -1,
       lastUpdate: '',
+    });
+  });
+
+  test('mergeResult', () => {
+    const parseRes = {
+      star: 10,
+      lastUpdate: '2011-10-05T14:48:00.000Z',
+    };
+    const initObj = {
+      name: '',
+      github: 'jquery/jqeuery',
+      category: 2,
+      star: -1,
+      inactiveDate: '2011-10-05T14:48:00.000Z',
+    };
+    const calc = mergeResult(initObj, parseRes);
+    expect(calc).toEqual({
+      name: 'jqeuery',
+      github: initObj.github,
+      category: initObj.category,
+      star: parseRes.star,
+      inactiveDate: 'Oct 5, 2011',
     });
   });
 });
