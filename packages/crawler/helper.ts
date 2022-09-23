@@ -1,7 +1,8 @@
 import * as cheerio from 'cheerio';
 import * as groupBy from 'lodash.groupby';
 import * as orderBy from 'lodash.orderby';
-import { GitParseResult } from './interface';
+import { GitParseResult, GitSchema } from './interface';
+import { format, parseISO, differenceInMonths } from 'date-fns';
 
 export const groupSite = (data, grp) => {
   const grpRef = grp.reduce((acc, cur) => {
@@ -59,18 +60,29 @@ export const parseExtractGithub = (body: string): GitParseResult => {
     const numLabel = starElem.attribs['aria-label'];
     const numStr = numLabel.split(' ')[0];
     res.star = parseInt(numStr, 10);
-  } else {
-    // eslint-disable-next-line no-console
-    console.error(`\n star number not found`);
   }
 
   const lastUpdateElems = $('relative-time');
   if (lastUpdateElems.length > 0) {
     const { datetime } = lastUpdateElems[0].attribs;
     res.lastUpdate = datetime;
-  } else {
-    // eslint-disable-next-line no-console
-    console.error('\n last update not found');
   }
+
   return res;
+};
+
+export const mergeResult = (
+  v: GitSchema,
+  parseResult: GitParseResult
+): GitSchema => {
+  const { star, lastUpdate } = parseResult;
+  const parsedDate = parseISO(lastUpdate);
+  const diff = differenceInMonths(new Date(), parsedDate);
+  const inactiveDate = diff > 6 ? format(parsedDate, 'MMM d, yyyy') : '';
+  return {
+    ...v,
+    star,
+    inactiveDate,
+    name: v.name || v.github.split('/')[1],
+  };
 };

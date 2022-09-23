@@ -3,6 +3,7 @@ const ProgressBar = require('progress');
 const nodeFetch = require('node-fetch');
 const { githubUrl } = require('app-constant');
 import {
+  of,
   from,
   forkJoin,
   tap,
@@ -13,14 +14,17 @@ import {
   concatMap,
   Observable,
   Subject,
+  retry,
+  catchError,
 } from 'rxjs';
-import { format, parseISO, differenceInMonths } from 'date-fns';
-import { parseExtractGithub } from './helper';
+
+import { parseExtractGithub, mergeResult } from './helper';
 import { GitSchema, GitParseResult } from './interface';
 
 const dynamodb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
 
 const crawlerStepDelay = 800;
+const retryAttempt = 3;
 const { MY_COOKIE: Cookie } = process.env;
 
 const getDynamoScan$ = (params) =>
@@ -44,20 +48,28 @@ getDynamoScan$({
 export const getSiteData$ = () =>
   forkJoin([category$, getDynamoScan$({ TableName: 'jsfun_site' })]);
 
-const getGithubPage$ = (subUrl: string) => {
-  const httpOptions = {
-    timeout: 5 * 1000,
-    headers: {
-      Cookie,
-      'User-Agent':
-        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36',
-      Host: 'github.com',
-    },
-  };
-  return from(
-    nodeFetch(`${githubUrl}/${subUrl}`, httpOptions).then((res) => res.text())
-  );
-};
+const getGithubPage$ = (subUrl: string) =>
+  new Observable((subscriber) => {
+    const httpOptions = {
+      timeout: 5 * 1000,
+      headers: {
+        Cookie,
+        'User-Agent':
+          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36',
+        Host: 'github.com',
+      },
+    };
+    nodeFetch(`${githubUrl}/${subUrl}`, httpOptions)
+      .then((res) => res.text())
+      .then((res) => {
+        subscriber.next(res);
+        subscriber.complete();
+      })
+      .catch((err) => {
+        subscriber.error(err);
+        subscriber.complete();
+      });
+  });
 
 const githubDataScan$ = getDynamoScan$({
   TableName: 'jsfun_git',
@@ -66,7 +78,7 @@ const githubDataScan$ = getDynamoScan$({
   //     ComparisonOperator: 'EQ',
   //     AttributeValueList: [
   //       {
-  //         N: '22',
+  //         N: '1',
   //       },
   //     ],
   //   },
@@ -79,29 +91,28 @@ export const getGithubData$ = () => {
     category$,
     githubDataScan$.pipe(
       tap((taskList: any) => {
-        bar = new ProgressBar('downloading :current of :total: :gtnm', {
+        bar = new ProgressBar('complete :gitIndex of :total: :gtnm', {
           total: taskList.length,
         });
       }),
       switchMap((x) => from<Observable<GitSchema>>(x)),
-      concatMap((v) =>
+      map((v: GitSchema, k: number) => [v, k]),
+      concatMap(([v, gitIndex]: any[]) =>
         getGithubPage$(v.github).pipe(
-          map((v) => parseExtractGithub(v as string)),
-          map((parseRes: GitParseResult): GitSchema => {
-            const { star, lastUpdate } = parseRes;
-            const parsedDate = parseISO(lastUpdate);
-            const diff = differenceInMonths(new Date(), parsedDate);
-            const inactiveDate =
-              diff > 6 ? format(parsedDate, 'MMM d, yyyy') : '';
-            return {
-              ...v,
-              star,
-              inactiveDate,
-              name: v.name || v.github.split('/')[1],
-            };
+          tap(() => {
+            bar.tick({ gitIndex: gitIndex + 1, gtnm: v.github });
           }),
-          tap(({ github }) => {
-            bar.tick({ gtnm: github });
+          retry(retryAttempt),
+          catchError(() => of('')),
+          map((v) => parseExtractGithub(v as string)),
+          map(
+            (parseRes: GitParseResult): GitSchema => mergeResult(v, parseRes)
+          ),
+          tap(({ star, github }) => {
+            if (star < 0) {
+              // eslint-disable-next-line no-console
+              console.log(`\n - failed on ${github}`);
+            }
           }),
           delay(crawlerStepDelay)
         )
