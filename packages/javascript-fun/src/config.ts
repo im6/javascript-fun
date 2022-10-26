@@ -40,7 +40,7 @@ export const defaultIcon = (function getIconFromDate() {
   if (month === 2 && day > 14 && day < 18) {
     return 'default-irish.svg';
   }
-  if (month === 9 && day > 27) {
+  if (month === 9 && day > 25) {
     return 'default-halloween.svg';
   }
   if (month === 11 && day > 10) {
