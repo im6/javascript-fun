@@ -67,7 +67,6 @@ const getGithubPage$ = (subUrl: string) =>
       })
       .catch((err) => {
         subscriber.error(err);
-        subscriber.complete();
       });
   });
 
@@ -103,8 +102,14 @@ export const getGithubData$ = () => {
             bar.tick({ gitIndex: gitIndex + 1, gtnm: v.github });
           }),
           retry(retryAttempt),
-          catchError(() => of('')),
           map((v) => parseExtractGithub(v as string)),
+          catchError(
+            (): Observable<GitParseResult> =>
+              of({
+                star: -1,
+                lastUpdate: '',
+              })
+          ),
           map(
             (parseRes: GitParseResult): GitSchema => mergeResult(v, parseRes)
           ),

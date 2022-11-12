@@ -49,26 +49,28 @@ export const generateCateMap = (data) =>
 
 export const parseExtractGithub = (body: string): GitParseResult => {
   const $ = cheerio.load(body);
-  const res = {
-    star: -1,
-    lastUpdate: '',
-  };
+
+  let star = -1;
+  let lastUpdate = '';
 
   const starElems = $('span.Counter.js-social-count');
   if (starElems.length > 0) {
     const starElem = starElems[0];
     const numLabel = starElem.attribs['aria-label'];
     const numStr = numLabel.split(' ')[0];
-    res.star = parseInt(numStr, 10);
+    star = parseInt(numStr, 10);
   }
 
   const lastUpdateElems = $('relative-time');
   if (lastUpdateElems.length > 0) {
     const { datetime } = lastUpdateElems[0].attribs;
-    res.lastUpdate = datetime;
+    lastUpdate = datetime;
   }
 
-  return res;
+  return {
+    star,
+    lastUpdate,
+  };
 };
 
 export const mergeResult = (
