@@ -22,6 +22,7 @@ cp -a packages/javascript-fun/dist/views/. $im6_dir
 
 # push
 cd $im6_dir
+rm .DS_Store
 git add .
 git commit -a -m "update"
 git push
