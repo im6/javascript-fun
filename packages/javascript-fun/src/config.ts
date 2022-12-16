@@ -43,7 +43,7 @@ export const defaultIcon = (function getIconFromDate() {
   if (month === 9 && day > 25) {
     return 'default-halloween.svg';
   }
-  if (month === 11 && day > 10) {
+  if (month === 11 && day > 10 && day < 25) {
     return 'default-xmas.svg';
   }
   return 'default-github-0.svg';
