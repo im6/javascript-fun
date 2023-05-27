@@ -1,5 +1,7 @@
-const AWS = require('aws-sdk');
-const dynamodb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
+import { DynamoDB } from '@aws-sdk/client-dynamodb';
+import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
+
+const dynamodb = new DynamoDB({ apiVersion: '2012-08-10' });
 
 export const validateGithubUrl = (url) =>
   new Promise((resolve, reject) => {
@@ -21,7 +23,7 @@ export const validateGithubUrl = (url) =>
         reject(err);
         return;
       }
-      const data = raw.Items.map((v) => AWS.DynamoDB.Converter.unmarshall(v));
+      const data = raw.Items.map((v) => unmarshall(v));
       const existed = data.length > 0;
       resolve(existed);
     });
@@ -47,7 +49,7 @@ export const validateWebUrl = (url) =>
         reject(err);
         return;
       }
-      const data = raw.Items.map((v) => AWS.DynamoDB.Converter.unmarshall(v));
+      const data = raw.Items.map((v) => unmarshall(v));
       const existed = data.length > 0;
       resolve(existed);
     });
@@ -73,7 +75,7 @@ export const validateCategoryName = (name) =>
         reject(err);
         return;
       }
-      const data = raw.Items.map((v) => AWS.DynamoDB.Converter.unmarshall(v));
+      const data = raw.Items.map((v) => unmarshall(v));
       resolve(data);
     });
   });
@@ -82,7 +84,7 @@ export const putNewEntry = (table, item) =>
   new Promise((resolve, reject) => {
     const params = {
       TableName: table,
-      Item: AWS.DynamoDB.Converter.marshall(item),
+      Item: marshall(item),
       ReturnConsumedCapacity: 'TOTAL',
     };
     dynamodb.putItem(params, (err, data) => {

@@ -17,9 +17,10 @@
     "cp": ". ./tasks/cp.sh"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.341.0",
+    "@aws-sdk/util-dynamodb": "^3.341.0",
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.11",
-    "aws-sdk": "^2.1359.0",
     "dotenv": "^16.0.3",
     "eslint": "^8.38.0",
     "eslint-config-airbnb": "^19.0.4",

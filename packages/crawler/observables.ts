@@ -1,4 +1,6 @@
-const AWS = require('aws-sdk');
+import { DynamoDB } from '@aws-sdk/client-dynamodb';
+import { unmarshall } from '@aws-sdk/util-dynamodb';
+
 const ProgressBar = require('progress');
 const nodeFetch = require('node-fetch');
 const { githubUrl } = require('app-constant');
@@ -21,7 +23,7 @@ import {
 import { parseExtractGithub, mergeResult } from './helper';
 import { GitSchema, GitParseResult } from './interface';
 
-const dynamodb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
+const dynamodb = new DynamoDB({ apiVersion: '2012-08-10' });
 
 const crawlerStepDelay = 800;
 const retryAttempt = 3;
@@ -34,7 +36,7 @@ const getDynamoScan$ = (params) =>
         subscriber.error(err);
         return;
       }
-      const data = raw.Items.map((v) => AWS.DynamoDB.Converter.unmarshall(v));
+      const data = raw.Items.map((v) => unmarshall(v));
       subscriber.next(data);
       subscriber.complete();
     });
