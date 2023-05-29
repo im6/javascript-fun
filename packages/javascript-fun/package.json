@@ -3,7 +3,7 @@
   "version": "1.12.0",
   "description": "source code generator for javascript.fun",
   "engines": {
-    "node": ">=16.13.0"
+    "node": ">=18.16.0"
   },
   "repository": "git+https://github.com/im6/javascript-fun.git",
   "author": "im6",
