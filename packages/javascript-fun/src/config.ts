@@ -31,7 +31,7 @@ export const author = 'Zijian Guo';
 export const pageSpeedUrl = `https://pagespeed.web.dev/report?url=https%3A%2F%2Fwww.${domain}%2F`;
 export const hideGithubCorner = false;
 export const showDisqus = false; // also uncomment import in /src/client/layout/index.js
-export const showAdsense = true;
+export const showAdsense = false;
 export const gitRepo = `${githubUrl}/${repoUrl}`;
 /* istanbul ignore next */
 export const defaultIcon = (function getIconFromDate() {
@@ -66,23 +66,23 @@ export const leftNavText = [
 export const topNavConfig = [
   {
     to: '/',
-    img: 'vue.svg',
+    img: 'react.svg',
     title: 'Front End',
     alt: 'framework',
     disqusId: 'jsfun-000',
     asset: 'main',
     page: 0,
-    adPositions: showAdsense ? [3, 10, 13] : [-1], // [3, 6, 10, 13, 17],
+    adPositions: [3, 10, 13], // [3, 6, 10, 13, 17],
   },
   {
     to: '/node/',
-    img: 'deno.svg',
+    img: 'node.svg',
     title: 'Node.js',
     alt: 'node',
     disqusId: 'jsfun-001',
     asset: 'main',
     page: 1,
-    adPositions: [7, 11, 20], // [2, 7, 11, 16, 20],
+    adPositions: [7, 11, 16], // [2, 7, 11, 16, 20],
   },
   {
     to: '/library/',
@@ -109,6 +109,10 @@ export const topNavConfig = [
 export const topNavDict = topNavConfig.reduce(
   (acc: Record<string, TopNavConfigSchema>, cur) => {
     acc[cur.to] = cur;
+    /* istanbul ignore next */
+    if (!showAdsense) {
+      acc[cur.to].adPositions = [-1];
+    }
     return acc;
   },
   {}
