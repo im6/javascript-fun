@@ -1,6 +1,3 @@
-import { DynamoDB } from '@aws-sdk/client-dynamodb';
-import { unmarshall } from '@aws-sdk/util-dynamodb';
-
 const ProgressBar = require('progress');
 const nodeFetch = require('node-fetch');
 const { githubUrl } = require('app-constant');
@@ -22,33 +19,16 @@ import {
 
 import { parseExtractGithub, mergeResult } from './helper';
 import { GitSchema, GitParseResult } from './interface';
-
-const dynamodb = new DynamoDB({ apiVersion: '2012-08-10' });
+import { getCategory$, getGithub$, getSite$ } from './db/dynamodb/crud';
 
 const crawlerStepDelay = 800;
 const retryAttempt = 3;
 const { MY_COOKIE: Cookie } = process.env;
 
-const getDynamoScan$ = (params) =>
-  new Observable((subscriber) => {
-    dynamodb.scan(params, (err, raw) => {
-      if (err) {
-        subscriber.error(err);
-        return;
-      }
-      const data = raw.Items.map((v) => unmarshall(v));
-      subscriber.next(data);
-      subscriber.complete();
-    });
-  });
-
 const category$ = new Subject();
-getDynamoScan$({
-  TableName: 'jsfun_category',
-}).subscribe(category$);
+getCategory$().subscribe(category$);
 
-export const getSiteData$ = () =>
-  forkJoin([category$, getDynamoScan$({ TableName: 'jsfun_site' })]);
+export const getSiteData$ = () => forkJoin([category$, getSite$()]);
 
 const getGithubPage$ = (subUrl: string) =>
   new Observable((subscriber) => {
@@ -72,25 +52,11 @@ const getGithubPage$ = (subUrl: string) =>
       });
   });
 
-const githubDataScan$ = getDynamoScan$({
-  TableName: 'jsfun_git',
-  // ScanFilter: {
-  //   category: {
-  //     ComparisonOperator: 'EQ',
-  //     AttributeValueList: [
-  //       {
-  //         N: '1',
-  //       },
-  //     ],
-  //   },
-  // },
-});
-
 export const getGithubData$ = () => {
   let bar;
   return forkJoin([
     category$,
-    githubDataScan$.pipe(
+    getGithub$().pipe(
       tap((taskList: any) => {
         bar = new ProgressBar('complete :gitIndex of :total: :gtnm', {
           total: taskList.length,
