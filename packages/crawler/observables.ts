@@ -19,7 +19,7 @@ import {
 
 import { parseExtractGithub, mergeResult } from './helper';
 import { GitSchema, GitParseResult } from './interface';
-import { getCategory$, getGithub$, getSite$ } from './db/dynamodb/crud';
+import { getCategory$, getGithub$, getSite$ } from 'dynamodb-observables';
 
 const crawlerStepDelay = 800;
 const retryAttempt = 3;

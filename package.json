@@ -13,6 +13,7 @@
     "render": "cd packages/javascript-fun && node ./dist/node/render.js",
     "admin": "cd packages/admin && ts-node index.ts",
     "collect": "cd packages/crawler && ts-node index.ts",
+    "sync": "cd packages/db-sync && ts-node index.ts",
     "lint": "eslint ./packages",
     "cp": ". ./tasks/cp.sh"
   },
@@ -32,6 +33,7 @@
     "eslint-plugin-react": "^7.32.2",
     "jest": "^29.5.0",
     "prettier": "^2.8.8",
+    "rxjs": "^7.8.1",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"

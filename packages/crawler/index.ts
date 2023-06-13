@@ -1,10 +1,11 @@
 require('dotenv').config({ path: '../../../javascript-fun.env' });
 
 const fs = require('fs');
-const { resolve } = require('path');
-const { gitJsonPath, siteJsonPath, dataSourceDir } = require('app-constant');
-const { getSiteData$, getGithubData$ } = require('./observables');
-const { groupSite, groupGithub, generateCateMap } = require('./helper');
+
+import { resolve } from 'path';
+import { gitJsonPath, siteJsonPath, dataSourceDir } from 'app-constant';
+import { getSiteData$, getGithubData$ } from './observables';
+import { groupSite, groupGithub, generateCateMap } from './helper';
 
 const fullDataSourceDir = resolve(process.cwd(), '../../', dataSourceDir);
 
