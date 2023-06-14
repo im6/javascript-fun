@@ -31,7 +31,7 @@ export const author = 'Zijian Guo';
 export const pageSpeedUrl = `https://pagespeed.web.dev/report?url=https%3A%2F%2Fwww.${domain}%2F`;
 export const hideGithubCorner = false;
 export const showDisqus = false; // also uncomment import in /src/client/layout/index.js
-export const showAdsense = false;
+export const showAdsense = true;
 export const gitRepo = `${githubUrl}/${repoUrl}`;
 /* istanbul ignore next */
 export const defaultIcon = (function getIconFromDate() {
@@ -72,7 +72,7 @@ export const topNavConfig = [
     disqusId: 'jsfun-000',
     asset: 'main',
     page: 0,
-    adPositions: [3, 10, 13], // [3, 6, 10, 13, 17],
+    adPositions: [3, 7, 14],
   },
   {
     to: '/node/',
@@ -82,7 +82,7 @@ export const topNavConfig = [
     disqusId: 'jsfun-001',
     asset: 'main',
     page: 1,
-    adPositions: [7, 11, 16], // [2, 7, 11, 16, 20],
+    adPositions: [3, 10],
   },
   {
     to: '/library/',
@@ -92,7 +92,7 @@ export const topNavConfig = [
     disqusId: 'jsfun-002',
     asset: 'main',
     page: 2,
-    adPositions: [6, 15], // [1, 2, 6, 10, 15, 20, 25],
+    adPositions: [1, 6, 18],
   },
   {
     to: '/site/',
@@ -102,7 +102,7 @@ export const topNavConfig = [
     disqusId: 'jsfun-003',
     asset: 'site',
     page: 100, // doesn't matter
-    adPositions: [6, 10], // [2, 6, 10],
+    adPositions: [],
   },
 ];
 
