@@ -10,7 +10,6 @@
     "dynamodb-observables": "1.0.0",
     "lodash.groupby": "^4.6.0",
     "lodash.orderby": "^4.6.0",
-    "mongodb": "^5.6.0",
     "node-fetch": "2.6.x",
     "progress": "^2.0.3"
   }
