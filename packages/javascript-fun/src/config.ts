@@ -31,7 +31,7 @@ export const author = 'Zijian Guo';
 export const pageSpeedUrl = `https://pagespeed.web.dev/report?url=https%3A%2F%2Fwww.${domain}%2F`;
 export const hideGithubCorner = false;
 export const showDisqus = false; // also uncomment import in /src/client/layout/index.js
-export const showAdsense = true;
+export const showAdsense = false;
 export const gitRepo = `${githubUrl}/${repoUrl}`;
 /* istanbul ignore next */
 export const defaultIcon = (function getIconFromDate() {

@@ -52,45 +52,45 @@ const getGithubPage$ = (subUrl: string) =>
       });
   });
 
-export const getGithubData$ = () => {
-  let bar;
-  return forkJoin([
+export const getGithubData$ = () =>
+  forkJoin([
     category$,
     getGithub$().pipe(
-      tap((taskList: any) => {
-        bar = new ProgressBar('complete :gitIndex of :total: :gtnm', {
-          total: taskList.length,
+      switchMap((x: any) => {
+        const bar = new ProgressBar('complete :gitIndex of :total: :gtnm', {
+          total: x.length,
         });
-      }),
-      switchMap((x) => from<Observable<GitSchema>>(x)),
-      map((v: GitSchema, k: number) => [v, k]),
-      concatMap(([v, gitIndex]: any[]) =>
-        getGithubPage$(v.github).pipe(
-          tap(() => {
-            bar.tick({ gitIndex: gitIndex + 1, gtnm: v.github });
-          }),
-          retry(retryAttempt),
-          map((v) => parseExtractGithub(v as string)),
-          catchError(
-            (): Observable<GitParseResult> =>
-              of({
-                star: -1,
-                lastUpdate: '',
-              })
+        return from<Observable<GitSchema>>(x).pipe(
+          map((v: GitSchema, k: number) => [v, k]),
+          concatMap(([v, gitIndex]: any[]) =>
+            getGithubPage$(v.github).pipe(
+              tap(() => {
+                bar.tick({ gitIndex: gitIndex + 1, gtnm: v.github });
+              }),
+              retry(retryAttempt),
+              map((v) => parseExtractGithub(v as string)),
+              catchError(
+                (): Observable<GitParseResult> =>
+                  of({
+                    star: -1,
+                    lastUpdate: '',
+                  })
+              ),
+              map(
+                (parseRes: GitParseResult): GitSchema =>
+                  mergeResult(v, parseRes)
+              ),
+              tap(({ star, github }) => {
+                if (star < 0) {
+                  // eslint-disable-next-line no-console
+                  console.log(`\n - failed on ${github}`);
+                }
+              }),
+              delay(crawlerStepDelay)
+            )
           ),
-          map(
-            (parseRes: GitParseResult): GitSchema => mergeResult(v, parseRes)
-          ),
-          tap(({ star, github }) => {
-            if (star < 0) {
-              // eslint-disable-next-line no-console
-              console.log(`\n - failed on ${github}`);
-            }
-          }),
-          delay(crawlerStepDelay)
-        )
-      ),
-      toArray()
+          toArray()
+        );
+      })
     ),
   ]);
-};
