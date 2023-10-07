@@ -34,7 +34,7 @@
     "less-loader": "^11.1.1",
     "mini-css-extract-plugin": "^2.7.6",
     "numeral": "^2.0.6",
-    "postcss": "^8.4.24",
+    "postcss": "^8.4.31",
     "postcss-loader": "^7.3.2",
     "purecss": "^3.0.0",
     "react": "^18.2.0",
