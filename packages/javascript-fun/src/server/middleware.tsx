@@ -12,7 +12,6 @@ import { GitGroupSchema, LinkGroupSchema } from '../typings/interface';
 import {
   nonLazyImg,
   iconCdnUrl,
-  defaultIcon,
   topNavDict,
   renderOutputFolder,
   adSenseUnits,
@@ -58,7 +57,6 @@ export const gitMd = (req: Request, res: Response) => {
         source={gitSource.filter((v) => v.page === topNavDict[req.url].page)}
         githubUrl={githubUrl}
         iconCdnUrl={iconCdnUrl}
-        defaultIcon={defaultIcon}
         adSenseUnits={adSenseUnits}
         adSenseClient={adSenseClient}
         adPositions={topNavDict[req.url].adPositions}

@@ -33,22 +33,6 @@ export const hideGithubCorner = false;
 export const showDisqus = false; // also uncomment import in /src/client/layout/index.js
 export const showAdsense = false;
 export const gitRepo = `${githubUrl}/${repoUrl}`;
-/* istanbul ignore next */
-export const defaultIcon = (function getIconFromDate() {
-  const now = new Date();
-  const month = now.getMonth();
-  const day = now.getDate();
-  if (month === 2 && day > 14 && day < 18) {
-    return 'default-irish.svg';
-  }
-  if (month === 9 && day > 25) {
-    return 'default-halloween.svg';
-  }
-  if (month === 11 && day > 10 && day < 25) {
-    return 'default-xmas.svg';
-  }
-  return 'default-github-0.svg';
-})();
 
 /* istanbul ignore next */
 export const primaryYear = (

@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import GitPage from '.';
+import GitPage from './index';
 
 describe('render properly', () => {
   test('render correct', () => {
@@ -38,7 +38,6 @@ describe('render properly', () => {
         nonLazyImgIndex={-1}
         githubUrl="github.com"
         iconCdnUrl="aws.com"
-        defaultIcon="default.img"
         source={src}
         adSenseClient="abc"
         adSenseUnits={['1', '2', '3']}
@@ -50,7 +49,6 @@ describe('render properly', () => {
         nonLazyImgIndex={1}
         githubUrl="github.com"
         iconCdnUrl="aws.com"
-        defaultIcon="default.img"
         source={src}
         adSenseClient="abc"
         adSenseUnits={['1', '2', '3']}

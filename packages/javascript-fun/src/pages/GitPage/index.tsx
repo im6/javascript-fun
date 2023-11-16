@@ -13,7 +13,6 @@ interface GitPageProps {
   source: GitGroupSchema[];
   githubUrl: string;
   iconCdnUrl: string;
-  defaultIcon: string;
   nonLazyImgIndex: number;
   adSenseClient: string;
   adSenseUnits: string[];
@@ -24,7 +23,6 @@ const GitPage: FC<GitPageProps> = ({
   source,
   githubUrl,
   iconCdnUrl,
-  defaultIcon,
   nonLazyImgIndex,
   adPositions,
   adSenseClient,
@@ -43,18 +41,29 @@ const GitPage: FC<GitPageProps> = ({
               anchorId={v.anchorId}
               linkIconUrl={`${iconCdnUrl}/fa-link.svg`}
             >
-              {v.list.map((v1) => (
-                <GitBox
-                  key={v1.github}
-                  name={v1.name}
-                  img={(!lazyLoad && v1.img) || defaultIcon}
-                  imgSrc={iconCdnUrl}
-                  star={v1.star}
-                  url={`${githubUrl}/${v1.github}`}
-                  lazyImg={lazyLoad ? v1.img : undefined}
-                  inactiveDate={v1.inactiveDate}
-                />
-              ))}
+              {v.list.map((v1) => {
+                let img = v1.img ? `${iconCdnUrl}/${v1.img}` : '';
+                let lazyImg;
+
+                if (lazyLoad) {
+                  img = '';
+                  if (v1.img) {
+                    lazyImg = v1.img;
+                  }
+                }
+
+                return (
+                  <GitBox
+                    key={v1.github}
+                    name={v1.name}
+                    img={img}
+                    star={v1.star}
+                    url={`${githubUrl}/${v1.github}`}
+                    lazyImg={lazyImg}
+                    inactiveDate={v1.inactiveDate}
+                  />
+                );
+              })}
             </BoxGroup>
             {adIndex > -1 && (
               <AdUnit client={adSenseClient} slot={adSenseUnits[adIndex]} />

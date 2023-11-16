@@ -9,7 +9,6 @@ import LinkPage from '../pages/LinkPage';
 
 const {
   iconCdnUrl,
-  defaultIcon,
   topNavDict,
   renderOutputFolder,
   criticalAssetPath,
@@ -48,7 +47,6 @@ const generateGitPage = (url: string) => {
         source={gitSource.filter((v) => v.page === topNavDict[url].page)}
         githubUrl={githubUrl}
         iconCdnUrl={iconCdnUrl}
-        defaultIcon={defaultIcon}
         adSenseUnits={adSenseUnits}
         adSenseClient={adSenseClient}
         adPositions={topNavDict[url].adPositions}

@@ -9,7 +9,6 @@ describe('render properly', () => {
         url="//www.cnn.com"
         name={name}
         img="news"
-        imgSrc="news"
         star={123}
         inactiveDate="Jun 22 2020"
       />

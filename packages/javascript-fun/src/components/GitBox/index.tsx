@@ -5,8 +5,7 @@ import style from './style.less';
 interface GitBoxProps {
   url: string;
   name: string;
-  img: string;
-  imgSrc: string;
+  img?: string;
   star: number;
   lazyImg?: string;
   inactiveDate: string;
@@ -16,7 +15,6 @@ const GitBox: FC<GitBoxProps> = ({
   name,
   url,
   img,
-  imgSrc,
   star,
   lazyImg,
   inactiveDate,
@@ -24,7 +22,7 @@ const GitBox: FC<GitBoxProps> = ({
   <div
     className={`pure-u-xl-1-5 pure-u-lg-1-4 pure-u-md-1-3 pure-u-sm-1-2 pure-u-1-2 ${style.box}`}
   >
-    <img src={`${imgSrc}/${img}`} alt={name} data-i={lazyImg} />
+    <img src={img} alt={name} data-i={lazyImg} />
     <div className={style.rightText}>
       <h3>{name}</h3>
       <a href={url} aria-label={`${star} stars in Github`}>
