@@ -16,7 +16,7 @@ const defaultIcon = (function getIconFromDate() {
   if (month === 9 && day > 29) {
     return 'default-halloween.svg';
   }
-  if (month === 11 && day > 19 && day < 25) {
+  if (month === 11 && day > 19 && day < 26) {
     return 'default-xmas.svg';
   }
   return 'default-github-0.svg';
