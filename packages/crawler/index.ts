@@ -17,7 +17,8 @@ const siteData$ = getSiteData$();
 const githubData$ = getGithubData$();
 
 githubData$.subscribe({
-  next: ([d0, d1]) => {
+  next: (res: any) => {
+    const [d0, d1] = res;
     const cateMap = generateCateMap(d0);
     const data = groupGithub(d1, cateMap);
     fs.writeFile(
@@ -37,7 +38,8 @@ githubData$.subscribe({
 });
 
 siteData$.subscribe({
-  next: ([grps, sites]) => {
+  next: (res: any) => {
+    const [grps, sites] = res;
     const siteList = groupSite(sites, grps);
     fs.writeFile(
       resolve(process.cwd(), '../../', siteJsonPath),
