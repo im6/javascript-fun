@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import style from './style.less';
 
 interface AdUnitProps {
   slot: string;
@@ -7,7 +6,7 @@ interface AdUnitProps {
 }
 
 const AdUnit: FC<AdUnitProps> = ({ client, slot }) => (
-  <div className={style.adContainer}>
+  <div className="mt-1 p-0 border-0 border-neutral-300 rounded-md overflow-hidden md:border-2 md:p-2 md:mt-5">
     <script
       async
       src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${client}`}

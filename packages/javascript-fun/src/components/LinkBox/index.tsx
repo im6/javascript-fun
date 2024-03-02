@@ -1,18 +1,18 @@
 import { FC } from 'react';
-import style from './style.less';
 
 interface LinkBoxProps {
   url: string;
   name: string;
   desc?: string;
 }
-
 const LinkBox: FC<LinkBoxProps> = ({ url, name, desc }) => (
-  <div
-    className={`pure-u-xl-1-4 pure-u-lg-1-3 pure-u-md-1-2 pure-u-sm-1-2 pure-u-1-2 ${style.box}`}
-  >
-    <h3>
-      <a href={url} title={desc}>
+  <div className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 border-dashed border-b-[1px] py-2">
+    <h3 className="m-0">
+      <a
+        className="text-black hover:text-yellow-700 transition-colors duration-400"
+        href={url}
+        title={desc}
+      >
         {name}
       </a>
     </h3>

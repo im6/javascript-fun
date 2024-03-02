@@ -4,8 +4,6 @@ import LinkBox from '../../components/LinkBox';
 import BoxGroup from '../../components/BoxGroup';
 import AdUnit from '../../components/AppContainer/Layout/components/AdUnit';
 
-import shareStyle from '../style.less';
-
 import { LinkGroupSchema } from '../../typings/interface';
 
 interface LinkPageProps {
@@ -23,7 +21,7 @@ const LinkPage: FC<LinkPageProps> = ({
   adSenseUnits,
   adPositions,
 }) => (
-  <div className={shareStyle.main}>
+  <div className="px-5 md:px-8 pt-0 pb-3">
     {source.map((v, k) => {
       const adIndex = adPositions.indexOf(k);
       return (

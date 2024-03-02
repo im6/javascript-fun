@@ -4,9 +4,6 @@ import GitBox from '../../components/GitBox';
 import BoxGroup from '../../components/BoxGroup';
 import AdUnit from '../../components/AppContainer/Layout/components/AdUnit';
 
-import style from './style.less';
-import sharedStyle from '../style.less';
-
 import { GitGroupSchema } from '../../typings/interface';
 
 interface GitPageProps {
@@ -29,7 +26,7 @@ const GitPage: FC<GitPageProps> = ({
   adSenseUnits,
 }) => (
   <Fragment>
-    <div className={sharedStyle.main}>
+    <div className="pt-0 px-3 md:px-8">
       {source.map((v, k) => {
         const lazyLoad = k > nonLazyImgIndex;
         const adIndex = adPositions.indexOf(k);
@@ -72,7 +69,7 @@ const GitPage: FC<GitPageProps> = ({
         );
       })}
     </div>
-    <h3 className={style.updateTime} />
+    <h3 id="updateTime" className="text-center text-green-300 mt-10" />
   </Fragment>
 );
 
