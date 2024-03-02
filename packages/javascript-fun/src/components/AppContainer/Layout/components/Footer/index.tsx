@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import style from './style.less';
 
 interface FooterProps {
   domain: string;
@@ -15,31 +14,36 @@ const Footer: FC<FooterProps> = ({
   author,
   year,
   pageSpeedUrl,
-}) => (
-  <footer className={style.footer}>
-    <div>
-      Full score &#9989;&nbsp;&nbsp;by&nbsp;
-      <a
-        href={pageSpeedUrl}
-        className={style.blue}
-        target="_blank"
-        rel="noopener"
-      >
-        Google PageSpeed
-      </a>
-    </div>
-    <div>
-      &copy; Copyright {year}&nbsp;
-      {hideAuthor ? (
-        domain
-      ) : (
-        <a href="/about/">
-          <b>{author}</b>
+}) => {
+  const childDivStyle = 'pt-2 text-center text-neutral-500';
+  const linkStyle = 'text-blue-500 ml-1';
+
+  return (
+    <footer className="p-0 mt-20 border-t-2">
+      <div className={childDivStyle}>
+        Full score &#9989; by
+        <a
+          href={pageSpeedUrl}
+          className={linkStyle}
+          target="_blank"
+          rel="noopener"
+        >
+          Google PageSpeed
         </a>
-      )}
-    </div>
-    <div>All rights reserved.</div>
-  </footer>
-);
+      </div>
+      <div className={childDivStyle}>
+        &copy; Copyright {year}
+        {hideAuthor ? (
+          domain
+        ) : (
+          <a href="/about/" className={linkStyle}>
+            <b>{author}</b>
+          </a>
+        )}
+      </div>
+      <div className={`${childDivStyle} pb-4`}>All rights reserved.</div>
+    </footer>
+  );
+};
 
 export default Footer;

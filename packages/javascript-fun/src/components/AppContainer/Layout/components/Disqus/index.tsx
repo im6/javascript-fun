@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import style from './style.less';
 
 interface DisqusProps {
   title: string;
@@ -8,10 +7,10 @@ interface DisqusProps {
 }
 
 const Disqus: FC<DisqusProps> = ({ title, canonicalUrl, identifier }) => (
-  <div className={style.commentBox}>
+  <div className="p-4 text-center">
     <button
       type="button"
-      className={`pure-button pure-button-primary ${style.commentToggleBtn}`}
+      className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
     >
       &#128172; &nbsp; Display Comments
     </button>
