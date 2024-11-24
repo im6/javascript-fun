@@ -135,7 +135,7 @@ const app = async () => {
   const { table } = await getTableSelection();
   if (table === 'git') {
     const a = await getGitPrompts();
-    if (!a.confirm || !a.group) {
+    if (!a.confirm || !a.group || typeof a.img !== 'string') {
       console.log('canceled'); // eslint-disable-line no-console
       return;
     }
