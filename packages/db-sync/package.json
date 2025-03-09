@@ -1,5 +1,8 @@
 {
   "name": "db-sync",
   "version": "1.0.0",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "dynamodb-observables": "1.0.0"
+  }
 }

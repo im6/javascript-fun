@@ -23,7 +23,6 @@
     "@types/jest": "^29.5.1",
     "@types/node": "^20.2.5",
     "dotenv": "^16.0.3",
-    "dynamodb-observables": "^1.0.0",
     "eslint": "^8.41.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.8.0",

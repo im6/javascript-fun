@@ -7,3 +7,10 @@ Source code to generate [www.javascript.fun](https://www.javascript.fun/)
 - Highly tailored and customized project to render static webpage
 - Crawler to collect dynamic online data
 - Admin capability with `cli` interface
+
+## How to start
+
+```sh
+yarn install
+yarn workspace dynamodb-observables build
+```
