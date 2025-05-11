@@ -1,4 +1,5 @@
 im6_dir="../im6.github.io"
+repo_folder_name="${PWD##*/}"
 
 if [ ! -d "$im6_dir" ]; then
   echo 'GitHub Page folder does not exist.'
@@ -8,7 +9,7 @@ fi
 cd $im6_dir
 git pull
 
-cd ../javascript-fun
+cd "../${repo_folder_name}"
 
 # copy
 # cp packages/javascript-fun/dist/public/main.js "$im6_dir/assets/"
@@ -20,7 +21,7 @@ cp -a packages/javascript-fun/dist/views/. $im6_dir
 
 # push
 cd $im6_dir
-rm .DS_Store
+[ -f .DS_Store ] && rm .DS_Store
 git add .
 git commit -a -m "update"
 git push
